@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {
-  ChainbridgeProvider,
+  SygmaProvider,
   LocalProvider,
   NetworkManagerProvider,
-  useChainbridge,
+  useSygma,
   useWeb3
-} from "@chainsafe/chainbridge-ui-core";
+} from "@chainsafe/sygma-ui-core";
 
 import { utils } from "ethers";
 
@@ -14,7 +14,7 @@ const BasicApp = (props: any) => {
 
   const handleSetWallet = () => setWalletType("Ethereum")
 
-  const { address, destinationChains, homeConfig, tokens } = useChainbridge();
+  const { address, destinationChains, homeConfig, tokens } = useSygma();
 
   const [tokenInfo, setTokenInfo] = useState({} as any);
 
@@ -77,7 +77,7 @@ const BasicApp = (props: any) => {
 const App: React.FC<{}> = () => {
   const {
     __RUNTIME_CONFIG__: {
-      CHAINBRIDGE: { chains },
+      SYGMA: { chains },
     },
   } = window;
 
@@ -112,9 +112,9 @@ const App: React.FC<{}> = () => {
       }}
     >
       <NetworkManagerProvider>
-        <ChainbridgeProvider chains={chains}>
+        <SygmaProvider chains={chains}>
           <BasicApp />
-        </ChainbridgeProvider>
+        </SygmaProvider>
       </NetworkManagerProvider>
     </LocalProvider>
   );

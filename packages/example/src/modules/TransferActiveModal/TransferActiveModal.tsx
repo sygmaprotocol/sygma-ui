@@ -7,7 +7,7 @@ import { CustomModal } from "../../components";
 import {
   useDestinationBridge,
   useHomeBridge,
-  useChainbridge,
+  useSygma,
   TransactionStatus,
   useWeb3 as useLocalWeb3
 } from "@chainsafe/sygma-ui-core";
@@ -70,7 +70,7 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
     depositAmount,
     selectedToken,
     tokens,
-  } = useChainbridge();
+  } = useSygma();
   const { homeTransferTxHash } = useHomeBridge();
   const { transferTxHash, inTransitMessages } =
     useDestinationBridge();

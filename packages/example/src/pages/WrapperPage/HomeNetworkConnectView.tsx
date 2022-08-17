@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
 import { WalletType } from "@chainsafe/sygma-ui-core";
-import { BridgeConfig } from "../../chainbridgeConfig";
+import { BridgeConfig } from "../../sygmaConfig";
 
 type HomeNetworkConnectViewProps = {
   isReady: boolean | undefined;

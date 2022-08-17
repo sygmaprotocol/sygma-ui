@@ -4,7 +4,7 @@ import { DepositRecord, TransferDetails } from "../reducers/TransfersReducer";
 import {
   BridgeConfig,
   EvmBridgeConfig,
-} from "../chainbridgeConfig";
+} from "../sygmaConfig";
 import { isCelo } from "../contexts/Adaptors/EVMAdaptors/helpers";
 import { BridgeData } from "@chainsafe/sygma-sdk-core";
 

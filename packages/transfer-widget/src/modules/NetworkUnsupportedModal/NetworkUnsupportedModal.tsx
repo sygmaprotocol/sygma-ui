@@ -9,9 +9,9 @@ import { useLocation } from "react-router-dom";
 import {
   useNetworkManager,
   useHomeBridge,
-  chainbridgeConfig,
+  sygmaConfig,
   useWeb3
-} from "@chainsafe/chainbridge-ui-core";
+} from "@chainsafe/sygma-ui-core";
 import { useStyles } from "./styles";
 
 const NetworkUnsupportedModal = () => {
@@ -28,7 +28,7 @@ const NetworkUnsupportedModal = () => {
     if (pathname) {
       setOpen(!homeChainConfig && !!isReady);
       setSupportedNetworks(
-        chainbridgeConfig().chains
+        sygmaConfig().chains
           .filter((bc) => bc.networkId !== undefined)
           .map((bc) => Number(bc.networkId))
       );

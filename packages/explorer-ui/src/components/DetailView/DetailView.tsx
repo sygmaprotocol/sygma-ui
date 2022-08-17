@@ -9,7 +9,7 @@ import {
   Blockies,
 } from "@chainsafe/common-components";
 import clsx from "clsx";
-import { TransferDetails } from "@chainsafe/chainbridge-ui-core";
+import { TransferDetails } from "@chainsafe/sygma-ui-core";
 import {
   getProposalStatus,
   getRandomSeed,

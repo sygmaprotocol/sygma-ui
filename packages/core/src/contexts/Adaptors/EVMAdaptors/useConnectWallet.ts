@@ -1,13 +1,13 @@
 import React from "react";
 
-import { Bridge, BridgeFactory } from "@chainsafe/chainbridge-contracts";
+import { Bridge, BridgeFactory } from "@chainsafe/sygma-contracts";
 import { providers } from "ethers";
 import { useEffect, useState } from "react";
 import {
   BridgeConfig,
   EvmBridgeConfig,
   TokenConfig,
-} from "../../../chainbridgeConfig";
+} from "../../../sygmaConfig";
 import { Weth } from "../../../Contracts/Weth";
 import { WethFactory } from "../../../Contracts/WethFactory";
 

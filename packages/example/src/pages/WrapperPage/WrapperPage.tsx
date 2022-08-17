@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
-import { useChainbridge, useNetworkManager } from "@chainsafe/sygma-ui-core";
+import { useSygma, useNetworkManager } from "@chainsafe/sygma-ui-core";
 import { showImageUrl } from "../../utils/Helpers";
 import { useStyles } from "./styles";
 import {
@@ -16,7 +16,7 @@ import {
   AboutDrawer,
 } from "../../modules";
 import { ReactComponent as ETHIcon } from "../../media/tokens/eth.svg";
-import { TokenConfig } from "../../chainbridgeConfig";
+import { TokenConfig } from "../../sygmaConfig";
 import { forwardTo } from "../../utils/History";
 import { ROUTE_LINKS } from "../../routes";
 
@@ -46,7 +46,7 @@ const MainPage = () => {
     tokens,
     nativeTokenBalance,
     address,
-  } = useChainbridge();
+  } = useSygma();
 
   const [aboutOpen, setAboutOpen] = useState<boolean>(false);
   const [walletConnecting, setWalletConnecting] = useState(false);

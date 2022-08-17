@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 
-import { BridgeConfig, EvmBridgeConfig } from "@chainsafe/chainbridge-ui-core";
+import { BridgeConfig, EvmBridgeConfig } from "@chainsafe/sygma-ui-core";
 
 export default function TransferCompleteBody({
   classes,

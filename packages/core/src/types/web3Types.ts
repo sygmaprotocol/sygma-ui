@@ -14,10 +14,10 @@ import {
 import { BigNumber as BN } from "bignumber.js";
 import {
   BridgeConfig,
-  chainbridgeConfig,
+  sygmaConfig,
   ChainType,
   TokenConfig
-} from "../chainbridgeConfig";
+} from "../sygmaConfig";
 
 export type WalletType = ChainType | "select" | "unset";
 

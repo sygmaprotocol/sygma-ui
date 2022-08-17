@@ -20,11 +20,11 @@ export const ROUTE_LINKS = {
   Wrap: "/wrap"
 };
 
-interface IChainbridgeRoutes {
+interface ISygmaRoutes {
   wrapTokenPage?: boolean;
 }
 
-const ChainbridgeRoutes: React.FC<IChainbridgeRoutes> = ({ wrapTokenPage }) => {
+const SygmaRoutes: React.FC<ISygmaRoutes> = ({ wrapTokenPage }) => {
   return (
     <Switch>
       <Route exact path={ROUTE_LINKS.Transfer} component={TransferPage} />
@@ -38,4 +38,4 @@ const ChainbridgeRoutes: React.FC<IChainbridgeRoutes> = ({ wrapTokenPage }) => {
   );
 };
 
-export default ChainbridgeRoutes;
+export default SygmaRoutes;

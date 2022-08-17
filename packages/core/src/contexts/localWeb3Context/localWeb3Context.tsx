@@ -2,9 +2,9 @@ import React, { useEffect, useReducer, useCallback } from "react";
 import { Directions } from "@chainsafe/sygma-sdk-core";
 import {
   BridgeConfig,
-  chainbridgeConfig,
+  sygmaConfig,
   ChainType,
-} from "../../chainbridgeConfig";
+} from "../../sygmaConfig";
 import {
   EVMDestinationAdaptorProvider,
   EVMHomeAdaptorProvider,
@@ -244,16 +244,16 @@ const LocalProvider = ({
         dispatcher({ type: "setHomeChainConfig", payload: chain });
         dispatcher({
           type: "setDestinationChains",
-          payload: chainbridgeConfig().chains.filter(
+          payload: sygmaConfig().chains.filter(
             (bridgeConfig: BridgeConfig) =>
               bridgeConfig.domainId !== chain.domainId
           ),
         });
 
-        if (chainbridgeConfig().chains.length === 2) {
+        if (sygmaConfig().chains.length === 2) {
           dispatcher({
             type: "setDestinationChain",
-            payload: chainbridgeConfig().chains.find(
+            payload: sygmaConfig().chains.find(
               (bridgeConfig: BridgeConfig) =>
                 bridgeConfig.domainId !== chain.domainId
             ),
@@ -269,12 +269,12 @@ const LocalProvider = ({
       if (networkManager.walletType === "select") {
         dispatcher({
           type: "setHomeChains",
-          payload: chainbridgeConfig().chains,
+          payload: sygmaConfig().chains,
         });
       } else {
         dispatcher({
           type: "setHomeChains",
-          payload: chainbridgeConfig().chains.filter(
+          payload: sygmaConfig().chains.filter(
             (bridgeConfig: BridgeConfig) =>
               bridgeConfig.type === networkManager.walletType
           ),

@@ -13,17 +13,17 @@ import AlertTitle from '@mui/material/AlertTitle';
 
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { ChainbridgeRoutes } from "./routes";
+import { sygmaRoutes } from "./routes";
 import { lightTheme } from "./themes/LightTheme";
 import {
-  ChainbridgeProvider,
+  sygmaProvider,
   NetworkManagerProvider,
   LocalProvider,
-  chainbridgeConfig,
+  sygmaConfig,
   BridgeProvider,
 } from "@chainsafe/sygma-ui-core";
 import { AppWrapper } from "./layouts";
-import { getChainbridgeConfig } from "./getChainbridgeConfig"
+import { getSygmaConfig } from "./getSygmaConfig"
 import "@chainsafe/common-theme/dist/font-faces.css";
 
 if (
@@ -43,7 +43,7 @@ const AppWrap: React.FC<{ config?: any, useExternalProvider?: any, externalProvi
 
   const setConfig = async () => {
     if (!window.__RUNTIME_CONFIG__) {
-      const config = await getChainbridgeConfig();
+      const config = await getSygmaConfig();
       if (config.error) {
         setErrMessage(config.error.message ?? config.error.name)
       } else {
@@ -103,11 +103,11 @@ const App: React.FC<{}> = () => {
   const {
     __RUNTIME_CONFIG__: {
       UI: { wrapTokenPage = false } = {},
-      CHAINBRIDGE: { chains },
+      SYGMA: { chains },
     },
   } = window;
 
-  const tokens = chainbridgeConfig()
+  const tokens = sygmaConfig()
     .chains.filter((c) => c.type === "Ethereum")
     .reduce((tca, bc: any) => {
       if (bc.networkId) {
@@ -171,13 +171,13 @@ const App: React.FC<{}> = () => {
           }}
         >
           <BridgeProvider>
-            <ChainbridgeProvider chains={chains}>
+            <SygmaProvider chains={chains}>
               <Router>
                 <AppWrapper wrapTokenPage={wrapTokenPage}>
-                  <ChainbridgeRoutes wrapTokenPage={wrapTokenPage} />
+                  <SygmaRoutes wrapTokenPage={wrapTokenPage} />
                 </AppWrapper>
               </Router>
-            </ChainbridgeProvider>
+            </SygmaProvider>
           </BridgeProvider>
         </LocalProvider>
       </ThemeSwitcher>

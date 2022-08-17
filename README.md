@@ -221,7 +221,7 @@ Environment variables for configuration nodejs application:
 
 - HOST=localhost (could be any other host)
 - PORT=8000
-- SSM_PARAMETER_NAME=/chainbridge/chainbridge-ui-local (i’ve created test parameter in SSM but it could any other new param like /chainbridge/chainbridge-ui-prod or such)
+- SSM_PARAMETER_NAME=/sygma/sygma-ui-local (i’ve created test parameter in SSM but it could any other new param like /sygma/sygma-ui-prod or such)
 
 ### [transfer-ui](../packages/example)
 environment variables:

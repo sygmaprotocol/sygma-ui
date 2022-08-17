@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import { utils } from "ethers";
 
-import { BridgeConfig } from "@chainsafe/chainbridge-ui-core";
+import { BridgeConfig } from "@chainsafe/sygma-ui-core";
 import { PreflightDetails } from "./TransferPage";
 
 type MakeValidationSchemaOptions = {

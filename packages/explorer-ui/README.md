@@ -1,4 +1,4 @@
-<p align="center"><a href="https://https://chainsafe.io/"><img width="250" title="Chainbridge UI" src='../../assets/full-logo.png'/></a></p>
+<p align="center"><a href="https://https://chainsafe.io/"><img width="250" title="Sygma UI" src='../../assets/full-logo.png'/></a></p>
 
 # Sygma Explorer UI
 

@@ -5,7 +5,7 @@ import {
   fetchTransaction,
   DepositRecord,
   TransferDetails,
-} from "@chainsafe/chainbridge-ui-core";
+} from "@chainsafe/sygma-ui-core";
 import { TransferDetailView } from "../../components";
 import { computeTransferDetails } from "../../utils/Helpers";
 import { useStyles } from "./styles";

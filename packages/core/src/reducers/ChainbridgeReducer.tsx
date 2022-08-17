@@ -1,14 +1,14 @@
 import { BridgeData, BridgeEvents, Sygma, FeeOracleData } from "@chainsafe/sygma-sdk-core"
 import { providers } from "ethers";
 
-export type ChainbridgeState = {
-  chainbridgeInstance: Sygma | undefined;
+export type SygmaState = {
+  sygmaInstance: Sygma | undefined;
   bridgeSetup: BridgeData | undefined
 }
 
-export type ChainbridgeReducerAction = {
+export type SygmaReducerAction = {
   type: "setInstanceAndData";
-  payload: { bridgeSetup: BridgeData, feeOracleSetup: FeeOracleData, chainbridgeInstance: Sygma };
+  payload: { bridgeSetup: BridgeData, feeOracleSetup: FeeOracleData, sygmaInstance: Sygma };
 } | {
   type: "setAll";
   payload: {
@@ -20,16 +20,16 @@ export type ChainbridgeReducerAction = {
   };
 };;
 
-export const chainbridgeReducer = (
-  state: ChainbridgeState,
-  action: ChainbridgeReducerAction
+export const sygmaReducer = (
+  state: SygmaState,
+  action: SygmaReducerAction
 ) => {
   switch(action.type) {
     case "setInstanceAndData": {
-      const { bridgeSetup, chainbridgeInstance } = action.payload;
+      const { bridgeSetup, sygmaInstance } = action.payload;
       return {
         ...state,
-        chainbridgeInstance: chainbridgeInstance,
+        sygmaInstance: sygmaInstance,
         bridgeSetup: bridgeSetup
       }
     }

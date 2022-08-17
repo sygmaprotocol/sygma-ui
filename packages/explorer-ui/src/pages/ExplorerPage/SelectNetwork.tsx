@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
   EvmBridgeConfig
-} from "@chainsafe/chainbridge-ui-core";
+} from "@chainsafe/sygma-ui-core";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 

@@ -1,1 +1,1 @@
-export { ChainbridgeProvider, useChainbridge } from "./ChainbridgeContext";
+export { SygmaProvider, useSygma } from "./SygmaContext";

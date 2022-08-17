@@ -3,7 +3,7 @@ import { SelectInput } from "@chainsafe/common-components";
 import { Typography, Button } from "@mui/material";
 
 import { WalletType } from "@chainsafe/sygma-ui-core";
-import { BridgeConfig } from "../../chainbridgeConfig";
+import { BridgeConfig } from "../../sygmaConfig";
 
 import { ConnectionDialog } from "../../modules";
 

@@ -6,29 +6,29 @@ import React, {
 } from "react";
 import {
   BridgeConfig,
-  chainbridgeConfig,
+  sygmaConfig,
   ChainType,
-} from "../../chainbridgeConfig";
+} from "../../sygmaConfig";
 import { useWeb3 } from "../localWeb3Context";
 import { BridgeData, Sygma } from "@chainsafe/sygma-sdk-core";
-import { chainbridgeReducer, ChainbridgeState } from '../../reducers'
+import { sygmaReducer,SygmaState } from '../../reducers'
 
 interface IBridgeContext {
   children: React.ReactNode | React.ReactNode[];
 }
 
-type BridgeContext = ChainbridgeState
+type BridgeContext = SygmaState
 
 const BridgeContext = createContext<BridgeContext | undefined>(undefined);
 
 const BridgeProvider = ({ children }: IBridgeContext) => {
   const { homeChains, ...rest } = useWeb3();
-  const initState: ChainbridgeState = {
-    chainbridgeInstance: undefined,
+  const initState: SygmaState = {
+    sygmaInstance: undefined,
     bridgeSetup: undefined
   }
   const [bridgeState, bridgeDispatcher] = useReducer(
-    chainbridgeReducer,
+    sygmaReducer,
     initState
   );
 
@@ -72,17 +72,17 @@ const BridgeProvider = ({ children }: IBridgeContext) => {
         return acc;
       }, {} as BridgeData);
 
-      const { feeOracleSetup } = chainbridgeConfig()
+      const { feeOracleSetup } = sygmaConfig()
       let isMounted = true;
-      const chainbridgeInstance = new Sygma({ bridgeSetup, feeOracleSetup });
-      chainbridgeInstance.initializeConnectionFromWeb3Provider(web3provider?.provider).then((res) => {
+      const sygmaInstance = new Sygma({ bridgeSetup, feeOracleSetup });
+      sygmaInstance.initializeConnectionFromWeb3Provider(web3provider?.provider).then((res) => {
         if (isMounted) {
           bridgeDispatcher({
             type: "setInstanceAndData",
             payload: {
               bridgeSetup,
               feeOracleSetup,
-              chainbridgeInstance: res
+              sygmaInstance: res
             }
           })
         }
