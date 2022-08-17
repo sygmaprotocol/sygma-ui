@@ -1,7 +1,7 @@
 import React, { useCallback, useContext } from "react";
 import {
   BridgeConfig,
-  sygmaConfig,
+  SygmaConfig,
   EvmBridgeConfig,
   TokenConfig,
 } from "../../sygmaConfig";
@@ -11,7 +11,7 @@ import { TransactionStatus, useWeb3 } from "../../index";
 import { useHomeBridge } from "../HomeBridgeContext";
 import { useDestinationBridge } from "../DestinationBridgeContext";
 import { Directions } from "@chainsafe/sygma-sdk-core";
-import { useBridge } from '../Bridge'
+import { useBridge } from "../Bridge";
 import { computeDirections } from "../../utils/Helpers";
 
 interface ISygmaContextProps {
@@ -56,19 +56,14 @@ type SygmaContext = {
   checkSupplies?: (
     amount: number,
     tokenAddress: string,
-    destinationChainId: number
+    destinationChainId: number,
   ) => Promise<boolean | undefined>;
   chains?: Array<EvmBridgeConfig>;
 };
 
-const SygmaContext = React.createContext<SygmaContext | undefined>(
-  undefined
-);
+const SygmaContext = React.createContext<SygmaContext | undefined>(undefined);
 
-const SygmaProvider = ({
-  children,
-  chains,
-}: ISygmaContextProps) => {
+const SygmaProvider = ({ children, chains }: ISygmaContextProps) => {
   const {
     handleSetHomeChain,
     destinationChainConfig,
@@ -102,12 +97,12 @@ const SygmaProvider = ({
     handleCheckSupplies,
   } = useHomeBridge();
 
-  const { sygmaInstance, bridgeSetup } = useBridge()
+  const { sygmaInstance, bridgeSetup } = useBridge();
 
   const { setDepositVotes, tokensDispatch } = useDestinationBridge();
 
   const resetDeposit = () => {
-    sygmaConfig().chains.length > 2 && setDestinationChain(undefined);
+    SygmaConfig().chains.length > 2 && setDestinationChain(undefined);
     setDepositNonce(undefined);
     setDepositVotes(0);
     setDepositAmount(undefined);
@@ -122,26 +117,30 @@ const SygmaProvider = ({
   };
 
   const handleDeposit = useCallback(
-    async (paramsForDeposit: { amount: string, recipient: string, from: Directions, to: Directions, feeData: string }) => {
+    async (paramsForDeposit: {
+      amount: string;
+      recipient: string;
+      from: Directions;
+      to: Directions;
+      feeData: string;
+    }) => {
       if (chainConfig && destinationChainConfig) {
-        return await deposit(
-          paramsForDeposit
-        )
+        return await deposit(paramsForDeposit);
       }
     },
-    [deposit, destinationChainConfig, chainConfig]
+    [deposit, destinationChainConfig, chainConfig],
   );
 
   const checkSupplies = async (
     amount: number,
     tokenAddress: string,
-    destinationChainId: number
+    destinationChainId: number,
   ) => {
     if (handleCheckSupplies && chainConfig && destinationChainConfig) {
       return await handleCheckSupplies(
         amount,
         tokenAddress,
-        destinationChainId
+        destinationChainId,
       );
     }
   };
@@ -184,9 +183,7 @@ const SygmaProvider = ({
 const useSygma = () => {
   const context = useContext(SygmaContext);
   if (context === undefined) {
-    throw new Error(
-      "useSygma must be called within a SygmaProvider"
-    );
+    throw new Error("useSygma must be called within a SygmaProvider");
   }
   return context;
 };

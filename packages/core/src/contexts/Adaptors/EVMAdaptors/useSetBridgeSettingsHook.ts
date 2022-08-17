@@ -1,4 +1,4 @@
-import { Bridge, BridgeFactory } from "@chainsafe/sygma-contracts";
+import { Bridge, BridgeFactory } from "@chainsafe/chainbridge-contracts";
 import { BigNumber, utils } from "ethers";
 import { useCallback, useEffect, useState } from "react";
 

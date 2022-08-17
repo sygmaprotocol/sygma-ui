@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
 import { BigNumber, Event } from "ethers";
-import { Bridge, BridgeFactory } from "@chainsafe/sygma-contracts";
+import { Bridge, BridgeFactory } from "@chainsafe/chainbridge-contracts";
 import { BridgeConfig } from "../../../sygmaConfig";
 import { TransactionStatus } from "../../NetworkManagerContext";
 import {

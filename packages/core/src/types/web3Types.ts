@@ -14,7 +14,7 @@ import {
 import { BigNumber as BN } from "bignumber.js";
 import {
   BridgeConfig,
-  sygmaConfig,
+  SygmaConfig,
   ChainType,
   TokenConfig
 } from "../sygmaConfig";

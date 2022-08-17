@@ -1,23 +1,14 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-} from "react";
-import {
-  BridgeConfig,
-  sygmaConfig,
-  ChainType,
-} from "../../sygmaConfig";
+import React, { createContext, useContext, useEffect, useReducer } from "react";
+import { BridgeConfig, SygmaConfig, ChainType } from "../../sygmaConfig";
 import { useWeb3 } from "../localWeb3Context";
 import { BridgeData, Sygma } from "@chainsafe/sygma-sdk-core";
-import { sygmaReducer,SygmaState } from '../../reducers'
+import { sygmaReducer, SygmaState } from "../../reducers";
 
 interface IBridgeContext {
   children: React.ReactNode | React.ReactNode[];
 }
 
-type BridgeContext = SygmaState
+type BridgeContext = SygmaState;
 
 const BridgeContext = createContext<BridgeContext | undefined>(undefined);
 
@@ -25,17 +16,13 @@ const BridgeProvider = ({ children }: IBridgeContext) => {
   const { homeChains, ...rest } = useWeb3();
   const initState: SygmaState = {
     sygmaInstance: undefined,
-    bridgeSetup: undefined
-  }
-  const [bridgeState, bridgeDispatcher] = useReducer(
-    sygmaReducer,
-    initState
-  );
+    bridgeSetup: undefined,
+  };
+  const [bridgeState, bridgeDispatcher] = useReducer(sygmaReducer, initState);
 
   useEffect(() => {
-
     if (homeChains.length) {
-      const web3provider = rest.provider
+      const web3provider = rest.provider;
 
       const bridgeSetup: BridgeData = homeChains.reduce((acc, chain, idx) => {
         const {
@@ -47,7 +34,7 @@ const BridgeProvider = ({ children }: IBridgeContext) => {
           decimals,
           feeSettings,
           name,
-          networkId
+          networkId,
         } = chain;
 
         // NOTE: ASUMPTION HERE IS THAT WE HAVE ONLY ONE TOKEN
@@ -65,32 +52,35 @@ const BridgeProvider = ({ children }: IBridgeContext) => {
             decimals,
             feeSettings,
             name,
-            networkId
+            networkId,
           },
         };
 
         return acc;
       }, {} as BridgeData);
 
-      const { feeOracleSetup } = sygmaConfig()
+      const { feeOracleSetup } = SygmaConfig();
       let isMounted = true;
       const sygmaInstance = new Sygma({ bridgeSetup, feeOracleSetup });
-      sygmaInstance.initializeConnectionFromWeb3Provider(web3provider?.provider).then((res) => {
-        if (isMounted) {
-          bridgeDispatcher({
-            type: "setInstanceAndData",
-            payload: {
-              bridgeSetup,
-              feeOracleSetup,
-              sygmaInstance: res
-            }
-          })
-        }
-      })
-      return () => { isMounted = false }
+      sygmaInstance
+        .initializeConnectionFromWeb3Provider(web3provider?.provider)
+        .then((res) => {
+          if (isMounted) {
+            bridgeDispatcher({
+              type: "setInstanceAndData",
+              payload: {
+                bridgeSetup,
+                feeOracleSetup,
+                sygmaInstance: res,
+              },
+            });
+          }
+        });
+      return () => {
+        isMounted = false;
+      };
     }
   }, [homeChains]);
-
 
   return (
     <BridgeContext.Provider value={{ ...bridgeState }}>

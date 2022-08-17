@@ -1,10 +1,10 @@
-import { Bridge, BridgeFactory } from "@chainsafe/sygma-contracts";
+import { Bridge, BridgeFactory } from "@chainsafe/chainbridge-contracts";
 import { providers, BigNumber, utils, Event } from "ethers";
 import { Erc20DetailedFactory } from "../../../Contracts/Erc20DetailedFactory";
 import { TransactionStatus } from "../../NetworkManagerContext";
 
 import {
-  sygmaConfig,
+  SygmaConfig,
   EvmBridgeConfig,
   BridgeConfig,
 } from "../../../sygmaConfig";

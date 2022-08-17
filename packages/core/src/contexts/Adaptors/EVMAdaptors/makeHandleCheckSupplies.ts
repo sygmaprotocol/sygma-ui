@@ -1,4 +1,4 @@
-import { sygmaConfig, BridgeConfig } from "../../../sygmaConfig";
+import { SygmaConfig, BridgeConfig } from "../../../sygmaConfig";
 import { hasTokenSupplies } from "./helpers";
 
 const handleCheckSupplies = (homeChainConfig?: BridgeConfig) => async (
@@ -7,8 +7,8 @@ const handleCheckSupplies = (homeChainConfig?: BridgeConfig) => async (
   destinationChainId: number
 ) => {
   if (homeChainConfig) {
-    const destinationChain = sygmaConfig().chains.find(
-      (c) => c.domainId === destinationChainId
+    const destinationChain = SygmaConfig().chains.find(
+      (c: any) => c.domainId === destinationChainId
     );
     const token = homeChainConfig.tokens.find(
       (token) => token.address === tokenAddress

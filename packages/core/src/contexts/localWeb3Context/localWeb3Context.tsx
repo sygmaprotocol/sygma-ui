@@ -1,10 +1,6 @@
 import React, { useEffect, useReducer, useCallback } from "react";
 import { Directions } from "@chainsafe/sygma-sdk-core";
-import {
-  BridgeConfig,
-  sygmaConfig,
-  ChainType,
-} from "../../sygmaConfig";
+import { BridgeConfig, SygmaConfig, ChainType } from "../../sygmaConfig";
 import {
   EVMDestinationAdaptorProvider,
   EVMHomeAdaptorProvider,
@@ -35,7 +31,7 @@ import { HomeChains } from "../../types/web3Types";
 import { BridgeProvider } from "../Bridge";
 
 const LocalProviderContext = React.createContext<LocalWeb3Context | undefined>(
-  undefined
+  undefined,
 );
 
 interface INetworkManagerProviderProps {
@@ -57,7 +53,7 @@ type CombinedReducer = (state: CombinedState, action: Action) => CombinedState;
 function selectProvider(
   type: string | undefined,
   direction: string,
-  props: INetworkManagerProviderProps
+  props: INetworkManagerProviderProps,
 ) {
   const noWalletHasChosenStates = [undefined, "unset", "select"];
   const typeKey = noWalletHasChosenStates.includes(type)
@@ -182,14 +178,14 @@ const LocalProvider = ({
               walletType: "Ethereum",
             },
           });
-        }
+        },
       );
     }
   }, [externalProvider]);
 
   const [state, dispatcher] = useReducer(
     combinedReducers,
-    initialCombinedReducers
+    initialCombinedReducers,
   );
   const { localWeb3, networkManager } = state;
 
@@ -237,46 +233,46 @@ const LocalProvider = ({
         return;
       }
       const chain = networkManager.homeChains.find(
-        (c) => c.domainId === domainId
+        (c) => c.domainId === domainId,
       );
 
       if (chain) {
         dispatcher({ type: "setHomeChainConfig", payload: chain });
         dispatcher({
           type: "setDestinationChains",
-          payload: sygmaConfig().chains.filter(
+          payload: SygmaConfig().chains.filter(
             (bridgeConfig: BridgeConfig) =>
-              bridgeConfig.domainId !== chain.domainId
+              bridgeConfig.domainId !== chain.domainId,
           ),
         });
 
-        if (sygmaConfig().chains.length === 2) {
+        if (SygmaConfig().chains.length === 2) {
           dispatcher({
             type: "setDestinationChain",
-            payload: sygmaConfig().chains.find(
+            payload: SygmaConfig().chains.find(
               (bridgeConfig: BridgeConfig) =>
-                bridgeConfig.domainId !== chain.domainId
+                bridgeConfig.domainId !== chain.domainId,
             ),
           });
         }
       }
     },
-    [networkManager.homeChains]
-    );
+    [networkManager.homeChains],
+  );
 
   useEffect(() => {
     if (networkManager.walletType !== "unset") {
       if (networkManager.walletType === "select") {
         dispatcher({
           type: "setHomeChains",
-          payload: sygmaConfig().chains,
+          payload: SygmaConfig().chains,
         });
       } else {
         dispatcher({
           type: "setHomeChains",
-          payload: sygmaConfig().chains.filter(
+          payload: SygmaConfig().chains.filter(
             (bridgeConfig: BridgeConfig) =>
-              bridgeConfig.type === networkManager.walletType
+              bridgeConfig.type === networkManager.walletType,
           ),
         });
       }
@@ -300,7 +296,7 @@ const LocalProvider = ({
         !networkManager.depositNonce
       ) {
         const chain = networkManager.destinationChains.find(
-          (c) => c.domainId === domainId
+          (c) => c.domainId === domainId,
         );
         if (!chain) {
           throw new Error("Invalid destination chain selected");
@@ -317,14 +313,14 @@ const LocalProvider = ({
       networkManager.depositNonce,
       networkManager.destinationChains,
       networkManager.homeChainConfig,
-    ]
+    ],
   );
 
   const HomeProvider = useCallback(
     (props: INetworkManagerProviderProps) => {
       return selectProvider(networkManager.walletType, "home", props);
     },
-    [networkManager.walletType]
+    [networkManager.walletType],
   );
 
   const DestinationProvider = useCallback(
@@ -332,10 +328,10 @@ const LocalProvider = ({
       return selectProvider(
         networkManager.destinationChainConfig?.type,
         "destination",
-        props
+        props,
       );
     },
-    [networkManager.destinationChainConfig?.type]
+    [networkManager.destinationChainConfig?.type],
   );
 
   return (
@@ -371,7 +367,8 @@ const LocalProvider = ({
         setTransactionStatus: (data) =>
           dispatcher({ type: "setTransactionStatus", payload: data }),
         depositNonce: networkManager.depositNonce,
-        setDepositNonce: (data) => dispatcher({ type: "setDepositNonce", payload: data })
+        setDepositNonce: (data) =>
+          dispatcher({ type: "setDepositNonce", payload: data }),
       }}
     >
       <HomeProvider>
