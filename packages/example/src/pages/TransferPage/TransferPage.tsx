@@ -94,7 +94,7 @@ const TransferPage = () => {
     bridgeFee,
     homeConfig,
     destinationChainConfig,
-    chainbridgeInstance,
+    sygmaInstance,
   });
 
   const { handleSubmit, control, setValue, watch, formState } =

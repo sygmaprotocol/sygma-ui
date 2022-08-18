@@ -50,7 +50,7 @@ const BridgeProvider = ({ children }: IBridgeContext) => {
             bridgeAddress,
             erc20Address: address,
             erc20HandlerAddress,
-            rpcURL: rpcUrl,
+            rpcUrl,
             domainId,
             erc20ResourceID: resourceId,
             decimals,
@@ -65,7 +65,11 @@ const BridgeProvider = ({ children }: IBridgeContext) => {
 
       const { feeOracleSetup } = sygmaConfig();
       let isMounted = true;
-      const sygmaInstance = new Sygma({ bridgeSetup, feeOracleSetup });
+      const sygmaInstance = new Sygma({
+        bridgeSetup,
+        feeOracleSetup,
+        bridgeSetupList: homeChains as any,
+      });
       sygmaInstance
         .initializeConnectionFromWeb3Provider(web3provider?.provider)
         .then((res) => {

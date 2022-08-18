@@ -10,7 +10,7 @@ type MakeValidationSchemaOptions = {
   destinationChainConfig: any;
   preflightDetails: PreflightDetails;
   bridgeFee: any;
-  chainbridgeInstance: any;
+  sygmaInstance: any;
 };
 export default function makeValidationSchema({
   preflightDetails,
@@ -18,7 +18,7 @@ export default function makeValidationSchema({
   bridgeFee,
   homeConfig,
   destinationChainConfig,
-  chainbridgeInstance,
+  sygmaInstance,
 }: MakeValidationSchemaOptions) {
   const selectedToken = homeConfig?.tokens.find(
     (token) => token.address === preflightDetails.token

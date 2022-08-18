@@ -17,6 +17,7 @@ export async function getSygmaConfig() {
       config = await getLocalConfig();
     }
   } catch (e) {
+    console.error(e);
     return { error: { message: "Failed to fetch" } };
   }
 
