@@ -10,7 +10,7 @@ import {
   useNetworkManager,
   useHomeBridge,
   sygmaConfig,
-  useWeb3
+  useWeb3,
 } from "@chainsafe/sygma-ui-core";
 import { useStyles } from "./styles";
 
@@ -19,7 +19,7 @@ const NetworkUnsupportedModal = () => {
   const { homeChainConfig } = useWeb3();
   const { getNetworkName, wrapTokenConfig, isReady, networkId } =
     useHomeBridge();
-  const pathname = '/transfer';
+  const pathname = "/transfer";
 
   const [open, setOpen] = useState(false);
   const [supportedNetworks, setSupportedNetworks] = useState<number[]>([]);
@@ -28,9 +28,9 @@ const NetworkUnsupportedModal = () => {
     if (pathname) {
       setOpen(!homeChainConfig && !!isReady);
       setSupportedNetworks(
-        sygmaConfig().chains
-          .filter((bc) => bc.networkId !== undefined)
-          .map((bc) => Number(bc.networkId))
+        sygmaConfig()
+          .chains.filter((bc) => bc.networkId !== undefined)
+          .map((bc) => Number(bc.networkId)),
       );
     } else {
       setOpen(false);
@@ -66,7 +66,7 @@ const NetworkUnsupportedModal = () => {
             (n, i) =>
               `${getNetworkName(n)}${
                 i < supportedNetworks.length - 1 ? ", " : ""
-              }`
+              }`,
           )}{" "}
           networks
         </Typography>

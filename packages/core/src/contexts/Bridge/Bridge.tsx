@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useReducer } from "react";
-import { BridgeConfig, SygmaConfig, ChainType } from "../../sygmaConfig";
+import { BridgeConfig, sygmaConfig, ChainType } from "../../sygmaConfig";
 import { useWeb3 } from "../localWeb3Context";
 import { BridgeData, Sygma } from "@chainsafe/sygma-sdk-core";
 import { sygmaReducer, SygmaState } from "../../reducers";
@@ -59,7 +59,7 @@ const BridgeProvider = ({ children }: IBridgeContext) => {
         return acc;
       }, {} as BridgeData);
 
-      const { feeOracleSetup } = SygmaConfig();
+      const { feeOracleSetup } = sygmaConfig();
       let isMounted = true;
       const sygmaInstance = new Sygma({ bridgeSetup, feeOracleSetup });
       sygmaInstance

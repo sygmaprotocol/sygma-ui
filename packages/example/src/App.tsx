@@ -5,25 +5,25 @@ import { init, ErrorBoundary, showReportDialog } from "@sentry/react";
 import { ThemeSwitcher } from "@chainsafe/common-theme";
 import CssBaseline from "@mui/material/CssBaseline";
 
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { sygmaRoutes } from "./routes";
+import { SygmaRoutes } from "./routes";
 import { lightTheme } from "./themes/LightTheme";
 import {
-  sygmaProvider,
+  SygmaProvider,
   NetworkManagerProvider,
   LocalProvider,
   sygmaConfig,
   BridgeProvider,
 } from "@chainsafe/sygma-ui-core";
 import { AppWrapper } from "./layouts";
-import { getSygmaConfig } from "./getSygmaConfig"
+import { getSygmaConfig } from "./getSygmaConfig";
 import "@chainsafe/common-theme/dist/font-faces.css";
 
 if (
@@ -37,25 +37,29 @@ if (
   });
 }
 
-const AppWrap: React.FC<{ config?: any, useExternalProvider?: any, externalProviderSource?: any }> = (props) => {
+const AppWrap: React.FC<{
+  config?: any;
+  useExternalProvider?: any;
+  externalProviderSource?: any;
+}> = (props) => {
   const [isReady, setIsReady] = useState(false);
-  const [errMessage, setErrMessage] = useState<undefined|string>()
+  const [errMessage, setErrMessage] = useState<undefined | string>();
 
   const setConfig = async () => {
     if (!window.__RUNTIME_CONFIG__) {
       const config = await getSygmaConfig();
       if (config.error) {
-        setErrMessage(config.error.message ?? config.error.name)
+        setErrMessage(config.error.message ?? config.error.name);
       } else {
         // @ts-ignore
-        window.__RUNTIME_CONFIG__ = config
+        window.__RUNTIME_CONFIG__ = config;
       }
-      setIsReady(true)
+      setIsReady(true);
     }
-  }
+  };
 
   useEffect(() => {
-    setConfig()
+    setConfig();
   }, []);
   return (
     <>
@@ -122,7 +126,7 @@ const App: React.FC<{}> = () => {
 
   const rpcUrls = chains.reduce(
     (acc, { networkId, rpcUrl }) => ({ ...acc, [networkId!]: rpcUrl }),
-    {}
+    {},
   );
 
   return (

@@ -1,7 +1,7 @@
 import React, { useCallback, useContext } from "react";
 import {
   BridgeConfig,
-  SygmaConfig,
+  sygmaConfig,
   EvmBridgeConfig,
   TokenConfig,
 } from "../../sygmaConfig";
@@ -102,7 +102,7 @@ const SygmaProvider = ({ children, chains }: ISygmaContextProps) => {
   const { setDepositVotes, tokensDispatch } = useDestinationBridge();
 
   const resetDeposit = () => {
-    SygmaConfig().chains.length > 2 && setDestinationChain(undefined);
+    sygmaConfig().chains.length > 2 && setDestinationChain(undefined);
     setDepositNonce(undefined);
     setDepositVotes(0);
     setDepositAmount(undefined);

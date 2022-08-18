@@ -58,6 +58,6 @@ export type UIConfig = {
   transactionAutoUpdateInterval: number;
 };
 
-export const SygmaConfig = () => {
+export const sygmaConfig = () => {
   return window.__RUNTIME_CONFIG__.SYGMA;
 }
