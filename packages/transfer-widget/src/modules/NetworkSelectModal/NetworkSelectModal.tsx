@@ -1,5 +1,5 @@
 import React from "react";
-import { useNetworkManager, useChainbridge, useWeb3 } from "@chainsafe/chainbridge-ui-core";
+import { useNetworkManager, useSygma, useWeb3 } from "@chainsafe/sygma-ui-core";
 import {
   Button,
   Modal,
@@ -10,7 +10,7 @@ import { useStyles } from "./styles";
 
 const NetworkSelectModal = () => {
   const classes = useStyles();
-  const { isReady, chains } = useChainbridge();
+  const { isReady, chains } = useSygma();
   const { walletType, setWalletType } = useWeb3();
 
   return (

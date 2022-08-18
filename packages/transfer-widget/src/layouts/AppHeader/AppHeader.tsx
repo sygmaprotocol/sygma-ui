@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import { Switch, NavLink, Link } from "react-router-dom";
 
 import { shortenAddress } from "../../utils/Helpers";
-import { useChainbridge } from "@chainsafe/chainbridge-ui-core";
+import { useSygma } from "@chainsafe/sygma-ui-core";
 import { useStyles } from "./styles";
 
 const ROUTE_LINKS_HEADERS = [
@@ -16,7 +16,7 @@ interface IAppHeader {}
 
 const AppHeader: React.FC<IAppHeader> = () => {
   const classes = useStyles();
-  const { homeConfig, isReady, address } = useChainbridge();
+  const { homeConfig, isReady, address } = useSygma();
 
   const { __RUNTIME_CONFIG__ } = window;
 
@@ -29,7 +29,7 @@ const AppHeader: React.FC<IAppHeader> = () => {
         {/* <div className={classes.logo}>
         </div> */}
         <div className={classes.mainTitle}>
-          <Typography variant="h5">ChainBridge Token Swap</Typography>
+          <Typography variant="h5">Sygma Token Swap</Typography>
         </div>
         <div className={classes.headerLinks}>
           {indexerEnabled ? (

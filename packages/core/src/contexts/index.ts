@@ -1,7 +1,7 @@
-export { ChainbridgeProvider, useChainbridge } from "./ChainbridgeContext";
+export { SygmaProvider, useSygma } from "./SygmaContext";
 export {
-    DestinationBridgeContext,
-    useDestinationBridge,
+  DestinationBridgeContext,
+  useDestinationBridge,
 } from "./DestinationBridgeContext";
 export { ExplorerProvider, useExplorer } from "./ExplorerContext";
 export { HomeBridgeContext, useHomeBridge } from "./HomeBridgeContext";

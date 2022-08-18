@@ -1,10 +1,10 @@
 {
-  "name": "@chainsafe/chainbridge-transfer-widget-example",
+  "name": "@chainsafe/sygma-transfer-widget-example",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.12.3",
-    "chainbridge-ui-transfer-widget-unstable": "^1.0.1",
+    "sygma-ui-transfer-widget-unstable": "^1.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",

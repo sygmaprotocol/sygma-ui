@@ -29,7 +29,7 @@ describe("ComputeTransfersDetails", () => {
 
     const transferDetails = computeTransferDetails(
       testResponse.transfers[1] as any,
-      runtimeTestingConfig.CHAINBRIDGE.chains as any
+      runtimeTestingConfig.SYGMA.chains as any
     );
     const keys = Object.keys(transferDetails);
     expect(keys).toEqual(expectedKeys);
@@ -38,7 +38,7 @@ describe("ComputeTransfersDetails", () => {
   it("Should return timelineMessages with Transfer canceled, if proposal status is 4", () => {
     const transferDetails = computeTransferDetails(
       canceledTransfer as any,
-      runtimeTestingConfig.CHAINBRIDGE.chains as any
+      runtimeTestingConfig.SYGMA.chains as any
     );
 
     const {
@@ -56,7 +56,7 @@ describe("ComputeTransfersDetails", () => {
 
     const transferDetails = computeTransferDetails(
       tx as any,
-      runtimeTestingConfig.CHAINBRIDGE.chains as any
+      runtimeTestingConfig.SYGMA.chains as any
     );
 
     const {
@@ -69,7 +69,7 @@ describe("ComputeTransfersDetails", () => {
   it("Should return timelineMessages with Transfer executed message if status is 3", () => {
     const transferDetails = computeTransferDetails(
       testResponse.transfers[1] as any,
-      runtimeTestingConfig.CHAINBRIDGE.chains as any
+      runtimeTestingConfig.SYGMA.chains as any
     );
 
     const { timelineMessages } = transferDetails;
@@ -91,7 +91,7 @@ describe("ComputeTransfersDetails", () => {
 
     const transferDetails = computeTransferDetails(
       tx as any,
-      runtimeTestingConfig.CHAINBRIDGE.chains as any
+      runtimeTestingConfig.SYGMA.chains as any
     );
 
     const { timelineMessages } = transferDetails;
@@ -108,7 +108,7 @@ describe("ComputeTransfersDetails", () => {
 
     const transferDetails = computeTransferDetails(
       tx as any,
-      runtimeTestingConfig.CHAINBRIDGE.chains as any
+      runtimeTestingConfig.SYGMA.chains as any
     );
 
     const { timelineMessages } = transferDetails;

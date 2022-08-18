@@ -12,11 +12,11 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
 import {
-  useChainbridge,
+  useSygma,
   useHomeBridge,
   useNetworkManager,
   useWeb3
-} from "@chainsafe/chainbridge-ui-core";
+} from "@chainsafe/sygma-ui-core";
 import { showImageUrl } from "../../utils/Helpers";
 import { useStyles } from "./styles";
 
@@ -64,7 +64,7 @@ const TransferPage = () => {
     destinationChains,
     address,
     checkSupplies,
-  } = useChainbridge();
+  } = useSygma();
 
   const { accounts, selectAccount } = useHomeBridge();
   const [aboutOpen, setAboutOpen] = useState<boolean>(false);

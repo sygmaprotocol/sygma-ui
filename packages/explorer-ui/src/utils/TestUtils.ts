@@ -1,5 +1,5 @@
 export const runtimeTestingConfig = {
-  CHAINBRIDGE: {
+  SYGMA: {
     INDEXER_URL: "http://localhost:8000",
     chains: [
       {

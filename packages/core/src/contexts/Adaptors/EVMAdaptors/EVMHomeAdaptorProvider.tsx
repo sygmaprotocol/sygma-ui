@@ -35,7 +35,7 @@ export const EVMHomeAdaptorProvider = ({
     handleSetHomeChain,
     homeChains,
   } = useLocalWeb3();
-  const { chainbridgeInstance, bridgeSetup } = useBridge()
+  const { sygmaInstance, bridgeSetup } = useBridge()
 
   const { homeBridge, wrapper, wrapTokenConfig } = useConnectWallet(
     isReady,
@@ -93,7 +93,7 @@ export const EVMHomeAdaptorProvider = ({
     homeChainConfig,
     provider,
     address,
-    chainbridgeInstance,
+    sygmaInstance,
     bridgeSetup
   );
 

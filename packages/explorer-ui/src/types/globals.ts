@@ -1,11 +1,11 @@
-import { ChainbridgeConfig, UIConfig } from "@chainsafe/chainbridge-ui-core";
+import { SygmaConfig, UIConfig } from "@chainsafe/sygma-ui-core";
 
 declare global {
   interface Window {
     // ethereum: any;
     __RUNTIME_CONFIG__: {
       UI: UIConfig;
-      CHAINBRIDGE: ChainbridgeConfig;
+      SYGMA: SygmaConfig;
       INDEXER_URL: string;
     };
   }

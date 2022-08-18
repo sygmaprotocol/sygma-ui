@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
 import { BigNumber, Event } from "ethers";
 import { Bridge, BridgeFactory } from "@chainsafe/chainbridge-contracts";
-import { BridgeConfig } from "../../../chainbridgeConfig";
+import { BridgeConfig } from "../../../sygmaConfig";
 import { TransactionStatus } from "../../NetworkManagerContext";
 import {
   AddMessageAction,
@@ -20,16 +20,16 @@ const handleProposalEvent = (
   setTransferTxHash: (input: string) => void,
   tokensDispatch: Dispatch<AddMessageAction | ResetAction | TxIsDone>,
   computedDirections: { from: Directions; to: Directions },
-  chainbridgeInstance: Sygma,
+  sygmaInstance: Sygma,
   setDepositVotes: any,
   depositVotes: any,
   transferTxHash: string
 ): Bridge => {
   const { from, to } = computedDirections;
 
-  const listersCount = chainbridgeInstance.proposalExecutionEventListenerCount(to);
+  const listersCount = sygmaInstance.proposalExecutionEventListenerCount(to);
   if (listersCount === 0) {
-    chainbridgeInstance.createProposalExecutionEventListener(to)(
+    sygmaInstance.createProposalExecutionEventListener(to)(
       async (
         originDomainId: any,
         despositNonce: any,

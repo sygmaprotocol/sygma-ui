@@ -1,25 +1,25 @@
 import React, { useCallback, useContext } from "react";
 import {
   BridgeConfig,
-  chainbridgeConfig,
+  sygmaConfig,
   EvmBridgeConfig,
   TokenConfig,
-} from "../../chainbridgeConfig";
+} from "../../sygmaConfig";
 import { Tokens } from "@chainsafe/web3-context/dist/context/tokensReducer";
 import { TransitState } from "../../reducers/TransitMessageReducer";
 import { TransactionStatus, useWeb3 } from "../../index";
 import { useHomeBridge } from "../HomeBridgeContext";
 import { useDestinationBridge } from "../DestinationBridgeContext";
 import { Directions } from "@chainsafe/sygma-sdk-core";
-import { useBridge } from '../Bridge'
+import { useBridge } from "../Bridge";
 import { computeDirections } from "../../utils/Helpers";
 
-interface IChainbridgeContextProps {
+interface ISygmaContextProps {
   children: React.ReactNode | React.ReactNode[];
   chains?: Array<EvmBridgeConfig>;
 }
 
-type ChainbridgeContext = {
+type SygmaContext = {
   homeConfig: BridgeConfig | undefined;
   connect: () => Promise<void>;
   handleSetHomeChain: (domainId: number) => void;
@@ -56,19 +56,14 @@ type ChainbridgeContext = {
   checkSupplies?: (
     amount: number,
     tokenAddress: string,
-    destinationChainId: number
+    destinationChainId: number,
   ) => Promise<boolean | undefined>;
   chains?: Array<EvmBridgeConfig>;
 };
 
-const ChainbridgeContext = React.createContext<ChainbridgeContext | undefined>(
-  undefined
-);
+const SygmaContext = React.createContext<SygmaContext | undefined>(undefined);
 
-const ChainbridgeProvider = ({
-  children,
-  chains,
-}: IChainbridgeContextProps) => {
+const SygmaProvider = ({ children, chains }: ISygmaContextProps) => {
   const {
     handleSetHomeChain,
     destinationChainConfig,
@@ -102,12 +97,12 @@ const ChainbridgeProvider = ({
     handleCheckSupplies,
   } = useHomeBridge();
 
-  const { chainbridgeInstance, bridgeSetup } = useBridge()
+  const { sygmaInstance, bridgeSetup } = useBridge();
 
   const { setDepositVotes, tokensDispatch } = useDestinationBridge();
 
   const resetDeposit = () => {
-    chainbridgeConfig().chains.length > 2 && setDestinationChain(undefined);
+    sygmaConfig().chains.length > 2 && setDestinationChain(undefined);
     setDepositNonce(undefined);
     setDepositVotes(0);
     setDepositAmount(undefined);
@@ -122,32 +117,36 @@ const ChainbridgeProvider = ({
   };
 
   const handleDeposit = useCallback(
-    async (paramsForDeposit: { amount: string, recipient: string, from: Directions, to: Directions, feeData: string }) => {
+    async (paramsForDeposit: {
+      amount: string;
+      recipient: string;
+      from: Directions;
+      to: Directions;
+      feeData: string;
+    }) => {
       if (chainConfig && destinationChainConfig) {
-        return await deposit(
-          paramsForDeposit
-        )
+        return await deposit(paramsForDeposit);
       }
     },
-    [deposit, destinationChainConfig, chainConfig]
+    [deposit, destinationChainConfig, chainConfig],
   );
 
   const checkSupplies = async (
     amount: number,
     tokenAddress: string,
-    destinationChainId: number
+    destinationChainId: number,
   ) => {
     if (handleCheckSupplies && chainConfig && destinationChainConfig) {
       return await handleCheckSupplies(
         amount,
         tokenAddress,
-        destinationChainId
+        destinationChainId,
       );
     }
   };
 
   return (
-    <ChainbridgeContext.Provider
+    <SygmaContext.Provider
       value={{
         homeConfig: homeChainConfig,
         connect,
@@ -177,18 +176,16 @@ const ChainbridgeProvider = ({
       }}
     >
       {children}
-    </ChainbridgeContext.Provider>
+    </SygmaContext.Provider>
   );
 };
 
-const useChainbridge = () => {
-  const context = useContext(ChainbridgeContext);
+const useSygma = () => {
+  const context = useContext(SygmaContext);
   if (context === undefined) {
-    throw new Error(
-      "useChainbridge must be called within a ChainbridgeProvider"
-    );
+    throw new Error("useSygma must be called within a SygmaProvider");
   }
   return context;
 };
 
-export { ChainbridgeProvider, useChainbridge };
+export { SygmaProvider, useSygma };

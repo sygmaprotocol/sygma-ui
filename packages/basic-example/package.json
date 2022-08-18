@@ -1,5 +1,5 @@
 {
-  "name": "@chainsafe/chainbridge-basic",
+  "name": "@chainsafe/sygma-basic",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

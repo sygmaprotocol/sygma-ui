@@ -1,7 +1,7 @@
 window.__RUNTIME_CONFIG__ = {
   INDEXER__URL: "http://localhost:8000",
   UI_EXPLORER_URL: "http://localhost:3003",
-  CHAINBRIDGE: {
+  SYGMA: {
     chains: [
       {
         domainId: 0,

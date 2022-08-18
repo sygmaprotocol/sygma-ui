@@ -5,10 +5,10 @@ import { lightTheme } from "./themes/LightTheme";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import {
   ExplorerProvider,
-  chainbridgeConfig,
-  ChainbridgeProvider,
+  sygmaConfig,
+  SygmaProvider,
   LocalProvider,
-} from "@chainsafe/chainbridge-ui-core";
+} from "@chainsafe/sygma-ui-core";
 import { ExplorerPage, TransactionPage } from "./pages";
 import { utils } from "ethers";
 import { Header } from "./components";
@@ -20,7 +20,7 @@ export const ROUTE_LINKS = {
 };
 
 function App() {
-  const { chains } = chainbridgeConfig();
+  const { chains } = sygmaConfig();
 
   const tokens = chains
     .filter((c) => c.type === "Ethereum")
@@ -66,7 +66,7 @@ function App() {
           },
         }}
       >
-        <ChainbridgeProvider chains={chains}>
+        <SygmaProvider chains={chains}>
           <Header />
           <Router>
             <Switch>
@@ -87,7 +87,7 @@ function App() {
               </Route>
             </Switch>
           </Router>
-        </ChainbridgeProvider>
+        </SygmaProvider>
       </LocalProvider>
     </ThemeSwitcher>
   );

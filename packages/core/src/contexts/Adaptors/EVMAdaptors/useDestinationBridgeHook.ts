@@ -1,6 +1,6 @@
 import { Bridge, BridgeFactory } from "@chainsafe/chainbridge-contracts";
 import { useEffect, useState } from "react";
-import { BridgeConfig, EvmBridgeConfig } from "../../../chainbridgeConfig";
+import { BridgeConfig, EvmBridgeConfig } from "../../../sygmaConfig";
 
 import { getProvider } from "./helpers";
 

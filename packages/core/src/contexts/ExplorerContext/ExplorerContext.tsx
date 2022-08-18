@@ -31,7 +31,7 @@ const ExplorerContext = React.createContext<ExplorerContext | undefined>(
 const ExplorerProvider = ({ children }: IExplorerContextProps) => {
   const {
     __RUNTIME_CONFIG__: {
-      CHAINBRIDGE: { chains },
+      SYGMA: { chains },
     },
   } = window;
 

@@ -1,7 +1,7 @@
 import { providers } from "ethers";
 import { parseUnits } from "ethers/lib/utils";
 import { getPriceCompatibility } from "./helpers";
-import { BridgeConfig, TokenConfig } from "../../../chainbridgeConfig";
+import { BridgeConfig, TokenConfig } from "../../../sygmaConfig";
 import { Weth } from "../../../Contracts/Weth";
 
 const makeUnwrappedToken = (

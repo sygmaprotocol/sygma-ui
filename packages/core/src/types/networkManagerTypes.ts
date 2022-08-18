@@ -1,4 +1,4 @@
-import { BridgeConfig, ChainType } from '../chainbridgeConfig'
+import { BridgeConfig, ChainType } from '../sygmaConfig'
 
 export type WalletType = ChainType | "select" | "unset";
 
@@ -41,12 +41,12 @@ export type NetworkManagerState = {
 export type Actions =
   | { type: "setWalletType", payload: WalletType }
   | { type: "setHomeChainConfig", payload: BridgeConfig | undefined }
-  | { type: "setHomeChains", payload: Array<BridgeConfig> | []}
+  | { type: "setHomeChains", payload: Array<BridgeConfig> | [] }
   | { type: "setDestinationChain", payload: BridgeConfig | undefined } // TODO: CHANGE THIS FOR SETDESTINATIONCHAINCONFIG
   | { type: "setDestinationChains", payload: Array<BridgeConfig> | [] }
   | { type: "setTransactionStatus", payload: TransactionStatus | undefined }
   | { type: "addMessage", payload: TransitMessage }
   | { type: "resetMessages" }
   | { type: "setTransactionIsDone" }
-  | { type: "setAll", payload: { walletType: WalletType} }
+  | { type: "setAll", payload: { walletType: WalletType } }
   | { type: "setDepositNonce", payload: string | undefined }

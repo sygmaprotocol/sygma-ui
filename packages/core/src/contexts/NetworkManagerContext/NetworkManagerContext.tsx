@@ -7,11 +7,7 @@ import React, {
   useState,
 } from "react";
 import { Directions } from "@chainsafe/sygma-sdk-core";
-import {
-  BridgeConfig,
-  chainbridgeConfig,
-  ChainType,
-} from "../../chainbridgeConfig";
+import { BridgeConfig, sygmaConfig, ChainType } from "../../sygmaConfig";
 import {
   EVMDestinationAdaptorProvider,
   EVMHomeAdaptorProvider,
@@ -86,7 +82,7 @@ const NetworkManagerContext = React.createContext<
 function selectProvider(
   type: string | undefined,
   direction: string,
-  props: INetworkManagerProviderProps
+  props: INetworkManagerProviderProps,
 ) {
   const noWalletHasChosenStates = [undefined, "unset", "select"];
   const typeKey = noWalletHasChosenStates.includes(type)
@@ -116,15 +112,13 @@ function selectProvider(
             getNetworkName: (id: any) => "",
             isReady: false,
             selectedToken: "",
-            deposit: async (
-              params: {
-                amount: string;
-                recipient: string;
-                from: Directions;
-                to: Directions;
-                feeData: string;
-              }
-            ) => undefined,
+            deposit: async (params: {
+              amount: string;
+              recipient: string;
+              from: Directions;
+              to: Directions;
+              feeData: string;
+            }) => undefined,
             setDepositAmount: () => undefined,
             tokens: {},
             setSelectedToken: (input: string) => undefined,
@@ -166,7 +160,7 @@ export const NetworkManagerProvider = ({
   predefinedWalletType,
 }: INetworkManagerProviderProps) => {
   const [walletType, setWalletType] = useState<WalletType>(
-    predefinedWalletType ?? "Ethereum"
+    predefinedWalletType ?? "Ethereum",
   );
 
   const [homeChainConfig, setHomeChainConfig] = useState<
@@ -177,7 +171,7 @@ export const NetworkManagerProvider = ({
     BridgeConfig | undefined
   >();
   const [destinationChains, setDestinationChains] = useState<BridgeConfig[]>(
-    []
+    [],
   );
 
   const [transactionStatus, setTransactionStatus] = useState<
@@ -185,13 +179,13 @@ export const NetworkManagerProvider = ({
   >(undefined);
 
   const [depositNonce, setDepositNonce] = useState<string | undefined>(
-    undefined
+    undefined,
   );
 
   const [depositVotes, setDepositVotes] = useState<number>(0);
   const [inTransitMessages, tokensDispatch] = useReducer(
     transitMessageReducer,
-    { txIsDone: false, transitMessage: [] }
+    { txIsDone: false, transitMessage: [] },
   );
 
   const { onboard, savedWallet, tokens } = useWeb3();
@@ -215,33 +209,33 @@ export const NetworkManagerProvider = ({
       if (chain) {
         setHomeChainConfig(chain);
         setDestinationChains(
-          chainbridgeConfig().chains.filter(
+          sygmaConfig().chains.filter(
             (bridgeConfig: BridgeConfig) =>
-              bridgeConfig.domainId !== chain.domainId
-          )
+              bridgeConfig.domainId !== chain.domainId,
+          ),
         );
-        if (chainbridgeConfig().chains.length === 2) {
+        if (sygmaConfig().chains.length === 2) {
           setDestinationChain(
-            chainbridgeConfig().chains.find(
+            sygmaConfig().chains.find(
               (bridgeConfig: BridgeConfig) =>
-                bridgeConfig.domainId !== chain.domainId
-            )
+                bridgeConfig.domainId !== chain.domainId,
+            ),
           );
         }
       }
     },
-    [homeChains, setHomeChainConfig]
+    [homeChains, setHomeChainConfig],
   );
 
   useEffect(() => {
     if (walletType !== "unset") {
       if (walletType === "select") {
-        setHomeChains(chainbridgeConfig().chains);
+        setHomeChains(sygmaConfig().chains);
       } else {
         setHomeChains(
-          chainbridgeConfig().chains.filter(
-            (bridgeConfig: BridgeConfig) => bridgeConfig.type === walletType
-          )
+          sygmaConfig().chains.filter(
+            (bridgeConfig: BridgeConfig) => bridgeConfig.type === walletType,
+          ),
         );
       }
     } else {
@@ -263,21 +257,21 @@ export const NetworkManagerProvider = ({
         throw new Error("Home chain not selected");
       }
     },
-    [depositNonce, destinationChains, homeChainConfig]
+    [depositNonce, destinationChains, homeChainConfig],
   );
 
   const HomeProvider = useCallback(
     (props: INetworkManagerProviderProps) => {
       return selectProvider(walletType, "home", props);
     },
-    [walletType]
+    [walletType],
   );
 
   const DestinationProvider = useCallback(
     (props: INetworkManagerProviderProps) => {
       return selectProvider(destinationChainConfig?.type, "destination", props);
     },
-    [destinationChainConfig?.type]
+    [destinationChainConfig?.type],
   );
 
   return (
@@ -309,7 +303,7 @@ export const useNetworkManager = () => {
   const context = useContext(NetworkManagerContext);
   if (context === undefined) {
     throw new Error(
-      "useNetworkManager must be called within a HomeNetworkProvider"
+      "useNetworkManager must be called within a HomeNetworkProvider",
     );
   }
   return context;

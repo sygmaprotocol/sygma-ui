@@ -3,7 +3,7 @@ import { SelectInput } from "@chainsafe/common-components";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
-import { WalletType, BridgeConfig } from "@chainsafe/chainbridge-ui-core";
+import { WalletType, BridgeConfig } from "@chainsafe/sygma-ui-core";
 
 type HomeNetworkConnectViewProps = {
   isReady: boolean | undefined;

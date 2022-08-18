@@ -33,7 +33,7 @@ const ConnectToMetamask = ({
   isLoading: boolean;
   setIsLoading: any;
 }) => {
-  const {chainbridgeInstance } = useBridge()
+  const {sygmaInstance } = useBridge()
   const chainId = useChainId();
   const accounts = useAccounts();
   const account = useAccount();

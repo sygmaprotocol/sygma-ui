@@ -42,7 +42,7 @@ yarn start
 
 ### Build
 
-Update the configs for the bridge in `src/chainbridgeContext.ts`. There should be at least 2 chains configured for correct functioning of the bridge. Each chain accepts the following configuration parameters:
+Update the configs for the bridge in `src/sygmaContext.ts`. There should be at least 2 chains configured for correct functioning of the bridge. Each chain accepts the following configuration parameters:
 
 ```
 export type BridgeConfig = {
