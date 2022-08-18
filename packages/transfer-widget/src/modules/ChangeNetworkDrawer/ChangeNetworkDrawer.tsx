@@ -5,8 +5,8 @@ import {
   useDestinationBridge,
   useHomeBridge,
   useNetworkManager,
-  useWeb3
-} from "@chainsafe/chainbridge-ui-core";
+  useWeb3,
+} from "@chainsafe/sygma-ui-core";
 import { useStyles } from "./styles";
 
 interface IChangeNetworkDrawerProps {
@@ -20,11 +20,7 @@ const ChangeNetworkDrawer: React.FC<IChangeNetworkDrawerProps> = ({
 }) => {
   const classes = useStyles();
 
-  const {
-    setWalletType,
-    handleSetHomeChain,
-    setDestinationChain,
-  } = useWeb3();
+  const { setWalletType, handleSetHomeChain, setDestinationChain } = useWeb3();
   const { disconnect } = useHomeBridge();
   const destinationBridge = useDestinationBridge();
 

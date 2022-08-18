@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 
-import { BridgeConfig, EvmBridgeConfig } from "../../chainbridgeConfig";
+import { BridgeConfig, EvmBridgeConfig } from "../../sygmaConfig";
 import { Actions } from "@chainsafe/sygma-ui-core/dist/src/types";
 import { API as OnboardAPI } from "bnc-onboard/dist/src/interfaces";
 

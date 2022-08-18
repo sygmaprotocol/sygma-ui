@@ -1,5 +1,5 @@
 {
-  "name": "chainbridge-ui-transfer-widget-unstable",
+  "name": "sygma-ui-transfer-widget-unstable",
   "version": "1.0.1",
   "main": "dist/src/App.js",
   "types": "dist/src/App.d.ts",

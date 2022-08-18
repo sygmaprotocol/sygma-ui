@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  useNetworkManager,
-  useChainbridge,
-  useWeb3,
-} from "@chainsafe/sygma-ui-core";
+import { useNetworkManager, useSygma, useWeb3 } from "@chainsafe/sygma-ui-core";
 import { useStyles } from "./styles";
 import {
   Button,
@@ -15,7 +11,7 @@ import {
 
 const NetworkSelectModal = () => {
   const classes = useStyles();
-  const { isReady, chains } = useChainbridge();
+  const { isReady, chains } = useSygma();
   const { walletType, setWalletType } = useWeb3();
   const { savedWallet } = useWeb3();
 
@@ -40,9 +36,7 @@ const NetworkSelectModal = () => {
               alignSelf: "center",
             }}
           >
-            {
-              savedWallet === "" ? "Please select a wallet type" : ""
-            }
+            {savedWallet === "" ? "Please select a wallet type" : ""}
           </DialogTitle>
           <section className={classes.buttons}>
             <Button

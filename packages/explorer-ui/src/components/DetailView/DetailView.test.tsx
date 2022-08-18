@@ -11,26 +11,8 @@ describe("DetailView", () => {
     Object.defineProperty(window, "crypto", {
       value: {
         getRandomValues: jest.fn(() => [
-          137,
-          128,
-          88,
-          251,
-          102,
-          102,
-          253,
-          87,
-          130,
-          17,
-          148,
-          65,
-          131,
-          197,
-          26,
-          77,
-          214,
-          94,
-          216,
-          178,
+          137, 128, 88, 251, 102, 102, 253, 87, 130, 17, 148, 65, 131, 197, 26,
+          77, 214, 94, 216, 178,
         ]),
       },
     });
@@ -48,7 +30,7 @@ describe("DetailView", () => {
           active={true}
           transferDetails={computeTransferDetails(
             testResponse.transfers[1] as any,
-            runtimeTestingConfig.CHAINBRIDGE.chains as any
+            runtimeTestingConfig.SYGMA.chains as any
           )}
           handleTimelineButtonClick={jest.fn()}
           timelineButtonClicked={false}

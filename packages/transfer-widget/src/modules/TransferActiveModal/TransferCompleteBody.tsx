@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 
-import { BridgeConfig, EvmBridgeConfig } from "@chainsafe/chainbridge-ui-core";
+import { BridgeConfig, EvmBridgeConfig } from "@chainsafe/sygma-ui-core";
 
 export default function TransferCompleteBody({
   classes,
@@ -24,10 +24,8 @@ export default function TransferCompleteBody({
   destinationChainConfig?: BridgeConfig;
 }) {
   const {
-    __RUNTIME_CONFIG__: {
-      UI_EXPLORER_URL
-    }
-   } = window
+    __RUNTIME_CONFIG__: { UI_EXPLORER_URL },
+  } = window;
   return (
     <>
       <Typography sx={{ mt: 3, mb: 4 }} component="p">

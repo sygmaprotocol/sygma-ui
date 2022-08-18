@@ -9,7 +9,7 @@ import clsx from "clsx";
 
 import {
   useBridge,
-  useChainbridge,
+  useSygma,
   useHomeBridge,
   useNetworkManager,
   useWeb3,
@@ -64,9 +64,9 @@ const TransferPage = () => {
     destinationChains,
     address,
     checkSupplies,
-  } = useChainbridge();
+  } = useSygma();
   const [customFee, setCustomFee] = useState<FeeDataResult>();
-  const { chainbridgeInstance, bridgeSetup } = useBridge();
+  const { sygmaInstance, bridgeSetup } = useBridge();
   const { accounts, selectAccount } = useHomeBridge();
   const [aboutOpen, setAboutOpen] = useState<boolean>(false);
   const [walletConnecting, setWalletConnecting] = useState(false);
@@ -112,8 +112,8 @@ const TransferPage = () => {
   const destAddress = watch("receiver", address);
 
   async function setFee(amount: string) {
-    if (chainbridgeInstance && amount && address) {
-      const fee = await chainbridgeInstance.fetchFeeData({
+    if (sygmaInstance && amount && address) {
+      const fee = await sygmaInstance.fetchFeeData({
         amount: amount,
         recipientAddress: destAddress,
       });

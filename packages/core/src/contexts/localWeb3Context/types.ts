@@ -12,7 +12,7 @@ import {
   Overrides,
 } from "ethers";
 import { BigNumber as BN } from "bignumber.js";
-import { TokenConfig } from "../../chainbridgeConfig";
+import { TokenConfig } from "../../sygmaConfig";
 
 export type TokenInfo = {
   name?: string;
@@ -60,7 +60,7 @@ export type LocalWeb3Context = {
   tokens: Tokens;
   resetOnboard(
     dispatcher: (action: Actions) => void,
-    onboard: OnboardAPI,
+    onboard: OnboardAPI
   ): void;
   signMessage(
     message: string,
@@ -109,7 +109,7 @@ export type LocalWeb3State = {
   walletConnectReady: boolean;
   checkWallet: boolean;
   savedWallet: string;
-}
+};
 
 export type Actions =
   | { type: "addToken"; payload: { id: string; token: TokenInfo } }
@@ -160,6 +160,6 @@ export type Actions =
         isActive: boolean;
         chainId: number;
         accounts: any;
-        address: string,
+        address: string;
       };
     };

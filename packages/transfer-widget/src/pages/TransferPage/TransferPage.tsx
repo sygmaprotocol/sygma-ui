@@ -12,11 +12,11 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
 import {
-  useChainbridge,
+  useSygma,
   useHomeBridge,
   useNetworkManager,
-  useWeb3
-} from "@chainsafe/chainbridge-ui-core";
+  useWeb3,
+} from "@chainsafe/sygma-ui-core";
 import { showImageUrl } from "../../utils/Helpers";
 import { useStyles } from "./styles";
 
@@ -64,7 +64,7 @@ const TransferPage = () => {
     destinationChains,
     address,
     checkSupplies,
-  } = useChainbridge();
+  } = useSygma();
 
   const { accounts, selectAccount } = useHomeBridge();
   const [aboutOpen, setAboutOpen] = useState<boolean>(false);
@@ -114,11 +114,12 @@ const TransferPage = () => {
       ...values,
       tokenSymbol: tokens[values.token].symbol || "",
     });
-    preflightDetails && deposit(
-      preflightDetails.tokenAmount,
-      preflightDetails.receiver,
-      preflightDetails.token
-    );
+    preflightDetails &&
+      deposit(
+        preflightDetails.tokenAmount,
+        preflightDetails.receiver,
+        preflightDetails.token
+      );
   };
 
   return (
@@ -129,7 +130,7 @@ const TransferPage = () => {
             container
             rowSpacing={1}
             columnSpacing={{ xs: 1, sm: 2, md: 2 }}
-            sx={{marginLeft: '0 !important'}}
+            sx={{ marginLeft: "0 !important" }}
           >
             <Grid
               container
@@ -193,41 +194,45 @@ const TransferPage = () => {
               sx={{ paddingRight: "16px" }}
             >
               <Grid item xs={12} md={6}>
-                {true && <TokenSelectInput
-                  control={control}
-                  rules={{ required: true }}
-                  tokens={tokens ?? []}
-                  name="token"
-                  disabled={!destinationChainConfig || formState.isSubmitting}
-                  label={`Balance: `}
-                  className={classes.generalInput}
-                  sync={(tokenAddress) => {
-                    setPreflightDetails({
-                      ...preflightDetails,
-                      token: tokenAddress,
-                      receiver: "",
-                      tokenAmount: 0,
-                      tokenSymbol: "",
-                    });
-                  }}
-                  setValue={setValue}
-                  options={
-                    tokens ? Object.keys(tokens).map((t) => ({
-                      value: t,
-                      label: (
-                        <div className={classes.tokenItem}>
-                          {tokens[t]?.imageUri && (
-                            <img
-                              src={showImageUrl(tokens[t]?.imageUri)}
-                              alt={tokens[t]?.symbol}
-                            />
-                          )}
-                          <span>{tokens[t]?.symbol || t}</span>
-                        </div>
-                      ),
-                    })) : []
-                  }
-                />}
+                {true && (
+                  <TokenSelectInput
+                    control={control}
+                    rules={{ required: true }}
+                    tokens={tokens ?? []}
+                    name="token"
+                    disabled={!destinationChainConfig || formState.isSubmitting}
+                    label={`Balance: `}
+                    className={classes.generalInput}
+                    sync={(tokenAddress) => {
+                      setPreflightDetails({
+                        ...preflightDetails,
+                        token: tokenAddress,
+                        receiver: "",
+                        tokenAmount: 0,
+                        tokenSymbol: "",
+                      });
+                    }}
+                    setValue={setValue}
+                    options={
+                      tokens
+                        ? Object.keys(tokens).map((t) => ({
+                            value: t,
+                            label: (
+                              <div className={classes.tokenItem}>
+                                {tokens[t]?.imageUri && (
+                                  <img
+                                    src={showImageUrl(tokens[t]?.imageUri)}
+                                    alt={tokens[t]?.symbol}
+                                  />
+                                )}
+                                <span>{tokens[t]?.symbol || t}</span>
+                              </div>
+                            ),
+                          }))
+                        : []
+                    }
+                  />
+                )}
               </Grid>
               <Grid item xs={12} md={6}>
                 <TokenInput
@@ -266,7 +271,11 @@ const TransferPage = () => {
             </Grid>
           </Grid>
           <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 1 }}>
-            <Grid container columnSpacing={{ xs: 2, sm: 2, md: 2 }} sx={{marginLeft: "0 !important"}}>
+            <Grid
+              container
+              columnSpacing={{ xs: 2, sm: 2, md: 2 }}
+              sx={{ marginLeft: "0 !important" }}
+            >
               <Grid item xs={0} sm={9} md={9}></Grid>
               <Grid
                 container

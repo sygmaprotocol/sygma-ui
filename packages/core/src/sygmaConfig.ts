@@ -20,6 +20,12 @@ export type BridgeConfig = {
   tokens: TokenConfig[];
   nativeTokenSymbol: string;
   decimals: number;
+  feeSettings: FeeSettings;
+};
+
+export type FeeSettings = {
+  type: "basic" | "feeOracle" | "none";
+  address: string;
 };
 
 export type EvmBridgeConfig = BridgeConfig & {
@@ -30,16 +36,20 @@ export type EvmBridgeConfig = BridgeConfig & {
   blockExplorer?: string;
   defaultGasPrice?: number;
   deployedBlockNumber?: number;
+  feeSettings: {
+    type: "basic" | "feeOracle" | "none";
+    address: string;
+  };
 };
 
 export type FeeOracleData = {
-	feeOracleBaseUrl: string;
-	feeOracleHandlerAddress: string;
-}
+  feeOracleBaseUrl: string;
+  feeOracleHandlerAddress: string;
+};
 
-export type ChainbridgeConfig = {
+export type SygmaConfig = {
   chains: Array<EvmBridgeConfig>;
-  feeOracleSetup: FeeOracleData,
+  feeOracleSetup: FeeOracleData;
 };
 
 export type UIConfig = {
@@ -47,5 +57,6 @@ export type UIConfig = {
   transactionAutoUpdateInterval: number;
 };
 
-export const chainbridgeConfig: ChainbridgeConfig =
-  window.__RUNTIME_CONFIG__.CHAINBRIDGE;
+export const sygmaConfig = () => {
+  return window.__RUNTIME_CONFIG__.SYGMA;
+};

@@ -1,6 +1,6 @@
 import React, { Dispatch } from "react";
 import { Tokens } from "@chainsafe/web3-context/dist/context/tokensReducer";
-import { BridgeConfig, TokenConfig } from "../../chainbridgeConfig";
+import { BridgeConfig, TokenConfig } from "../../sygmaConfig";
 import { Weth } from "../../Contracts/Weth";
 import {
   AddMessageAction,

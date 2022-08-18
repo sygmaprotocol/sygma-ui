@@ -14,10 +14,10 @@ import {
 import { BigNumber as BN } from "bignumber.js";
 import {
   BridgeConfig,
-  chainbridgeConfig,
+  SygmaConfig,
   ChainType,
-  TokenConfig
-} from "../chainbridgeConfig";
+  TokenConfig,
+} from "../sygmaConfig";
 
 export type WalletType = ChainType | "select" | "unset";
 
@@ -58,11 +58,10 @@ export type TransactionStatus =
   | "Transfer Completed"
   | "Transfer Aborted";
 
-
 export type HomeChains = BridgeConfig & {
   bridgeAddress: string;
   erc20HandlerAddress: string;
-}
+};
 
 export type LocalWeb3Context = {
   address?: string;
@@ -77,7 +76,7 @@ export type LocalWeb3Context = {
   tokens: Tokens;
   resetOnboard(
     dispatcher: (action: Actions) => void,
-    onboard: OnboardAPI,
+    onboard: OnboardAPI
   ): void;
   signMessage(
     message: string,
@@ -145,54 +144,57 @@ export type LocalWeb3State = {
   walletConnectReady?: boolean;
   checkWallet?: boolean;
   savedWallet?: string;
-}
+};
 
 export type Actions =
   | { type: "addToken"; payload: { id: string; token: TokenInfo } }
   | { type: "resetTokens" }
   | {
-    type: "updateTokenBalanceAllowance";
-    payload: {
-      id: string;
-      balance: number;
-      balanceBN: BN;
-      spenderAllowance: number;
-    };
-  }
+      type: "updateTokenBalanceAllowance";
+      payload: {
+        id: string;
+        balance: number;
+        balanceBN: BN;
+        spenderAllowance: number;
+      };
+    }
   | { type: "setAddress"; payload: string }
   | { type: "setBalance"; payload: number }
   | { type: "setIsReady"; payload: boolean }
   | {
-    type: "setWallet"; payload: {
-      wallet: Wallet | undefined,
-      provider: providers.Web3Provider | undefined
+      type: "setWallet";
+      payload: {
+        wallet: Wallet | undefined;
+        provider: providers.Web3Provider | undefined;
+      };
     }
-  }
   | { type: "setProvider"; payload: providers.Web3Provider }
   | {
-    type: "setNetworkAndProvider"; payload: {
-      network: number,
-      provider: providers.Web3Provider | undefined
+      type: "setNetworkAndProvider";
+      payload: {
+        network: number;
+        provider: providers.Web3Provider | undefined;
+      };
     }
-  }
-  | { type: "setNetwork", payload: number }
+  | { type: "setNetwork"; payload: number }
   | { type: "setOnBoard"; payload: OnboardAPI }
-  | { type: 'resetWalletConnect' }
+  | { type: "resetWalletConnect" }
   | {
-    type: 'setWalletConnect', payload: {
-      wallet: Wallet | undefined,
-      provider: providers.Web3Provider
+      type: "setWalletConnect";
+      payload: {
+        wallet: Wallet | undefined;
+        provider: providers.Web3Provider;
+      };
     }
-  }
-  | { type: 'checkWallet', payload: boolean }
-  | { type: 'setSavedWallet', payload: string }
+  | { type: "checkWallet"; payload: boolean }
+  | { type: "setSavedWallet"; payload: string }
   | {
-    type: "setAll";
-    payload: {
-      provider: providers.Web3Provider;
-      isActive: boolean;
-      chainId: number;
-      accounts: any;
-      address: string,
+      type: "setAll";
+      payload: {
+        provider: providers.Web3Provider;
+        isActive: boolean;
+        chainId: number;
+        accounts: any;
+        address: string;
+      };
     };
-  };

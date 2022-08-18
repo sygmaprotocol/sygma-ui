@@ -1,35 +1,28 @@
 import React, { createContext, useContext, useEffect, useReducer } from "react";
-import {
-  BridgeConfig,
-  chainbridgeConfig,
-  ChainType,
-} from "../../chainbridgeConfig";
+import { BridgeConfig, sygmaConfig, ChainType } from "../../sygmaConfig";
 import { useWeb3 } from "../localWeb3Context";
 import {
   BridgeData,
   Sygma,
   SygmaBridgeSetupList,
 } from "@chainsafe/sygma-sdk-core";
-import { chainbridgeReducer, ChainbridgeState } from "../../reducers";
+import { sygmaReducer, SygmaState } from "../../reducers";
 
 interface IBridgeContext {
   children: React.ReactNode | React.ReactNode[];
 }
 
-type BridgeContext = ChainbridgeState;
+type BridgeContext = SygmaState;
 
 const BridgeContext = createContext<BridgeContext | undefined>(undefined);
 
 const BridgeProvider = ({ children }: IBridgeContext) => {
   const { homeChains, ...rest } = useWeb3();
-  const initState: ChainbridgeState = {
-    chainbridgeInstance: undefined,
+  const initState: SygmaState = {
+    sygmaInstance: undefined,
     bridgeSetup: undefined,
   };
-  const [bridgeState, bridgeDispatcher] = useReducer(
-    chainbridgeReducer,
-    initState
-  );
+  const [bridgeState, bridgeDispatcher] = useReducer(sygmaReducer, initState);
 
   useEffect(() => {
     if (homeChains.length) {
@@ -70,14 +63,10 @@ const BridgeProvider = ({ children }: IBridgeContext) => {
         return acc;
       }, {} as BridgeData);
 
-      const { feeOracleSetup } = chainbridgeConfig();
+      const { feeOracleSetup } = sygmaConfig();
       let isMounted = true;
-      const chainbridgeInstance = new Sygma({
-        bridgeSetup,
-        feeOracleSetup,
-        bridgeSetupList: homeChains as any,
-      });
-      chainbridgeInstance
+      const sygmaInstance = new Sygma({ bridgeSetup, feeOracleSetup });
+      sygmaInstance
         .initializeConnectionFromWeb3Provider(web3provider?.provider)
         .then((res) => {
           if (isMounted) {
@@ -86,7 +75,7 @@ const BridgeProvider = ({ children }: IBridgeContext) => {
               payload: {
                 bridgeSetup,
                 feeOracleSetup,
-                chainbridgeInstance: res,
+                sygmaInstance: res,
               },
             });
           }

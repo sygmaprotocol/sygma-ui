@@ -27,4 +27,4 @@ yarn-error.log*
 .vscode
 
 # runtime config
-public/chainbridge-runtime-config.js
+public/sygma-runtime-config.js

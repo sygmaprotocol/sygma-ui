@@ -1,5 +1,5 @@
 {
-  "chainbridge::ChainId": "u8",
+  "sygma::ChainId": "u8",
   "ChainId": "u8",
   "ResourceId": "[u8; 32]",
   "DepositNonce": "u64",

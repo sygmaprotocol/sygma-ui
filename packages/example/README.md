@@ -25,9 +25,11 @@ Create a `.env` file based on the `.env.example` file in the root of the project
 Get a Blocknative DAPP ID (here)[https://explorer.blocknative.com/account] and populate the respective field in the `.env` file
 
 You can copy one of our configs for local development or create your own:
+
 ```
 cp ./config/sygma-runtime-config.evm.json ./public/sygma-runtime-config.json
 ```
+
 Make sure that the config file in public folder is named `sygma-runtime-config.json``
 
 ## Usage
@@ -42,7 +44,7 @@ yarn start
 
 ### Build
 
-Update the configs for the bridge in `src/chainbridgeContext.ts`. There should be at least 2 chains configured for correct functioning of the bridge. Each chain accepts the following configuration parameters:
+Update the configs for the bridge in `src/sygmaContext.ts`. There should be at least 2 chains configured for correct functioning of the bridge. Each chain accepts the following configuration parameters:
 
 ```
 export type BridgeConfig = {
@@ -85,7 +87,6 @@ export type EvmBridgeConfig = BridgeConfig & {
 };
 ```
 
-
 Run `yarn build`.
 
 Deploy the contents of the `/build` folder to any static website host (eg. S3, Azure storage) or IPFS.
@@ -95,10 +96,11 @@ Deploy the contents of the `/build` folder to any static website host (eg. S3, A
 To run production enviroment you can use our `config-server` package to run tiny nodejs app which get config from AWS SSM and provide it to the App in `json` format
 
 You can test it localy if you have your AWS credentials setuped in your terminal
-````
+
+```
 cd ../packages/config-server
 yarn start:server
-````
+```
 
 # Deployment
 
@@ -106,19 +108,19 @@ There is `Dockerfile` for frontend in root direcotry and `server.dockerfile` for
 
 It can be run together with `docker-compose` from root direcotry :
 
-````
+```
 docker-compose -f ./docker-compose.yml up
-````
+```
 
 Environment variables to access [config-server](../config-server):
 
 - CONFIG_SERVER_HOST=localhost (the host of config server)
 - CONFIG_SERVER_PORT=8000 ( the port of config server)
 
-
 # ChainSafe Security Policy
 
 ## Reporting a Security Bug
+
 We take all security issues seriously, if you believe you have found a security issue within a ChainSafe
 project please notify us immediately. If an issue is confirmed, we will take all necessary precautions
 to ensure a statement and patch release is made in a timely manner.

@@ -9,9 +9,9 @@ import { useLocation } from "react-router-dom";
 import {
   useNetworkManager,
   useHomeBridge,
-  chainbridgeConfig,
-  useWeb3
-} from "@chainsafe/chainbridge-ui-core";
+  sygmaConfig,
+  useWeb3,
+} from "@chainsafe/sygma-ui-core";
 import { useStyles } from "./styles";
 
 const NetworkUnsupportedModal = () => {
@@ -19,7 +19,7 @@ const NetworkUnsupportedModal = () => {
   const { homeChainConfig } = useWeb3();
   const { getNetworkName, wrapTokenConfig, isReady, networkId } =
     useHomeBridge();
-  const pathname = '/transfer';
+  const pathname = "/transfer";
 
   const [open, setOpen] = useState(false);
   const [supportedNetworks, setSupportedNetworks] = useState<number[]>([]);
@@ -28,8 +28,8 @@ const NetworkUnsupportedModal = () => {
     if (pathname) {
       setOpen(!homeChainConfig && !!isReady);
       setSupportedNetworks(
-        chainbridgeConfig().chains
-          .filter((bc) => bc.networkId !== undefined)
+        sygmaConfig()
+          .chains.filter((bc) => bc.networkId !== undefined)
           .map((bc) => Number(bc.networkId))
       );
     } else {

@@ -1,5 +1,5 @@
 import React from "react";
-import { BridgeConfig, EvmBridgeConfig } from "@chainsafe/chainbridge-ui-core";
+import { BridgeConfig, EvmBridgeConfig } from "@chainsafe/sygma-ui-core";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";

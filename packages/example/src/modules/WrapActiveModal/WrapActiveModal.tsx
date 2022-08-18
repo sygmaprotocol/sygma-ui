@@ -4,8 +4,8 @@ import LinearProgress from "@mui/material/LinearProgress";
 
 import Typography from "@mui/material/Typography";
 import { CustomModal } from "../../components";
-import { useChainbridge } from "@chainsafe/sygma-ui-core";
-import { EvmBridgeConfig, TokenConfig } from "../../chainbridgeConfig";
+import { useSygma } from "@chainsafe/sygma-ui-core";
+import { EvmBridgeConfig, TokenConfig } from "../../sygmaConfig";
 import { useStyles } from "./styles";
 
 interface IWrapActiveModalProps {
@@ -26,7 +26,7 @@ const WrapActiveModal: React.FC<IWrapActiveModalProps> = ({
   action,
 }: IWrapActiveModalProps) => {
   const classes = useStyles();
-  const { homeConfig } = useChainbridge();
+  const { homeConfig } = useSygma();
 
   return (
     <CustomModal

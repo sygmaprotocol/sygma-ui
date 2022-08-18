@@ -3,6 +3,7 @@
 # SygmaUI
 
 ## Introduction
+
 **Sygma UI** is an OpenSource (under GNU Lesser General Public License v3.0) whitelabel application for developers
 to work with [Sygma](https://github.com/ChainSafe/sygma). UI consist of two part:
 BridgeUI is used to interact with [Bridge](https://github.com/chainsafe/sygma-solidity) smart contracts
@@ -10,11 +11,12 @@ in order to send deposits.
 ExplorerUI is used to track and navigate every bridging that happens over specific Bridge smart contract.
 
 ## Live demo
+
 You can test UI with our [live demo](52.73.103.2)
 This demo is a working bridge between Rinkebay <> Goerly <> Alfajores (celo).
 It requires you to have MetaMask wallet and to have some ETH on those network in order to pay tx fees, also you need to request some ERC20 tokens in our [discord](https://discord.gg/ykXsJKfhgq) channel
 
-***NOTE*** this is under an active development so can be broken occasionally.
+**_NOTE_** this is under an active development so can be broken occasionally.
 
 ## Running locally
 
@@ -24,9 +26,9 @@ For you to run our **UI** locally you need a couple of dependencies. As this is 
 
 Before running our bridge code you will need to have installed `golang`, `docker` and `docker-compose`. Follow the instructions here for installing those dependencies:
 
-* golang -> [install](https://go.dev/doc/install)
-* docker -> [install](https://docs.docker.com/engine/install/)
-* docker-compose -> [install](https://docs.docker.com/compose/install/)
+- golang -> [install](https://go.dev/doc/install)
+- docker -> [install](https://docs.docker.com/engine/install/)
+- docker-compose -> [install](https://docs.docker.com/compose/install/)
 
 In order for your to bridge tokens from one network to another, you are going to need to clone [Sygma](https://github.com/ChainSafe/sygma). This project contains everything you need to run a bridge with two `evm` networks, and all the contracts deployed. Check the [README](https://github.com/ChainSafe/sygma/blob/main/README.md) and follow the instructions to install and have everything ready.
 
@@ -155,8 +157,8 @@ This is are the most relevant private keys
 ```
 
 `Eve` is the bridge admin. She holds 10 `erc20` tokens on her side. `Alice` has native tokens that you can transfer using metamask to your personal account. It is recommended that you don't use relayers accounts to test transfers in your local setup. For this you can use [sygma-core-example](https://github.com/ChainSafe/sygma-core-example) to build the binary and have access to the cli to perform some task.
-### Minting some tokens.
 
+### Minting some tokens.
 
 Now we are ready to mint some tokens. Eve has 10 TST tokens already minted, but we can mint more.
 
@@ -192,15 +194,21 @@ mint \
 After minting some tokens, you can send a few to your imported account in order for you to test a transfer or you just can mint to your testing account in metamask.
 
 ## Starting UI
+
 First install dependencies
+
 ```bash
 yarn install
 ```
+
 Then build a core ui library
+
 ```bash
 yarn build:core
 ```
+
 Finally run ui
+
 ```bash
 yarn start:ui
 ```
@@ -208,9 +216,12 @@ yarn start:ui
 And that's it, you are going to see the UI connected to local networks
 
 ## Deployment configuration for AWS
+
 The configuration consists of nodejs server which pulls the config from SSM and provides it as JSON for TransferUI frontend application.
 So we need to deploy two services:
+
 ### [config-server](../packages/config-server)
+
 Environment variables for AWS:
 
 - AWS_ACCESS_KEY_ID
@@ -221,22 +232,26 @@ Environment variables for configuration nodejs application:
 
 - HOST=localhost (could be any other host)
 - PORT=8000
-- SSM_PARAMETER_NAME=/chainbridge/chainbridge-ui-local (i’ve created test parameter in SSM but it could any other new param like /chainbridge/chainbridge-ui-prod or such)
+- SSM_PARAMETER_NAME=/sygma/sygma-ui-local (i’ve created test parameter in SSM but it could any other new param like /sygma/sygma-ui-prod or such)
 
 ### [transfer-ui](../packages/example)
+
 environment variables:
+
 - CONFIG_SERVER_HOST=localhost (the host of config server)
 - CONFIG_SERVER_PORT=8000 ( the port of config server)
-For ease of understanding config, I created [docker-compose.yml](../docker-compose.yml) with all this services and env examples and dockerfiles for transfer UI and for config-server (edited)
-
+  For ease of understanding config, I created [docker-compose.yml](../docker-compose.yml) with all this services and env examples and dockerfiles for transfer UI and for config-server (edited)
 
 ## FAQ
+
 Please check our [Q&A section](https://github.com/ChainSafe/sygma-ui/discussions/categories/q-a)
 
 ## Support
+
 <a href="https://discord.gg/ykXsJKfhgq">
   <img alt="discord" src="https://img.shields.io/discord/593655374469660673?label=Discord&logo=discord&style=flat" />
 </a>
 
 ## License
+
 GNU Lesser General Public License v3.0

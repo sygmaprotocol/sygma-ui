@@ -1,7 +1,7 @@
 import React from "react";
 
 import { TransitState } from "@chainsafe/sygma-ui-core";
-import { BridgeConfig, EvmBridgeConfig } from "../../chainbridgeConfig";
+import { BridgeConfig, EvmBridgeConfig } from "../../sygmaConfig";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
@@ -18,10 +18,8 @@ export default function InTransitBody({
   homeTransferTxHash?: string;
 }) {
   const {
-    __RUNTIME_CONFIG__: {
-      UI_EXPLORER_URL
-    }
-  } = window
+    __RUNTIME_CONFIG__: { UI_EXPLORER_URL },
+  } = window;
   return (
     <>
       <Box sx={{ my: 2 }}>

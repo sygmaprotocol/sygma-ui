@@ -4,10 +4,10 @@ import { Erc20DetailedFactory } from "../../../Contracts/Erc20DetailedFactory";
 import { TransactionStatus } from "../../NetworkManagerContext";
 
 import {
-  chainbridgeConfig,
+  SygmaConfig,
   EvmBridgeConfig,
   BridgeConfig,
-} from "../../../chainbridgeConfig";
+} from "../../../sygmaConfig";
 
 import { getPriceCompatibility } from "./helpers";
 import {
@@ -30,7 +30,7 @@ const makeDeposit =
     homeChainConfig?: BridgeConfig,
     provider?: providers.Web3Provider,
     address?: string,
-    chainbridgeInstance?: Sygma,
+    sygmaInstance?: Sygma,
     bridgeSetup?: BridgeData
   ) =>
   async (paramsForDeposit: {
@@ -40,7 +40,7 @@ const makeDeposit =
     to: Directions;
     feeData: FeeDataResult;
   }) => {
-    const tokenAddress = chainbridgeInstance!.getSelectedTokenAddress();
+    const tokenAddress = sygmaInstance!.getSelectedTokenAddress();
     const token = homeChainConfig!.tokens.find(
       (token) => token.address === tokenAddress
     );
@@ -61,39 +61,39 @@ const makeDeposit =
         gasPrice
       );
       // Allowance for bridge
-      const currentAllowance = await chainbridgeInstance?.checkCurrentAllowance(
+      const currentAllowance = await sygmaInstance?.checkCurrentAllowance(
         address!
       );
 
       // TODO extract token allowance logic to separate function
       if (currentAllowance! < Number(paramsForDeposit.amount)) {
         if (currentAllowance! > 0 && token.isDoubleApproval) {
-          await chainbridgeInstance!.approve({
+          await sygmaInstance!.approve({
             amounForApproval: "0",
           });
         }
-        await chainbridgeInstance!.approve({
+        await sygmaInstance!.approve({
           amounForApproval: paramsForDeposit.amount,
         });
       }
       // Allowance for fee handler
       const currentAllowanceForFeeHandler =
-        await chainbridgeInstance?.checkCurrentAllowanceForFeeHandler(address!);
+        await sygmaInstance?.checkCurrentAllowanceForFeeHandler(address!);
       if (
         currentAllowanceForFeeHandler! <
         Number(utils.formatUnits(paramsForDeposit.feeData.fee, 18))
       ) {
-        await chainbridgeInstance!.approveFeeHandler({
+        await sygmaInstance!.approveFeeHandler({
           amounForApproval: utils.formatUnits(paramsForDeposit.feeData.fee, 18),
         });
       }
 
-      const depositTx = await chainbridgeInstance?.deposit({
+      const depositTx = await sygmaInstance?.deposit({
         amount: paramsForDeposit.amount,
         recipientAddress: paramsForDeposit.recipient,
         feeData: paramsForDeposit.feeData,
       });
-      chainbridgeInstance?.createHomeChainDepositEventListener(
+      sygmaInstance?.createHomeChainDepositEventListener(
         (
           destinationDomainId: number,
           resourceId: string,
@@ -108,7 +108,7 @@ const makeDeposit =
             setDepositNonce(depositNonce.toNumber().toString());
             setTransactionStatus("In Transit");
             setHomeTransferTxHash(depositTx.transactionHash);
-            chainbridgeInstance.removeHomeChainDepositEventListener();
+            sygmaInstance.removeHomeChainDepositEventListener();
           }
         }
       );

@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
-import { BridgeConfig } from "../../chainbridgeConfig";
-import { TokenConfig } from "../../chainbridgeConfig";
+import { BridgeConfig } from "../../sygmaConfig";
+import { TokenConfig } from "../../sygmaConfig";
 
 type MakeWrapValidationSchemaOptions = {
   homeChainConfig: BridgeConfig | undefined;

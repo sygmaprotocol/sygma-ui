@@ -1,4 +1,4 @@
-import { BridgeConfig, ChainType } from '../chainbridgeConfig'
+import { BridgeConfig, ChainType } from "../sygmaConfig";
 
 export type WalletType = ChainType | "select" | "unset";
 
@@ -26,27 +26,27 @@ export type TransactionStatus =
   | "Transfer Aborted";
 
 export type NetworkManagerState = {
-  walletType: WalletType
-  homeChainConfig?: BridgeConfig
-  homeChains: Array<BridgeConfig>
-  destinationChainConfig?: BridgeConfig
-  destinationChains: Array<BridgeConfig>
-  transactionStatus?: TransactionStatus
-  depositNonce?: string
-  depositVotes: number // WE ARE NO REALLY USING THIS ON THE CONTEXT PROVIDER
-  txIsDone: boolean
-  transitMessage: Array<TransitMessage>
-}
+  walletType: WalletType;
+  homeChainConfig?: BridgeConfig;
+  homeChains: Array<BridgeConfig>;
+  destinationChainConfig?: BridgeConfig;
+  destinationChains: Array<BridgeConfig>;
+  transactionStatus?: TransactionStatus;
+  depositNonce?: string;
+  depositVotes: number; // WE ARE NO REALLY USING THIS ON THE CONTEXT PROVIDER
+  txIsDone: boolean;
+  transitMessage: Array<TransitMessage>;
+};
 
 export type Actions =
-  | { type: "setWalletType", payload: WalletType }
-  | { type: "setHomeChainConfig", payload: BridgeConfig | undefined }
-  | { type: "setHomeChains", payload: Array<BridgeConfig> | []}
-  | { type: "setDestinationChain", payload: BridgeConfig | undefined } // TODO: CHANGE THIS FOR SETDESTINATIONCHAINCONFIG
-  | { type: "setDestinationChains", payload: Array<BridgeConfig> | [] }
-  | { type: "setTransactionStatus", payload: TransactionStatus | undefined }
-  | { type: "addMessage", payload: TransitMessage }
+  | { type: "setWalletType"; payload: WalletType }
+  | { type: "setHomeChainConfig"; payload: BridgeConfig | undefined }
+  | { type: "setHomeChains"; payload: Array<BridgeConfig> | [] }
+  | { type: "setDestinationChain"; payload: BridgeConfig | undefined } // TODO: CHANGE THIS FOR SETDESTINATIONCHAINCONFIG
+  | { type: "setDestinationChains"; payload: Array<BridgeConfig> | [] }
+  | { type: "setTransactionStatus"; payload: TransactionStatus | undefined }
+  | { type: "addMessage"; payload: TransitMessage }
   | { type: "resetMessages" }
   | { type: "setTransactionIsDone" }
-  | { type: "setAll", payload: { walletType: WalletType} }
-  | { type: "setDepositNonce", payload: string | undefined }
+  | { type: "setAll"; payload: { walletType: WalletType } }
+  | { type: "setDepositNonce"; payload: string | undefined };

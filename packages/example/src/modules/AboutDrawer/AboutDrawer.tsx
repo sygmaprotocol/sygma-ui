@@ -17,14 +17,14 @@ const AboutDrawer: React.FC<IAboutDrawerProps> = ({
   return (
     <CustomDrawer onClose={close} open={open} className={classes.root}>
       <Typography variant="h1" component="h4">
-        What is ChainBridge?
+        What is Sygma?
       </Typography>
       <Typography component="p" variant="h5">
-        ChainBridge is a modular multi-directional blockchain bridge to allow
-        data and value transfer between any number of blockchains. This should
-        enable users to specify a destination blockchain from their source
-        chain, and send data to that blockchain for consumption on the
-        destination chain. <br />
+        Sygma is a modular multi-directional blockchain bridge to allow data and
+        value transfer between any number of blockchains. This should enable
+        users to specify a destination blockchain from their source chain, and
+        send data to that blockchain for consumption on the destination chain.{" "}
+        <br />
         <br />
         This could be a token that is locked on ChainA and redeemed on ChainB,
         or an operation that is executed on a destination chain and initiated on

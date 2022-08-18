@@ -15,8 +15,7 @@ import {
   DepositRecord,
   TransferDetails,
   EvmBridgeConfig,
-} from "@chainsafe/chainbridge-ui-core";
-
+} from "@chainsafe/sygma-ui-core";
 
 export const isCelo = (networkId?: number) =>
   [42220, 44787, 62320].includes(networkId ?? 0);
@@ -87,9 +86,7 @@ export const getTokenIcon = () => {
   return PredefinedIcons["ETHIcon"];
 };
 
-export const getNetworkIcon = (
-  config: EvmBridgeConfig | undefined
-) => {
+export const getNetworkIcon = (config: EvmBridgeConfig | undefined) => {
   if (config === undefined) {
     return undefined;
   }

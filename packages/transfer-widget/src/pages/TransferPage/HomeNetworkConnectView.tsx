@@ -3,7 +3,7 @@ import { SelectInput } from "@chainsafe/common-components";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
-import { WalletType, BridgeConfig } from "@chainsafe/chainbridge-ui-core";
+import { WalletType, BridgeConfig } from "@chainsafe/sygma-ui-core";
 
 type HomeNetworkConnectViewProps = {
   isReady: boolean | undefined;
@@ -49,7 +49,8 @@ export default function HomeNetworkConnectView({
                 backgroundColor: "#262626",
                 opacity: 0.9,
               },
-              mt: 3, mb: 3
+              mt: 3,
+              mb: 3,
             }}
             onClick={() => {
               setWalletType("select");
@@ -69,14 +70,16 @@ export default function HomeNetworkConnectView({
           ) : (
             <section className={classes.connected}>
               <div>
-                <Typography variant="body1" className={classes.changeButton}>Home network</Typography>
+                <Typography variant="body1" className={classes.changeButton}>
+                  Home network
+                </Typography>
               </div>
               <Typography
                 component="h5"
                 variant="h5"
                 className={classes.networkName}
               >
-                {homeConfig?.name ?? 'Connect the wallet'}
+                {homeConfig?.name ?? "Connect the wallet"}
               </Typography>
             </section>
           ))}
