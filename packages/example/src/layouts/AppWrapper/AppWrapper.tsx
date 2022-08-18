@@ -76,7 +76,7 @@ const AppWrapper: React.FC<IAppWrapper> = ({
               elevation={3}
             >
               {enableNavTabs && (
-                <Tabs value={currentTab}>
+                <Tabs value={currentTab} className={classes.transferTab}>
                   <Tab
                     icon={<GlobalSvg />}
                     iconPosition="start"
