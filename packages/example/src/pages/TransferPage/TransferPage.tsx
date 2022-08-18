@@ -175,6 +175,7 @@ const TransferPage = () => {
               label={`Balance: `}
               className={classes.generalInput}
               sync={(tokenAddress) => {
+                sygmaInstance?.setSelectedToken(tokenAddress);
                 setPreflightDetails({
                   ...preflightDetails,
                   token: tokenAddress,
