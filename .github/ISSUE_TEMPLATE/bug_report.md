@@ -29,8 +29,8 @@ assignees: ''
 3.
 4.
 
-## Versions
-ChainBridge commit (or docker tag):
-chainbridge-solidity version:
-chainbridge-substrate version:
+## Version
+Sygma commit (or docker tag):
+sygma-solidity version:
+sygma-substrate version:
 Go version:

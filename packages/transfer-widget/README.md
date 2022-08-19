@@ -12,7 +12,7 @@ widget with integrated [onboardjs](https://docs.blocknative.com/onboard)
 import Widget from "sygma-ui-transfer-widget-unstable";
 const App: React.FC<{}> = () => {
 
-  // Your ChainBridgeUI config
+  // Your SygmaUI config
   const runtimeConfig = {...}
 
   return (
@@ -20,7 +20,7 @@ const App: React.FC<{}> = () => {
   );
 };
 ```
-### ChainBridgeUI with standard web3 provider
+### SygmaUI with standard web3 provider
 
 Widget with standard web3 provider passing as an argument. Could be useful if you have your own web3 connection logic in your application
 
@@ -31,7 +31,7 @@ import Widget from "sygma-ui-transfer-widget-unstable";
 const App: React.FC<{}> = () => {
   const [provider, setProvider] = useState()
 
-  // Your ChainBridgeUI config
+  // Your SygmaUI config
   const runtimeConfig = {...}
 
   //init the provider

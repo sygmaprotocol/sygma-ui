@@ -7,7 +7,7 @@ import {
   BridgeConfig,
   EvmBridgeConfig,
   TokenConfig,
-} from "../../../chainbridgeConfig";
+} from "../../../sygmaConfig";
 import { Weth } from "../../../Contracts/Weth";
 import { WethFactory } from "../../../Contracts/WethFactory";
 

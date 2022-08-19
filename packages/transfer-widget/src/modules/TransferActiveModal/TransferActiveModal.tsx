@@ -7,9 +7,9 @@ import { CustomModal } from "../../components";
 import {
   useDestinationBridge,
   useHomeBridge,
-  useChainbridge,
+  useSygma,
   TransactionStatus,
-} from "@chainsafe/chainbridge-ui-core";
+} from "@chainsafe/sygma-ui-core";
 
 import InitTransferBody from "./InitTransferBody";
 import InTransitBody from "./InTransitBody";
@@ -68,7 +68,7 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
     depositAmount,
     selectedToken,
     tokens,
-  } = useChainbridge();
+  } = useSygma();
   const { homeTransferTxHash } = useHomeBridge();
   const { transferTxHash, depositVotes, inTransitMessages } =
     useDestinationBridge();

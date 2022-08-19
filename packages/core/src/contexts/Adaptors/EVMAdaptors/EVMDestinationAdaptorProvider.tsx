@@ -21,7 +21,7 @@ export const EVMDestinationAdaptorProvider = ({
     transactionStatus,
   } = useWeb3();
 
-  const { bridgeSetup, chainbridgeInstance } = useBridge();
+  const { bridgeSetup, sygmaInstance } = useBridge();
 
   const computedDirections = computeDirections(
     bridgeSetup!,
@@ -56,7 +56,7 @@ export const EVMDestinationAdaptorProvider = ({
         setTransferTxHash,
         tokensDispatch,
         computedDirections!,
-        chainbridgeInstance!,
+        sygmaInstance!,
         setDepositVotes,
         depositVotes,
         transferTxHash

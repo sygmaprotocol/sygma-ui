@@ -1,5 +1,5 @@
 import React from "react";
-import { BridgeConfig, EvmBridgeConfig } from "../../chainbridgeConfig";
+import { BridgeConfig, EvmBridgeConfig } from "../../sygmaConfig";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
@@ -31,7 +31,7 @@ export default function ErrorTransferBody({
                 `${
                   (homeConfig as EvmBridgeConfig).blockExplorer
                 }/${transferTxHash}`,
-                "_blank"
+                "_blank",
               )
             }
             size="small"

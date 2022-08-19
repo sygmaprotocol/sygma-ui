@@ -1,5 +1,5 @@
 window.__RUNTIME_CONFIG__ = {
-  CHAINBRIDGE: {
+  SYGMA: {
     chains: [
       {
         domainId: 0,

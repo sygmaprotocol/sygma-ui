@@ -9,8 +9,8 @@ import { useLocation } from "react-router-dom";
 import {
   useNetworkManager,
   useHomeBridge,
-  chainbridgeConfig,
-  useWeb3
+  sygmaConfig,
+  useWeb3,
 } from "@chainsafe/sygma-ui-core";
 import { ROUTE_LINKS } from "../../routes";
 import { useStyles } from "./styles";
@@ -29,17 +29,17 @@ const NetworkUnsupportedModal = () => {
     if (pathname === ROUTE_LINKS.Transfer) {
       setOpen(!homeChainConfig && !!isReady);
       setSupportedNetworks(
-        chainbridgeConfig().chains
-          .filter((bc) => bc.networkId !== undefined)
-          .map((bc) => Number(bc.networkId))
+        sygmaConfig()
+          .chains.filter((bc) => bc.networkId !== undefined)
+          .map((bc) => Number(bc.networkId)),
       );
     } else if (pathname === ROUTE_LINKS.Wrap) {
       setOpen(!wrapTokenConfig && !!isReady);
       setSupportedNetworks(
-        chainbridgeConfig().chains
-          .filter((bc) => bc.networkId !== undefined)
+        sygmaConfig()
+          .chains.filter((bc) => bc.networkId !== undefined)
           .filter((bc) => bc.tokens.find((t) => t.isNativeWrappedToken))
-          .map((bc) => Number(bc.networkId))
+          .map((bc) => Number(bc.networkId)),
       );
     } else {
       setOpen(false);
@@ -75,7 +75,7 @@ const NetworkUnsupportedModal = () => {
             (n, i) =>
               `${getNetworkName(n)}${
                 i < supportedNetworks.length - 1 ? ", " : ""
-              }`
+              }`,
           )}{" "}
           networks
         </Typography>

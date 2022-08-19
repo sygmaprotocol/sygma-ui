@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Widget from "chainbridge-ui-transfer-widget-unstable";
+import Widget from "sygma-ui-transfer-widget-unstable";
 
 
 import "./App.css";
@@ -14,7 +14,7 @@ const App: React.FC<{}> = () => {
       UI: {
         transactionAutoUpdateInterval: 5000
       },
-      CHAINBRIDGE: {
+      SYGMA: {
         chains: [
           {
             domainId: 0,

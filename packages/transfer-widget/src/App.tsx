@@ -11,11 +11,11 @@ import {
 } from "./pages";
 import { lightTheme } from "./themes/LightTheme";
 import {
-  ChainbridgeProvider,
+  SygmaProvider,
   NetworkManagerProvider,
   LocalProvider,
-  chainbridgeConfig
-} from "@chainsafe/chainbridge-ui-core";
+  sygmaConfig
+} from "@chainsafe/sygma-ui-core";
 import { utils, ethers } from "ethers";
 
 
@@ -58,11 +58,11 @@ const App: React.FC<{externalProvider?: any, useExternalProvider?: any}> = ({ext
   const {
     __RUNTIME_CONFIG__: {
       UI: { wrapTokenPage = false } = {},
-      CHAINBRIDGE: { chains },
+      SYGMA: { chains },
     },
   } = window;
 
-  const tokens = chainbridgeConfig().chains
+  const tokens = sygmaConfig().chains
     .filter((c) => c.type === "Ethereum")
     .reduce((tca, bc: any) => {
       if (bc.networkId) {
@@ -116,9 +116,9 @@ const App: React.FC<{externalProvider?: any, useExternalProvider?: any}> = ({ext
           }}
         >
           <NetworkManagerProvider predefinedWalletType={externalProvider ? 'Ethereum' : undefined}>
-            <ChainbridgeProvider chains={chains}>
+            <SygmaProvider chains={chains}>
               <TransferPage />
-            </ChainbridgeProvider>
+            </SygmaProvider>
           </NetworkManagerProvider>
         </LocalProvider>
       </ThemeSwitcher>

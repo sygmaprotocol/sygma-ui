@@ -1,5 +1,5 @@
 import { BigNumber } from "@ethersproject/bignumber";
-import { EvmBridgeConfig } from "../chainbridgeConfig";
+import { EvmBridgeConfig } from "../sygmaConfig";
 import { computeTransferDetails } from "../utils/Helpers";
 
 export enum ProposalStatus {

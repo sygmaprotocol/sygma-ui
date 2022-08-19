@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
-import { BridgeConfig } from "../../chainbridgeConfig";
-import { TokenConfig } from "../../chainbridgeConfig";
+import { BridgeConfig } from "../../sygmaConfig";
+import { TokenConfig } from "../../sygmaConfig";
 
 type MakeWrapValidationSchemaOptions = {
   homeChainConfig: BridgeConfig | undefined;
@@ -42,9 +42,9 @@ export default function makeValidationSchema({
           : tokens[wrapTokenConfig?.address || "0x"].balance &&
             value &&
             parseFloat(value) <=
-              tokens[wrapTokenConfig?.address || "0x"]?.balance
-          ? true
-          : false;
+            tokens[wrapTokenConfig?.address || "0x"]?.balance
+            ? true
+            : false;
       })
       .required("Please set a value"),
   });

@@ -15,7 +15,7 @@ import {
   DepositRecord,
   TransferDetails,
   EvmBridgeConfig
-} from "@chainsafe/chainbridge-ui-core";
+} from "@chainsafe/sygma-ui-core";
 import {
   formatTransferDate,
   getRandomSeed,
