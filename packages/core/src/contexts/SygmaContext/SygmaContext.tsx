@@ -10,7 +10,7 @@ import { TransitState } from "../../reducers/TransitMessageReducer";
 import { TransactionStatus, useWeb3 } from "../../index";
 import { useHomeBridge } from "../HomeBridgeContext";
 import { useDestinationBridge } from "../DestinationBridgeContext";
-import { Directions } from "@chainsafe/sygma-sdk-core";
+import { Directions, FeeDataResult } from "@chainsafe/sygma-sdk-core";
 import { useBridge } from "../Bridge";
 import { computeDirections } from "../../utils/Helpers";
 
@@ -31,7 +31,7 @@ type SygmaContext = {
     recipient: string;
     from: Directions;
     to: Directions;
-    feeData: string;
+    feeData: FeeDataResult;
   }): Promise<void>;
   resetDeposit(): void;
   // depositVotes: number;
@@ -56,7 +56,7 @@ type SygmaContext = {
   checkSupplies?: (
     amount: number,
     tokenAddress: string,
-    destinationChainId: number,
+    destinationChainId: number
   ) => Promise<boolean | undefined>;
   chains?: Array<EvmBridgeConfig>;
 };
@@ -122,25 +122,25 @@ const SygmaProvider = ({ children, chains }: ISygmaContextProps) => {
       recipient: string;
       from: Directions;
       to: Directions;
-      feeData: string;
+      feeData: FeeDataResult;
     }) => {
       if (chainConfig && destinationChainConfig) {
         return await deposit(paramsForDeposit);
       }
     },
-    [deposit, destinationChainConfig, chainConfig],
+    [deposit, destinationChainConfig, chainConfig]
   );
 
   const checkSupplies = async (
     amount: number,
     tokenAddress: string,
-    destinationChainId: number,
+    destinationChainId: number
   ) => {
     if (handleCheckSupplies && chainConfig && destinationChainConfig) {
       return await handleCheckSupplies(
         amount,
         tokenAddress,
-        destinationChainId,
+        destinationChainId
       );
     }
   };

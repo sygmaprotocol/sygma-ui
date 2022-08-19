@@ -126,7 +126,7 @@ const App: React.FC<{}> = () => {
 
   const rpcUrls = chains.reduce(
     (acc, { networkId, rpcUrl }) => ({ ...acc, [networkId!]: rpcUrl }),
-    {},
+    {}
   );
 
   return (

@@ -35,13 +35,13 @@ export const EVMHomeAdaptorProvider = ({
     handleSetHomeChain,
     homeChains,
   } = useLocalWeb3();
-  const { sygmaInstance, bridgeSetup } = useBridge()
+  const { sygmaInstance, bridgeSetup } = useBridge();
 
   const { homeBridge, wrapper, wrapTokenConfig } = useConnectWallet(
     isReady,
     homeChainConfig,
     provider,
-    network,
+    network
   );
 
   const [evmHomeState, dispatch] = useReducer(evmHomeReducer, {
@@ -139,7 +139,7 @@ export const EVMHomeAdaptorProvider = ({
         chainConfig: homeChainConfig,
         address,
         nativeTokenBalance: ethBalance,
-        handleCheckSupplies
+        handleCheckSupplies,
       }}
     >
       {children}

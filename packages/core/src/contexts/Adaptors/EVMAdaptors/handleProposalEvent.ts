@@ -23,13 +23,15 @@ const handleProposalEvent = (
   sygmaInstance: Sygma,
   setDepositVotes: any,
   depositVotes: any,
-  transferTxHash: string
+  transferTxHash: string,
+  depositNonce: number
 ): Bridge => {
   const { from, to } = computedDirections;
-
-  const listersCount = sygmaInstance.proposalExecutionEventListenerCount(to);
+  const listersCount =
+    sygmaInstance.proposalExecutionEventListenerCount("chain2");
   if (listersCount === 0) {
-    sygmaInstance.createProposalExecutionEventListener(to)(
+    sygmaInstance.destinationProposalExecutionEventListener(
+      depositNonce,
       async (
         originDomainId: any,
         despositNonce: any,

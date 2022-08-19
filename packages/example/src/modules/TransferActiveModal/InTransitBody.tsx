@@ -18,10 +18,8 @@ export default function InTransitBody({
   homeTransferTxHash?: string;
 }) {
   const {
-    __RUNTIME_CONFIG__: {
-      UI_EXPLORER_URL
-    }
-  } = window
+    __RUNTIME_CONFIG__: { UI_EXPLORER_URL },
+  } = window;
   return (
     <>
       <Box sx={{ my: 2 }}>

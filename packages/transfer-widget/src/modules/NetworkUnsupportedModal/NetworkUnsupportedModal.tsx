@@ -30,7 +30,7 @@ const NetworkUnsupportedModal = () => {
       setSupportedNetworks(
         sygmaConfig()
           .chains.filter((bc) => bc.networkId !== undefined)
-          .map((bc) => Number(bc.networkId)),
+          .map((bc) => Number(bc.networkId))
       );
     } else {
       setOpen(false);
@@ -66,7 +66,7 @@ const NetworkUnsupportedModal = () => {
             (n, i) =>
               `${getNetworkName(n)}${
                 i < supportedNetworks.length - 1 ? ", " : ""
-              }`,
+              }`
           )}{" "}
           networks
         </Typography>

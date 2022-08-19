@@ -4,7 +4,11 @@ import LinearProgress from "@mui/material/LinearProgress";
 
 import Typography from "@mui/material/Typography";
 import { CustomModal } from "../../components";
-import { useSygma, EvmBridgeConfig, TokenConfig } from "@chainsafe/sygma-ui-core";
+import {
+  useSygma,
+  EvmBridgeConfig,
+  TokenConfig,
+} from "@chainsafe/sygma-ui-core";
 import { useStyles } from "./styles";
 
 interface IWrapActiveModalProps {

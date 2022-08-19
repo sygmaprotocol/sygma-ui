@@ -14,7 +14,7 @@ import {
 import {
   DepositRecord,
   TransferDetails,
-  EvmBridgeConfig
+  EvmBridgeConfig,
 } from "@chainsafe/sygma-ui-core";
 import {
   formatTransferDate,
