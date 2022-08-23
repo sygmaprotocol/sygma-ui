@@ -88,12 +88,7 @@ const makeDeposit =
         });
       }
 
-      const depositTx = await sygmaInstance?.deposit({
-        amount: paramsForDeposit.amount,
-        recipientAddress: paramsForDeposit.recipient,
-        feeData: paramsForDeposit.feeData,
-      });
-      sygmaInstance?.createHomeChainDepositEventListener(
+      await sygmaInstance?.createHomeChainDepositEventListener(
         (
           destinationDomainId: number,
           resourceId: string,
@@ -103,15 +98,19 @@ const makeDeposit =
           handleResponse: string,
           tx: Event
         ) => {
-          if (depositTx?.status === 1) {
-            console.log("depositNonce", depositNonce.toNumber().toString());
-            setDepositNonce(depositNonce.toNumber().toString());
-            setTransactionStatus("In Transit");
-            setHomeTransferTxHash(depositTx.transactionHash);
-            sygmaInstance.removeHomeChainDepositEventListener();
-          }
+          console.log("depositNonce", depositNonce.toNumber().toString());
+          setDepositNonce(depositNonce.toNumber().toString());
+          setTransactionStatus("In Transit");
+          sygmaInstance.removeHomeChainDepositEventListener();
         }
       );
+
+      const depositTx = await sygmaInstance?.deposit({
+        amount: paramsForDeposit.amount,
+        recipientAddress: paramsForDeposit.recipient,
+        feeData: paramsForDeposit.feeData,
+      });
+      setHomeTransferTxHash(depositTx!.transactionHash);
 
       return Promise.resolve();
     } catch (error) {
