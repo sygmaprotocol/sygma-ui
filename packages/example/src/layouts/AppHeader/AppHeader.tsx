@@ -1,5 +1,8 @@
 import React from "react";
 import clsx from "clsx";
+import AppBar from "@mui/material/AppBar";
+import Container from "@mui/material/Container";
+import Toolbar from "@mui/material/Toolbar";
 // import { Typography } from "@chainsafe/common-components";
 import Typography from "@mui/material/Typography";
 import { Switch, NavLink, Link } from "react-router-dom";
@@ -21,61 +24,44 @@ const AppHeader: React.FC<IAppHeader> = () => {
   const indexerEnabled = "INDEXER_URL" in __RUNTIME_CONFIG__;
 
   return (
-    <header className={clsx(classes.root)}>
-      <div className={classes.left}>
-        {/* ADD LOGO HERE */}
-        {/* <div className={classes.logo}>
-        </div> */}
-        <div className={classes.mainTitle}>
-          <Typography variant="h5">Sygma Token Swap</Typography>
-        </div>
-        <div className={classes.headerLinks}>
-          {indexerEnabled ? (
-            ROUTE_LINKS_HEADERS.map(({ route, label }) => (
-              <NavLink to={route} className={classes.link} key={route}>
-                <Typography variant="h5" className={classes.linkTitle}>
-                  {label}
-                </Typography>
-              </NavLink>
-            ))
-          ) : (
-            <NavLink
-              to={ROUTE_LINKS_HEADERS[0].route}
-              className={classes.link}
-              key={ROUTE_LINKS_HEADERS[0].route}
-            >
-              <Typography className={classes.linkTitle}>
-                {ROUTE_LINKS_HEADERS[0].label}
-              </Typography>
-            </NavLink>
-          )}
-        </div>
-      </div>
-      <section className={classes.state}>
-        {!isReady ? (
-          <Typography variant="h5">No wallet connected</Typography>
-        ) : (
-          <>
-            <div className={classes.mainInfo}>
-              <div className={classes.accountInfo}>
-                <span className={classes.indicator} />
-                <Typography variant="h5" className={classes.address}>
-                  {address && shortenAddress(address)}
-                </Typography>
-              </div>
-              <Typography variant="h5" className={classes.address}>
-                <div>
-                  <span>connected to </span>
-                  <span>
-                    <strong>{homeConfig?.name}</strong>
-                  </span>
-                </div>
-              </Typography>
+    <AppBar position="static" className={clsx(classes.root)}>
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <div className={classes.left}>
+            {/* ADD LOGO HERE */}
+            <div className={classes.logo}>
+              <img src="/assets/images/logo.svg" alt="logo" />
             </div>
-          </>
-        )}
-      </section>
-    </header>
+            <div className={classes.mainTitle}>
+              <Typography variant="h5">Sygma Token Transfer</Typography>
+            </div>
+          </div>
+          <section className={classes.state}>
+            {!isReady ? (
+              <Typography variant="h5">No wallet connected</Typography>
+            ) : (
+              <>
+                <div className={classes.mainInfo}>
+                  <Typography variant="h5" className={classes.address}>
+
+                      <span className={classes.indicator} />
+                      <span>
+                        <strong>{homeConfig?.name}</strong>
+                      </span>
+                    
+                  </Typography>
+                  <div className={classes.accountInfo}>
+                    <Typography variant="h5" className={classes.address}>
+                      {address && shortenAddress(address)}
+                    </Typography>
+                  </div>
+                </div>
+              </>
+            )}
+          </section>
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 };
 

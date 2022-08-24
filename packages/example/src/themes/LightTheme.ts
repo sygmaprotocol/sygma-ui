@@ -3,9 +3,10 @@ import { createTheme } from "@chainsafe/common-theme";
 export const lightTheme = createTheme({
   globalStyling: {
     body: {
-      backgroundColor: "#F5F5F5",
+      backgroundColor: "#F0F0F0",
     },
   },
+
   themeConfig: {
     constants: {
       navItemHeight: 42,
@@ -19,8 +20,8 @@ export const lightTheme = createTheme({
           1: "#595959", // FAQ button // gray8
         },
         header: {
-          1: "#F5F5F5", // Background
-          2: "#595959", // Text color //gray8
+          1: "#F0F0F0", // Background
+          2: "#FF7A45", // Text color //gray8
           3: "#BFBFBF", // border // gray6
         },
         preflight: {
@@ -35,6 +36,12 @@ export const lightTheme = createTheme({
       },
     },
     overrides: {
+      Typography: {
+        h5: {
+          fontFamily: "NeueMontreal"
+        }
+
+      },
       CheckboxInput: {
         root: {
           alignItems: "center",
