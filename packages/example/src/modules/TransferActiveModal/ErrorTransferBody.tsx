@@ -31,7 +31,7 @@ export default function ErrorTransferBody({
                 `${
                   (homeConfig as EvmBridgeConfig).blockExplorer
                 }/${transferTxHash}`,
-                "_blank",
+                "_blank"
               )
             }
             size="small"

@@ -8,9 +8,7 @@ import { shortenAddress } from "../../utils/Helpers";
 import { useSygma } from "@chainsafe/sygma-ui-core";
 import { useStyles } from "./styles";
 
-const ROUTE_LINKS_HEADERS = [
-  { route: "/transfer", label: "Transfer" },
-];
+const ROUTE_LINKS_HEADERS = [{ route: "/transfer", label: "Transfer" }];
 
 interface IAppHeader {}
 

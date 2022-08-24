@@ -35,11 +35,11 @@ export type EvmBridgeConfig = BridgeConfig & {
 export type FeeOracleData = {
   feeOracleBaseUrl: string;
   feeOracleHandlerAddress: string;
-}
+};
 
 export type SygmaConfig = {
   chains: Array<EvmBridgeConfig>;
-  feeOracleSetup: FeeOracleData,
+  feeOracleSetup: FeeOracleData;
 };
 
 export type UIConfig = {
@@ -47,5 +47,4 @@ export type UIConfig = {
   transactionAutoUpdateInterval: number;
 };
 
-export const sygmaConfig: SygmaConfig =
-  window.__RUNTIME_CONFIG__.SYGMA;
+export const sygmaConfig: SygmaConfig = window.__RUNTIME_CONFIG__.SYGMA;

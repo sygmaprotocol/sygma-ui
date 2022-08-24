@@ -1,10 +1,7 @@
 import dayjs from "dayjs";
 import { BigNumber, BigNumberish, ethers } from "ethers";
 import { DepositRecord, TransferDetails } from "../reducers/TransfersReducer";
-import {
-  BridgeConfig,
-  EvmBridgeConfig,
-} from "../sygmaConfig";
+import { BridgeConfig, EvmBridgeConfig } from "../sygmaConfig";
 import { isCelo } from "../contexts/Adaptors/EVMAdaptors/helpers";
 import { BridgeData } from "@chainsafe/sygma-sdk-core";
 
@@ -45,7 +42,6 @@ export const selectToken = (
   config: EvmBridgeConfig | undefined,
   tokenAddress: string
 ) => config?.tokens.find((token) => token.address === tokenAddress);
-
 
 export const formatTransferDate = (transferDate: number | undefined) =>
   transferDate ? dayjs(transferDate * 1000).format("MMM D, h:mmA") : "";

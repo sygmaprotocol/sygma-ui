@@ -24,10 +24,8 @@ export default function TransferCompleteBody({
   destinationChainConfig?: BridgeConfig;
 }) {
   const {
-    __RUNTIME_CONFIG__: {
-      UI_EXPLORER_URL
-    }
-   } = window
+    __RUNTIME_CONFIG__: { UI_EXPLORER_URL },
+  } = window;
   return (
     <>
       <Typography sx={{ mt: 3, mb: 4 }} component="p">

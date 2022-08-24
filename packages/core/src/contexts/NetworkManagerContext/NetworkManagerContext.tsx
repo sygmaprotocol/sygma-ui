@@ -6,7 +6,7 @@ import React, {
   useReducer,
   useState,
 } from "react";
-import { Directions } from "@chainsafe/sygma-sdk-core";
+import { Directions, FeeDataResult } from "@chainsafe/sygma-sdk-core";
 import { BridgeConfig, sygmaConfig, ChainType } from "../../sygmaConfig";
 import {
   EVMDestinationAdaptorProvider,
@@ -82,7 +82,7 @@ const NetworkManagerContext = React.createContext<
 function selectProvider(
   type: string | undefined,
   direction: string,
-  props: INetworkManagerProviderProps,
+  props: INetworkManagerProviderProps
 ) {
   const noWalletHasChosenStates = [undefined, "unset", "select"];
   const typeKey = noWalletHasChosenStates.includes(type)
@@ -117,7 +117,7 @@ function selectProvider(
               recipient: string;
               from: Directions;
               to: Directions;
-              feeData: string;
+              feeData: FeeDataResult;
             }) => undefined,
             setDepositAmount: () => undefined,
             tokens: {},
@@ -160,7 +160,7 @@ export const NetworkManagerProvider = ({
   predefinedWalletType,
 }: INetworkManagerProviderProps) => {
   const [walletType, setWalletType] = useState<WalletType>(
-    predefinedWalletType ?? "Ethereum",
+    predefinedWalletType ?? "Ethereum"
   );
 
   const [homeChainConfig, setHomeChainConfig] = useState<
@@ -171,7 +171,7 @@ export const NetworkManagerProvider = ({
     BridgeConfig | undefined
   >();
   const [destinationChains, setDestinationChains] = useState<BridgeConfig[]>(
-    [],
+    []
   );
 
   const [transactionStatus, setTransactionStatus] = useState<
@@ -179,13 +179,13 @@ export const NetworkManagerProvider = ({
   >(undefined);
 
   const [depositNonce, setDepositNonce] = useState<string | undefined>(
-    undefined,
+    undefined
   );
 
   const [depositVotes, setDepositVotes] = useState<number>(0);
   const [inTransitMessages, tokensDispatch] = useReducer(
     transitMessageReducer,
-    { txIsDone: false, transitMessage: [] },
+    { txIsDone: false, transitMessage: [] }
   );
 
   const { onboard, savedWallet, tokens } = useWeb3();
@@ -211,20 +211,20 @@ export const NetworkManagerProvider = ({
         setDestinationChains(
           sygmaConfig().chains.filter(
             (bridgeConfig: BridgeConfig) =>
-              bridgeConfig.domainId !== chain.domainId,
-          ),
+              bridgeConfig.domainId !== chain.domainId
+          )
         );
         if (sygmaConfig().chains.length === 2) {
           setDestinationChain(
             sygmaConfig().chains.find(
               (bridgeConfig: BridgeConfig) =>
-                bridgeConfig.domainId !== chain.domainId,
-            ),
+                bridgeConfig.domainId !== chain.domainId
+            )
           );
         }
       }
     },
-    [homeChains, setHomeChainConfig],
+    [homeChains, setHomeChainConfig]
   );
 
   useEffect(() => {
@@ -234,8 +234,8 @@ export const NetworkManagerProvider = ({
       } else {
         setHomeChains(
           sygmaConfig().chains.filter(
-            (bridgeConfig: BridgeConfig) => bridgeConfig.type === walletType,
-          ),
+            (bridgeConfig: BridgeConfig) => bridgeConfig.type === walletType
+          )
         );
       }
     } else {
@@ -257,21 +257,21 @@ export const NetworkManagerProvider = ({
         throw new Error("Home chain not selected");
       }
     },
-    [depositNonce, destinationChains, homeChainConfig],
+    [depositNonce, destinationChains, homeChainConfig]
   );
 
   const HomeProvider = useCallback(
     (props: INetworkManagerProviderProps) => {
       return selectProvider(walletType, "home", props);
     },
-    [walletType],
+    [walletType]
   );
 
   const DestinationProvider = useCallback(
     (props: INetworkManagerProviderProps) => {
       return selectProvider(destinationChainConfig?.type, "destination", props);
     },
-    [destinationChainConfig?.type],
+    [destinationChainConfig?.type]
   );
 
   return (
@@ -303,7 +303,7 @@ export const useNetworkManager = () => {
   const context = useContext(NetworkManagerContext);
   if (context === undefined) {
     throw new Error(
-      "useNetworkManager must be called within a HomeNetworkProvider",
+      "useNetworkManager must be called within a HomeNetworkProvider"
     );
   }
   return context;

@@ -91,7 +91,14 @@ const ExplorerPage = () => {
   }, [transfers]);
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap", marginTop: '20px'}}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        flexWrap: "wrap",
+        marginTop: "20px",
+      }}
+    >
       <section className={classes.mainContent}>
         <section className={classes.networkInfoContainer}>
           <div className={classes.networkInfo}>

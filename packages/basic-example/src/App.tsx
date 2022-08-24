@@ -4,7 +4,7 @@ import {
   LocalProvider,
   NetworkManagerProvider,
   useSygma,
-  useWeb3
+  useWeb3,
 } from "@chainsafe/sygma-ui-core";
 
 import { utils } from "ethers";
@@ -12,7 +12,7 @@ import { utils } from "ethers";
 const BasicApp = (props: any) => {
   const { setWalletType } = useWeb3();
 
-  const handleSetWallet = () => setWalletType("Ethereum")
+  const handleSetWallet = () => setWalletType("Ethereum");
 
   const { address, destinationChains, homeConfig, tokens } = useSygma();
 

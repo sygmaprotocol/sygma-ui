@@ -10,14 +10,11 @@ import {
   HashRouter,
 } from "react-router-dom";
 
-import {
-  WrapperPage,
-  TransferPage,
-} from "../pages";
+import { WrapperPage, TransferPage } from "../pages";
 
 export const ROUTE_LINKS = {
   Transfer: "/transfer",
-  Wrap: "/wrap"
+  Wrap: "/wrap",
 };
 
 interface ISygmaRoutes {

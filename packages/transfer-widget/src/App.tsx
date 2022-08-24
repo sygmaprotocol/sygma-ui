@@ -1,23 +1,20 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { init, ErrorBoundary, showReportDialog } from "@sentry/react";
 import { ThemeSwitcher } from "@chainsafe/common-theme";
 import CssBaseline from "@mui/material/CssBaseline";
 
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
-import {
-  TransferPage,
-} from "./pages";
+import { TransferPage } from "./pages";
 import { lightTheme } from "./themes/LightTheme";
 import {
   SygmaProvider,
   NetworkManagerProvider,
   LocalProvider,
-  sygmaConfig
+  sygmaConfig,
 } from "@chainsafe/sygma-ui-core";
 import { utils, ethers } from "ethers";
-
 
 if (
   process.env.NODE_ENV === "production" &&
@@ -30,10 +27,16 @@ if (
   });
 }
 
-const AppWrapper: React.FC<{ config?: any, useExternalProvider?: any, externalProviderSource?: any }> = (props) => {
+const AppWrapper: React.FC<{
+  config?: any;
+  useExternalProvider?: any;
+  externalProviderSource?: any;
+}> = (props) => {
   const [isReady, setIsReady] = useState(false);
 
-  const externalProvider = props.externalProviderSource ? new ethers.providers.Web3Provider(props.externalProviderSource, "any") : undefined
+  const externalProvider = props.externalProviderSource
+    ? new ethers.providers.Web3Provider(props.externalProviderSource, "any")
+    : undefined;
   useEffect(() => {
     if (!window.__RUNTIME_CONFIG__) {
       // @ts-ignore
@@ -44,7 +47,10 @@ const AppWrapper: React.FC<{ config?: any, useExternalProvider?: any, externalPr
   return (
     <>
       {isReady ? (
-        <App externalProvider={externalProvider} useExternalProvider={props.useExternalProvider} />
+        <App
+          externalProvider={externalProvider}
+          useExternalProvider={props.useExternalProvider}
+        />
       ) : (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <CircularProgress />
@@ -54,7 +60,10 @@ const AppWrapper: React.FC<{ config?: any, useExternalProvider?: any, externalPr
   );
 };
 
-const App: React.FC<{externalProvider?: any, useExternalProvider?: any}> = ({externalProvider, useExternalProvider}) => {
+const App: React.FC<{ externalProvider?: any; useExternalProvider?: any }> = ({
+  externalProvider,
+  useExternalProvider,
+}) => {
   const {
     __RUNTIME_CONFIG__: {
       UI: { wrapTokenPage = false } = {},
@@ -62,8 +71,8 @@ const App: React.FC<{externalProvider?: any, useExternalProvider?: any}> = ({ext
     },
   } = window;
 
-  const tokens = sygmaConfig().chains
-    .filter((c) => c.type === "Ethereum")
+  const tokens = sygmaConfig()
+    .chains.filter((c) => c.type === "Ethereum")
     .reduce((tca, bc: any) => {
       if (bc.networkId) {
         return {
@@ -115,7 +124,9 @@ const App: React.FC<{externalProvider?: any, useExternalProvider?: any}> = ({ext
             },
           }}
         >
-          <NetworkManagerProvider predefinedWalletType={externalProvider ? 'Ethereum' : undefined}>
+          <NetworkManagerProvider
+            predefinedWalletType={externalProvider ? "Ethereum" : undefined}
+          >
             <SygmaProvider chains={chains}>
               <TransferPage />
             </SygmaProvider>
@@ -125,6 +136,5 @@ const App: React.FC<{externalProvider?: any, useExternalProvider?: any}> = ({ext
     </ErrorBoundary>
   );
 };
-
 
 export default AppWrapper;

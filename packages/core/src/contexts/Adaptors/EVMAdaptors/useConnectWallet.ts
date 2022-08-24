@@ -15,9 +15,8 @@ export function useConnectWallet(
   isReady: boolean,
   homeChainConfig?: BridgeConfig,
   provider?: providers.Web3Provider,
-  network?: number,
+  network?: number
 ) {
-
   const [initialising, setInitialising] = useState(false);
   const [walletSelected, setWalletSelected] = useState(false);
   const [homeBridge, setHomeBridge] = useState<Bridge | undefined>(undefined);

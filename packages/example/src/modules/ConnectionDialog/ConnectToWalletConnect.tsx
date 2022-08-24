@@ -3,12 +3,11 @@ import { initializeConnector } from "@web3-react/core";
 import { WalletConnect } from "@web3-react/walletconnect";
 import { Typography, Button } from "@mui/material";
 import { WalletconnectIcon } from "@fusion-icons/react/web3";
-import { getSygmaConfig } from "../../getSygmaConfig"
-
+import { getSygmaConfig } from "../../getSygmaConfig";
 
 function convertToWc() {
   if (!window.__RUNTIME_CONFIG__) {
-    return []
+    return [];
   }
   const result = window.__RUNTIME_CONFIG__.SYGMA.chains.map((chain) => [
     chain.networkId!,
@@ -69,7 +68,7 @@ const ConnectToWallet = ({
           isActive,
           chainId,
           address: account,
-          walletType: "Ethereum"
+          walletType: "Ethereum",
         },
       });
       handleClose();

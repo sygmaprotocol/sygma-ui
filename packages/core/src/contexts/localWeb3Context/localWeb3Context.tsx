@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useCallback } from "react";
-import { Directions } from "@chainsafe/sygma-sdk-core";
+import { Directions, FeeDataResult } from "@chainsafe/sygma-sdk-core";
 import { BridgeConfig, sygmaConfig, ChainType } from "../../sygmaConfig";
 import {
   EVMDestinationAdaptorProvider,
@@ -31,7 +31,7 @@ import { HomeChains } from "../../types/web3Types";
 import { BridgeProvider } from "../Bridge";
 
 const LocalProviderContext = React.createContext<LocalWeb3Context | undefined>(
-  undefined,
+  undefined
 );
 
 interface INetworkManagerProviderProps {
@@ -53,7 +53,7 @@ type CombinedReducer = (state: CombinedState, action: Action) => CombinedState;
 function selectProvider(
   type: string | undefined,
   direction: string,
-  props: INetworkManagerProviderProps,
+  props: INetworkManagerProviderProps
 ) {
   const noWalletHasChosenStates = [undefined, "unset", "select"];
   const typeKey = noWalletHasChosenStates.includes(type)
@@ -88,7 +88,7 @@ function selectProvider(
               recipient: string;
               from: Directions;
               to: Directions;
-              feeData: string;
+              feeData: FeeDataResult;
             }) => undefined,
             setDepositAmount: () => undefined,
             tokens: {},
@@ -178,14 +178,14 @@ const LocalProvider = ({
               walletType: "Ethereum",
             },
           });
-        },
+        }
       );
     }
   }, [externalProvider]);
 
   const [state, dispatcher] = useReducer(
     combinedReducers,
-    initialCombinedReducers,
+    initialCombinedReducers
   );
   const { localWeb3, networkManager } = state;
 
@@ -233,7 +233,7 @@ const LocalProvider = ({
         return;
       }
       const chain = networkManager.homeChains.find(
-        (c) => c.domainId === domainId,
+        (c) => c.domainId === domainId
       );
 
       if (chain) {
@@ -242,7 +242,7 @@ const LocalProvider = ({
           type: "setDestinationChains",
           payload: sygmaConfig().chains.filter(
             (bridgeConfig: BridgeConfig) =>
-              bridgeConfig.domainId !== chain.domainId,
+              bridgeConfig.domainId !== chain.domainId
           ),
         });
 
@@ -251,13 +251,13 @@ const LocalProvider = ({
             type: "setDestinationChain",
             payload: sygmaConfig().chains.find(
               (bridgeConfig: BridgeConfig) =>
-                bridgeConfig.domainId !== chain.domainId,
+                bridgeConfig.domainId !== chain.domainId
             ),
           });
         }
       }
     },
-    [networkManager.homeChains],
+    [networkManager.homeChains]
   );
 
   useEffect(() => {
@@ -272,7 +272,7 @@ const LocalProvider = ({
           type: "setHomeChains",
           payload: sygmaConfig().chains.filter(
             (bridgeConfig: BridgeConfig) =>
-              bridgeConfig.type === networkManager.walletType,
+              bridgeConfig.type === networkManager.walletType
           ),
         });
       }
@@ -296,7 +296,7 @@ const LocalProvider = ({
         !networkManager.depositNonce
       ) {
         const chain = networkManager.destinationChains.find(
-          (c) => c.domainId === domainId,
+          (c) => c.domainId === domainId
         );
         if (!chain) {
           throw new Error("Invalid destination chain selected");
@@ -313,14 +313,14 @@ const LocalProvider = ({
       networkManager.depositNonce,
       networkManager.destinationChains,
       networkManager.homeChainConfig,
-    ],
+    ]
   );
 
   const HomeProvider = useCallback(
     (props: INetworkManagerProviderProps) => {
       return selectProvider(networkManager.walletType, "home", props);
     },
-    [networkManager.walletType],
+    [networkManager.walletType]
   );
 
   const DestinationProvider = useCallback(
@@ -328,10 +328,10 @@ const LocalProvider = ({
       return selectProvider(
         networkManager.destinationChainConfig?.type,
         "destination",
-        props,
+        props
       );
     },
-    [networkManager.destinationChainConfig?.type],
+    [networkManager.destinationChainConfig?.type]
   );
 
   return (

@@ -9,7 +9,7 @@ import {
   useHomeBridge,
   useSygma,
   TransactionStatus,
-  useWeb3 as useLocalWeb3
+  useWeb3 as useLocalWeb3,
 } from "@chainsafe/sygma-ui-core";
 
 import InitTransferBody from "./InitTransferBody";
@@ -61,7 +61,7 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
   close,
 }: ITransferActiveModalProps) => {
   const classes = useStyles();
-  const { savedWallet, resetOnboard, dispatcher, onboard } = useLocalWeb3()
+  const { savedWallet, resetOnboard, dispatcher, onboard } = useLocalWeb3();
   const {
     transactionStatus,
     relayerThreshold,
@@ -72,8 +72,7 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
     tokens,
   } = useSygma();
   const { homeTransferTxHash } = useHomeBridge();
-  const { transferTxHash, inTransitMessages } =
-    useDestinationBridge();
+  const { transferTxHash, inTransitMessages } = useDestinationBridge();
   const tokenSymbol = selectedToken && tokens[selectedToken]?.symbol;
 
   const getTransactionStateBody = (status?: TransactionStatus) => {
@@ -148,10 +147,7 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
       </section>
       <section className={classes.content}>
         <Typography className={classes.heading} variant="h5" component="h5">
-          {getTransactionStateHeader(
-            transactionStatus,
-            relayerThreshold
-          )}
+          {getTransactionStateHeader(transactionStatus, relayerThreshold)}
         </Typography>
         {getTransactionStateBody(transactionStatus)}
       </section>

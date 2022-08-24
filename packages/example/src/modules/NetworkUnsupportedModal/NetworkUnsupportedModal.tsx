@@ -31,7 +31,7 @@ const NetworkUnsupportedModal = () => {
       setSupportedNetworks(
         sygmaConfig()
           .chains.filter((bc) => bc.networkId !== undefined)
-          .map((bc) => Number(bc.networkId)),
+          .map((bc) => Number(bc.networkId))
       );
     } else if (pathname === ROUTE_LINKS.Wrap) {
       setOpen(!wrapTokenConfig && !!isReady);
@@ -39,7 +39,7 @@ const NetworkUnsupportedModal = () => {
         sygmaConfig()
           .chains.filter((bc) => bc.networkId !== undefined)
           .filter((bc) => bc.tokens.find((t) => t.isNativeWrappedToken))
-          .map((bc) => Number(bc.networkId)),
+          .map((bc) => Number(bc.networkId))
       );
     } else {
       setOpen(false);
@@ -75,7 +75,7 @@ const NetworkUnsupportedModal = () => {
             (n, i) =>
               `${getNetworkName(n)}${
                 i < supportedNetworks.length - 1 ? ", " : ""
-              }`,
+              }`
           )}{" "}
           networks
         </Typography>

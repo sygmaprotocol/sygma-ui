@@ -20,6 +20,7 @@ const App: React.FC<{}> = () => {
   );
 };
 ```
+
 ### SygmaUI with standard web3 provider
 
 Widget with standard web3 provider passing as an argument. Could be useful if you have your own web3 connection logic in your application

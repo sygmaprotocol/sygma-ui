@@ -42,9 +42,9 @@ export default function makeValidationSchema({
           : tokens[wrapTokenConfig?.address || "0x"].balance &&
             value &&
             parseFloat(value) <=
-            tokens[wrapTokenConfig?.address || "0x"]?.balance
-            ? true
-            : false;
+              tokens[wrapTokenConfig?.address || "0x"]?.balance
+          ? true
+          : false;
       })
       .required("Please set a value"),
   });
