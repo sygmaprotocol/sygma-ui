@@ -1,6 +1,7 @@
 import React from "react";
 import { CustomDrawer } from "../../components";
-import { Button, Typography } from "@chainsafe/common-components";
+import { Typography } from "@chainsafe/common-components";
+import { Button, ButtonUnstyled } from "@mui/material";
 import { shortenAddress } from "../../utils/Helpers";
 import { useStyles } from "./styles";
 
@@ -35,16 +36,16 @@ const PreflightModalTransfer: React.FC<IPreflightModalTransferProps> = ({
       classNames={{
         backdrop: classes.backdrop,
       }}
-      size={430}
+      // size={430}
       open={open}
     >
-      <Typography variant="h3" component="h2">
+      <Typography variant="h3" component="h2" className={classes.title}>
         Pre-flight check
       </Typography>
       <Typography className={classes.subtitle} variant="h5" component="p">
         Please be advised this is an experimental application:
       </Typography>
-      <ul>
+      <ul className={classes.list}>
         <li>
           <Typography variant="h5">
             You will not be able to cancel the transaction once you submit it.
@@ -77,10 +78,14 @@ const PreflightModalTransfer: React.FC<IPreflightModalTransferProps> = ({
         <strong>{shortenAddress(receiver)}</strong> on{" "}
         <strong>{targetNetwork}</strong>.
       </Typography>
-      <Button onClick={start} className={classes.startButton} fullsize>
+      <div className={classes.buttonContainer}>
+        <Button onClick={start} className={classes.startButton} size="large">
         Start Transfer
       </Button>
-      <Button onClick={close}>Back</Button>
+        <ButtonUnstyled onClick={close} className={classes.buttonBack}>
+          Back
+        </ButtonUnstyled>
+      </div>
     </CustomDrawer>
   );
 };
