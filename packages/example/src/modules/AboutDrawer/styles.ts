@@ -6,7 +6,8 @@ export const useStyles = makeStyles(({ constants }: ITheme) =>
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-between",
-      backgroundColor: '#F0F0F0 !important'
+      backgroundColor: '#F0F0F0 !important',
+      zIndex: 2
     },
     title: {
       fontWeight: 700,
