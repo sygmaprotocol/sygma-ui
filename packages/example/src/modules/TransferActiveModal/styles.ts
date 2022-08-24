@@ -6,7 +6,11 @@ export const useStyles = makeStyles(
       "@global": {
         "@keyframes pulsate": {
           '0%': {
-            filter: "blur(0)",
+            filter: "blur(5px)",
+            transition: "filter ease-in"
+          },
+          '50%': {
+            filter: 'blur(4px)',
             transition: "filter ease-in"
           },
           '100%': {
@@ -35,7 +39,7 @@ export const useStyles = makeStyles(
         display: 'grid'
       },
       elipsis: {
-        border: "2px solid #FF7A45",
+        border: "2px solid #1D9A52",
         borderRadius: "50%",
         height: "181px",
         width: "181px",
