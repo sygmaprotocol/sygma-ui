@@ -1,6 +1,5 @@
 import React from "react";
-import Typography from "@mui/material/Typography";
-import LinearProgress from "@mui/material/LinearProgress";
+import { Typography, LinearProgress } from "@mui/material";
 
 import ErrorIcon from "@mui/icons-material/Error";
 import { CustomModal } from "../../components";
@@ -11,6 +10,7 @@ import {
   TransactionStatus,
   useWeb3 as useLocalWeb3,
 } from "@chainsafe/sygma-ui-core";
+import { ReactComponent as SygmaLogoSVG } from "../../media/Icons/sygma.svg";
 
 import InitTransferBody from "./InitTransferBody";
 import InTransitBody from "./InTransitBody";
@@ -125,32 +125,27 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
       active={open}
       closePosition="none"
     >
-      <LinearProgress
-        sx={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          "& > *": {
-            borderRadius: "0 !important",
-            "&  >  *": {
-              borderRadius: "0 !important",
-            },
-          },
-        }}
-        value={transactionStatus !== "Transfer Completed" ? -1 : 100}
-      />
+      <div className={classes.mainContainer}>
+        <section className={classes.elipsisContent}>
+          <div className={classes.elipsis}></div>
+          <div className={classes.svgIcon}>
+            <SygmaLogoSVG />
+          </div>
+        </section>
+        <section className={classes.content}>
       <section>
         <div className={classes.stepIndicator}>
           {getTransactionStateIndicator(transactionStatus)}
         </div>
       </section>
-      <section className={classes.content}>
         <Typography className={classes.heading} variant="h5" component="h5">
           {getTransactionStateHeader(transactionStatus, relayerThreshold)}
         </Typography>
+        </section>
+        <section className={classes.warningMsg}>
         {getTransactionStateBody(transactionStatus)}
       </section>
+      </div>
     </CustomModal>
   );
 };

@@ -3,17 +3,68 @@ import { makeStyles, createStyles, ITheme } from "@chainsafe/common-theme";
 export const useStyles = makeStyles(
   ({ animation, constants, palette, typography }: ITheme) =>
     createStyles({
+      "@global": {
+        "@keyframes pulsate": {
+          '0%': {
+            filter: "blur(0)",
+            transition: "filter ease-in"
+          },
+          '100%': {
+            filter: "blur(8px)",
+            transition: "filter ease-out"
+          }
+        },
+      },
       root: {
+        "& :before": {
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center"
+        }
+      },
+      mainContainer: {
         width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center"
+      },
+      elipsisContent: {
+        display: 'grid'
+      },
+      elipsis: {
+        border: "2px solid #FF7A45",
+        borderRadius: "50%",
+        height: "181px",
+        width: "181px",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        animation: "1s pulsate 1s infinite ease-in",
+        gridRow: 1,
+        gridColumn: 1
+      },
+      svgIcon: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gridColumn: 1,
+        gridRow: 1
       },
       inner: {
         width: "100% !important",
+        height: "100%",
         maxWidth: "unset !important",
         display: "flex",
-        flexDirection: "row",
-        padding: `${constants.generalUnit * 5}px ${
-          constants.generalUnit * 3.5
-        }px`,
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: `${constants.generalUnit * 5}px ${constants.generalUnit * 3.5
+          }px`,
         bottom: 0,
         top: "unset !important",
         transform: "unset !important",
@@ -25,6 +76,12 @@ export const useStyles = makeStyles(
       heading: {
         marginBottom: constants.generalUnit,
         whiteSpace: "nowrap",
+        color: '#FF7A45',
+        fontWeight: 700,
+        fontSize: "16px",
+        lineHeight: "24px",
+        fontStyle: "normal",
+        letterSpacing: "0.01em",
       },
       stepIndicator: {
         ...typography.h4,
@@ -35,8 +92,14 @@ export const useStyles = makeStyles(
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        border: `1px solid ${palette.additional["transactionModal"][2]}`,
-        color: palette.additional["transactionModal"][3],
+        border: "1px solid #FF7A45",
+        color:"#979797",
+        fontSize: "16px",
+        fontWeight: 700,
+        lineHeight: "24px",
+        fontStyle: "normal",
+        letterSpacing: "0.01em",
+        background: "#E9E4DD",
         "& svg": {
           height: 20,
           width: 20,
@@ -45,7 +108,11 @@ export const useStyles = makeStyles(
       },
       content: {
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
+        alignItems: "baseline",
+        marginTop: "81px",
+        width: "100%",
+        justifyContent: "center"
       },
       buttons: {
         // display: "flex",
@@ -98,6 +165,17 @@ export const useStyles = makeStyles(
         marginTop: constants.generalUnit * 3.5,
         display: "block",
         fontWeight: 600,
+      },
+      warningMsg: {
+        marginTop: "65px",
+        fontWeight: 400,
+        fontStyle: "normal",
+        fontSize: "14px",
+        lineHeight: "24px",
+        color: "#979797",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
       },
       receipt: {
         marginTop: constants.generalUnit * 3.5,
