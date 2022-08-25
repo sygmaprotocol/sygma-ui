@@ -98,7 +98,6 @@ const getTransactionStateHeader = (
         >
           Transfer completed
         </h3>
-        <Button>New Transfer</Button>
       </div>
     ),
     default: (
