@@ -97,7 +97,7 @@ export const useStyles = makeStyles(
         justifyContent: "center",
         alignItems: "center",
         border: "1px solid #FF7A45",
-        color:"#979797",
+        color: "#979797",
         fontSize: "16px",
         fontWeight: 700,
         lineHeight: "24px",
@@ -118,25 +118,30 @@ export const useStyles = makeStyles(
         width: "100%",
         justifyContent: "center"
       },
+      transferCompletedContainer: {
+        display: "flex",
+        flexDirection: "column"
+      },
       buttons: {
-        // display: "flex",
-        // flexDirection: "row",
-        marginTop: constants.generalUnit * 5,
         "& > *": {
           textDecoration: "none",
           marginRight: constants.generalUnit,
         },
       },
       button: {
-        borderColor: `${palette.additional["gray"][8]} !important`,
-        color: `${palette.additional["gray"][8]} !important`,
-        textDecoration: "none",
-        "&:hover": {
-          borderColor: `${palette.additional["gray"][8]} !important`,
-          backgroundColor: `${palette.additional["gray"][8]} !important`,
-          color: `${palette.common.white.main} !important`,
-          textDecoration: "none",
-        },
+        backgroundColor: '#F0F0F0',
+        border: '2px solid #FF7A45',
+        borderRadius: '8px',
+        boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.1)',
+        color: '#FF7A45',
+        fontSize: '16px',
+        fontWeight: 400,
+        lineHeight: '24px',
+        fontStyle: 'normal',
+        letterSpacing: '0.01em',
+        textTransform: 'uppercase',
+        width: "232px",
+        height: "49px"
       },
       initCopy: {
         display: "flex",

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
+import { Typography, ButtonUnstyled, Stack } from '@mui/material'
 
 import { BridgeConfig, EvmBridgeConfig } from "../../sygmaConfig";
 import { Actions } from "@chainsafe/sygma-ui-core/dist/src/types";
@@ -61,7 +59,7 @@ export default function TransferCompleteBody({
   }, []);
 
   return (
-    <>
+    <div className={classes.transferCompletedContainer}>
       <Typography sx={{ mt: 3, mb: 4 }} component="p">
         Successfully transferred{" "}
         <strong>
@@ -74,24 +72,23 @@ export default function TransferCompleteBody({
           {homeConfig &&
             (homeConfig as EvmBridgeConfig).blockExplorer &&
             homeTransferTxHash && (
-              <Button
+              <ButtonUnstyled
                 href={`${UI_EXPLORER_URL}/explorer/transaction/${homeTransferTxHash}`}
                 size="small"
                 className={classes.button}
                 variant="outlined"
               >
                 View transfer
-              </Button>
+              </ButtonUnstyled>
             )}
           {savedWallet !== "WalletConnect" ? (
-            <Button
+            <ButtonUnstyled
               size="small"
               className={classes.button}
-              variant="outlined"
               onClick={close}
             >
               Start new transfer
-            </Button>
+            </ButtonUnstyled>
           ) : (
             <Typography sx={{ mt: 3, mb: 4 }} component="p">
               Disconnecting from Wallet connect. Page will be reloaded
@@ -99,6 +96,6 @@ export default function TransferCompleteBody({
           )}
         </Stack>
       </section>
-    </>
+    </div>
   );
 }
