@@ -100,6 +100,11 @@ export const useStyles = makeStyles(
           width: 14,
         },
       },
+      transferTab: {
+        '& span': {
+          backgroundColor: 'unset'
+        }
+      }
     });
   }
 );
