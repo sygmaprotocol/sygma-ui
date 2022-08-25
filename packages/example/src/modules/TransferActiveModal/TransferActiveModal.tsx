@@ -42,7 +42,11 @@ const getTransactionStateHeader = (
   relayerThreshold?: number
 ) => {
   const tranactionStatuses: { [key: string]: JSX.Element } = {
-    "Initializing Transfer": <div>In transit</div>,
+    "Initializing Transfer": (
+      <div>
+        <h3>In transit</h3>
+      </div>
+    ),
     "In Transit": (
       <div
         style={{
@@ -57,7 +61,7 @@ const getTransactionStateHeader = (
             fontSize: "16px",
             lineHeight: "24px",
             letterSpacing: "0.01em",
-            color: '#FF7A45'
+            color: "#FF7A45",
           }}
         >
           In Transit
@@ -65,19 +69,43 @@ const getTransactionStateHeader = (
         {Number(depositVotes) < (relayerThreshold || 0) ? (
           <p>{`${depositVotes}/${relayerThreshold} signatures needed`}</p>
         ) : (
-          <p style={{
+          <p
+            style={{
             fontStyle: "normal",
             fontWeight: 300,
             fontSize: "16px",
             lineHeight: "24px",
             letterSpacing: "0.01em",
-            color: '#979797'
-          }}>Executing proposal</p>
+              color: "#979797",
+            }}
+          >
+            Executing proposal
+          </p>
         )}
       </div>
     ),
-    "Transfer Completed": <div>Transfer completed</div>,
-    default: <div>Transfer aborted</div>,
+    "Transfer Completed": (
+      <div>
+        <h3
+          style={{
+            fontWeight: 700,
+            fontStyle: "normal",
+            fontSize: "16px",
+            lineHeight: "24px",
+            letterSpacing: "0.01em",
+            color: "rgba(29, 154, 82, 0.99)",
+          }}
+        >
+          Transfer completed
+        </h3>
+        <Button>New Transfer</Button>
+      </div>
+    ),
+    default: (
+      <div>
+        <h3>Transfer aborted</h3>
+      </div>
+    ),
   };
   if (!status) return tranactionStatuses["default"];
 
