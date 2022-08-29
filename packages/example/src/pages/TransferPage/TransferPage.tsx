@@ -67,7 +67,7 @@ const TransferPage = () => {
   } = useSygma();
   const [customFee, setCustomFee] = useState<FeeDataResult>();
   const { sygmaInstance, bridgeSetup } = useBridge();
-  const { accounts, selectAccount } = useHomeBridge();
+  const { accounts, selectAccount, setSelectedToken } = useHomeBridge();
   const [aboutOpen, setAboutOpen] = useState<boolean>(false);
   const [walletConnecting, setWalletConnecting] = useState(false);
   const [changeNetworkOpen, setChangeNetworkOpen] = useState<boolean>(false);
@@ -176,6 +176,7 @@ const TransferPage = () => {
               className={classes.generalInput}
               sync={(tokenAddress) => {
                 sygmaInstance?.setSelectedToken(tokenAddress);
+                setSelectedToken(tokenAddress)
                 setPreflightDetails({
                   ...preflightDetails,
                   token: tokenAddress,
@@ -319,6 +320,7 @@ const TransferPage = () => {
           const { from, to: destinationChainDirection } = directionsForDeposit;
 
           const paramsForDeposit = {
+            tokenAddress: preflightDetails.token,
             amount: preflightDetails.tokenAmount,
             recipient: preflightDetails.receiver,
             from,
