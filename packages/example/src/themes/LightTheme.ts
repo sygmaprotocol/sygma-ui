@@ -36,12 +36,6 @@ export const lightTheme = createTheme({
       },
     },
     overrides: {
-      Typography: {
-        h5: {
-          fontFamily: "NeueMontreal"
-        }
-
-      },
       CheckboxInput: {
         root: {
           alignItems: "center",

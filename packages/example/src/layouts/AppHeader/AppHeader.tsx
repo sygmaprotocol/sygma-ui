@@ -33,7 +33,7 @@ const AppHeader: React.FC<IAppHeader> = () => {
               <img src="/assets/images/logo.svg" alt="logo" />
             </div>
             <div className={classes.mainTitle}>
-              <Typography variant="h5">Sygma Token Transfer</Typography>
+              <Typography variant="h6">Sygma Token Transfer</Typography>
             </div>
           </div>
           <section className={classes.state}>
@@ -42,16 +42,20 @@ const AppHeader: React.FC<IAppHeader> = () => {
             ) : (
               <>
                 <div className={classes.mainInfo}>
-                  <Typography variant="h5" className={classes.address}>
-
-                      <span className={classes.indicator} />
-                      <span>
-                        <strong>{homeConfig?.name}</strong>
-                      </span>
-                    
+                  <Typography variant="h6" className={classes.address}>
+                    {/* <span className={classes.indicator} /> */}
+                    {homeConfig && (
+                      <img
+                        src={`/assets/images/networks/${homeConfig.nativeTokenSymbol.toLocaleLowerCase()}.svg`}
+                        className={classes.indicator}
+                      />
+                    )}
+                    <span>
+                      <strong>{homeConfig?.name}</strong>
+                    </span>
                   </Typography>
                   <div className={classes.accountInfo}>
-                    <Typography variant="h5" className={classes.address}>
+                    <Typography variant="h6" className={classes.address}>
                       {address && shortenAddress(address)}
                     </Typography>
                   </div>

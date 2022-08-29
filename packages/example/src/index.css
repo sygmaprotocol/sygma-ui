@@ -38,3 +38,6 @@ input::-webkit-inner-spin-button {
 /* input[type="number"] {
   -moz-appearance: textfield;
 } */
+html body {
+  background-color: #f0f0f0;
+}

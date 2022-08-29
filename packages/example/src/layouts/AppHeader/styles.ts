@@ -16,7 +16,8 @@ export const useStyles = makeStyles(
         backgroundColor: palette.additional["header"][1],
         borderBottom: `1px solid rgba(255, 122, 69, 0.16)`,
         color: palette.additional["header"][2],
-        boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.02), 0px 1px 12px rgba(0, 0, 0, 0.12)",
+        boxShadow:
+          "0px 1px 4px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.02), 0px 1px 12px rgba(0, 0, 0, 0.12)",
         borderRadius: "0px 0px 10.6667px 10.6667px",
         // fontFamily: 'NeueMontreal, sans-serif'
         // alignItems: "center",
@@ -52,15 +53,15 @@ export const useStyles = makeStyles(
       },
       indicator: {
         display: "block",
-        height: 10,
-        width: 10,
-        borderRadius: "50%",
-        backgroundColor: palette.additional["green"][6],
+        height: 16,
+        width: 16,
+        // borderRadius: "50%",
+        // backgroundColor: palette.additional["green"][6],
         marginRight: constants.generalUnit,
       },
       address: {
         marginRight: constants.generalUnit,
-        display: 'flex',
+        display: "flex",
         alignItems: "center",
       },
       network: {},
@@ -76,7 +77,7 @@ export const useStyles = makeStyles(
       },
       mainTitle: {
         display: "flex",
-        alignItems: 'center'
+        alignItems: "center",
       },
       headerLinks: {
         marginLeft: 49,
