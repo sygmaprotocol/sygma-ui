@@ -7,6 +7,7 @@ export type TokenConfig = {
   isNativeWrappedToken?: boolean;
   decimals?: number;
   isDoubleApproval?: boolean;
+  feeSettings: FeeSettings;
 };
 
 export type ChainType = "Ethereum";
@@ -20,7 +21,6 @@ export type BridgeConfig = {
   tokens: TokenConfig[];
   nativeTokenSymbol: string;
   decimals: number;
-  feeSettings: FeeSettings;
 };
 
 export type FeeSettings = {

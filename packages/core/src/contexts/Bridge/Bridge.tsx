@@ -36,7 +36,6 @@ const BridgeProvider = ({ children }: IBridgeContext) => {
           rpcUrl,
           domainId,
           decimals,
-          feeSettings,
           name,
           networkId,
         } = chain;
@@ -54,7 +53,6 @@ const BridgeProvider = ({ children }: IBridgeContext) => {
             domainId,
             erc20ResourceID: resourceId,
             decimals,
-            feeSettings,
             name,
             networkId,
           },

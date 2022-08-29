@@ -34,15 +34,16 @@ const makeDeposit =
     bridgeSetup?: BridgeData
   ) =>
   async (paramsForDeposit: {
+    tokenAddress: string;
     amount: string;
     recipient: string;
     from: Directions;
     to: Directions;
     feeData: FeeDataResult;
   }) => {
-    const tokenAddress = sygmaInstance!.getSelectedTokenAddress();
+    const tokenAddress = sygmaInstance!.setSelectedToken(paramsForDeposit.tokenAddress)
     const token = homeChainConfig!.tokens.find(
-      (token) => token.address === tokenAddress
+      (token) => token.address === paramsForDeposit.tokenAddress
     );
 
     if (!token) {
@@ -52,7 +53,7 @@ const makeDeposit =
 
     setTransactionStatus("Initializing Transfer");
     setDepositAmount(Number(paramsForDeposit.amount));
-    setSelectedToken(tokenAddress);
+    setSelectedToken(paramsForDeposit.tokenAddress);
 
     try {
       const gasPriceCompatibility = await getPriceCompatibility(
@@ -79,44 +80,40 @@ const makeDeposit =
       // Allowance for fee handler
       const currentAllowanceForFeeHandler =
         await sygmaInstance?.checkCurrentAllowanceForFeeHandler(address!);
+      console.log("🚀 ~ file: makeDeposit.ts ~ line 81 ~ currentAllowanceForFeeHandler", currentAllowanceForFeeHandler)
+
       if (
         currentAllowanceForFeeHandler! <
         Number(utils.formatUnits(paramsForDeposit.feeData.fee, 18))
       ) {
+        console.log('request approval for fee approval', Number(utils.formatUnits(paramsForDeposit.feeData.fee, 18)))
         await sygmaInstance!.approveFeeHandler({
           amounForApproval: utils.formatUnits(paramsForDeposit.feeData.fee, 18),
         });
       }
-
-      await sygmaInstance?.createHomeChainDepositEventListener(
-        (
-          destinationDomainId: number,
-          resourceId: string,
-          depositNonce: ethers.BigNumber,
-          user: string,
-          data: string,
-          handleResponse: string,
-          tx: Event
-        ) => {
-          console.log("depositNonce", depositNonce.toNumber().toString());
-          setDepositNonce(depositNonce.toNumber().toString());
-          setTransactionStatus("In Transit");
-          sygmaInstance.removeHomeChainDepositEventListener();
-        }
-      );
 
       const depositTx = await sygmaInstance?.deposit({
         amount: paramsForDeposit.amount,
         recipientAddress: paramsForDeposit.recipient,
         feeData: paramsForDeposit.feeData,
       });
+      const depositEvent = await sygmaInstance!.getDepositEventFromReceipt(depositTx!)
+      const { depositNonce } = depositEvent.args;
+      if (depositTx?.status === 1) {
+        console.log("depositNonce", depositNonce.toNumber().toString());
+        setDepositNonce(depositNonce.toNumber().toString());
+        setTransactionStatus("In Transit");
+        setHomeTransferTxHash(depositTx.transactionHash);
+      } else {
+        throw "deposit transaction unsuccessful"
+      }
       setHomeTransferTxHash(depositTx!.transactionHash);
 
       return Promise.resolve();
     } catch (error) {
       console.error(error);
       setTransactionStatus("Transfer Aborted");
-      setSelectedToken(tokenAddress);
+      setSelectedToken(paramsForDeposit.tokenAddress);
     }
   };
 

@@ -44,14 +44,6 @@ const handleProposalEvent = (
             "🚀 ~ file: handleProposalEvent.ts ~ line 34 ~ txReceipt",
             txReceipt
           );
-          console.log(
-            "originDomainId",
-            originDomainId,
-            "despositNonce",
-            despositNonce,
-            "dataHash",
-            dataHash
-          );
           setDepositVotes(depositVotes + 1);
           tokensDispatch({
             type: "setTransactionIsDone",

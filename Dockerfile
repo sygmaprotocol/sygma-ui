@@ -1,5 +1,5 @@
 
-FROM node:14-alpine AS builder
+FROM node:18-alpine AS builder
 RUN apk --no-cache add git
 WORKDIR /app
 COPY . .
