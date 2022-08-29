@@ -5,14 +5,14 @@
   "main": "index.js",
   "repository": "https://github.com/ChainSafe/sygma-ui",
   "author": "Chainsafe Products Team",
-  "license": "MIT",
+  "license": "LGPL",
   "private": true,
   "engines": {
     "node": ">=12",
     "yarn": ">=1"
   },
   "dependencies": {
-    "@chainsafe/sygma-sdk-core": "1.1.5",
+    "@chainsafe/sygma-sdk-core": "1.1.6",
     "@changesets/cli": "^2.14.1",
     "ethers": "5.4.5",
     "prettier": "2.1.2",

@@ -1,6 +1,7 @@
 import React from "react";
 import { CustomDrawer } from "../../components";
-import { Button, Typography } from "@chainsafe/common-components";
+import { Typography } from "@chainsafe/common-components";
+import { ButtonUnstyled } from "@mui/material";
 import { useStyles } from "./styles";
 
 interface IAboutDrawerProps {
@@ -16,32 +17,29 @@ const AboutDrawer: React.FC<IAboutDrawerProps> = ({
 
   return (
     <CustomDrawer onClose={close} open={open} className={classes.root}>
-      <Typography variant="h1" component="h4">
+      <Typography variant="h1" component="h4" className={classes.title}>
         What is Sygma?
       </Typography>
-      <Typography component="p" variant="h5">
-        Sygma is a modular multi-directional blockchain bridge to allow data and
-        value transfer between any number of blockchains. This should enable
-        users to specify a destination blockchain from their source chain, and
-        send data to that blockchain for consumption on the destination chain.{" "}
-        <br />
+      <Typography component="p" variant="h5" className={classes.paragraph}>
+        Sygma is an interoperability layer for building cross-blockchain
+        applications.This should enable users to specify a destination
+        blockchain from their source chain, and send data to that blockchain for
+        consumption on the destination chain. <br />
         <br />
         This could be a token that is locked on ChainA and redeemed on ChainB,
         or an operation that is executed on a destination chain and initiated on
         the source chain.
       </Typography>
       <section className={classes.buttons}>
-        <Button onClick={() => close()} variant="outline">
-          OK
-        </Button>
+        <ButtonUnstyled onClick={() => close()}>OK</ButtonUnstyled>
         <a
           rel="noopener noreferrer"
           href={process.env.REACT_APP_SUPPORT_URL}
           target="_blank"
         >
-          <Button variant="outline">
+          <ButtonUnstyled>
             Ask a question on {process.env.REACT_APP_SUPPORT_SERVICE}
-          </Button>
+          </ButtonUnstyled>
         </a>
       </section>
     </CustomDrawer>
