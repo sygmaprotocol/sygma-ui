@@ -107,6 +107,7 @@ const makeDeposit =
       } else {
         throw "deposit transaction unsuccessful"
       }
+      setHomeTransferTxHash(depositTx!.transactionHash);
 
       return Promise.resolve();
     } catch (error) {
