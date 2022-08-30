@@ -1,7 +1,6 @@
 import React from "react";
 import { BridgeConfig, EvmBridgeConfig } from "../../sygmaConfig";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import { Typography, Button } from '@mui/material'
 import Stack from "@mui/material/Stack";
 
 export default function ErrorTransferBody({
@@ -18,8 +17,20 @@ export default function ErrorTransferBody({
   transferTxHash?: string;
 }) {
   return (
-    <>
-      <Typography sx={{ mt: 3, mb: 4 }} component="p">
+    <div className={classes.transferAbortedContainer}>
+       <section className={classes.buttons}>
+        <Stack direction="row" spacing={2}>
+          <Button
+            size="small"
+            className={classes.button}
+            onClick={close}
+
+          >
+            Start new transfer
+          </Button>
+        </Stack>
+      </section>
+      <Typography sx={{ mt: 3, mb: 4 }} component="p" className={classes.errorMessage}>
         Something went wrong and we could not complete your transfer.
       </Typography>
       {homeConfig &&
@@ -36,32 +47,11 @@ export default function ErrorTransferBody({
             }
             size="small"
             className={classes.button}
-            variant="outlined"
             disabled
           >
             View transaction
           </Button>
         )}
-      <section className={classes.buttons}>
-        <Stack direction="row" spacing={2}>
-          <Button
-            size="small"
-            className={classes.button}
-            variant="outlined"
-            onClick={close}
-          >
-            Start new transfer
-          </Button>
-
-          <Button
-            size="small"
-            href={process.env.REACT_APP_SUPPORT_URL}
-            variant="outlined"
-          >
-            Ask a question on {process.env.REACT_APP_SUPPORT_SERVICE}
-          </Button>
-        </Stack>
-      </section>
-    </>
+    </div>
   );
 }

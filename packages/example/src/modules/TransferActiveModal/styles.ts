@@ -6,15 +6,23 @@ export const useStyles = makeStyles(
       "@global": {
         "@keyframes pulsate": {
           '0%': {
-            filter: "blur(5px)",
+            filter: "blur(0)",
             transition: "filter ease-in"
           },
-          '50%': {
+          '25%': {
             filter: 'blur(4px)',
             transition: "filter ease-in"
           },
-          '100%': {
+          '50%': {
             filter: "blur(8px)",
+            transition: "filter ease-out"
+          },
+          '75%': {
+            filter: "blur(4px)",
+            transition: "filter ease-out"
+          },
+          '100%': {
+            filter: "blur(0)",
             transition: "filter ease-out"
           }
         },
@@ -29,6 +37,7 @@ export const useStyles = makeStyles(
         }
       },
       mainContainer: {
+        height: "100%",
         width: "100%",
         display: "flex",
         flexDirection: "column",
@@ -39,7 +48,6 @@ export const useStyles = makeStyles(
         display: 'grid'
       },
       elipsis: {
-        border: "2px solid #1D9A52",
         borderRadius: "50%",
         height: "181px",
         width: "181px",
@@ -47,9 +55,16 @@ export const useStyles = makeStyles(
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        animation: "1s pulsate 1s infinite ease-in",
         gridRow: 1,
         gridColumn: 1
+      },
+      elipsisTransferring: {
+        border: "2px solid #1D9A52",
+        animation: "3s pulsate 1s infinite ease-in",
+      },
+      elipsisError: {
+        border: "2px solid red",
+        animation: 'unset'
       },
       svgIcon: {
         display: 'flex',
@@ -96,19 +111,24 @@ export const useStyles = makeStyles(
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        border: "1px solid #FF7A45",
         color: "#979797",
         fontSize: "16px",
         fontWeight: 700,
         lineHeight: "24px",
         fontStyle: "normal",
         letterSpacing: "0.01em",
-        background: "#E9E4DD",
+        // background: "#E9E4DD",
         "& svg": {
           height: 20,
           width: 20,
           display: "block",
         },
+      },
+      stepIndicatorNormal: {
+        border: "1px solid #FF7A45",
+      },
+      stepIndicatorError: {
+        border: "1px solid red",
       },
       content: {
         display: "flex",
@@ -129,7 +149,7 @@ export const useStyles = makeStyles(
         },
       },
       button: {
-        backgroundColor: '#F0F0F0',
+        backgroundColor: 'white !important',
         border: '2px solid #FF7A45',
         borderRadius: '8px',
         boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.1)',
@@ -206,5 +226,19 @@ export const useStyles = makeStyles(
           },
         },
       },
+      transferAbortedContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      errorMessage: {
+        fontWeight: 400,
+        fontStyle: "normal",
+        fontSize: "14px",
+        lineHeight: "24px",
+        color: "#979797",
+        textAlign: 'center'
+      }
     })
 );
