@@ -182,7 +182,9 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
           <div
             className={
               transactionStatus !== "Transfer Aborted"
-                ? clsx(classes.elipsis, classes.elipsisTransferring)
+                ? transactionStatus === "Transfer Completed"
+                  ? clsx(classes.elipsis, classes.elipsisTransferComplete)
+                  : clsx(classes.elipsis, classes.elipsisTransferring)
                 : clsx(classes.elipsis, classes.elipsisError)
             }
           ></div>

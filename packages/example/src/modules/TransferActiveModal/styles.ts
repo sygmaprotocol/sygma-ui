@@ -62,6 +62,10 @@ export const useStyles = makeStyles(
         border: "2px solid #1D9A52",
         animation: "3s pulsate 1s infinite ease-in",
       },
+      elipsisTransferComplete: {
+        border: "2px solid #1D9A52",
+        animation: "unset",
+      },
       elipsisError: {
         border: "2px solid red",
         animation: 'unset'
