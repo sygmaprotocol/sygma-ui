@@ -3,17 +3,91 @@ import { makeStyles, createStyles, ITheme } from "@chainsafe/common-theme";
 export const useStyles = makeStyles(
   ({ animation, constants, palette, typography }: ITheme) =>
     createStyles({
+      "@global": {
+        "@keyframes pulsate": {
+          '0%': {
+            filter: "blur(0)",
+            transition: "filter ease-in"
+          },
+          '25%': {
+            filter: 'blur(4px)',
+            transition: "filter ease-in"
+          },
+          '50%': {
+            filter: "blur(8px)",
+            transition: "filter ease-out"
+          },
+          '75%': {
+            filter: "blur(4px)",
+            transition: "filter ease-out"
+          },
+          '100%': {
+            filter: "blur(0)",
+            transition: "filter ease-out"
+          }
+        },
+      },
       root: {
+        "& :before": {
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center"
+        }
+      },
+      mainContainer: {
+        height: "100%",
         width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center"
+      },
+      elipsisContent: {
+        display: 'grid'
+      },
+      elipsis: {
+        borderRadius: "50%",
+        height: "181px",
+        width: "181px",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        gridRow: 1,
+        gridColumn: 1
+      },
+      elipsisTransferring: {
+        border: "2px solid #1D9A52",
+        animation: "3s pulsate 1s infinite ease-in",
+      },
+      elipsisTransferComplete: {
+        border: "2px solid #1D9A52",
+        animation: "unset",
+      },
+      elipsisError: {
+        border: "2px solid red",
+        animation: 'unset'
+      },
+      svgIcon: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gridColumn: 1,
+        gridRow: 1
       },
       inner: {
         width: "100% !important",
+        height: "100%",
         maxWidth: "unset !important",
         display: "flex",
-        flexDirection: "row",
-        padding: `${constants.generalUnit * 5}px ${
-          constants.generalUnit * 3.5
-        }px`,
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: `${constants.generalUnit * 5}px ${constants.generalUnit * 3.5
+          }px`,
         bottom: 0,
         top: "unset !important",
         transform: "unset !important",
@@ -25,6 +99,12 @@ export const useStyles = makeStyles(
       heading: {
         marginBottom: constants.generalUnit,
         whiteSpace: "nowrap",
+        color: '#FF7A45',
+        fontWeight: 700,
+        fontSize: "16px",
+        lineHeight: "24px",
+        fontStyle: "normal",
+        letterSpacing: "0.01em",
       },
       stepIndicator: {
         ...typography.h4,
@@ -35,37 +115,57 @@ export const useStyles = makeStyles(
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        border: `1px solid ${palette.additional["transactionModal"][2]}`,
-        color: palette.additional["transactionModal"][3],
+        color: "#979797",
+        fontSize: "16px",
+        fontWeight: 700,
+        lineHeight: "24px",
+        fontStyle: "normal",
+        letterSpacing: "0.01em",
+        // background: "#E9E4DD",
         "& svg": {
           height: 20,
           width: 20,
           display: "block",
         },
       },
+      stepIndicatorNormal: {
+        border: "1px solid #FF7A45",
+      },
+      stepIndicatorError: {
+        border: "1px solid red",
+      },
       content: {
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
+        alignItems: "baseline",
+        marginTop: "81px",
+        width: "100%",
+        justifyContent: "center"
+      },
+      transferCompletedContainer: {
+        display: "flex",
+        flexDirection: "column"
       },
       buttons: {
-        // display: "flex",
-        // flexDirection: "row",
-        marginTop: constants.generalUnit * 5,
         "& > *": {
           textDecoration: "none",
           marginRight: constants.generalUnit,
         },
       },
       button: {
-        borderColor: `${palette.additional["gray"][8]} !important`,
-        color: `${palette.additional["gray"][8]} !important`,
-        textDecoration: "none",
-        "&:hover": {
-          borderColor: `${palette.additional["gray"][8]} !important`,
-          backgroundColor: `${palette.additional["gray"][8]} !important`,
-          color: `${palette.common.white.main} !important`,
-          textDecoration: "none",
-        },
+        backgroundColor: 'white !important',
+        border: '2px solid #FF7A45',
+        borderRadius: '8px',
+        boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.1)',
+        color: '#FF7A45',
+        fontSize: '16px',
+        fontWeight: 400,
+        lineHeight: '24px',
+        fontStyle: 'normal',
+        letterSpacing: '0.01em',
+        textTransform: 'uppercase',
+        width: "232px",
+        height: "49px"
       },
       initCopy: {
         display: "flex",
@@ -99,6 +199,17 @@ export const useStyles = makeStyles(
         display: "block",
         fontWeight: 600,
       },
+      warningMsg: {
+        marginTop: "65px",
+        fontWeight: 400,
+        fontStyle: "normal",
+        fontSize: "14px",
+        lineHeight: "24px",
+        color: "#979797",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+      },
       receipt: {
         marginTop: constants.generalUnit * 3.5,
         marginBottom: constants.generalUnit * 8,
@@ -119,5 +230,19 @@ export const useStyles = makeStyles(
           },
         },
       },
+      transferAbortedContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      errorMessage: {
+        fontWeight: 400,
+        fontStyle: "normal",
+        fontSize: "14px",
+        lineHeight: "24px",
+        color: "#979797",
+        textAlign: 'center'
+      }
     })
 );
