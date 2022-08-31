@@ -31,12 +31,17 @@ const titleStyle = {
   fontSize: "16px",
   lineHeight: "24px",
   letterSpacing: "0.01em",
+};
+
+const colorDefault = {
   color: "#FF7A45",
 };
 
-const getTransactionStateIndicator = (
-  status?: TransactionStatus,
-) => {
+const colorCompleted = {
+  color: "#1D9A52",
+};
+
+const getTransactionStateIndicator = (status?: TransactionStatus) => {
   const transactionStatuses: { [key: string]: string | React.ReactNode } = {
     "Initializing Transfer": "1",
     "In Transit": "2",
@@ -51,12 +56,14 @@ const getTransactionStateIndicator = (
 const getTransactionStateHeader = (
   status?: TransactionStatus,
   depositVotes?: number,
-  relayerThreshold?: number
+  relayerThreshold?: number,
 ) => {
-  const tranactionStatuses: { [key: string]: JSX.Element } = {
+  const transactionStatuses: { [key: string]: JSX.Element } = {
     "Initializing Transfer": (
       <div>
-        <h3 style={titleStyle}>Initializing Transfer</h3>
+        <h3 style={{ ...titleStyle, ...colorDefault }}>
+          Initializing Transfer
+        </h3>
         <p
             style={{
               fontStyle: "normal",
@@ -78,7 +85,7 @@ const getTransactionStateHeader = (
           flexDirection: "column",
         }}
       >
-        <h3 style={titleStyle}>In Transit</h3>
+        <h3 style={{ ...titleStyle, ...colorDefault }}>In Transit</h3>
         {Number(depositVotes) < (relayerThreshold || 0) ? (
           <p>{`${depositVotes}/${relayerThreshold} signatures needed`}</p>
         ) : (
@@ -99,18 +106,18 @@ const getTransactionStateHeader = (
     ),
     "Transfer Completed": (
       <div>
-        <h3 style={titleStyle}>Transfer completed</h3>
+        <h3 style={{ ...titleStyle, ...colorCompleted }}>Transfer completed</h3>
       </div>
     ),
     default: (
       <div>
-        <h3 style={titleStyle}>Transfer aborted</h3>
+        <h3 style={{ ...titleStyle, ...colorDefault }}>Transfer aborted</h3>
       </div>
     ),
   };
-  if (!status) return tranactionStatuses["default"];
+  if (!status) return transactionStatuses["default"];
 
-  return tranactionStatuses[status] || tranactionStatuses["default"];
+  return transactionStatuses[status] || transactionStatuses["default"];
 };
 
 const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
@@ -133,7 +140,7 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
   const tokenSymbol = selectedToken && tokens[selectedToken]?.symbol;
 
   const getTransactionStateBody = (status?: TransactionStatus) => {
-    const tranactionStatuses: { [key: string]: React.ReactNode } = {
+    const transactionStatuses: { [key: string]: React.ReactNode } = {
       "Initializing Transfer": <InitTransferBody classes={classes} />,
       "In Transit": (
         <InTransitBody
