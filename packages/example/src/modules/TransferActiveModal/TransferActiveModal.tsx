@@ -33,14 +33,19 @@ const titleStyle = {
   letterSpacing: "0.01em",
   color: "#FF7A45",
 };
+
+const getTransactionStateIndicator = (
+  status?: TransactionStatus,
+) => {
+  const transactionStatuses: { [key: string]: string | React.ReactNode } = {
     "Initializing Transfer": "1",
     "In Transit": "2",
     "Transfer Completed": "3",
     default: <ErrorIcon />,
   };
-  if (!status) return tranactionStatuses["default"];
+  if (!status) return transactionStatuses["default"];
 
-  return tranactionStatuses[status] || tranactionStatuses["default"];
+  return transactionStatuses[status] || transactionStatuses["default"];
 };
 
 const getTransactionStateHeader = (
