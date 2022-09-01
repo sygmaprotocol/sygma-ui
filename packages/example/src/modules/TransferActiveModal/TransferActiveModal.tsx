@@ -1,6 +1,5 @@
 import React from "react";
-import Typography from "@mui/material/Typography";
-import LinearProgress from "@mui/material/LinearProgress";
+import { Typography, LinearProgress, Button } from "@mui/material";
 
 import ErrorIcon from "@mui/icons-material/Error";
 import { CustomModal } from "../../components";
@@ -11,6 +10,7 @@ import {
   TransactionStatus,
   useWeb3 as useLocalWeb3,
 } from "@chainsafe/sygma-ui-core";
+import { ReactComponent as SygmaLogoSVG } from "../../media/Icons/sygma.svg";
 
 import InitTransferBody from "./InitTransferBody";
 import InTransitBody from "./InTransitBody";
@@ -18,42 +18,106 @@ import TransferCompleteBody from "./TransferCompleteBody";
 import ErrorTransferBody from "./ErrorTransferBody";
 
 import { useStyles } from "./styles";
+import clsx from "clsx";
 
 interface ITransferActiveModalProps {
   open: boolean;
   close: () => void;
 }
 
+const titleStyle = {
+  fontStyle: "normal",
+  fontWeight: 700,
+  fontSize: "16px",
+  lineHeight: "24px",
+  letterSpacing: "0.01em",
+};
+
+const colorDefault = {
+  color: "#FF7A45",
+};
+
+const colorCompleted = {
+  color: "#1D9A52",
+};
+
 const getTransactionStateIndicator = (status?: TransactionStatus) => {
-  const tranactionStatuses: { [key: string]: string | React.ReactNode } = {
+  const transactionStatuses: { [key: string]: string | React.ReactNode } = {
     "Initializing Transfer": "1",
     "In Transit": "2",
     "Transfer Completed": "3",
     default: <ErrorIcon />,
   };
-  if (!status) return tranactionStatuses["default"];
+  if (!status) return transactionStatuses["default"];
 
-  return tranactionStatuses[status] || tranactionStatuses["default"];
+  return transactionStatuses[status] || transactionStatuses["default"];
 };
 
 const getTransactionStateHeader = (
   status?: TransactionStatus,
   depositVotes?: number,
-  relayerThreshold?: number
+  relayerThreshold?: number,
 ) => {
-  const tranactionStatuses: { [key: string]: string } = {
-    "Initializing Transfer": "Initializing Transfer",
-    "In Transit": `In Transit (${
-      Number(depositVotes) < (relayerThreshold || 0)
-        ? `${depositVotes}/${relayerThreshold} signatures needed`
-        : "Executing proposal"
-    })`,
-    "Transfer Completed": "Transfer Completed",
-    default: "Transfer aborted",
+  const transactionStatuses: { [key: string]: JSX.Element } = {
+    "Initializing Transfer": (
+      <div>
+        <h3 style={{ ...titleStyle, ...colorDefault }}>
+          Initializing Transfer
+        </h3>
+        <p
+            style={{
+              fontStyle: "normal",
+              fontWeight: 300,
+              fontSize: "16px",
+              lineHeight: "24px",
+              letterSpacing: "0.01em",
+              color: "#979797",
+            }}
+          >
+            Deposit pending...
+          </p>
+      </div>
+    ),
+    "In Transit": (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <h3 style={{ ...titleStyle, ...colorDefault }}>In Transit</h3>
+        {Number(depositVotes) < (relayerThreshold || 0) ? (
+          <p>{`${depositVotes}/${relayerThreshold} signatures needed`}</p>
+        ) : (
+          <p
+            style={{
+            fontStyle: "normal",
+            fontWeight: 300,
+            fontSize: "16px",
+            lineHeight: "24px",
+            letterSpacing: "0.01em",
+              color: "#979797",
+            }}
+          >
+            Executing proposal
+          </p>
+        )}
+      </div>
+    ),
+    "Transfer Completed": (
+      <div>
+        <h3 style={{ ...titleStyle, ...colorCompleted }}>Transfer completed</h3>
+      </div>
+    ),
+    default: (
+      <div>
+        <h3 style={{ ...titleStyle, ...colorDefault }}>Transfer aborted</h3>
+      </div>
+    ),
   };
-  if (!status) return tranactionStatuses["default"];
+  if (!status) return transactionStatuses["default"];
 
-  return tranactionStatuses[status] || tranactionStatuses["default"];
+  return transactionStatuses[status] || transactionStatuses["default"];
 };
 
 const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
@@ -76,7 +140,7 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
   const tokenSymbol = selectedToken && tokens[selectedToken]?.symbol;
 
   const getTransactionStateBody = (status?: TransactionStatus) => {
-    const tranactionStatuses: { [key: string]: React.ReactNode } = {
+    const transactionStatuses: { [key: string]: React.ReactNode } = {
       "Initializing Transfer": <InitTransferBody classes={classes} />,
       "In Transit": (
         <InTransitBody
@@ -111,9 +175,9 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
         />
       ),
     };
-    if (!status) return tranactionStatuses["default"];
+    if (!status) return transactionStatuses["default"];
 
-    return tranactionStatuses[status] || tranactionStatuses["default"];
+    return transactionStatuses[status] || transactionStatuses["default"];
   };
 
   return (
@@ -125,32 +189,41 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
       active={open}
       closePosition="none"
     >
-      <LinearProgress
-        sx={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          "& > *": {
-            borderRadius: "0 !important",
-            "&  >  *": {
-              borderRadius: "0 !important",
-            },
-          },
-        }}
-        value={transactionStatus !== "Transfer Completed" ? -1 : 100}
-      />
+      <div className={classes.mainContainer}>
+        <section className={classes.elipsisContent}>
+          <div
+            className={
+              transactionStatus !== "Transfer Aborted"
+                ? transactionStatus === "Transfer Completed"
+                  ? clsx(classes.elipsis, classes.elipsisTransferComplete)
+                  : clsx(classes.elipsis, classes.elipsisTransferring)
+                : clsx(classes.elipsis, classes.elipsisError)
+            }
+          ></div>
+          <div className={classes.svgIcon}>
+            <SygmaLogoSVG />
+          </div>
+        </section>
+        <section className={classes.content}>
       <section>
-        <div className={classes.stepIndicator}>
+            <div
+              className={
+                transactionStatus !== "Transfer Aborted"
+                  ? clsx(classes.stepIndicator, classes.stepIndicatorNormal)
+                  : clsx(classes.stepIndicator, classes.stepIndicatorError)
+              }
+            >
           {getTransactionStateIndicator(transactionStatus)}
         </div>
       </section>
-      <section className={classes.content}>
         <Typography className={classes.heading} variant="h5" component="h5">
           {getTransactionStateHeader(transactionStatus, relayerThreshold)}
         </Typography>
+        </section>
+        <section className={classes.warningMsg}>
         {getTransactionStateBody(transactionStatus)}
       </section>
+      </div>
     </CustomModal>
   );
 };

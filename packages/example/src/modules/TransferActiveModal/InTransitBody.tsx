@@ -46,7 +46,7 @@ export default function InTransitBody({
               );
             }
           })}
-        <Typography className={classes.warning} sx={{ mt: 3, mb: 4 }}>
+        <Typography className={classes.warningMsg} sx={{ mt: 3, mb: 4 }}>
           This should take a few minutes. <br />
           Please do not refresh or leave the page.
         </Typography>
