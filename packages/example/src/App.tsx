@@ -4,7 +4,6 @@ import { utils, ethers } from "ethers";
 import { init, ErrorBoundary, showReportDialog } from "@sentry/react";
 import { ThemeSwitcher } from "@chainsafe/common-theme";
 import CssBaseline from "@mui/material/CssBaseline";
-
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -24,7 +23,7 @@ import {
 } from "@chainsafe/sygma-ui-core";
 import { AppWrapper } from "./layouts";
 import { getSygmaConfig } from "./getSygmaConfig";
-import "@chainsafe/common-theme/dist/font-faces.css";
+import "./font-faces.css";
 
 if (
   process.env.NODE_ENV === "production" &&

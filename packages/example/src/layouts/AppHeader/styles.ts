@@ -4,25 +4,15 @@ export const useStyles = makeStyles(
   ({ constants, palette, zIndex, breakpoints }: ITheme) => {
     return createStyles({
       root: {
-        display: "flex",
-        // position: "fixed",
-        justifyContent: "space-between",
-        padding: `${constants.generalUnit * 2}px ${
-          constants.generalUnit * 4
-        }px`,
-        width: "100%",
-        top: 0,
-        left: 0,
         backgroundColor: palette.additional["header"][1],
-        borderBottom: `1px solid ${palette.additional["header"][3]}`,
+        borderBottom: `1px solid rgba(255, 122, 69, 0.16)`,
         color: palette.additional["header"][2],
-        alignItems: "center",
-        zIndex: zIndex?.layer2,
-        [breakpoints.down("sm")]: {
-          flexDirection: "column",
-        },
+        boxShadow:
+          "0px 1px 4px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.02), 0px 1px 12px rgba(0, 0, 0, 0.12)",
+        borderRadius: "0px 0px 10.6667px 10.6667px",
       },
       left: {
+        flexGrow: 1,
         display: "flex",
         flexDirection: "row",
         justifyContent: "flex-start",
@@ -33,6 +23,7 @@ export const useStyles = makeStyles(
         },
       },
       logo: {
+        marginRight: 11,
         height: constants.generalUnit * 5,
         width: constants.generalUnit * 5,
         "& svg, & img": {
@@ -41,20 +32,20 @@ export const useStyles = makeStyles(
         },
       },
       state: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
+        // display: "flex",
+        // flexDirection: "row",
+        // alignItems: "center",
       },
       indicator: {
         display: "block",
-        height: 10,
-        width: 10,
-        borderRadius: "50%",
-        backgroundColor: palette.additional["green"][6],
+        height: 16,
+        width: 16,
         marginRight: constants.generalUnit,
       },
       address: {
         marginRight: constants.generalUnit,
+        display: "flex",
+        alignItems: "center",
       },
       network: {},
       accountInfo: {
@@ -65,9 +56,11 @@ export const useStyles = makeStyles(
       },
       mainInfo: {
         display: "flex",
-        flexDirection: "column",
       },
-      mainTitle: {},
+      mainTitle: {
+        display: "flex",
+        alignItems: "center",
+      },
       headerLinks: {
         marginLeft: 49,
         display: "flex",
