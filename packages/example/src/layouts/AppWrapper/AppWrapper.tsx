@@ -20,6 +20,8 @@ import Container from "@mui/material/Container";
 import AppHeader from "../AppHeader/AppHeader";
 import { ReactComponent as GlobalSvg } from "../../media/Icons/global.svg";
 import { ReactComponent as GiftSvg } from "../../media/Icons/gift.svg";
+import { ReactComponent as TransferSvg } from "../../media/Icons/transfer.svg";
+
 import { ROUTE_LINKS } from "../../routes";
 import { useStyles } from "./styles";
 
@@ -67,18 +69,20 @@ const AppWrapper: React.FC<IAppWrapper> = ({
             <Paper
               sx={{
                 margin: `30px auto`,
-                maxWidth: 500,
+                maxWidth: 360,
                 display: "flex",
                 flexDirection: "column",
                 overflow: "hidden",
-                px: 3,
+                boxShadow:
+                  "box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.02), 0px 1px 12px rgba(0, 0, 0, 0.12);",
+                borderRadius: "10.6667px",
               }}
               elevation={3}
             >
               {enableNavTabs && (
                 <Tabs value={currentTab} className={classes.transferTab}>
                   <Tab
-                    icon={<GlobalSvg />}
+                    icon={<TransferSvg />}
                     iconPosition="start"
                     label="Transfer"
                     value={ROUTE_LINKS.Transfer}

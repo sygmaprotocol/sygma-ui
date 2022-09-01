@@ -61,7 +61,7 @@ const useStyles = makeStyles(
         ...constants.modal.inner,
         flexGrow: 1,
         display: "flex",
-        backgroundColor: palette.common?.white.main,
+        backgroundColor: "#f0f0f0",
         top: "50%",
         left: "50%",
         position: "absolute",

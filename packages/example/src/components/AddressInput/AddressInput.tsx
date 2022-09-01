@@ -56,19 +56,82 @@ const AddressInput: React.FC<IAddressInput> = ({
           label={label}
           placeholder={placeholder}
           disabled={Boolean(disabled && !stored)}
+          multiline
+          rows={2}
+          sx={{
+            borderRadius: "8px",
+            fontWeight: 700,
+            color: "#FE5614",
+            "& .MuiInputLabel-root": {
+              color: "#FE5614",
+            },
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: "#FE5614 !important",
+            },
+            "& .MuiSelect-iconOutlined": {
+              color: "#FE5614 !important",
+            },
+            "& .MuiInputBase-input": {
+              color: "#FE5614",
+              "-webkit-text-fill-color": "unset",
+            },
+            "& .Mui-disabled": {
+              color: "#FE5614",
+              opacity: 0.4,
+            },
+          }}
         />
       </>
       {sendToSameAccountHelper && (
         <FormGroup sx={{ my: 1 }}>
           <FormControlLabel
+            sx={{
+              marginRight: 0,
+              color: "#FE5614",
+              justifyContent: "space-between",
+              "& .MuiFormControlLabel-label": {
+                color: "#FE5614",
+                fontSize: "14px",
+                fontWeight: "700",
+                textAlign: "right",
+              },
+              "& .MuiFormControlLabel-label.Mui-disabled": {
+                color: "#FE5614",
+                opacity: 0.4,
+              },
+            }}
             control={
               <Checkbox
                 size="small"
                 checked={stored !== undefined}
                 onChange={() => toggleReceiver()}
+                sx={{
+                  borderRadius: "8px",
+                  marginLeft: "8px",
+                  fontWeight: 700,
+                  color: "#FE5614",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#FE5614 !important",
+                  },
+                  "& .MuiSelect-iconOutlined": {
+                    color: "#FE5614 !important",
+                  },
+                  "& .MuiInputBase-input": {
+                    color: "#FE5614",
+                    "-webkit-text-fill-color": "unset",
+                    textAlign: "center",
+                  },
+                  "&.Mui-disabled": {
+                    color: "#FE5614",
+                    opacity: 0.4,
+                  },
+                  "&.Mui-checked": {
+                    color: "#FE5614",
+                  },
+                }}
               />
             }
-            label="I want to send funds to my address"
+            label="Send funds to my address"
           />
         </FormGroup>
       )}

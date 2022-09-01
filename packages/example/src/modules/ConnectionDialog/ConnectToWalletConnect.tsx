@@ -83,12 +83,31 @@ const ConnectToWallet = ({
           width="32"
           height="32"
           strokeWidth="2"
-          stroke="#1976d2"
+          stroke="#FF7A45"
         />
       }
       fullWidth
       variant="outlined"
-      sx={{ justifyContent: "space-between" }}
+      sx={{
+        justifyContent: "space-between",
+        py: 1.5,
+        backgroundColor: "#fff",
+        color: "#FF7A45",
+        border: "2px solid #FF7A45",
+        borderRadius: "8px",
+        boxShadow:
+          "0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.1)",
+        ":hover": {
+          backgroundColor: "#fff",
+          border: "2px solid #FF7A45",
+        },
+        "&.Mui-disabled": {
+          border: "none",
+          backgroundColor: "transparent",
+          boxShadow:
+            "0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.1)",
+        },
+      }}
       onClick={() => {
         walletConnect.activate();
       }}

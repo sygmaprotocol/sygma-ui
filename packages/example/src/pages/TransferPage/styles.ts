@@ -3,9 +3,6 @@ import { makeStyles, createStyles, ITheme } from "@chainsafe/common-theme";
 export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
   createStyles({
     root: {
-      padding: `${constants.generalUnit * 3}px 0 ${
-        constants.generalUnit * 3
-      }px`,
       position: "relative",
     },
     walletArea: {
@@ -16,11 +13,11 @@ export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
       width: "100%",
     },
     connectButton: {
-      margin: `${constants.generalUnit * 3}px 0 ${constants.generalUnit * 6}px`,
+      margin: `${8 * 3}px 0 ${8 * 6}px`,
     },
     connecting: {
       textAlign: "center",
-      marginBottom: constants.generalUnit * 2,
+      marginBottom: 8 * 2,
     },
     connected: {
       width: "100%",
@@ -36,14 +33,12 @@ export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
       cursor: "pointer",
     },
     networkName: {
-      padding: `${constants.generalUnit * 2}px ${
-        constants.generalUnit * 1.5
-      }px`,
-      border: `1px solid ${palette.additional["gray"][6]}`,
+      padding: `${8 * 2}px ${8 * 1.5}px`,
+      // border: `1px solid ${palette.additional["gray"][6]}`,
       borderRadius: 2,
-      color: palette.additional["gray"][9],
-      marginTop: constants.generalUnit,
-      marginBottom: constants.generalUnit * 3,
+      // color: palette.additional["gray"][9],
+      marginTop: 8,
+      marginBottom: 8 * 3,
     },
     formArea: {
       "&.disabled": {
@@ -55,7 +50,7 @@ export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
       // flexDirection: "row",
       // justifyContent: "space-between",
       // alignItems: "flex-end",
-      margin: `${constants.generalUnit * 3}px 0`,
+      marginBottom: "20px",
     },
     tokenInputArea: {
       // display: "flex",
@@ -82,25 +77,26 @@ export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
       // },
     },
     maxButton: {
+      border: "1px solid #FE5614",
       height: 32,
-      borderBottomLeftRadius: 0,
-      borderTopLeftRadius: 0,
+      color: "#FE5614",
+
       left: -1,
-      color: palette.additional["gray"][8],
-      backgroundColor: palette.additional["gray"][3],
-      borderColor: palette.additional["gray"][6],
+      // color: palette.additional["gray"][8],
+      // backgroundColor: palette.additional["gray"][3],
+      // borderColor: palette.additional["gray"][6],
       "&:hover": {
-        borderColor: palette.additional["gray"][6],
-        backgroundColor: palette.additional["gray"][7],
+        borderColor: "#FE5614",
+        // backgroundColor: palette.additional["gray"][7],
         // color: palette.common.white.main,
       },
       "&:focus": {
-        borderColor: palette.additional["gray"][6],
+        // borderColor: palette.additional["gray"][6],
       },
     },
     currencySelector: {
       // width: "50%",
-      paddingRight: constants.generalUnit,
+      paddingRight: 8,
       "& *": {
         cursor: "pointer",
       },
@@ -108,20 +104,20 @@ export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
     token: {},
     address: {
       margin: 0,
-      marginBottom: constants.generalUnit * 3,
+      marginBottom: 8 * 3,
     },
     addressInput: {},
     generalInput: {
       "& > span": {
-        marginBottom: constants.generalUnit,
+        marginBottom: 8,
       },
     },
     faqButton: {
       cursor: "pointer",
       height: 20,
       width: 20,
-      marginTop: constants.generalUnit * 5,
-      fill: `${palette.additional["transferUi"][1]} !important`,
+      marginTop: 8 * 5,
+      fill: `#FF7A45 !important`,
     },
     tokenItem: {
       display: "flex",
@@ -145,12 +141,12 @@ export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
       flexDirection: "row",
       flexWrap: "wrap",
       justifyContent: "space-between",
-      marginBottom: constants.generalUnit,
+      marginBottom: 8,
       "& > *": {
         display: "block",
         width: "50%",
-        color: palette.additional["gray"][8],
-        marginBottom: constants.generalUnit / 2,
+        // color: palette.additional["gray"][8],
+        marginBottom: 8 / 2,
         "&:nth-child(even)": {
           textAlign: "right",
         },

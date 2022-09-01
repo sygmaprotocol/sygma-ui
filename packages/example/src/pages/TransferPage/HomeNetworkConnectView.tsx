@@ -1,6 +1,12 @@
 import React from "react";
 import { SelectInput } from "@chainsafe/common-components";
 import { Typography, Button } from "@mui/material";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import FormHelperText from "@mui/material/FormHelperText";
+import TextField from "@mui/material/TextField";
 
 import { WalletType } from "@chainsafe/sygma-ui-core";
 import { BridgeConfig } from "../../sygmaConfig";
@@ -58,11 +64,16 @@ export default function HomeNetworkConnectView({
             fullWidth
             variant="contained"
             sx={{
-              backgroundColor: "#262626",
-              color: "#ffffff",
+              py: 1.5,
+              backgroundColor: "#F0F0F0",
+              color: "#FF7A45",
+              border: "2px solid #FF7A45",
+              borderRadius: "8px",
+              boxShadow:
+                "0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.1)",
               ":hover": {
-                backgroundColor: "#262626",
-                opacity: 0.9,
+                backgroundColor: "#FF7A45",
+                color: "#fff",
               },
             }}
             onClick={handleClickOpen}
@@ -79,25 +90,36 @@ export default function HomeNetworkConnectView({
               </Typography>
             </section>
           ) : (
-            <section className={classes.connected}>
-              <div>
-                <Typography variant="body1">Home network</Typography>
-                <Typography
-                  className={classes.changeButton}
-                  variant="body1"
-                  onClick={() => setChangeNetworkOpen(true)}
+            <>
+              <FormControl sx={{ my: 2, color: "#1D9A52" }} fullWidth>
+                <InputLabel
+                  id="homenetwork-select-label"
+                  sx={{ color: "#1D9A52 !important" }}
                 >
-                  Change
-                </Typography>
-              </div>
-              <Typography
-                component="h5"
-                variant="h5"
-                className={classes.networkName}
-              >
-                {homeConfig?.name}
-              </Typography>
-            </section>
+                  Home network
+                </InputLabel>
+                <Select
+                  label="homenetwork"
+                  value={homeConfig?.domainId}
+                  sx={{
+                    borderRadius: "8px",
+                    fontWeight: 700,
+                    color: "#1D9A52",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "#1D9A52 !important",
+                      borderWidth: "2px",
+                    },
+                    "& .MuiSelect-iconOutlined": {
+                      color: "#1D9A52",
+                    },
+                  }}
+                >
+                  <MenuItem value={homeConfig?.domainId}>
+                    {homeConfig?.name}
+                  </MenuItem>
+                </Select>
+              </FormControl>
+            </>
           ))}
       </div>
     </>
