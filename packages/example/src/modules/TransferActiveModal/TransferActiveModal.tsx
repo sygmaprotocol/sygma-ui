@@ -175,9 +175,9 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
         />
       ),
     };
-    if (!status) return tranactionStatuses["default"];
+    if (!status) return transactionStatuses["default"];
 
-    return tranactionStatuses[status] || tranactionStatuses["default"];
+    return transactionStatuses[status] || transactionStatuses["default"];
   };
 
   return (
