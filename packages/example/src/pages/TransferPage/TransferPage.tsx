@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Box from "@mui/material/Box";
 
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Button from "@mui/material/Button";
@@ -125,7 +126,7 @@ const TransferPage = () => {
 
   useEffect(() => {
     console.log("watchAmount", watchAmount);
-    setFee(watchAmount.replace(/\D/g, ""));
+    setFee(watchAmount.toString().replace(/\D/g, ""));
   }, [watchAmount, preflightDetails]);
 
   const onSubmit: SubmitHandler<PreflightDetails> = (values) => {
@@ -137,7 +138,7 @@ const TransferPage = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <Box className={classes.root} sx={{ p: 6, backgroundColor: "#F0F0F0" }}>
       <HomeNetworkConnectView
         isReady={isReady}
         accounts={accounts}
@@ -176,7 +177,7 @@ const TransferPage = () => {
               className={classes.generalInput}
               sync={(tokenAddress) => {
                 sygmaInstance?.setSelectedToken(tokenAddress);
-                setSelectedToken(tokenAddress)
+                setSelectedToken(tokenAddress);
                 setPreflightDetails({
                   ...preflightDetails,
                   token: tokenAddress,
@@ -234,7 +235,7 @@ const TransferPage = () => {
             disabled={!destinationChainConfig || formState.isSubmitting}
             name="receiver"
             label="Destination Address"
-            placeholder="Please enter the receiving address"
+            placeholder="0x · · · · · · · · · · · · ·"
             senderAddress={`${address}`}
             sendToSameAccountHelper={
               destinationChainConfig?.type === homeConfig?.type
@@ -268,11 +269,22 @@ const TransferPage = () => {
             fullWidth
             variant="contained"
             sx={{
-              backgroundColor: "#262626",
-              color: "#ffffff",
+              py: 1.5,
+              backgroundColor: "#f0f0f0",
+              color: "#FF7A45",
+              border: "2px solid #FF7A45",
+              borderRadius: "8px",
+              boxShadow:
+                "0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.1)",
               ":hover": {
-                backgroundColor: "#262626",
-                opacity: 0.9,
+                backgroundColor: "#FF7A45",
+                color: "#fff",
+              },
+              "&.Mui-disabled": {
+                border: "none",
+                backgroundColor: "transparent",
+                boxShadow:
+                  "0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.1)",
               },
             }}
           >
@@ -340,7 +352,7 @@ const TransferPage = () => {
       {/* This is here due to requiring router */}
       {/* <NetworkUnsupportedModal /> */}
       <NetworkSelectModal />
-    </div>
+    </Box>
   );
 };
 export default TransferPage;

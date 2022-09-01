@@ -101,10 +101,22 @@ export const useStyles = makeStyles(
         },
       },
       transferTab: {
-        '& span': {
-          backgroundColor: 'unset'
-        }
-      }
+        zIndex: 1,
+        backgroundColor: "#f0f0f0",
+        boxShadow:
+          "0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%)",
+        "& span": {
+          backgroundColor: "unset",
+        },
+        "& .MuiTab-root": {
+          minHeight: 48,
+          minWidth: 160,
+          color: "#FF7A45",
+          fontWeight: 500,
+          fontSize: 20,
+          textTransform: "initial",
+        },
+      },
     });
   }
 );

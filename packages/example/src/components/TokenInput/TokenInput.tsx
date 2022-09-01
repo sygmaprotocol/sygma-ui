@@ -43,6 +43,28 @@ const TokenInput: React.FC<ITokenInput> = ({
         className={classNames?.input}
         label={label}
         {...field}
+        sx={{
+          borderRadius: "8px",
+          fontWeight: 700,
+          color: "#FE5614",
+          "& .MuiInputLabel-root": {
+            color: "#FE5614",
+          },
+          "& .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#FE5614 !important",
+          },
+          "& .MuiSelect-iconOutlined": {
+            color: "#FE5614 !important",
+          },
+          "& .MuiInputBase-input": {
+            color: "#FE5614",
+            "-webkit-text-fill-color": "unset",
+          },
+          "& .Mui-disabled": {
+            color: "#FE5614",
+            opacity: 0.4,
+          },
+        }}
         InputProps={{
           endAdornment: (
             <Button
@@ -53,6 +75,13 @@ const TokenInput: React.FC<ITokenInput> = ({
               }}
               variant="outlined"
               type="button"
+              sx={{
+                "&.Mui-disabled": {
+                  color: "#FE5614",
+                  border: "1px solid #FE5614 !important",
+                  opacity: 0.3,
+                },
+              }}
             >
               MAX
             </Button>

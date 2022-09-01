@@ -21,12 +21,27 @@ const FeesFormikWrapped: React.FC<IFeesFormikWrapped> = ({
   amount,
 }: IFeesFormikWrapped) => {
   return (
-    <Box sx={{ my: 2 }}>
+    <Box sx={{ my: 2, fontSize: "14px", color: "#FF7A45" }}>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         {fee !== undefined && feeSymbol !== undefined && (
           <>
-            <Typography component="p">Bridge Fee</Typography>
-            <Typography component="p">
+            <Typography
+              component="p"
+              sx={{ fontSize: "14px", fontWeight: "500" }}
+            >
+              Bridge Fee
+            </Typography>
+            <Typography
+              component="p"
+              sx={{
+                fontWeight: "500",
+                fontSize: "14px",
+                height: "18px",
+                flexGrow: 1,
+                textAlign: "right",
+                borderBottom: "1px solid rgba(255, 122, 69, 0.5)",
+              }}
+            >
               {Number(fee).toFixed(8)} {feeSymbol}
             </Typography>
           </>
@@ -35,8 +50,26 @@ const FeesFormikWrapped: React.FC<IFeesFormikWrapped> = ({
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         {symbol !== undefined && (
           <>
-            <Typography component="p">Transfer Amount:</Typography>
-            <Typography component="p">
+            <Typography
+              component="p"
+              sx={{
+                fontSize: "14px",
+                fontWeight: "500",
+              }}
+            >
+              Transfer Amount:
+            </Typography>
+            <Typography
+              component="p"
+              sx={{
+                fontWeight: "500",
+                fontSize: "14px",
+                height: "18px",
+                flexGrow: 1,
+                textAlign: "right",
+                borderBottom: "1px solid rgba(255, 122, 69, 0.5)",
+              }}
+            >
               {(Number(amount) + Number(fee)).toFixed(2)} {symbol}
             </Typography>
           </>

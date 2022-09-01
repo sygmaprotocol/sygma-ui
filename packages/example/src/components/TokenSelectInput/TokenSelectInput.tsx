@@ -43,9 +43,7 @@ const TokenSelectInput: React.FC<ITokenSelectInput> = (
 
   const labelParsed =
     field && tokens[field.value] ? " " : "Please select token";
-  const balance = tokens[field.value]
-    ? `${tokens[field.value]?.balance} ${tokens[field.value]?.symbol}`
-    : " ";
+  const balance = tokens[field.value] ? tokens[field.value]?.balance : " ";
 
   const [synced, setSynced] = useState();
   useEffect(() => {
@@ -66,37 +64,92 @@ const TokenSelectInput: React.FC<ITokenSelectInput> = (
   }, [tokens, setValue, field.value]);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-      }}
-    >
+    <Box sx={{}}>
       <Box
-        sx={{
-          mr: 4,
-        }}
+        sx={
+          {
+            // mr: 4,
+          }
+        }
       >
-        <FormControl disabled={disabled}>
-          <InputLabel id="token-select-label">Token</InputLabel>
-          <Select {...field} label="token">
+        <FormControl disabled={disabled} fullWidth>
+          <InputLabel
+            id="token-select-label"
+            sx={{
+              color: "#FE5614 !important",
+              "&.Mui-disabled": {
+                color: "#FE5614",
+                opacity: 0.4,
+              },
+            }}
+          >
+            Token
+          </InputLabel>
+          <Select
+            {...field}
+            label="token"
+            sx={{
+              borderRadius: "8px",
+              fontWeight: 700,
+              color: "#FE5614",
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#FE5614 !important",
+                borderWidth: "2px",
+              },
+              "& .MuiSelect-iconOutlined": {
+                color: "#FE5614 !important",
+              },
+              "&.Mui-disabled": {
+                color: "#FE5614",
+                opacity: 0.4,
+              },
+              "& .Mui-disabled": {
+                color: "#FE5614",
+                opacity: 0.4,
+              },
+            }}
+          >
             {options.map((option: any) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
           </Select>
-          <FormHelperText>{labelParsed}</FormHelperText>
+          <FormHelperText> </FormHelperText>
         </FormControl>
       </Box>
       <Box sx={{ flexGrow: 1 }}>
         <FormControl fullWidth disabled={true}>
           <TextField
+            size="small"
             disabled={true}
             fullWidth
-            variant="standard"
             label="Balance"
-            helperText=" "
             value={balance}
+            color="primary"
+            sx={{
+              borderRadius: "8px",
+              fontWeight: 700,
+              color: "#FE5614",
+              "& .MuiInputLabel-root": {
+                color: "#FE5614",
+              },
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#FE5614 !important",
+              },
+              "& .MuiSelect-iconOutlined": {
+                color: "#FE5614 !important",
+              },
+              "& .MuiInputBase-input": {
+                color: "#FE5614",
+                "-webkit-text-fill-color": "unset",
+                textAlign: "center",
+              },
+              "& .Mui-disabled": {
+                color: "#FE5614",
+                opacity: 0.5,
+              },
+            }}
           />
         </FormControl>
       </Box>

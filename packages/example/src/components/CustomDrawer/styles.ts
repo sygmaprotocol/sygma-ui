@@ -11,6 +11,7 @@ export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
     backdrop: {
       backgroundColor: `${palette.additional["gray"][9]} !important`,
       opacity: `0.6 !important`,
+      zIndex: 2,
     },
   })
 );
