@@ -98,7 +98,7 @@ const TransferPage = () => {
     sygmaInstance,
   });
 
-  const { handleSubmit, control, setValue, watch, formState } =
+  const { handleSubmit, control, setValue, watch, formState, reset } =
     useForm<PreflightDetails>({
       resolver: yupResolver(transferSchema),
       defaultValues: {
@@ -136,6 +136,14 @@ const TransferPage = () => {
     });
     setPreflightModalOpen(true);
   };
+
+  const resetForFields = () => {
+    reset({
+      tokenAmount: "",
+      receiver: ""
+    })
+    resetDeposit()
+  }
 
   return (
     <Box className={classes.root} sx={{ p: 6, backgroundColor: "#F0F0F0" }}>
@@ -348,7 +356,7 @@ const TransferPage = () => {
         tokenSymbol={preflightDetails?.tokenSymbol || ""}
         value={preflightDetails?.tokenAmount || "0"}
       />
-      <TransferActiveModal open={!!transactionStatus} close={resetDeposit} />
+      <TransferActiveModal open={!!transactionStatus} close={resetForFields} />
       {/* This is here due to requiring router */}
       {/* <NetworkUnsupportedModal /> */}
       <NetworkSelectModal />
