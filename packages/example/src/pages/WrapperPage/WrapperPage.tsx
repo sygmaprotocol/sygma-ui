@@ -12,7 +12,6 @@ import {
   NetworkUnsupportedModal,
   WrapActiveModal,
   PreflightModalWrap,
-  ChangeNetworkDrawer,
   AboutDrawer,
 } from "../../modules";
 import { ReactComponent as ETHIcon } from "../../media/tokens/eth.svg";
@@ -172,7 +171,6 @@ const MainPage = () => {
         walletConnecting={walletConnecting}
         homeConfig={homeConfig}
         setWalletType={setWalletType}
-        setChangeNetworkOpen={setChangeNetworkOpen}
       />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box sx={{ my: 2 }}>
@@ -253,10 +251,6 @@ const MainPage = () => {
         </section>
       </form>
       <AboutDrawer open={aboutOpen} close={() => setAboutOpen(false)} />
-      <ChangeNetworkDrawer
-        open={changeNetworkOpen}
-        close={() => setChangeNetworkOpen(false)}
-      />
       <PreflightModalWrap
         open={preflightModalOpen}
         close={() => setPreflightModalOpen(false)}

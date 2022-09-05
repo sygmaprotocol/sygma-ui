@@ -22,7 +22,6 @@ import {
   TransferActiveModal,
   NetworkUnsupportedModal,
   PreflightModalTransfer,
-  ChangeNetworkDrawer,
   AboutDrawer,
   NetworkSelectModal,
 } from "../../modules";
@@ -71,7 +70,6 @@ const TransferPage = () => {
   const { accounts, selectAccount, setSelectedToken } = useHomeBridge();
   const [aboutOpen, setAboutOpen] = useState<boolean>(false);
   const [walletConnecting, setWalletConnecting] = useState(false);
-  const [changeNetworkOpen, setChangeNetworkOpen] = useState<boolean>(false);
   const [preflightModalOpen, setPreflightModalOpen] = useState<boolean>(false);
 
   const [preflightDetails, setPreflightDetails] = useState<PreflightDetails>({
@@ -140,10 +138,10 @@ const TransferPage = () => {
   const resetForFields = () => {
     reset({
       tokenAmount: "",
-      receiver: ""
-    })
-    resetDeposit()
-  }
+      receiver: "",
+    });
+    resetDeposit();
+  };
 
   return (
     <Box className={classes.root} sx={{ p: 6, backgroundColor: "#F0F0F0" }}>
@@ -156,7 +154,6 @@ const TransferPage = () => {
         walletType={walletType}
         homeConfig={homeConfig}
         setWalletType={setWalletType}
-        setChangeNetworkOpen={setChangeNetworkOpen}
         selectAccount={selectAccount}
         dispatcher={dispatcher}
       />
@@ -307,10 +304,6 @@ const TransferPage = () => {
         </section>
       </form>
       <AboutDrawer open={aboutOpen} close={() => setAboutOpen(false)} />
-      <ChangeNetworkDrawer
-        open={changeNetworkOpen}
-        close={() => setChangeNetworkOpen(false)}
-      />
       <PreflightModalTransfer
         open={preflightModalOpen}
         close={() => setPreflightModalOpen(false)}
