@@ -19,7 +19,6 @@ type HomeNetworkConnectViewProps = {
   setWalletType: (walletType: WalletType) => void;
   walletType: string;
   walletConnecting: boolean;
-  setChangeNetworkOpen: React.Dispatch<React.SetStateAction<boolean>>;
   homeConfig: BridgeConfig | undefined;
   accounts: Array<any> | undefined;
   selectAccount: any;
@@ -39,7 +38,6 @@ export default function HomeNetworkConnectView({
   homeConfig,
 
   setWalletType,
-  setChangeNetworkOpen,
   selectAccount,
   dispatcher,
 }: HomeNetworkConnectViewProps) {

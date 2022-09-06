@@ -10,7 +10,6 @@ type HomeNetworkConnectViewProps = {
   classes: any;
   setWalletType: (walletType: WalletType) => void;
   walletConnecting: boolean;
-  setChangeNetworkOpen: React.Dispatch<React.SetStateAction<boolean>>;
   homeConfig: BridgeConfig | undefined;
 };
 
@@ -23,7 +22,6 @@ export default function HomeNetworkConnectView({
   homeConfig,
 
   setWalletType,
-  setChangeNetworkOpen,
 }: HomeNetworkConnectViewProps) {
   return (
     <div className={classes.walletArea}>
@@ -62,16 +60,6 @@ export default function HomeNetworkConnectView({
         </section>
       ) : (
         <section className={classes.connected}>
-          <div>
-            <Typography variant="body1">Home network</Typography>
-            <Typography
-              className={classes.changeButton}
-              variant="body1"
-              onClick={() => setChangeNetworkOpen(true)}
-            >
-              Change
-            </Typography>
-          </div>
           <Typography
             component="h5"
             variant="h5"
