@@ -1,4 +1,4 @@
-version: '3' # specify docker-compose version
+version: "3" # specify docker-compose version
 
 services:
   config-server:
@@ -18,6 +18,8 @@ services:
       args:
         - CONFIG_SERVER_HOST=localhost
         - CONFIG_SERVER_PORT=8000
+        - REACT_APP_SUPPORT_SERVICE=Discord
+        - REACT_APP_SUPPORT_URL=https://discord.com/invite/Qdf6GyNB5J
     ports:
-      - "3002:80" # specify port mapping
+      - "3002:8000" # specify port mapping
 
