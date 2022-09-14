@@ -69,10 +69,6 @@
     "clean": "yarn clean:dependencies && yarn clean:dist",
     "prettier": "prettier --config .prettierrc 'packages/**/src/**/*.{ts,tsx,js,jsx,md}' --write",
     "start:tunnel": "./ngrok http https://localhost:3000",
-    "start:centrifuge": "docker-compose -f ./docker-compose-centrifuge.yml up -V",
-    "start:evm-example": "docker-compose -f ./docker-compose-node.yml up -V",
-    "setup:example": "./scripts/setup-eth-example.sh && node --experimental-json-modules ./scripts/setup-sub-example.mjs",
-    "setup:centrifuge": "./scripts/setup-eth-centrifuge.sh",
     "setup:copy-dev-config": "./scripts/copy-dev-config.sh"
   },
   "cracoConfig": "./craco.config.cjs",

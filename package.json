@@ -26,8 +26,6 @@
     "build:ui": "yarn wsrun -p @chainsafe/sygma-ui -c build",
     "build:explorer": "yarn wsrun -p @chainsafe/explorer-ui -c build",
     "start:basic": "yarn wsrun -p @chainsafe/sygma-basic -c start",
-    "build:core": "yarn wsrun -p @chainsafe/sygma-ui-core -c build",
-    "publish:core": "yarn wsrun -p @chainsafe/sygma-ui-core -c publish",
     "sentry:ui": "yarn wsrun -p @chainsafe/sygma-ui -c sentry",
     "release:ui": "yarn wsrun -p @chainsafe/sygma-ui -c release",
     "test:ui": "yarn wsrun -p @chainsafe/sygma-ui -c test",
@@ -37,11 +35,6 @@
     "clean:ui": "yarn wsrun -p @chainsafe/sygma-ui -c clean",
     "prettier:ui": "yarn wsrun -p @chainsafe/sygma-ui -c prettier",
     "start-tunnel:ui": "yarn wsrun -p @chainsafe/sygma-ui -c start:tunnel",
-    "start-substrate:ui": "yarn wsrun -p @chainsafe/sygma-ui -c start:substrate",
-    "start-evm-example:ui": "yarn wsrun -p @chainsafe/sygma-ui -c start:evm-example",
-    "setup-example:ui": "yarn wsrun -p @chainsafe/sygma-ui -c setup:example",
-    "setup-centrifuge:ui": "yarn wsrun -p @chainsafe/sygma-ui -c setup:centrifuge",
-    "start:example": "yarn wsrun -p example -c start",
     "start:explorer-ui": "yarn wsrun -p @chainsafe/explorer-ui -c start"
   },
   "workspaces": {
