@@ -5,8 +5,6 @@ WORKDIR /app
 COPY . .
 RUN yarn install --frozen-lockfile --network-timeout 100000
 RUN ls -al
-RUN yarn build:core
-RUN ls -al ./packages/core
 
 ARG CONFIG_SERVER_HOST
 ARG CONFIG_SERVER_PORT
