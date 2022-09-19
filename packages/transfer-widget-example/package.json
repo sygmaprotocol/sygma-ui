@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/core": "^7.12.3",
-    "sygma-ui-transfer-widget-unstable": "^1.0.1",
+    "chainbridge-ui-transfer-widget-unstable": "^1.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
@@ -38,7 +38,7 @@
     "extends": "react-app"
   },
   "scripts": {
-    "start": "yarn setup:copy-dev-config && craco --max_old_space_size=4096 start",
+    "start": "yarn craco --max_old_space_size=4096 --openssl-legacy-provider start",
     "setup:copy-dev-config": "./scripts/copy-dev-config.sh",
     "build": "react-scripts build",
     "test": "react-scripts test",
