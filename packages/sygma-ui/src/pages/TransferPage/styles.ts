@@ -116,8 +116,10 @@ export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
       cursor: "pointer",
       height: 20,
       width: 20,
-      marginTop: 8 * 5,
       fill: `#FF7A45 !important`,
+    },
+    faucetLink: {
+      color: "#FF7A45"
     },
     tokenItem: {
       display: "flex",
