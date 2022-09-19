@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Box from "@mui/material/Box";
 
+import Stack from '@mui/material/Stack';
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Button from "@mui/material/Button";
 import clsx from "clsx";
@@ -296,12 +297,20 @@ const TransferPage = () => {
             Start transfer
           </Button>
         </section>
-        <section>
+        <Stack
+          sx={{ marginTop: "40px"}}
+          direction="row"
+          alignItems="center"
+          spacing={1}
+        >
           <HelpOutlineIcon
             onClick={() => setAboutOpen(true)}
             className={classes.faqButton}
           />
-        </section>
+          <a className={classes.faucetLink} href="https://faucet-ui-stage.buildwithsygma.com/">
+            Faucet
+          </a>
+        </Stack>
       </form>
       <AboutDrawer open={aboutOpen} close={() => setAboutOpen(false)} />
       <PreflightModalTransfer
