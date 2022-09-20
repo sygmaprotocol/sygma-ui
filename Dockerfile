@@ -12,7 +12,7 @@ ARG REACT_APP_SUPPORT_SERVICE
 ARG REACT_APP_SUPPORT_URL
 
 RUN sh create-env-file.sh REACT_APP_CONFIG_SERVER_HOST=$CONFIG_SERVER_HOST REACT_APP_CONFIG_SERVER_PORT=$CONFIG_SERVER_PORT REACT_APP_SUPPORT_SERVICE=$REACT_APP_SUPPORT_SERVICE REACT_APP_SUPPORT_URL=$REACT_APP_SUPPORT_URL
-CMD ["cat", "./packages/exmaple/.env"]
+CMD ["cat", "./packages/sygma-ui/.env"]
 
 RUN yarn build:ui
 
@@ -21,5 +21,5 @@ RUN yarn build:ui
 
 FROM nginx:1.19-alpine AS server
 COPY ./etc/nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder ./app/packages/example/build /usr/share/nginx/html
+COPY --from=builder ./app/packages/sygma-ui/build /usr/share/nginx/html
 EXPOSE 8000
