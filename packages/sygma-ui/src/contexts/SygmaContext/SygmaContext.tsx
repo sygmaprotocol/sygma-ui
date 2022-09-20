@@ -11,7 +11,7 @@ import { TransactionStatus} from "../../types";
 import { useWeb3 } from "../../contexts";
 import { useHomeBridge } from "../HomeBridgeContext";
 import { useDestinationBridge } from "../DestinationBridgeContext";
-import { Directions, FeeDataResult } from "@chainsafe/sygma-sdk-core";
+import { Directions, FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
 import { useBridge } from "../Bridge";
 import { computeDirections } from "../../utils/Helpers";
 

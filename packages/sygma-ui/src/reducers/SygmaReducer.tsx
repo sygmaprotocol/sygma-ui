@@ -3,7 +3,7 @@ import {
   BridgeEvents,
   Sygma,
   FeeOracleData,
-} from "@chainsafe/sygma-sdk-core";
+} from "@buildwithsygma/sygma-sdk-core";
 import { providers } from "ethers";
 
 export type SygmaState = {

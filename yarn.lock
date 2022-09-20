@@ -1878,6 +1878,23 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
+"@buildwithsygma/sygma-contracts@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@buildwithsygma/sygma-contracts/-/sygma-contracts-1.0.0.tgz#8cf3430726bdb324e7259c65f4568ed361165a21"
+  integrity sha512-RlEMW6g36a1jyk0En1zCaPr+imB2S2o6b+hlNF6tp63BnJnoAMfrtQgvCG/vNuGyWWBNOjL1P+oebURECzTWHw==
+
+"@buildwithsygma/sygma-sdk-core@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@buildwithsygma/sygma-sdk-core/-/sygma-sdk-core-1.0.0.tgz#dc5234e177e9ef6cf2d61702eac7817b539442f4"
+  integrity sha512-soOybA9TdxOFhj22zYr4Sk1ptwg2XXlQwVaibnSqEsE2eBImGA3KejGSN52jCZUzNxW2GQvup9sWIrgnI2nGeQ==
+  dependencies:
+    "@buildwithsygma/sygma-contracts" "1.0.0"
+    eth-crypto "2.3.0"
+    ganache "^7.1.0"
+    node-fetch "2.6.1"
+    react-hook-form "^7.30.0"
+    web3 "^1.7.3"
+
 "@celo-tools/celo-ethers-wrapper@^0.0.5":
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/@celo-tools/celo-ethers-wrapper/-/celo-ethers-wrapper-0.0.5.tgz#a0bd4553e59c0fc4e97dcec97f719fd27dc4498b"
@@ -1970,18 +1987,6 @@
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/@chainsafe/sygma-sdk-core/-/sygma-sdk-core-1.1.5.tgz#5c641aa39b7db2124bd8d9d507e217e4fc597fa7"
   integrity sha512-VkcB9C1iDZzVwBeVhaOt0GQHkMZt0qT8zS5DSR4J6AjgnXA0BVq1CQUdT8kw+Vq7ZSXyr9219q9B3TPQIYWnWQ==
-  dependencies:
-    "@chainsafe/chainbridge-contracts" "3.1.0"
-    eth-crypto "^2.3.0"
-    ganache "^7.1.0"
-    node-fetch "2.6.1"
-    react-hook-form "^7.30.0"
-    web3 "^1.7.3"
-
-"@chainsafe/sygma-sdk-core@1.1.6":
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/@chainsafe/sygma-sdk-core/-/sygma-sdk-core-1.1.6.tgz#084a168703d0776676aa9a07b7320913a19ca8c6"
-  integrity sha512-RrixTsYxpDGV4QcAVYwIcOJWuWTlxDM1etquwoGJKSY6kfElhrnb+iY+/5AG9fVJE7ZiutblvKmNdvy/BxfVsQ==
   dependencies:
     "@chainsafe/chainbridge-contracts" "3.1.0"
     eth-crypto "^2.3.0"
@@ -12005,7 +12010,7 @@ eth-block-tracker@4.4.3, eth-block-tracker@^4.4.2:
     pify "^3.0.0"
     safe-event-emitter "^1.0.1"
 
-eth-crypto@^2.3.0:
+eth-crypto@2.3.0, eth-crypto@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/eth-crypto/-/eth-crypto-2.3.0.tgz#e5bbfc3540bd118cec85468bb310f41dcf40e507"
   integrity sha512-kTRdMuqIO4OBuk5XKL3FNQ6HVQV54dc/mxGgSoeUscp+7eiZ3C5xBsBj2DGY2HM9Woa0sMuzvpi6HwjyXL6E8w==
