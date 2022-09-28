@@ -5,7 +5,7 @@ import {
   BridgeData,
   Sygma,
   SygmaBridgeSetupList,
-} from "@chainsafe/sygma-sdk-core";
+} from "@buildwithsygma/sygma-sdk-core";
 import { sygmaReducer, SygmaState } from "../../reducers";
 
 interface IBridgeContext {

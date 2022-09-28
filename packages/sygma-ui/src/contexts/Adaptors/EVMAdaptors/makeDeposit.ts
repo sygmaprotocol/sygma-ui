@@ -16,7 +16,7 @@ import {
   Sygma,
   Directions,
   FeeDataResult,
-} from "@chainsafe/sygma-sdk-core";
+} from "@buildwithsygma/sygma-sdk-core";
 
 const makeDeposit =
   (

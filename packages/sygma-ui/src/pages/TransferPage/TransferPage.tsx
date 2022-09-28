@@ -37,7 +37,7 @@ import {
 import HomeNetworkConnectView from "./HomeNetworkConnectView";
 
 import makeValidationSchema from "./makeValidationSchema";
-import { BridgeData, FeeDataResult } from "@chainsafe/sygma-sdk-core";
+import { BridgeData, FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
 
 export type PreflightDetails = {
   tokenAmount: string;

@@ -13,7 +13,7 @@ import {
   BridgeEvents,
   Directions,
   Sygma,
-} from "@chainsafe/sygma-sdk-core";
+} from "@buildwithsygma/sygma-sdk-core";
 import { Listener } from "@ethersproject/providers";
 const handleProposalEvent = (
   setTransactionStatus: (message: TransactionStatus | undefined) => void,

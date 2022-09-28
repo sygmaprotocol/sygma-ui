@@ -11,7 +11,7 @@ import CosmosIcon from "../media/networks/cosmos.svg";
 import EthermintIcon from "../media/networks/ethermint.svg";
 import PolkadotIcon from "../media/networks/polkadot.svg";
 import { BigNumber, BigNumberish, ethers } from "ethers";
-import { BridgeData } from "@chainsafe/sygma-sdk-core";
+import { BridgeData } from "@buildwithsygma/sygma-sdk-core";
 import { DepositRecord, TransferDetails } from "../reducers/TransfersReducer";
 import { BridgeConfig, EvmBridgeConfig } from "../sygmaConfig";
 // import { DepositRecord, TransferDetails, EvmBridgeConfig } from "@chainsafe/sygma-ui-core";

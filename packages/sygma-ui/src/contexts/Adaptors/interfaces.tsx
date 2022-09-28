@@ -8,7 +8,7 @@ import {
   TxIsDone,
   TransitState,
 } from "../../reducers/TransitMessageReducer";
-import { Directions, FeeDataResult } from "@chainsafe/sygma-sdk-core";
+import { Directions, FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
 
 export interface IHomeBridgeProviderProps {
   children: React.ReactNode | React.ReactNode[];

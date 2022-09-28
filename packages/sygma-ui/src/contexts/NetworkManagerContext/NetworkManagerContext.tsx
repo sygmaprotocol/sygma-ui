@@ -6,7 +6,7 @@ import React, {
   useReducer,
   useState,
 } from "react";
-import { Directions, FeeDataResult } from "@chainsafe/sygma-sdk-core";
+import { Directions, FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
 import { BridgeConfig, sygmaConfig, ChainType } from "../../sygmaConfig";
 import {
   EVMDestinationAdaptorProvider,
