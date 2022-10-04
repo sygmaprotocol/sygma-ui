@@ -98,7 +98,7 @@ export default function HomeNetworkConnectView({
                 </InputLabel>
                 <Select
                   label="homenetwork"
-                  value={homeConfig?.domainId}
+                  value={homeConfig?.domainId ?? ''}
                   sx={{
                     borderRadius: "8px",
                     fontWeight: 700,
@@ -112,7 +112,7 @@ export default function HomeNetworkConnectView({
                     },
                   }}
                 >
-                  <MenuItem value={homeConfig?.domainId}>
+                  <MenuItem value={homeConfig?.domainId ?? ''}>
                     {homeConfig?.name}
                   </MenuItem>
                 </Select>
