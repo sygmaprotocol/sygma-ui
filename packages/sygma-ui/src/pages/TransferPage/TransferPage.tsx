@@ -37,7 +37,7 @@ import {
 import HomeNetworkConnectView from "./HomeNetworkConnectView";
 
 import makeValidationSchema from "./makeValidationSchema";
-import { BridgeData, FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
+import { BridgeData, FeeDataResult, Directions } from "@buildwithsygma/sygma-sdk-core";
 
 export type PreflightDetails = {
   tokenAmount: string;
@@ -319,36 +319,38 @@ const TransferPage = () => {
         receiver={preflightDetails?.receiver || ""}
         sender={address || ""}
         start={() => {
-          const directionsForDeposit: {
-            from: "chain1" | "chain2";
-            to: "chain1" | "chain2";
-          } = Object.keys(bridgeSetup!).reduce((acc, chain) => {
-            if (
-              Number(bridgeSetup![chain as keyof BridgeData].domainId) ===
-              homeConfig!.domainId
-            ) {
-              acc = { ...acc, from: chain };
-              return acc;
-            }
-            if (
-              Number(bridgeSetup![chain as keyof BridgeData].domainId) ===
-              destinationChainConfig?.domainId
-            ) {
-              acc = { ...acc, to: chain };
-              return acc;
-            }
-          }, {} as any);
+          // const directionsForDeposit: {
+          //   from: "chain1" | "chain2";
+          //   to: "chain1" | "chain2";
+          // } = Object.keys(bridgeSetup!).reduce((acc, chain) => {
+          //   if (
+          //     Number(bridgeSetup![chain as keyof BridgeData].domainId) ===
+          //     homeConfig!.domainId
+          //   ) {
+          //     acc = { ...acc, from: chain };
+          //     return acc;
+          //   }
+          //   if (
+          //     Number(bridgeSetup![chain as keyof BridgeData].domainId) ===
+          //     destinationChainConfig?.domainId
+          //   ) {
+          //     acc = { ...acc, to: chain };
+          //     return acc;
+          //   }
+          // }, {} as any);
 
-          const { from, to: destinationChainDirection } = directionsForDeposit;
+          // const { from, to: destinationChainDirection } = directionsForDeposit;
 
           const paramsForDeposit = {
             tokenAddress: preflightDetails.token,
             amount: preflightDetails.tokenAmount,
             recipient: preflightDetails.receiver,
-            from,
-            to: destinationChainDirection,
+            from: "chain1" as Directions,
+            to: "chain2" as Directions,
             feeData: customFee!,
           };
+
+          console.log(sygmaInstance)
 
           setPreflightModalOpen(false);
           preflightDetails && deposit(paramsForDeposit);
