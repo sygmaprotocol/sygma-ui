@@ -14,19 +14,17 @@ import {
   Directions,
   Sygma,
 } from "@buildwithsygma/sygma-sdk-core";
-import { Listener } from "@ethersproject/providers";
 const handleProposalEvent = (
   setTransactionStatus: (message: TransactionStatus | undefined) => void,
   setTransferTxHash: (input: string) => void,
   tokensDispatch: Dispatch<AddMessageAction | ResetAction | TxIsDone>,
-  computedDirections: { from: Directions; to: Directions },
   sygmaInstance: Sygma,
   setDepositVotes: any,
   depositVotes: any,
   transferTxHash: string,
   depositNonce: number
 ): Bridge => {
-  const { from, to } = computedDirections;
+  // const { from, to } = computedDirections;
   const listersCount =
     sygmaInstance.proposalExecutionEventListenerCount("chain2");
   if (listersCount === 0) {
