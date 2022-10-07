@@ -23,11 +23,11 @@ export const EVMDestinationAdaptorProvider = ({
 
   const { bridgeSetup, sygmaInstance } = useBridge();
 
-  const computedDirections = computeDirections(
-    bridgeSetup!,
-    destinationChainConfig!,
-    homeChainConfig!
-  );
+  // const computedDirections = computeDirections(
+  //   bridgeSetup!,
+  //   destinationChainConfig!,
+  //   homeChainConfig!
+  // );
 
   const [state, dispatch] = useReducer(evmDestinationReducer, {
     transferTxHash: "",
@@ -52,7 +52,7 @@ export const EVMDestinationAdaptorProvider = ({
         setTransactionStatus,
         setTransferTxHash,
         tokensDispatch,
-        computedDirections!,
+        // computedDirections!,
         sygmaInstance!,
         setDepositVotes,
         depositVotes,
