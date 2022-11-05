@@ -37,8 +37,6 @@ export const EVMDestinationAdaptorProvider = ({
     { txIsDone: false, transitMessage: [] }
   );
 
-  // const destinationBridge = useDestinationBridgeHook(destinationChainConfig);
-
   useEffect(() => {
     if (depositNonce && !inTransitMessages.txIsDone) {
       handleProposalEvent(
@@ -53,10 +51,6 @@ export const EVMDestinationAdaptorProvider = ({
         Number(depositNonce)
       );
     }
-    return () => {
-      //@ts-ignore
-      // destinationBridge?.removeAllListeners();
-    };
   }, [transferTxHash, depositNonce, depositVotes]);
 
   return (
