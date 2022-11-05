@@ -35,7 +35,7 @@ export const EVMHomeAdaptorProvider = ({
     handleSetHomeChain,
     homeChains,
   } = useLocalWeb3();
-  const { sygmaInstance, bridgeSetup } = useBridge();
+  const { sygmaInstance } = useBridge();
 
   const { homeBridge, wrapper, wrapTokenConfig } = useConnectWallet(
     isReady,
@@ -93,8 +93,7 @@ export const EVMHomeAdaptorProvider = ({
     homeChainConfig,
     provider,
     address,
-    sygmaInstance,
-    bridgeSetup
+    sygmaInstance
   );
 
   const wrapToken = makeWrappedToken(

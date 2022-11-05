@@ -5,7 +5,6 @@ import { DestinationBridgeContext } from "../../DestinationBridgeContext";
 import { transitMessageReducer } from "../../../reducers/TransitMessageReducer";
 import { evmDestinationReducer } from "../../../reducers/EvmDestinationReducer";
 
-import { useDestinationBridgeHook } from "./useDestinationBridgeHook";
 import handleProposalEvent from "./handleProposalEvent";
 import { useBridge } from "../../Bridge";
 import { computeDirections } from "../../../utils/Helpers";
@@ -21,13 +20,7 @@ export const EVMDestinationAdaptorProvider = ({
     transactionStatus,
   } = useWeb3();
 
-  const { bridgeSetup, sygmaInstance } = useBridge();
-
-  // const computedDirections = computeDirections(
-  //   bridgeSetup!,
-  //   destinationChainConfig!,
-  //   homeChainConfig!
-  // );
+  const { sygmaInstance } = useBridge();
 
   const [state, dispatch] = useReducer(evmDestinationReducer, {
     transferTxHash: "",
@@ -44,7 +37,7 @@ export const EVMDestinationAdaptorProvider = ({
     { txIsDone: false, transitMessage: [] }
   );
 
-  const destinationBridge = useDestinationBridgeHook(destinationChainConfig);
+  // const destinationBridge = useDestinationBridgeHook(destinationChainConfig);
 
   useEffect(() => {
     if (depositNonce && !inTransitMessages.txIsDone) {
@@ -62,7 +55,7 @@ export const EVMDestinationAdaptorProvider = ({
     }
     return () => {
       //@ts-ignore
-      destinationBridge?.removeAllListeners();
+      // destinationBridge?.removeAllListeners();
     };
   }, [transferTxHash, depositNonce, depositVotes]);
 

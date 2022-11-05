@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Box from "@mui/material/Box";
 
-import Stack from '@mui/material/Stack';
+import Stack from "@mui/material/Stack";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Button from "@mui/material/Button";
 import clsx from "clsx";
@@ -37,7 +37,11 @@ import {
 import HomeNetworkConnectView from "./HomeNetworkConnectView";
 
 import makeValidationSchema from "./makeValidationSchema";
-import { BridgeData, FeeDataResult, Directions } from "@buildwithsygma/sygma-sdk-core";
+import {
+  BridgeData,
+  FeeDataResult,
+  Directions,
+} from "@buildwithsygma/sygma-sdk-core";
 
 export type PreflightDetails = {
   tokenAmount: string;
@@ -67,7 +71,7 @@ const TransferPage = () => {
     checkSupplies,
   } = useSygma();
   const [customFee, setCustomFee] = useState<FeeDataResult>();
-  const { sygmaInstance, bridgeSetup } = useBridge();
+  const { sygmaInstance } = useBridge();
   const { accounts, selectAccount, setSelectedToken } = useHomeBridge();
   const [aboutOpen, setAboutOpen] = useState<boolean>(false);
   const [walletConnecting, setWalletConnecting] = useState(false);
@@ -298,7 +302,7 @@ const TransferPage = () => {
           </Button>
         </section>
         <Stack
-          sx={{ marginTop: "40px"}}
+          sx={{ marginTop: "40px" }}
           direction="row"
           alignItems="center"
           spacing={1}
@@ -307,7 +311,10 @@ const TransferPage = () => {
             onClick={() => setAboutOpen(true)}
             className={classes.faqButton}
           />
-          <a className={classes.faucetLink} href="https://faucet-ui-stage.buildwithsygma.com/">
+          <a
+            className={classes.faucetLink}
+            href="https://faucet-ui-stage.buildwithsygma.com/"
+          >
             Faucet
           </a>
         </Stack>
@@ -319,38 +326,14 @@ const TransferPage = () => {
         receiver={preflightDetails?.receiver || ""}
         sender={address || ""}
         start={() => {
-          // const directionsForDeposit: {
-          //   from: "chain1" | "chain2";
-          //   to: "chain1" | "chain2";
-          // } = Object.keys(bridgeSetup!).reduce((acc, chain) => {
-          //   if (
-          //     Number(bridgeSetup![chain as keyof BridgeData].domainId) ===
-          //     homeConfig!.domainId
-          //   ) {
-          //     acc = { ...acc, from: chain };
-          //     return acc;
-          //   }
-          //   if (
-          //     Number(bridgeSetup![chain as keyof BridgeData].domainId) ===
-          //     destinationChainConfig?.domainId
-          //   ) {
-          //     acc = { ...acc, to: chain };
-          //     return acc;
-          //   }
-          // }, {} as any);
-
-          // const { from, to: destinationChainDirection } = directionsForDeposit;
-
           const paramsForDeposit = {
             tokenAddress: preflightDetails.token,
             amount: preflightDetails.tokenAmount,
             recipient: preflightDetails.receiver,
-            from: "chain1" as Directions,
-            to: "chain2" as Directions,
             feeData: customFee!,
           };
 
-          console.log(sygmaInstance)
+          console.log(sygmaInstance);
 
           setPreflightModalOpen(false);
           preflightDetails && deposit(paramsForDeposit);
