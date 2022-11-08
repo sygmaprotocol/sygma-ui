@@ -38,14 +38,13 @@ const BridgeProvider = ({ children }: IBridgeContext) => {
 
         .then((res) => {
           if (isMounted) {
-            const ss = res.setDestination(
-              rest.destinationChainConfig?.domainId.toString() ?? "0"
-            );
             bridgeDispatcher({
               type: "setInstanceAndData",
               payload: {
                 feeOracleSetup,
-                sygmaInstance: ss,
+                sygmaInstance: res.setDestination(
+                  rest.destinationChainConfig?.domainId.toString() ?? "0"
+                ),
               },
             });
           }
