@@ -10,7 +10,7 @@
     "@celo-tools/celo-ethers-wrapper": "^0.0.5",
     "@chainsafe/common-components": "1.0.26",
     "@chainsafe/common-theme": "1.0.10",
-    "@buildwithsygma/sygma-sdk-core": "1.0.0",
+    "@buildwithsygma/sygma-sdk-core": "1.0.4",
     "@chainsafe/web3-context": "1.2.0",
     "@fusion-icons/react": "0.0.0",
     "@hookform/resolvers": "^2.8.4",
