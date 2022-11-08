@@ -115,8 +115,6 @@ function selectProvider(
             deposit: async (params: {
               amount: string;
               recipient: string;
-              from: Directions;
-              to: Directions;
               feeData: FeeDataResult;
             }) => undefined,
             setDepositAmount: () => undefined,

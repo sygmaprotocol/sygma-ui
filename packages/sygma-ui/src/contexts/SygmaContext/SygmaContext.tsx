@@ -7,13 +7,11 @@ import {
 } from "../../sygmaConfig";
 import { Tokens } from "@chainsafe/web3-context/dist/context/tokensReducer";
 import { TransitState } from "../../reducers/TransitMessageReducer";
-import { TransactionStatus} from "../../types";
+import { TransactionStatus } from "../../types";
 import { useWeb3 } from "../../contexts";
 import { useHomeBridge } from "../HomeBridgeContext";
 import { useDestinationBridge } from "../DestinationBridgeContext";
-import { Directions, FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
-import { useBridge } from "../Bridge";
-import { computeDirections } from "../../utils/Helpers";
+import { FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
 
 interface ISygmaContextProps {
   children: React.ReactNode | React.ReactNode[];
@@ -30,8 +28,6 @@ type SygmaContext = {
   deposit(params: {
     amount: string;
     recipient: string;
-    from: Directions;
-    to: Directions;
     feeData: FeeDataResult;
   }): Promise<void>;
   resetDeposit(): void;
@@ -98,8 +94,6 @@ const SygmaProvider = ({ children, chains }: ISygmaContextProps) => {
     handleCheckSupplies,
   } = useHomeBridge();
 
-  const { sygmaInstance, bridgeSetup } = useBridge();
-
   const { setDepositVotes, tokensDispatch } = useDestinationBridge();
 
   const resetDeposit = () => {
@@ -121,8 +115,6 @@ const SygmaProvider = ({ children, chains }: ISygmaContextProps) => {
     async (paramsForDeposit: {
       amount: string;
       recipient: string;
-      from: Directions;
-      to: Directions;
       feeData: FeeDataResult;
     }) => {
       if (chainConfig && destinationChainConfig) {

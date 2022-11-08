@@ -1,22 +1,10 @@
-import { Bridge, BridgeFactory } from "@chainsafe/chainbridge-contracts";
 import ethers, { providers, BigNumber, utils, Event } from "ethers";
-import { Erc20DetailedFactory } from "../../../Contracts/Erc20DetailedFactory";
 import { TransactionStatus } from "../../NetworkManagerContext";
 
-import {
-  SygmaConfig,
-  EvmBridgeConfig,
-  BridgeConfig,
-} from "../../../sygmaConfig";
+import { BridgeConfig } from "../../../sygmaConfig";
 
 import { getPriceCompatibility } from "./helpers";
-import {
-  BridgeData,
-  BridgeEvents,
-  Sygma,
-  Directions,
-  FeeDataResult,
-} from "@buildwithsygma/sygma-sdk-core";
+import { Sygma, FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
 
 const makeDeposit =
   (
@@ -30,18 +18,17 @@ const makeDeposit =
     homeChainConfig?: BridgeConfig,
     provider?: providers.Web3Provider,
     address?: string,
-    sygmaInstance?: Sygma,
-    bridgeSetup?: BridgeData
+    sygmaInstance?: Sygma
   ) =>
   async (paramsForDeposit: {
     tokenAddress: string;
     amount: string;
     recipient: string;
-    from: Directions;
-    to: Directions;
     feeData: FeeDataResult;
   }) => {
-    const tokenAddress = sygmaInstance!.setSelectedToken(paramsForDeposit.tokenAddress)
+    const tokenAddress = sygmaInstance!.setSelectedToken(
+      paramsForDeposit.tokenAddress
+    );
     const token = homeChainConfig!.tokens.find(
       (token) => token.address === paramsForDeposit.tokenAddress
     );
@@ -70,23 +57,25 @@ const makeDeposit =
       if (currentAllowance! < Number(paramsForDeposit.amount)) {
         if (currentAllowance! > 0 && token.isDoubleApproval) {
           await sygmaInstance!.approve({
-            amounForApproval: "0",
+            amountOrIdForApproval: "0",
           });
         }
         await sygmaInstance!.approve({
-          amounForApproval: paramsForDeposit.amount,
+          amountOrIdForApproval: paramsForDeposit.amount,
         });
       }
       // Allowance for fee handler
       const currentAllowanceForFeeHandler =
         await sygmaInstance?.checkCurrentAllowanceForFeeHandler(address!);
-      console.log("🚀 ~ file: makeDeposit.ts ~ line 81 ~ currentAllowanceForFeeHandler", currentAllowanceForFeeHandler)
 
       if (
         currentAllowanceForFeeHandler! <
         Number(utils.formatUnits(paramsForDeposit.feeData.fee, 18))
       ) {
-        console.log('request approval for fee approval', Number(utils.formatUnits(paramsForDeposit.feeData.fee, 18)))
+        console.log(
+          "request approval for fee approval",
+          Number(utils.formatUnits(paramsForDeposit.feeData.fee, 18))
+        );
         await sygmaInstance!.approveFeeHandler({
           amounForApproval: utils.formatUnits(paramsForDeposit.feeData.fee, 18),
         });
@@ -97,7 +86,9 @@ const makeDeposit =
         recipientAddress: paramsForDeposit.recipient,
         feeData: paramsForDeposit.feeData,
       });
-      const depositEvent = await sygmaInstance!.getDepositEventFromReceipt(depositTx!)
+      const depositEvent = await sygmaInstance!.getDepositEventFromReceipt(
+        depositTx!
+      );
       const { depositNonce } = depositEvent.args;
       if (depositTx?.status === 1) {
         console.log("depositNonce", depositNonce.toNumber().toString());
@@ -105,7 +96,7 @@ const makeDeposit =
         setTransactionStatus("In Transit");
         setHomeTransferTxHash(depositTx.transactionHash);
       } else {
-        throw "deposit transaction unsuccessful"
+        throw "deposit transaction unsuccessful";
       }
       setHomeTransferTxHash(depositTx!.transactionHash);
 

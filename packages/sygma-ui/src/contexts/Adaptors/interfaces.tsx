@@ -43,8 +43,6 @@ export interface HomeChainAdaptorContext {
   deposit(params: {
     amount: string;
     recipient: string;
-    from: Directions;
-    to: Directions;
     feeData: FeeDataResult;
   }): Promise<void>;
 

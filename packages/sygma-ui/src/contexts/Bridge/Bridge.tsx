@@ -20,7 +20,6 @@ const BridgeProvider = ({ children }: IBridgeContext) => {
   const { homeChains, ...rest } = useWeb3();
   const initState: SygmaState = {
     sygmaInstance: undefined,
-    bridgeSetup: undefined,
   };
   const [bridgeState, bridgeDispatcher] = useReducer(sygmaReducer, initState);
 
@@ -28,68 +27,37 @@ const BridgeProvider = ({ children }: IBridgeContext) => {
     if (homeChains.length) {
       const web3provider = rest.provider;
 
-      const bridgeSetup: BridgeData = homeChains.reduce((acc, chain, idx) => {
-        const {
-          bridgeAddress,
-          erc20HandlerAddress,
-          tokens,
-          rpcUrl,
-          domainId,
-          decimals,
-          name,
-          networkId,
-        } = chain;
-
-        // NOTE: ASUMPTION HERE IS THAT WE HAVE ONLY ONE TOKEN
-        const [{ address, resourceId }] = tokens;
-
-        acc = {
-          ...acc,
-          [`chain${idx + 1}`]: {
-            bridgeAddress,
-            erc20Address: address,
-            erc20HandlerAddress,
-            rpcUrl,
-            domainId,
-            erc20ResourceID: resourceId,
-            decimals,
-            name,
-            networkId,
-          },
-        };
-
-        return acc;
-      }, {} as BridgeData);
-
       const { feeOracleSetup } = sygmaConfig();
       let isMounted = true;
       const sygmaInstance = new Sygma({
-        bridgeSetup,
         feeOracleSetup,
         bridgeSetupList: homeChains as any,
       });
       sygmaInstance
         .initializeConnectionFromWeb3Provider(web3provider?.provider)
+
         .then((res) => {
           if (isMounted) {
             bridgeDispatcher({
               type: "setInstanceAndData",
               payload: {
-                bridgeSetup,
                 feeOracleSetup,
-                sygmaInstance: res,
+                sygmaInstance: res.setDestination(
+                  rest.destinationChainConfig?.domainId.toString() ?? "0"
+                ),
               },
             });
           }
         });
+
       return () => {
         isMounted = false;
       };
     }
-  }, [homeChains]);
+  }, [homeChains, rest.destinationChainConfig]);
 
   return (
-    <BridgeContext.Provider value={{ ...bridgeState }}>
+    <BridgeContext.Provider value={bridgeState}>
       {children}
     </BridgeContext.Provider>
   );

@@ -27,3 +27,4 @@ yarn-error.log*
 
 # runtime config
 public/sygma-runtime-config.js
+public/sygma-runtime-config.json
