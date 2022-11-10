@@ -15,7 +15,7 @@ const ROUTE_LINKS_HEADERS = [{ route: "/transfer", label: "Transfer" }];
 interface IAppHeader {}
 
 const AppHeader: React.FC<IAppHeader> = () => {
-  const classes = useStyles();
+  const { classes } = useStyles();
   const { homeConfig, isReady, address } = useSygma();
 
   const { __RUNTIME_CONFIG__ } = window;

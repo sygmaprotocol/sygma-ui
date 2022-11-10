@@ -21,7 +21,7 @@ export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
     },
     connected: {
       width: "100%",
-      "& > *:first-child": {
+      "& > *:first-of-type": {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
@@ -119,7 +119,7 @@ export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
       fill: `#FF7A45 !important`,
     },
     faucetLink: {
-      color: "#FF7A45"
+      color: "#FF7A45",
     },
     tokenItem: {
       display: "flex",

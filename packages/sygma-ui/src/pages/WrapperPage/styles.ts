@@ -30,7 +30,7 @@ export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
     },
     connected: {
       width: "100%",
-      "& > *:first-child": {
+      "& > *:first-of-type": {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",

@@ -34,7 +34,7 @@ const AppWrapper: React.FC<IAppWrapper> = ({
   children,
   wrapTokenPage,
 }: IAppWrapper) => {
-  const classes = useStyles();
+  const { classes } = useStyles();
   const [enableNavTabs, setEnableNavTabs] = useState(true);
 
   const location = useLocation();

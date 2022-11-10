@@ -1,8 +1,9 @@
-import { createStyles, ITheme, makeStyles } from "@chainsafe/common-theme";
+// import { createStyles, ITheme, makeStyles } from "@chainsafe/common-theme";
+import { makeStyles } from "tss-react/mui";
 
-export const useStyles = makeStyles(
-  ({ animation, constants, palette, breakpoints }: ITheme) => {
-    return createStyles({
+export const useStyles = makeStyles()(
+  ({ constants, breakpoints, palette, transitions }) => {
+    return {
       root: {
         minHeight: "100vh",
         display: "flex",
@@ -74,24 +75,24 @@ export const useStyles = makeStyles(
           padding: `${constants.generalUnit}px ${
             constants.generalUnit * 1.5
           }px`,
-          border: `1px solid ${palette.additional["gray"][7]}`,
+          // border: `1px solid ${palette.additional["gray"][7]}`,
           textDecoration: "none",
           marginRight: constants.generalUnit,
-          transitionDuration: `${animation.transform}ms`,
-          color: palette.additional["gray"][8],
-          maxHeight: constants.navItemHeight,
+          transitionDuration: `${transitions.duration.standard}ms`,
+          // color: palette.additional["gray"][8],
+          maxHeight: 42,
           "& svg": {
-            transitionDuration: `${animation.transform}ms`,
-            fill: palette.additional["gray"][8],
+            transitionDuration: `${transitions.duration.standard}ms`,
+            // fill: palette.additional["gray"][8],
           },
           "&.active": {
-            color: palette.additional["gray"][9],
+            // color: palette.additional["gray"][9],
             textDecoration: "underline",
             "& svg": {
-              fill: palette.additional["geekblue"][5],
+              // fill: palette.additional["geekblue"][5],
             },
           },
-          "& > *:first-child": {
+          "& > *:first-of-type": {
             marginRight: constants.generalUnit,
           },
         },
@@ -117,6 +118,6 @@ export const useStyles = makeStyles(
           textTransform: "initial",
         },
       },
-    });
+    };
   }
 );

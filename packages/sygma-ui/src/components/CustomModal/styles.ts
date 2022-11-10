@@ -1,14 +1,14 @@
-import { makeStyles, createStyles, ITheme } from "@chainsafe/common-theme";
+// import { makeStyles, createStyles, ITheme } from "@chainsafe/common-theme";
+import { makeStyles } from "tss-react/mui";
 
-export const useStyles = makeStyles(({ constants }: ITheme) =>
-  createStyles({
+export const useStyles = makeStyles()(({ constants }) => {
+  return {
     root: {
-      height: `100% !important`,
+      height: "100%",
       borderTopLeftRadius: constants.generalUnit / 2,
       borderTopRightRadius: constants.generalUnit / 2,
       overflow: "hidden",
-      //@ts-ignore-line
-      position: `absolute !important`,
+      position: "absolute",
     },
-  })
-);
+  };
+});

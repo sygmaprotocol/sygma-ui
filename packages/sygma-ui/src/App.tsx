@@ -3,6 +3,8 @@ import { utils, ethers } from "ethers";
 
 import { init, ErrorBoundary, showReportDialog } from "@sentry/react";
 import { ThemeSwitcher } from "@chainsafe/common-theme";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
 import CssBaseline from "@mui/material/CssBaseline";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
@@ -14,6 +16,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import { SygmaRoutes } from "./routes";
 import { lightTheme } from "./themes/LightTheme";
+import { sygmaTheme } from "./themes/SygmaTheme";
+
 import {
   SygmaProvider,
   NetworkManagerProvider,
@@ -148,7 +152,7 @@ const App: React.FC<{}> = () => {
       )}
       onReset={() => window.location.reload()}
     >
-      <ThemeSwitcher themes={{ light: lightTheme }}>
+      <ThemeProvider theme={sygmaTheme}>
         <CssBaseline />
         <LocalProvider
           networkIds={[5]}
@@ -183,7 +187,7 @@ const App: React.FC<{}> = () => {
             </SygmaProvider>
           </BridgeProvider>
         </LocalProvider>
-      </ThemeSwitcher>
+      </ThemeProvider>
     </ErrorBoundary>
   );
 };

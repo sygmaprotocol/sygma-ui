@@ -2,19 +2,21 @@ import React, { ReactNode, useRef } from "react";
 import {
   ITheme,
   useOnClickOutside,
-  makeStyles,
+  // makeStyles,
   createStyles,
 } from "@chainsafe/common-theme";
+import { makeStyles } from "tss-react/mui";
+
 import clsx from "clsx";
 // import { CloseSvg } from "./Close.icon"
 import { ReactComponent as CloseSvg } from "../../media/Icons/close.svg";
 
-const useStyles = makeStyles(
-  ({ animation, constants, breakpoints, palette, overrides, zIndex }: ITheme) =>
-    createStyles({
+const useStyles = makeStyles()(
+  ({ constants, palette, breakpoints, zIndex, transitions }) => {
+    return {
       root: {
-        position: "fixed",
-        zIndex: zIndex?.layer3,
+        // position: "fixed",
+        zIndex: zIndex.appBar,
         bottom: 0,
         left: 0,
         width: "100%",
@@ -26,7 +28,7 @@ const useStyles = makeStyles(
         flexDirection: "column",
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
-        transitionDuration: `${animation.transform}ms`,
+        transitionDuration: `${transitions.duration.standard}ms`,
         transitionProperty: "opacity",
         "&:before": {
           content: "''",
@@ -38,13 +40,13 @@ const useStyles = makeStyles(
           top: 0,
           left: 0,
           zIndex: 0,
-          backgroundColor: palette.common?.black.main,
-          transitionDuration: `${animation.transform}ms`,
+          backgroundColor: palette.common.black,
+          transitionDuration: `${transitions.duration.standard}ms`,
         },
         "& > *": {
           opacity: 0,
           visibility: "hidden",
-          transitionDuration: `${animation.transform}ms`,
+          transitionDuration: `${transitions.duration.standard}ms`,
         },
         "&.active": {
           visibility: "visible",
@@ -53,9 +55,9 @@ const useStyles = makeStyles(
             opacity: 1,
             visibility: "visible",
           },
-          ...overrides?.Modal?.active,
+          // ...overrides?.Modal?.active,
         },
-        ...overrides?.Modal?.root,
+        // ...overrides?.Modal?.root,
       },
       inner: {
         ...constants.modal.inner,
@@ -69,30 +71,30 @@ const useStyles = makeStyles(
         transform: "translate(-50%, -50%)",
         "&.xs": {
           width: `calc(100% - ${constants.generalUnit * 2}px)`,
-          maxWidth: breakpoints.width("xs"),
-          ...overrides?.Modal?.inner?.size?.xs,
+          maxWidth: breakpoints.values["xs"],
+          // ...overrides?.Modal?.inner?.size?.xs,
         },
         "&.sm": {
           width: `calc(100% - ${constants.generalUnit * 2}px)`,
-          maxWidth: breakpoints.width("sm"),
-          ...overrides?.Modal?.inner?.size?.sm,
+          maxWidth: breakpoints.values["sm"],
+          // ...overrides?.Modal?.inner?.size?.sm,
         },
         "&.md": {
           width: `calc(100% - ${constants.generalUnit * 2}px)`,
-          maxWidth: breakpoints.width("md"),
-          ...overrides?.Modal?.inner?.size?.md,
+          maxWidth: breakpoints.values["md"],
+          // ...overrides?.Modal?.inner?.size?.md,
         },
         "&.lg": {
           width: `calc(100% - ${constants.generalUnit * 2}px)`,
-          maxWidth: breakpoints.width("lg"),
-          ...overrides?.Modal?.inner?.size?.lg,
+          maxWidth: breakpoints.values["lg"],
+          // ...overrides?.Modal?.inner?.size?.lg,
         },
         "&.xl": {
           width: `calc(100% - ${constants.generalUnit * 2}px)`,
-          maxWidth: breakpoints.width("lg"),
-          ...overrides?.Modal?.inner?.size?.xl,
+          maxWidth: breakpoints.values["lg"],
+          // ...overrides?.Modal?.inner?.size?.xl,
         },
-        ...overrides?.Modal?.inner?.root,
+        // ...overrides?.Modal?.inner?.root,
       },
       closeIcon: {
         ...constants.icon,
@@ -103,24 +105,25 @@ const useStyles = makeStyles(
         cursor: "pointer",
         position: "absolute",
         "& svg": {
-          stroke: palette.common?.black.main,
+          stroke: palette.common.black,
         },
         "&.right": {
           transform: "translate(-50%, 50%)",
           right: 0,
-          ...overrides?.Modal?.closeIcon?.right,
+          // ...overrides?.Modal?.closeIcon?.right,
         },
         "&.left": {
           left: 0,
           transform: "translate(50%, -50%)",
-          ...overrides?.Modal?.closeIcon?.left,
+          // ...overrides?.Modal?.closeIcon?.left,
         },
         "&.none": {
           display: "none",
         },
-        ...overrides?.Modal?.closeIcon?.root,
+        // ...overrides?.Modal?.closeIcon?.root,
       },
-    })
+    };
+  }
 );
 
 interface IModalClasses {
@@ -153,7 +156,7 @@ const Modal = ({
   onClose,
   onClickOutside,
 }: IModalProps) => {
-  const classes = useStyles();
+  const { classes } = useStyles();
 
   const ref = useRef(null);
 

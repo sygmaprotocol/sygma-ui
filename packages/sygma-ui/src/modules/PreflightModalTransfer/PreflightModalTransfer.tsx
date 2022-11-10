@@ -28,7 +28,7 @@ const PreflightModalTransfer: React.FC<IPreflightModalTransferProps> = ({
   value,
   start,
 }: IPreflightModalTransferProps) => {
-  const classes = useStyles();
+  const { classes } = useStyles();
 
   return (
     <CustomDrawer
@@ -36,7 +36,7 @@ const PreflightModalTransfer: React.FC<IPreflightModalTransferProps> = ({
       classNames={{
         backdrop: classes.backdrop,
       }}
-      // size={430}
+      size={430}
       open={open}
     >
       <Typography variant="h3" component="h2" className={classes.title}>
@@ -80,8 +80,8 @@ const PreflightModalTransfer: React.FC<IPreflightModalTransferProps> = ({
       </Typography>
       <div className={classes.buttonContainer}>
         <Button onClick={start} className={classes.startButton} size="large">
-        Start Transfer
-      </Button>
+          Start Transfer
+        </Button>
         <ButtonUnstyled onClick={close} className={classes.buttonBack}>
           Back
         </ButtonUnstyled>
