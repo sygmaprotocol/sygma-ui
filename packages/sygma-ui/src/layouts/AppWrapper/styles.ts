@@ -1,4 +1,3 @@
-// import { createStyles, ITheme, makeStyles } from "@chainsafe/common-theme";
 import { makeStyles } from "tss-react/mui";
 
 export const useStyles = makeStyles()(

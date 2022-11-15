@@ -1,46 +1,31 @@
 import React from "react";
-import { SelectInput } from "@chainsafe/common-components";
 import { Typography, Button } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import FormHelperText from "@mui/material/FormHelperText";
-import TextField from "@mui/material/TextField";
 
-import { WalletType } from "../../contexts";
 import { BridgeConfig } from "../../sygmaConfig";
 
 import { ConnectionDialog } from "../../modules";
 
+import { useStyles } from "./styles";
+
 type HomeNetworkConnectViewProps = {
   isReady: boolean | undefined;
-  classes: any;
-  setWalletType: (walletType: WalletType) => void;
-  walletType: string;
   walletConnecting: boolean;
   homeConfig: BridgeConfig | undefined;
-  accounts: Array<any> | undefined;
-  selectAccount: any;
-  address: string | undefined;
   dispatcher: any;
 };
 
 export default function HomeNetworkConnectView({
   isReady,
-  accounts,
-  address,
-
-  classes,
   walletConnecting,
-  walletType,
-
   homeConfig,
-
-  setWalletType,
-  selectAccount,
   dispatcher,
 }: HomeNetworkConnectViewProps) {
+  const { classes } = useStyles();
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -98,7 +83,7 @@ export default function HomeNetworkConnectView({
                 </InputLabel>
                 <Select
                   label="homenetwork"
-                  value={homeConfig?.domainId ?? ''}
+                  value={homeConfig?.domainId ?? ""}
                   sx={{
                     borderRadius: "8px",
                     fontWeight: 700,
@@ -112,7 +97,7 @@ export default function HomeNetworkConnectView({
                     },
                   }}
                 >
-                  <MenuItem value={homeConfig?.domainId ?? ''}>
+                  <MenuItem value={homeConfig?.domainId ?? ""}>
                     {homeConfig?.name}
                   </MenuItem>
                 </Select>

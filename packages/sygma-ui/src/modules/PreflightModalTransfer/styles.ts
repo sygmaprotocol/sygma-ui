@@ -73,7 +73,7 @@ export const useStyles = makeStyles()(({ constants, zIndex }) => {
       lineHeight: "24px",
       fontStyle: "normal",
       letterSpacing: "0.01em",
-      textTransform: "uppercase",
+      // textTransform: "uppercase",
       marginBottom: constants.generalUnit * 2,
     },
     backdrop: {

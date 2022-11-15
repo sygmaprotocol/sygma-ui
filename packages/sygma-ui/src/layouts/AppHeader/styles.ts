@@ -1,16 +1,10 @@
-// import { createStyles, ITheme, makeStyles } from "@chainsafe/common-theme";
-
 import { makeStyles } from "tss-react/mui";
 
 export const useStyles = makeStyles()((theme) => {
   return {
     root: {
-      // backgroundColor: theme.palette.additional["header"][1],
-      borderBottom: `1px solid rgba(255, 122, 69, 0.16)`,
-      // color: theme.palette.additional["header"][2],
-      boxShadow:
-        "0px 1px 4px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.02), 0px 1px 12px rgba(0, 0, 0, 0.12)",
-      borderRadius: "0px 0px 10.6667px 10.6667px",
+      border: "none",
+      boxShadow: "none",
     },
     left: {
       flexGrow: 1,

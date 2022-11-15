@@ -94,8 +94,7 @@ const ConnectToMetamask = ({
         metaMask.activate();
       }}
     >
-      {" "}
-      metamask
+      Metamask
     </Button>
   );
 };

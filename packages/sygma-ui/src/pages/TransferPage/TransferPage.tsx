@@ -32,9 +32,8 @@ import {
   TokenInput,
   Fees,
   SelectDestinationNetwork,
+  HomeNetworkConnectView,
 } from "../../components";
-
-import HomeNetworkConnectView from "./HomeNetworkConnectView";
 
 import makeValidationSchema from "./makeValidationSchema";
 import {
@@ -152,14 +151,8 @@ const TransferPage = () => {
     <Box className={classes.root} sx={{ p: 6, backgroundColor: "#F0F0F0" }}>
       <HomeNetworkConnectView
         isReady={isReady}
-        accounts={accounts}
-        address={address}
-        classes={classes}
         walletConnecting={walletConnecting}
-        walletType={walletType}
         homeConfig={homeConfig}
-        setWalletType={setWalletType}
-        selectAccount={selectAccount}
         dispatcher={dispatcher}
       />
       <form onSubmit={handleSubmit(onSubmit)}>

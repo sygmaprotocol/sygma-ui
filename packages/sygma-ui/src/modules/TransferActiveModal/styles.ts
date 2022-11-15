@@ -168,7 +168,7 @@ export const useStyles = makeStyles()(
         lineHeight: "24px",
         fontStyle: "normal",
         letterSpacing: "0.01em",
-        textTransform: "uppercase",
+        // textTransform: "uppercase",
         width: "232px",
         height: "49px",
       },
