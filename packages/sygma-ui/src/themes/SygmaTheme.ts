@@ -44,20 +44,6 @@ let theme = createTheme({
   },
 });
 
-declare module "@mui/material/styles" {
-  interface Theme {
-    status: {
-      danger: string;
-    };
-  }
-  // allow configuration using `createTheme`
-  interface ThemeOptions {
-    status?: {
-      danger?: string;
-    };
-  }
-}
-
 export const sygmaTheme = createTheme(theme, {
   constants: {
     generalUnit: 8,
@@ -77,6 +63,12 @@ export const sygmaTheme = createTheme(theme, {
   palette: {
     primary: {
       main: "#FE5614",
+    },
+    secondary: {
+      main: "#CDC2B1",
+    },
+    background: {
+      default: "#E9E4DD",
     },
     additional: {
       general: {
@@ -101,6 +93,9 @@ export const sygmaTheme = createTheme(theme, {
       },
     },
   },
+  shape: {
+    borderRadius: 6,
+  },
   components: {
     MuiTabs: {
       styleOverrides: {
@@ -120,6 +115,31 @@ export const sygmaTheme = createTheme(theme, {
           textTransform: "initial",
         },
         selected: {},
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: ({ ownerState }: any) => ({
+          textTransform: "none",
+          color: theme.palette.common.black,
+          lineHeight: 1.6,
+          ...(ownerState.variant === "contained" &&
+            ownerState.color === "primary" && {
+              "&:hover": {
+                backgroundColor: "#FE5614",
+                borderColor: "#FE5614",
+                boxShadow: "none",
+              },
+              "&:active": {
+                boxShadow: "none",
+                backgroundColor: "#FE5614",
+                borderColor: "#FE5614",
+              },
+              "&:focus": {
+                boxShadow: "0 0 0 0.2rem rgba(254,86,20,.5)",
+              },
+            }),
+        }),
       },
     },
   },
