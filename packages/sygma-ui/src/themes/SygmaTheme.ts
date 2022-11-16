@@ -123,6 +123,7 @@ export const sygmaTheme = createTheme(theme, {
           textTransform: "none",
           color: theme.palette.common.black,
           lineHeight: 1.6,
+          boxShadow: "none",
           ...(ownerState.variant === "contained" &&
             ownerState.color === "primary" && {
               "&:hover": {
