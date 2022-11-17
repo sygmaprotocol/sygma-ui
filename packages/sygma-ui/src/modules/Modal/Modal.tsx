@@ -2,20 +2,17 @@ import React, { ReactNode, useRef } from "react";
 import {
   ITheme,
   useOnClickOutside,
-  // makeStyles,
   createStyles,
 } from "@chainsafe/common-theme";
 import { makeStyles } from "tss-react/mui";
 
 import clsx from "clsx";
-// import { CloseSvg } from "./Close.icon"
 import { ReactComponent as CloseSvg } from "../../media/Icons/close.svg";
 
 const useStyles = makeStyles()(
   ({ constants, palette, breakpoints, zIndex, transitions }) => {
     return {
       root: {
-        // position: "fixed",
         zIndex: zIndex.appBar,
         bottom: 0,
         left: 0,
@@ -55,9 +52,7 @@ const useStyles = makeStyles()(
             opacity: 1,
             visibility: "visible",
           },
-          // ...overrides?.Modal?.active,
         },
-        // ...overrides?.Modal?.root,
       },
       inner: {
         ...constants.modal.inner,
@@ -72,29 +67,23 @@ const useStyles = makeStyles()(
         "&.xs": {
           width: `calc(100% - ${constants.generalUnit * 2}px)`,
           maxWidth: breakpoints.values["xs"],
-          // ...overrides?.Modal?.inner?.size?.xs,
         },
         "&.sm": {
           width: `calc(100% - ${constants.generalUnit * 2}px)`,
           maxWidth: breakpoints.values["sm"],
-          // ...overrides?.Modal?.inner?.size?.sm,
         },
         "&.md": {
           width: `calc(100% - ${constants.generalUnit * 2}px)`,
           maxWidth: breakpoints.values["md"],
-          // ...overrides?.Modal?.inner?.size?.md,
         },
         "&.lg": {
           width: `calc(100% - ${constants.generalUnit * 2}px)`,
           maxWidth: breakpoints.values["lg"],
-          // ...overrides?.Modal?.inner?.size?.lg,
         },
         "&.xl": {
           width: `calc(100% - ${constants.generalUnit * 2}px)`,
           maxWidth: breakpoints.values["lg"],
-          // ...overrides?.Modal?.inner?.size?.xl,
         },
-        // ...overrides?.Modal?.inner?.root,
       },
       closeIcon: {
         ...constants.icon,
@@ -110,17 +99,14 @@ const useStyles = makeStyles()(
         "&.right": {
           transform: "translate(-50%, 50%)",
           right: 0,
-          // ...overrides?.Modal?.closeIcon?.right,
         },
         "&.left": {
           left: 0,
           transform: "translate(50%, -50%)",
-          // ...overrides?.Modal?.closeIcon?.left,
         },
         "&.none": {
           display: "none",
         },
-        // ...overrides?.Modal?.closeIcon?.root,
       },
     };
   }
@@ -209,5 +195,3 @@ const Modal = ({
 };
 
 export default Modal;
-
-// export { IModalProps }

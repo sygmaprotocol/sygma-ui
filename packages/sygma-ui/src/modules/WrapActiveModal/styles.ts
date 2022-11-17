@@ -1,5 +1,5 @@
-// import { makeStyles, createStyles, ITheme } from "@chainsafe/common-theme";
 import { makeStyles } from "tss-react/mui";
+
 export const useStyles = makeStyles()(({ constants, palette, transitions }) => {
   return {
     root: {
@@ -26,7 +26,6 @@ export const useStyles = makeStyles()(({ constants, palette, transitions }) => {
       marginTop: constants.generalUnit / 2,
     },
     stepIndicator: {
-      // ...typography.h4,
       height: 40,
       width: 40,
       marginRight: constants.generalUnit * 2,

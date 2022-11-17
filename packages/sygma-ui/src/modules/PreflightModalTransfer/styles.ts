@@ -1,4 +1,3 @@
-// import { makeStyles, createStyles, ITheme } from "@chainsafe/common-theme";
 import { makeStyles } from "tss-react/mui";
 
 export const useStyles = makeStyles()(({ constants, zIndex }) => {
@@ -73,7 +72,6 @@ export const useStyles = makeStyles()(({ constants, zIndex }) => {
       lineHeight: "24px",
       fontStyle: "normal",
       letterSpacing: "0.01em",
-      // textTransform: "uppercase",
       marginBottom: constants.generalUnit * 2,
     },
     backdrop: {

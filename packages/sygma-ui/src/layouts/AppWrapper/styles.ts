@@ -15,10 +15,7 @@ export const useStyles = makeStyles()(
           marginTop: 55,
         },
       },
-      inner: {
-        // paddingTop: (constants.navItemHeight as number) * 2,
-        // paddingBottom: (constants.navItemHeight as number) * 2,
-      },
+      inner: {},
       cta: {
         display: "block",
         maxWidth: 200,
@@ -28,17 +25,11 @@ export const useStyles = makeStyles()(
         right: constants.generalUnit * 3,
       },
       content: {
-        // position: "absolute",
-        // top: "50%",
-        // left: "50%",
-        // transform: "translate(-50%, -50%)",
         margin: `30px auto`,
         maxWidth: 460,
         display: "flex",
         flexDirection: "column",
         overflow: "hidden",
-        // border: "1px solid black",
-        // borderRadius: 4,
       },
       explorerMainContent: {
         width: "100%",
@@ -56,11 +47,7 @@ export const useStyles = makeStyles()(
         marginTop: 86,
       },
       navTabs: {
-        // position: "absolute",
-        // top: 0,
-        // left: 0,
         width: "100%",
-        // transform: "translate(0,-100%)",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
@@ -74,22 +61,15 @@ export const useStyles = makeStyles()(
           padding: `${constants.generalUnit}px ${
             constants.generalUnit * 1.5
           }px`,
-          // border: `1px solid ${palette.additional["gray"][7]}`,
           textDecoration: "none",
           marginRight: constants.generalUnit,
           transitionDuration: `${transitions.duration.standard}ms`,
-          // color: palette.additional["gray"][8],
           maxHeight: 42,
           "& svg": {
             transitionDuration: `${transitions.duration.standard}ms`,
-            // fill: palette.additional["gray"][8],
           },
           "&.active": {
-            // color: palette.additional["gray"][9],
             textDecoration: "underline",
-            "& svg": {
-              // fill: palette.additional["geekblue"][5],
-            },
           },
           "& > *:first-of-type": {
             marginRight: constants.generalUnit,

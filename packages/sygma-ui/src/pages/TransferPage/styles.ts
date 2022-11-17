@@ -34,9 +34,7 @@ export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
     },
     networkName: {
       padding: `${8 * 2}px ${8 * 1.5}px`,
-      // border: `1px solid ${palette.additional["gray"][6]}`,
       borderRadius: 2,
-      // color: palette.additional["gray"][9],
       marginTop: 8,
       marginBottom: 8 * 3,
     },
@@ -46,56 +44,21 @@ export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
       },
     },
     currencySection: {
-      // display: "flex",
-      // flexDirection: "row",
-      // justifyContent: "space-between",
-      // alignItems: "flex-end",
       marginBottom: "20px",
     },
-    tokenInputArea: {
-      // display: "flex",
-      // flexDirection: "row",
-      // alignItems: "flex-end",
-      // justifyContent: "space-around",
-    },
-    tokenInputSection: {
-      // width: "50%",
-    },
-    tokenInput: {
-      // // margin: 0,
-      // "& > div": {
-      //   // height: 32,
-      //   "& input": {
-      //     borderBottomRightRadius: 0,
-      //     borderTopRightRadius: 0,
-      //     borderRight: 0,
-      //   },
-      // },
-      // "& span:last-child.error": {
-      //   position: "absolute",
-      //   width: "calc(100% + 62px)",
-      // },
-    },
+    tokenInputArea: {},
+    tokenInputSection: {},
+    tokenInput: {},
     maxButton: {
       border: "1px solid #FE5614",
       height: 32,
       color: "#FE5614",
-
       left: -1,
-      // color: palette.additional["gray"][8],
-      // backgroundColor: palette.additional["gray"][3],
-      // borderColor: palette.additional["gray"][6],
       "&:hover": {
         borderColor: "#FE5614",
-        // backgroundColor: palette.additional["gray"][7],
-        // color: palette.common.white.main,
-      },
-      "&:focus": {
-        // borderColor: palette.additional["gray"][6],
       },
     },
     currencySelector: {
-      // width: "50%",
       paddingRight: 8,
       "& *": {
         cursor: "pointer",
@@ -147,7 +110,6 @@ export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
       "& > *": {
         display: "block",
         width: "50%",
-        // color: palette.additional["gray"][8],
         marginBottom: 8 / 2,
         "&:nth-child(even)": {
           textAlign: "right",

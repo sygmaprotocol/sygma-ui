@@ -1,4 +1,3 @@
-// import { makeStyles, createStyles, ITheme } from "@chainsafe/common-theme";
 import { makeStyles } from "tss-react/mui";
 
 export const useStyles = makeStyles()(
@@ -109,7 +108,6 @@ export const useStyles = makeStyles()(
         letterSpacing: "0.01em",
       },
       stepIndicator: {
-        // ...typography.h4,
         height: 40,
         width: 40,
         marginRight: constants.generalUnit * 2,
@@ -123,7 +121,6 @@ export const useStyles = makeStyles()(
         lineHeight: "24px",
         fontStyle: "normal",
         letterSpacing: "0.01em",
-        // background: "#E9E4DD",
         "& svg": {
           height: 20,
           width: 20,
@@ -168,7 +165,6 @@ export const useStyles = makeStyles()(
         lineHeight: "24px",
         fontStyle: "normal",
         letterSpacing: "0.01em",
-        // textTransform: "uppercase",
         width: "232px",
         height: "49px",
       },

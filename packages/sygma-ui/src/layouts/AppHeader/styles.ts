@@ -22,11 +22,7 @@ export const useStyles = makeStyles()((theme) => {
         maxWidth: "100%",
       },
     },
-    state: {
-      // display: "flex",
-      // flexDirection: "row",
-      // alignItems: "center",
-    },
+    state: {},
     indicator: {
       display: "block",
       height: 16,

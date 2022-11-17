@@ -2,7 +2,6 @@ import React from "react";
 import clsx from "clsx";
 import {
   ITheme,
-  // makeStyles,
   createStyles,
   useOnClickOutside,
 } from "@chainsafe/common-theme";
@@ -33,9 +32,7 @@ const useStyles = makeStyles<IStyleProps>()(
             opacity: 1,
             visibility: "visible",
             transform: "translateY(0)",
-            // ...overrides?.Drawer?.position?.top?.open
           },
-          // ...overrides?.Drawer?.position?.top?.root
         },
         "&.right": {
           right: 0,
@@ -47,9 +44,7 @@ const useStyles = makeStyles<IStyleProps>()(
             opacity: 1,
             visibility: "visible",
             transform: "translateX(0)",
-            // ...overrides?.Drawer?.position?.right?.open
           },
-          // ...overrides?.Drawer?.position?.right?.root
         },
         "&.bottom": {
           bottom: 0,
@@ -61,9 +56,7 @@ const useStyles = makeStyles<IStyleProps>()(
             opacity: 1,
             visibility: "visible",
             transform: "translateY(0)",
-            // ...overrides?.Drawer?.position?.bottom?.open
           },
-          // ...overrides?.Drawer?.position?.bottom?.root
         },
         "&.left": {
           left: 0,
@@ -75,11 +68,8 @@ const useStyles = makeStyles<IStyleProps>()(
             opacity: 1,
             visibility: "visible",
             transform: "translateX(0)",
-            // ...overrides?.Drawer?.position?.left?.open
           },
-          // ...overrides?.Drawer?.position?.left?.root
         },
-        // ...overrides?.Drawer?.root
       },
       backdrop: {
         transition: `all ${transitions.duration.standard}ms`,
@@ -96,11 +86,8 @@ const useStyles = makeStyles<IStyleProps>()(
           background: "#BFBFBF",
           "&.transparent": {
             background: "transparent",
-            // ...overrides?.Drawer?.backdrop?.transparent
           },
-          // ...overrides?.Drawer?.backdrop?.open
         },
-        // ...overrides?.Drawer?.backdrop?.root
       },
     };
   }
