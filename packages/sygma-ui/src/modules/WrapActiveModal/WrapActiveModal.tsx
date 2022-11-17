@@ -25,7 +25,7 @@ const WrapActiveModal: React.FC<IWrapActiveModalProps> = ({
   close,
   action,
 }: IWrapActiveModalProps) => {
-  const classes = useStyles();
+  const { classes } = useStyles();
   const { homeConfig } = useSygma();
 
   return (

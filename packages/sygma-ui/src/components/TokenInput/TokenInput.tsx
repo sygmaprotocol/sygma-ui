@@ -1,6 +1,5 @@
 import React from "react";
 import { useController } from "react-hook-form";
-// import { Button, FormikTextInput } from "@chainsafe/common-components";
 import { Tokens } from "@chainsafe/web3-context/dist/context/tokensReducer";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";

@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 
 const NetworkSelectModal = () => {
-  const classes = useStyles();
+  const { classes } = useStyles();
   const { isReady, chains } = useSygma();
   const { walletType, setWalletType } = useWeb3();
   const { savedWallet } = useWeb3();

@@ -11,7 +11,7 @@ const CustomModal: React.FC<ICustomModalProps> = ({
   className,
   ...rest
 }: ICustomModalProps) => {
-  const classes = useStyles();
+  const { classes } = useStyles();
 
   return (
     <Modal className={clsx(classes.root, className)} {...rest}>

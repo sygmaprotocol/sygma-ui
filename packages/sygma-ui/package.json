@@ -14,7 +14,7 @@
     "@chainsafe/web3-context": "1.2.0",
     "@fusion-icons/react": "0.0.0",
     "@hookform/resolvers": "^2.8.4",
-    "@material-ui/styles": "4.10.0",
+    "tss-react": "4.4.4",
     "@mui/icons-material": "^5.2.1",
     "@mui/lab": "^5.0.0-alpha.57",
     "@mui/material": "^5.2.1",

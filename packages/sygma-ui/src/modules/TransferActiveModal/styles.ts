@@ -1,30 +1,30 @@
-import { makeStyles, createStyles, ITheme } from "@chainsafe/common-theme";
+import { makeStyles } from "tss-react/mui";
 
-export const useStyles = makeStyles(
-  ({ animation, constants, palette, typography }: ITheme) =>
-    createStyles({
+export const useStyles = makeStyles()(
+  ({ constants, transitions, palette, typography }) => {
+    return {
       "@global": {
         "@keyframes pulsate": {
-          '0%': {
+          "0%": {
             filter: "blur(0)",
-            transition: "filter ease-in"
+            transition: "filter ease-in",
           },
-          '25%': {
-            filter: 'blur(4px)',
-            transition: "filter ease-in"
-          },
-          '50%': {
-            filter: "blur(8px)",
-            transition: "filter ease-out"
-          },
-          '75%': {
+          "25%": {
             filter: "blur(4px)",
-            transition: "filter ease-out"
+            transition: "filter ease-in",
           },
-          '100%': {
+          "50%": {
+            filter: "blur(8px)",
+            transition: "filter ease-out",
+          },
+          "75%": {
+            filter: "blur(4px)",
+            transition: "filter ease-out",
+          },
+          "100%": {
             filter: "blur(0)",
-            transition: "filter ease-out"
-          }
+            transition: "filter ease-out",
+          },
         },
       },
       root: {
@@ -33,8 +33,8 @@ export const useStyles = makeStyles(
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
-          alignItems: "center"
-        }
+          alignItems: "center",
+        },
       },
       mainContainer: {
         height: "100%",
@@ -42,10 +42,10 @@ export const useStyles = makeStyles(
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
       },
       elipsisContent: {
-        display: 'grid'
+        display: "grid",
       },
       elipsis: {
         borderRadius: "50%",
@@ -56,7 +56,7 @@ export const useStyles = makeStyles(
         justifyContent: "center",
         alignItems: "center",
         gridRow: 1,
-        gridColumn: 1
+        gridColumn: 1,
       },
       elipsisTransferring: {
         border: "2px solid #1D9A52",
@@ -68,15 +68,15 @@ export const useStyles = makeStyles(
       },
       elipsisError: {
         border: "2px solid red",
-        animation: 'unset'
+        animation: "unset",
       },
       svgIcon: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
         gridColumn: 1,
-        gridRow: 1
+        gridRow: 1,
       },
       inner: {
         width: "100% !important",
@@ -86,20 +86,21 @@ export const useStyles = makeStyles(
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        padding: `${constants.generalUnit * 5}px ${constants.generalUnit * 3.5
-          }px`,
+        padding: `${constants.generalUnit * 5}px ${
+          constants.generalUnit * 3.5
+        }px`,
         bottom: 0,
         top: "unset !important",
         transform: "unset !important",
         left: "0 !important",
         border: "none",
         borderRadius: 0,
-        transitionDuration: `${animation.transform}ms`,
+        transitionDuration: `${transitions.duration.standard}ms`,
       },
       heading: {
         marginBottom: constants.generalUnit,
         whiteSpace: "nowrap",
-        color: '#FF7A45',
+        color: "#FF7A45",
         fontWeight: 700,
         fontSize: "16px",
         lineHeight: "24px",
@@ -107,7 +108,6 @@ export const useStyles = makeStyles(
         letterSpacing: "0.01em",
       },
       stepIndicator: {
-        ...typography.h4,
         height: 40,
         width: 40,
         marginRight: constants.generalUnit * 2,
@@ -121,7 +121,6 @@ export const useStyles = makeStyles(
         lineHeight: "24px",
         fontStyle: "normal",
         letterSpacing: "0.01em",
-        // background: "#E9E4DD",
         "& svg": {
           height: 20,
           width: 20,
@@ -140,38 +139,40 @@ export const useStyles = makeStyles(
         alignItems: "baseline",
         marginTop: "81px",
         width: "100%",
-        justifyContent: "center"
+        justifyContent: "center",
       },
       transferCompletedContainer: {
         display: "flex",
-        flexDirection: "column"
+        flexDirection: "column",
       },
       buttons: {
         "& > *": {
           textDecoration: "none",
           marginRight: constants.generalUnit,
+          display: "flex",
+          justifyContent: "center",
         },
       },
       button: {
-        backgroundColor: 'white !important',
-        border: '2px solid #FF7A45',
-        borderRadius: '8px',
-        boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.1)',
-        color: '#FF7A45',
-        fontSize: '16px',
+        backgroundColor: "white !important",
+        border: "2px solid #FF7A45",
+        borderRadius: "8px",
+        boxShadow:
+          "0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.1)",
+        color: "#FF7A45",
+        fontSize: "16px",
         fontWeight: 400,
-        lineHeight: '24px',
-        fontStyle: 'normal',
-        letterSpacing: '0.01em',
-        textTransform: 'uppercase',
+        lineHeight: "24px",
+        fontStyle: "normal",
+        letterSpacing: "0.01em",
         width: "232px",
-        height: "49px"
+        height: "49px",
       },
       initCopy: {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        "& > *:first-child": {
+        "& > *:first-of-type": {
           marginTop: constants.generalUnit * 3.5,
           marginBottom: constants.generalUnit * 8,
         },
@@ -182,7 +183,7 @@ export const useStyles = makeStyles(
         flexDirection: "row",
         marginTop: constants.generalUnit,
         "& > *": {
-          "&:first-child": {
+          "&:first-of-type": {
             whiteSpace: "nowrap",
             overflow: "hidden",
             textOverflow: "ellipsis",
@@ -231,10 +232,10 @@ export const useStyles = makeStyles(
         },
       },
       transferAbortedContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
       },
       errorMessage: {
         fontWeight: 400,
@@ -242,7 +243,8 @@ export const useStyles = makeStyles(
         fontSize: "14px",
         lineHeight: "24px",
         color: "#979797",
-        textAlign: 'center'
-      }
-    })
+        textAlign: "center",
+      },
+    };
+  }
 );

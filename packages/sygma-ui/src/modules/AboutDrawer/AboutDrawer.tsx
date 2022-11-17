@@ -13,7 +13,7 @@ const AboutDrawer: React.FC<IAboutDrawerProps> = ({
   open,
   close,
 }: IAboutDrawerProps) => {
-  const classes = useStyles();
+  const { classes } = useStyles();
 
   return (
     <CustomDrawer onClose={close} open={open} className={classes.root}>

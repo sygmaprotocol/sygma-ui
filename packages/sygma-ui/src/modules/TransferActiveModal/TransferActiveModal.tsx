@@ -56,7 +56,7 @@ const getTransactionStateIndicator = (status?: TransactionStatus) => {
 const getTransactionStateHeader = (
   status?: TransactionStatus,
   depositVotes?: number,
-  relayerThreshold?: number,
+  relayerThreshold?: number
 ) => {
   const transactionStatuses: { [key: string]: JSX.Element } = {
     "Initializing Transfer": (
@@ -65,17 +65,17 @@ const getTransactionStateHeader = (
           Initializing Transfer
         </h3>
         <p
-            style={{
-              fontStyle: "normal",
-              fontWeight: 300,
-              fontSize: "16px",
-              lineHeight: "24px",
-              letterSpacing: "0.01em",
-              color: "#979797",
-            }}
-          >
-            Deposit pending...
-          </p>
+          style={{
+            fontStyle: "normal",
+            fontWeight: 300,
+            fontSize: "16px",
+            lineHeight: "24px",
+            letterSpacing: "0.01em",
+            color: "#979797",
+          }}
+        >
+          Deposit pending...
+        </p>
       </div>
     ),
     "In Transit": (
@@ -91,11 +91,11 @@ const getTransactionStateHeader = (
         ) : (
           <p
             style={{
-            fontStyle: "normal",
-            fontWeight: 300,
-            fontSize: "16px",
-            lineHeight: "24px",
-            letterSpacing: "0.01em",
+              fontStyle: "normal",
+              fontWeight: 300,
+              fontSize: "16px",
+              lineHeight: "24px",
+              letterSpacing: "0.01em",
               color: "#979797",
             }}
           >
@@ -124,7 +124,7 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
   open,
   close,
 }: ITransferActiveModalProps) => {
-  const classes = useStyles();
+  const { classes } = useStyles();
   const { savedWallet, resetOnboard, dispatcher, onboard } = useLocalWeb3();
   const {
     transactionStatus,
@@ -205,7 +205,7 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
           </div>
         </section>
         <section className={classes.content}>
-      <section>
+          <section>
             <div
               className={
                 transactionStatus !== "Transfer Aborted"
@@ -213,16 +213,16 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
                   : clsx(classes.stepIndicator, classes.stepIndicatorError)
               }
             >
-          {getTransactionStateIndicator(transactionStatus)}
-        </div>
-      </section>
-        <Typography className={classes.heading} variant="h5" component="h5">
-          {getTransactionStateHeader(transactionStatus, relayerThreshold)}
-        </Typography>
+              {getTransactionStateIndicator(transactionStatus)}
+            </div>
+          </section>
+          <Typography className={classes.heading} variant="h5" component="h5">
+            {getTransactionStateHeader(transactionStatus, relayerThreshold)}
+          </Typography>
         </section>
         <section className={classes.warningMsg}>
-        {getTransactionStateBody(transactionStatus)}
-      </section>
+          {getTransactionStateBody(transactionStatus)}
+        </section>
       </div>
     </CustomModal>
   );

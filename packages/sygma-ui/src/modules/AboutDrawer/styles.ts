@@ -1,7 +1,7 @@
-import { makeStyles, createStyles, ITheme } from "@chainsafe/common-theme";
+import { makeStyles } from "tss-react/mui";
 
-export const useStyles = makeStyles(({ constants }: ITheme) =>
-  createStyles({
+export const useStyles = makeStyles()(({ constants }) => {
+  return {
     root: {
       display: "flex",
       flexDirection: "column",
@@ -43,5 +43,5 @@ export const useStyles = makeStyles(({ constants }: ITheme) =>
         textDecoration: "none",
       },
     },
-  })
-);
+  };
+});
