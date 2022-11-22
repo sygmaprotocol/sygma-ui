@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { utils, ethers } from "ethers";
 
 import { init, ErrorBoundary, showReportDialog } from "@sentry/react";
-import { ThemeSwitcher } from "@chainsafe/common-theme";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import CssBaseline from "@mui/material/CssBaseline";
@@ -16,7 +15,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import { SygmaRoutes } from "./routes";
 import { lightTheme } from "./themes/LightTheme";
-import { sygmaTheme } from "./themes/SygmaTheme";
+import { SygmaTheme } from "./themes/SygmaTheme";
 
 import {
   SygmaProvider,
@@ -109,7 +108,7 @@ const AppWrap: React.FC<{
 const App: React.FC<{}> = () => {
   const {
     __RUNTIME_CONFIG__: {
-      UI: { wrapTokenPage = false } = {},
+      UI: { nftTokenPage = false } = {},
       SYGMA: { chains },
     },
   } = window;
@@ -152,7 +151,7 @@ const App: React.FC<{}> = () => {
       )}
       onReset={() => window.location.reload()}
     >
-      <ThemeProvider theme={sygmaTheme}>
+      <ThemeProvider theme={SygmaTheme}>
         <CssBaseline />
         <LocalProvider
           networkIds={[5]}
@@ -180,8 +179,8 @@ const App: React.FC<{}> = () => {
           <BridgeProvider>
             <SygmaProvider chains={chains}>
               <Router>
-                <AppWrapper wrapTokenPage={wrapTokenPage}>
-                  <SygmaRoutes wrapTokenPage={wrapTokenPage} />
+                <AppWrapper nftTokenPage={nftTokenPage}>
+                  <SygmaRoutes wrapTokenPage={nftTokenPage} />
                 </AppWrapper>
               </Router>
             </SygmaProvider>

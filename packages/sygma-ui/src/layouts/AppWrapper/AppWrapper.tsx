@@ -27,12 +27,12 @@ import { useStyles } from "./styles";
 
 interface IAppWrapper {
   children: ReactNode | ReactNode[];
-  wrapTokenPage?: boolean;
+  nftTokenPage?: boolean;
 }
 
 const AppWrapper: React.FC<IAppWrapper> = ({
   children,
-  wrapTokenPage,
+  nftTokenPage,
 }: IAppWrapper) => {
   const { classes } = useStyles();
   const [enableNavTabs, setEnableNavTabs] = useState(true);
@@ -57,7 +57,10 @@ const AppWrapper: React.FC<IAppWrapper> = ({
     return setEnableNavTabs(true);
   }, [location]);
 
-  const routeMatch = useRouteMatch([ROUTE_LINKS.Transfer, ROUTE_LINKS.Wrap]);
+  const routeMatch = useRouteMatch([
+    ROUTE_LINKS.Transfer,
+    ROUTE_LINKS.NftTransfer,
+  ]);
   const currentTab = routeMatch?.path;
 
   return (
@@ -65,46 +68,7 @@ const AppWrapper: React.FC<IAppWrapper> = ({
       {enableNavTabs ? (
         <div>
           <AppHeader />
-          <Container>
-            <Paper
-              sx={{
-                margin: `30px auto`,
-                maxWidth: 360,
-                display: "flex",
-                flexDirection: "column",
-                overflow: "hidden",
-                boxShadow:
-                  "box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.02), 0px 1px 12px rgba(0, 0, 0, 0.12);",
-                borderRadius: "10.6667px",
-              }}
-              elevation={3}
-            >
-              {enableNavTabs && (
-                <Tabs value={currentTab} className={classes.transferTab}>
-                  <Tab
-                    icon={<TransferSvg />}
-                    iconPosition="start"
-                    label="Transfer"
-                    value={ROUTE_LINKS.Transfer}
-                    to={ROUTE_LINKS.Transfer}
-                    component={Link}
-                  />
-                  {wrapTokenPage && (
-                    <Tab
-                      icon={<GiftSvg />}
-                      iconPosition="start"
-                      label="Wrap"
-                      value={ROUTE_LINKS.Wrap}
-                      to={ROUTE_LINKS.Wrap}
-                      component={Link}
-                    />
-                  )}
-                </Tabs>
-              )}
-              <div className={classes.pageArea}>{children}</div>
-            </Paper>
-          </Container>
-
+          <Container maxWidth="md">{children}</Container>
           {/* Put CTA here */}
           {/* <a className={classes.cta} rel="noopener noreferrer" target="_blank" href="#">
         </a> */}

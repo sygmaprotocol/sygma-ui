@@ -20,6 +20,7 @@ export const useStyles = makeStyles()((theme) => {
     address: {
       display: "flex",
       alignItems: "center",
+      color: "#000",
     },
     indicator: {
       display: "block",

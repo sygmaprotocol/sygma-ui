@@ -53,7 +53,7 @@ export type SygmaConfig = {
 };
 
 export type UIConfig = {
-  wrapTokenPage: boolean;
+  nftTokenPage: boolean;
   transactionAutoUpdateInterval: number;
 };
 

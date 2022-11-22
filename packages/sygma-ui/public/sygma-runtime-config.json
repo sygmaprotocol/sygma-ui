@@ -1,5 +1,5 @@
 {
-  "UI": { "transactionAutoUpdateInterval": 5000 },
+  "UI": { "transactionAutoUpdateInterval": 5000, "nftTokenPage": true },
   "SYGMA": {
     "chains": [
       {

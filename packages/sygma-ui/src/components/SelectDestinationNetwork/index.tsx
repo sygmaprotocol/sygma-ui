@@ -27,18 +27,7 @@ const SelectDestinationNetwork: React.FC<ISelectDestinationNetwork> = ({
   };
   return (
     <FormControl sx={{ my: 2 }} fullWidth disabled={disabled}>
-      <InputLabel
-        id="select-destination-network-label"
-        sx={{
-          color: "#FE5614 !important",
-          "&.Mui-disabled": {
-            color: "#FE5614",
-            opacity: 0.4,
-          },
-        }}
-      >
-        {label}
-      </InputLabel>
+      <InputLabel id="select-destination-network-label">{label}</InputLabel>
       <Select
         labelId="select-destination-network-label"
         id="select-destination-network"
@@ -46,24 +35,7 @@ const SelectDestinationNetwork: React.FC<ISelectDestinationNetwork> = ({
         label={label}
         value={value !== undefined ? value.toString() : ""}
         sx={{
-          borderRadius: "8px",
           fontWeight: 700,
-          color: "#FE5614",
-          "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#FE5614 !important",
-            borderWidth: "2px",
-          },
-          "& .MuiSelect-iconOutlined": {
-            color: "#FE5614 !important",
-          },
-          "&.Mui-disabled": {
-            color: "#FE5614",
-            opacity: 0.4,
-          },
-          "& .Mui-disabled": {
-            color: "#FE5614",
-            opacity: 0.4,
-          },
         }}
       >
         {options.map((option: { label: any; value: any }) => (

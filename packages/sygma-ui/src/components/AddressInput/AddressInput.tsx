@@ -59,26 +59,7 @@ const AddressInput: React.FC<IAddressInput> = ({
           multiline
           rows={2}
           sx={{
-            borderRadius: "8px",
             fontWeight: 700,
-            color: "#FE5614",
-            "& .MuiInputLabel-root": {
-              color: "#FE5614",
-            },
-            "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#FE5614 !important",
-            },
-            "& .MuiSelect-iconOutlined": {
-              color: "#FE5614 !important",
-            },
-            "& .MuiInputBase-input": {
-              color: "#FE5614",
-              "-webkit-text-fill-color": "unset",
-            },
-            "& .Mui-disabled": {
-              color: "#FE5614",
-              opacity: 0.4,
-            },
           }}
         />
       </>
@@ -87,18 +68,7 @@ const AddressInput: React.FC<IAddressInput> = ({
           <FormControlLabel
             sx={{
               marginRight: 0,
-              color: "#FE5614",
               justifyContent: "space-between",
-              "& .MuiFormControlLabel-label": {
-                color: "#FE5614",
-                fontSize: "14px",
-                fontWeight: "700",
-                textAlign: "right",
-              },
-              "& .MuiFormControlLabel-label.Mui-disabled": {
-                color: "#FE5614",
-                opacity: 0.4,
-              },
             }}
             control={
               <Checkbox
@@ -106,28 +76,7 @@ const AddressInput: React.FC<IAddressInput> = ({
                 checked={stored !== undefined}
                 onChange={() => toggleReceiver()}
                 sx={{
-                  borderRadius: "8px",
                   marginLeft: "8px",
-                  fontWeight: 700,
-                  color: "#FE5614",
-                  "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#FE5614 !important",
-                  },
-                  "& .MuiSelect-iconOutlined": {
-                    color: "#FE5614 !important",
-                  },
-                  "& .MuiInputBase-input": {
-                    color: "#FE5614",
-                    "-webkit-text-fill-color": "unset",
-                    textAlign: "center",
-                  },
-                  "&.Mui-disabled": {
-                    color: "#FE5614",
-                    opacity: 0.4,
-                  },
-                  "&.Mui-checked": {
-                    color: "#FE5614",
-                  },
                 }}
               />
             }

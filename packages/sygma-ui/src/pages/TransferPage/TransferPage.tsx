@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Box from "@mui/material/Box";
-
+import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Button from "@mui/material/Button";
@@ -148,199 +148,222 @@ const TransferPage = () => {
   };
 
   return (
-    <Box className={classes.root} sx={{ p: 6, backgroundColor: "#F0F0F0" }}>
-      <HomeNetworkConnectView
-        isReady={isReady}
-        walletConnecting={walletConnecting}
-        homeConfig={homeConfig}
-        dispatcher={dispatcher}
-      />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <section>
-          <SelectDestinationNetwork
-            label="Destination Network"
-            disabled={!homeConfig || formState.isSubmitting}
-            options={destinationChains.map((dc: any) => ({
-              label: dc.name,
-              value: dc.domainId,
-            }))}
-            onChange={(value: number | undefined) => setDestinationChain(value)}
-            value={destinationChainConfig?.domainId}
-          />
-        </section>
-        <section className={classes.currencySection}>
+    <Paper
+      sx={{
+        margin: "30px auto",
+        maxWidth: 360,
+        display: "flex",
+        flexDirection: "column",
+        // overflow: "hidden",
+        background: "#F0F0F0",
+        boxShadow:
+          "box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.02), 0px 1px 12px rgba(0, 0, 0, 0.12);",
+        borderRadius: "12px",
+      }}
+      elevation={3}
+    >
+      <Box
+        className={classes.root}
+        sx={{ p: 6, backgroundColor: "#F0F0F0", borderRadius: "inherit" }}
+      >
+        <HomeNetworkConnectView
+          isReady={isReady}
+          walletConnecting={walletConnecting}
+          homeConfig={homeConfig}
+          dispatcher={dispatcher}
+        />
+        <form onSubmit={handleSubmit(onSubmit)}>
           <section>
-            <TokenSelectInput
-              control={control}
-              rules={{ required: true }}
-              tokens={tokens ?? []}
-              name="token"
-              disabled={!destinationChainConfig || formState.isSubmitting}
-              label={`Balance: `}
-              className={classes.generalInput}
-              sync={(tokenAddress) => {
-                sygmaInstance?.setSelectedToken(tokenAddress);
-                setSelectedToken(tokenAddress);
-                setPreflightDetails({
-                  ...preflightDetails,
-                  token: tokenAddress,
-                  receiver: "",
-                  tokenAmount: "0",
-                  tokenSymbol: "",
-                });
-              }}
-              setValue={setValue}
-              options={
-                tokens
-                  ? Object.keys(tokens).map((t) => ({
-                      value: t,
-                      label: (
-                        <div className={classes.tokenItem}>
-                          {tokens[t]?.imageUri && (
-                            <img
-                              src={showImageUrl(tokens[t]?.imageUri)}
-                              alt={tokens[t]?.symbol}
-                            />
-                          )}
-                          <span>{tokens[t]?.symbol || t}</span>
-                        </div>
-                      ),
-                    }))
-                  : []
+            <SelectDestinationNetwork
+              label="Destination Network"
+              disabled={!homeConfig || formState.isSubmitting}
+              options={destinationChains.map((dc: any) => ({
+                label: dc.name,
+                value: dc.domainId,
+              }))}
+              onChange={(value: number | undefined) =>
+                setDestinationChain(value)
               }
+              value={destinationChainConfig?.domainId}
             />
           </section>
-          <section>
-            <div>
-              <TokenInput
-                classNames={{
-                  input: clsx(classes.tokenInput, classes.generalInput),
-                  button: classes.maxButton,
-                }}
-                tokenSelectorKey={watchToken}
-                tokens={tokens}
-                disabled={
-                  !destinationChainConfig ||
-                  formState.isSubmitting ||
-                  !preflightDetails.token ||
-                  preflightDetails.token === ""
-                }
-                name="tokenAmount"
-                label="Amount to send"
-                setValue={setValue}
+          <section className={classes.currencySection}>
+            <section>
+              <TokenSelectInput
                 control={control}
+                rules={{ required: true }}
+                tokens={tokens ?? []}
+                name="token"
+                disabled={!destinationChainConfig || formState.isSubmitting}
+                label={`Balance: `}
+                className={classes.generalInput}
+                sync={(tokenAddress) => {
+                  sygmaInstance?.setSelectedToken(tokenAddress);
+                  setSelectedToken(tokenAddress);
+                  setPreflightDetails({
+                    ...preflightDetails,
+                    token: tokenAddress,
+                    receiver: "",
+                    tokenAmount: "0",
+                    tokenSymbol: "",
+                  });
+                }}
+                setValue={setValue}
+                options={
+                  tokens
+                    ? Object.keys(tokens).map((t) => ({
+                        value: t,
+                        label: (
+                          <div className={classes.tokenItem}>
+                            {tokens[t]?.imageUri && (
+                              <img
+                                src={showImageUrl(tokens[t]?.imageUri)}
+                                alt={tokens[t]?.symbol}
+                              />
+                            )}
+                            <span>{tokens[t]?.symbol || t}</span>
+                          </div>
+                        ),
+                      }))
+                    : []
+                }
               />
-            </div>
+            </section>
+            <section>
+              <div>
+                <TokenInput
+                  classNames={{
+                    input: clsx(classes.tokenInput, classes.generalInput),
+                    button: classes.maxButton,
+                  }}
+                  tokenSelectorKey={watchToken}
+                  tokens={tokens}
+                  disabled={
+                    !destinationChainConfig ||
+                    formState.isSubmitting ||
+                    !preflightDetails.token ||
+                    preflightDetails.token === ""
+                  }
+                  name="tokenAmount"
+                  label="Amount to send"
+                  setValue={setValue}
+                  control={control}
+                />
+              </div>
+            </section>
           </section>
-        </section>
-        <section>
-          <AddressInput
-            disabled={!destinationChainConfig || formState.isSubmitting}
-            name="receiver"
-            label="Destination Address"
-            placeholder="0x · · · · · · · · · · · · ·"
-            senderAddress={`${address}`}
-            sendToSameAccountHelper={
-              destinationChainConfig?.type === homeConfig?.type
+          <section>
+            <AddressInput
+              disabled={!destinationChainConfig || formState.isSubmitting}
+              name="receiver"
+              label="Destination Address"
+              placeholder="0x · · · · · · · · · · · · ·"
+              senderAddress={`${address}`}
+              sendToSameAccountHelper={
+                destinationChainConfig?.type === homeConfig?.type
+              }
+              setValue={setValue}
+              control={control}
+            />
+          </section>
+          <Fees
+            amountFormikName="tokenAmount"
+            className={classes.fees}
+            fee={customFee ? customFee.calculatedRate.toString() : "0"}
+            feeSymbol={
+              customFee &&
+              customFee.erc20TokenAddress &&
+              customFee.erc20TokenAddress !== ethers.constants.AddressZero
+                ? tokens[customFee.erc20TokenAddress].symbol
+                : homeConfig?.nativeTokenSymbol
             }
-            setValue={setValue}
-            control={control}
+            symbol={
+              preflightDetails && !!tokens && tokens[preflightDetails.token]
+                ? tokens[preflightDetails.token].symbol
+                : undefined
+            }
+            amount={watchAmount}
           />
-        </section>
-        <Fees
-          amountFormikName="tokenAmount"
-          className={classes.fees}
-          fee={customFee ? customFee.calculatedRate.toString() : "0"}
-          feeSymbol={
-            customFee &&
-            customFee.erc20TokenAddress &&
-            customFee.erc20TokenAddress !== ethers.constants.AddressZero
-              ? tokens[customFee.erc20TokenAddress].symbol
-              : homeConfig?.nativeTokenSymbol
-          }
-          symbol={
-            preflightDetails && !!tokens && tokens[preflightDetails.token]
-              ? tokens[preflightDetails.token].symbol
-              : undefined
-          }
-          amount={watchAmount}
-        />
-        <section>
-          <Button
-            disabled={!destinationChainConfig || formState.isSubmitting}
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{
-              py: 1.5,
-              backgroundColor: "#f0f0f0",
-              color: "#FF7A45",
-              border: "2px solid #FF7A45",
-              borderRadius: "8px",
-              boxShadow:
-                "0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.1)",
-              ":hover": {
-                backgroundColor: "#FF7A45",
-                color: "#fff",
-              },
-              "&.Mui-disabled": {
-                border: "none",
-                backgroundColor: "transparent",
+          <section>
+            <Button
+              disabled={!destinationChainConfig || formState.isSubmitting}
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{
+                py: 1.5,
+                backgroundColor: "#f0f0f0",
+                color: "#FF7A45",
+                border: "2px solid #FF7A45",
+                borderRadius: "8px",
                 boxShadow:
                   "0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.1)",
-              },
-            }}
+                ":hover": {
+                  backgroundColor: "#FF7A45",
+                  color: "#fff",
+                },
+                "&.Mui-disabled": {
+                  border: "none",
+                  backgroundColor: "transparent",
+                  boxShadow:
+                    "0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.1)",
+                },
+              }}
+            >
+              Start transfer
+            </Button>
+          </section>
+          <Stack
+            sx={{ marginTop: "40px" }}
+            direction="row"
+            alignItems="center"
+            spacing={1}
           >
-            Start transfer
-          </Button>
-        </section>
-        <Stack
-          sx={{ marginTop: "40px" }}
-          direction="row"
-          alignItems="center"
-          spacing={1}
-        >
-          <HelpOutlineIcon
-            onClick={() => setAboutOpen(true)}
-            className={classes.faqButton}
-          />
-          <a
-            className={classes.faucetLink}
-            href="https://faucet-ui-stage.buildwithsygma.com/"
-          >
-            Faucet
-          </a>
-        </Stack>
-      </form>
-      <AboutDrawer open={aboutOpen} close={() => setAboutOpen(false)} />
-      <PreflightModalTransfer
-        open={preflightModalOpen}
-        close={() => setPreflightModalOpen(false)}
-        receiver={preflightDetails?.receiver || ""}
-        sender={address || ""}
-        start={() => {
-          const paramsForDeposit = {
-            tokenAddress: preflightDetails.token,
-            amount: preflightDetails.tokenAmount,
-            recipient: preflightDetails.receiver,
-            feeData: customFee!,
-          };
+            <HelpOutlineIcon
+              onClick={() => setAboutOpen(true)}
+              className={classes.faqButton}
+            />
+            <a
+              className={classes.faucetLink}
+              href="https://faucet-ui-stage.buildwithsygma.com/"
+            >
+              Faucet
+            </a>
+          </Stack>
+        </form>
+        <AboutDrawer open={aboutOpen} close={() => setAboutOpen(false)} />
+        <PreflightModalTransfer
+          open={preflightModalOpen}
+          close={() => setPreflightModalOpen(false)}
+          receiver={preflightDetails?.receiver || ""}
+          sender={address || ""}
+          start={() => {
+            const paramsForDeposit = {
+              tokenAddress: preflightDetails.token,
+              amount: preflightDetails.tokenAmount,
+              recipient: preflightDetails.receiver,
+              feeData: customFee!,
+            };
 
-          console.log(sygmaInstance);
+            console.log(sygmaInstance);
 
-          setPreflightModalOpen(false);
-          preflightDetails && deposit(paramsForDeposit);
-        }}
-        sourceNetwork={homeConfig?.name || ""}
-        targetNetwork={destinationChainConfig?.name || ""}
-        tokenSymbol={preflightDetails?.tokenSymbol || ""}
-        value={preflightDetails?.tokenAmount || "0"}
-      />
-      <TransferActiveModal open={!!transactionStatus} close={resetForFields} />
-      {/* This is here due to requiring router */}
-      {/* <NetworkUnsupportedModal /> */}
-      <NetworkSelectModal />
-    </Box>
+            setPreflightModalOpen(false);
+            preflightDetails && deposit(paramsForDeposit);
+          }}
+          sourceNetwork={homeConfig?.name || ""}
+          targetNetwork={destinationChainConfig?.name || ""}
+          tokenSymbol={preflightDetails?.tokenSymbol || ""}
+          value={preflightDetails?.tokenAmount || "0"}
+        />
+        <TransferActiveModal
+          open={!!transactionStatus}
+          close={resetForFields}
+        />
+        {/* This is here due to requiring router */}
+        <NetworkUnsupportedModal />
+        <NetworkSelectModal />
+      </Box>
+    </Paper>
   );
 };
 export default TransferPage;
