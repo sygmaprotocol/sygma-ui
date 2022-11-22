@@ -1,2 +1,2 @@
 export { default as TransferPage } from "./TransferPage";
-export { default as WrapperPage } from "./WrapperPage";
+export { default as NftTransferPage } from "./NftTransferPage";

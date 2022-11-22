@@ -45,7 +45,7 @@ const AppHeader: React.FC<IAppHeader> = () => {
               </a>
               <Box
                 sx={{
-                  display: { xs: "none", md: "flex" },
+                  display: { xs: "none", sm: "flex", md: "flex" },
                   ml: 2,
                   background: "#DBD3C7",
                   borderRadius: 1,

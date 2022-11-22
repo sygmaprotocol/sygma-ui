@@ -1,7 +1,7 @@
-import { makeStyles, createStyles, ITheme } from "@chainsafe/common-theme";
+import { makeStyles } from "tss-react/mui";
 
-export const useStyles = makeStyles(({ constants }: ITheme) =>
-  createStyles({
+export const useStyles = makeStyles()(({ constants }) => {
+  return {
     root: {},
     input: {
       margin: 0,
@@ -13,5 +13,5 @@ export const useStyles = makeStyles(({ constants }: ITheme) =>
     checkbox: {
       marginTop: constants.generalUnit * 3,
     },
-  })
-);
+  };
+});

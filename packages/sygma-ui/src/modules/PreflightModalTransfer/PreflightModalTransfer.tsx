@@ -1,6 +1,6 @@
 import React from "react";
 import { CustomDrawer } from "../../components";
-import { Typography } from "@chainsafe/common-components";
+import Typography from "@mui/material/Typography";
 import { Button, ButtonUnstyled } from "@mui/material";
 import { shortenAddress } from "../../utils/Helpers";
 import { useStyles } from "./styles";
@@ -47,27 +47,27 @@ const PreflightModalTransfer: React.FC<IPreflightModalTransferProps> = ({
       </Typography>
       <ul className={classes.list}>
         <li>
-          <Typography variant="h5">
+          <Typography variant="body1" component="span">
             You will not be able to cancel the transaction once you submit it.
           </Typography>
         </li>
         <li>
-          <Typography variant="h5">
+          <Typography variant="body1" component="span">
             Your transaction could get stuck for an indefinite amount of time
           </Typography>
         </li>
         <li>
-          <Typography variant="h5">
+          <Typography variant="body1" component="span">
             Funds cannot be returned if they are sent to the wrong address.
           </Typography>
         </li>
         <li>
-          <Typography variant="h5">
+          <Typography variant="body1" component="span">
             The transaction fee may be higher than expected.
           </Typography>
         </li>
       </ul>
-      <Typography className={classes.agreement} variant="h5" component="p">
+      <Typography className={classes.agreement} variant="h6" component="p">
         I agree and want to send{" "}
         <strong>
           {value} {tokenSymbol}

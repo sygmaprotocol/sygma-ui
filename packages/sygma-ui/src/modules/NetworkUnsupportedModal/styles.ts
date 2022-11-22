@@ -1,7 +1,7 @@
-import { makeStyles, createStyles, ITheme } from "@chainsafe/common-theme";
+import { makeStyles } from "tss-react/mui";
 
-export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
-  createStyles({
+export const useStyles = makeStyles()(({ constants, palette }) => {
+  return {
     root: {
       width: "100%",
     },
@@ -21,7 +21,7 @@ export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
       width: 20,
       marginTop: constants.generalUnit * 0.8,
       marginRight: constants.generalUnit * 2,
-      fill: palette.additional["gray"][7],
+      fill: "#8C8C8C",
     },
     buttons: {
       display: "flex",
@@ -33,13 +33,13 @@ export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
       },
     },
     button: {
-      borderColor: palette.additional["gray"][8],
-      color: palette.additional["gray"][8],
+      borderColor: "#595959",
+      color: "#595959",
       "&:hover": {
-        borderColor: palette.additional["gray"][8],
-        backgroundColor: palette.additional["gray"][8],
-        color: palette.common.white.main,
+        borderColor: "#595959",
+        backgroundColor: "#595959",
+        color: palette.common.white,
       },
     },
-  })
-);
+  };
+});

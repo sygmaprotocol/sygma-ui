@@ -44,7 +44,7 @@ let theme = createTheme({
   },
 });
 
-export const sygmaTheme = createTheme(theme, {
+export const SygmaTheme = createTheme(theme, {
   constants: {
     generalUnit: 8,
     icon: {
@@ -62,13 +62,24 @@ export const sygmaTheme = createTheme(theme, {
   },
   palette: {
     primary: {
+      light: "#FE5614",
       main: "#FE5614",
     },
     secondary: {
+      light: "#FE5614",
       main: "#CDC2B1",
     },
     background: {
       default: "#E9E4DD",
+    },
+    text: {
+      primary: "#FE5614",
+      secondary: "#FE5614",
+      disabled: "rgba(254,86,20, 0.4)",
+    },
+    action: {
+      disabled: "rgba(254,86,20, 0.4)",
+      disabledBackground: "rgba(254,86,20, 0.4)",
     },
     additional: {
       general: {
@@ -141,6 +152,28 @@ export const sygmaTheme = createTheme(theme, {
               },
             }),
         }),
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        notchedOutline: {
+          borderColor: "#FE5614",
+          color: "#FE5614",
+        },
+      },
+    },
+    MuiSelect: {
+      styleOverrides: {
+        iconOutlined: {
+          color: "#FE5614",
+        },
+      },
+    },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        label: {
+          fontWeight: "700",
+        },
       },
     },
   },

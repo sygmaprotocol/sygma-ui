@@ -10,11 +10,11 @@ import {
   HashRouter,
 } from "react-router-dom";
 
-import { WrapperPage, TransferPage } from "../pages";
+import { NftTransferPage, TransferPage } from "../pages";
 
 export const ROUTE_LINKS = {
   Transfer: "/transfer",
-  Wrap: "/wrap",
+  NftTransfer: "/nft_transfer",
 };
 
 interface ISygmaRoutes {
@@ -26,7 +26,11 @@ const SygmaRoutes: React.FC<ISygmaRoutes> = ({ wrapTokenPage }) => {
     <Switch>
       <Route exact path={ROUTE_LINKS.Transfer} component={TransferPage} />
       {wrapTokenPage && (
-        <Route exact path={ROUTE_LINKS.Wrap} component={WrapperPage} />
+        <Route
+          exact
+          path={ROUTE_LINKS.NftTransfer}
+          component={NftTransferPage}
+        />
       )}
       <Route exact path="/">
         <Redirect to={ROUTE_LINKS.Transfer} />

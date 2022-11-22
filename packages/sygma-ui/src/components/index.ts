@@ -3,7 +3,6 @@ export { default as AddressOrLink } from "./AddressOrLink";
 export { default as CustomDrawer } from "./CustomDrawer";
 export { default as CustomModal } from "./CustomModal";
 export { default as Fees } from "./Fees";
-export { default as SimpleTokenInput } from "./SimpleTokenInput";
 export { default as TokenInput } from "./TokenInput";
 export { default as TokenSelectInput } from "./TokenSelectInput";
 export { default as SelectDestinationNetwork } from "./SelectDestinationNetwork";

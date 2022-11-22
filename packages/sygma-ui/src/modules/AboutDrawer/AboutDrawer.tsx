@@ -1,6 +1,6 @@
 import React from "react";
 import { CustomDrawer } from "../../components";
-import { Typography } from "@chainsafe/common-components";
+import Typography from "@mui/material/Typography";
 import { ButtonUnstyled } from "@mui/material";
 import { useStyles } from "./styles";
 
