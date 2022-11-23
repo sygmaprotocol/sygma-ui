@@ -1,5 +1,5 @@
 {
-  "name": "@chainsafe/sygma-ui",
+  "name": "@buildwithsygma/sygma-ui",
   "version": "1.0.0",
   "publishConfig": {
     "access": "restricted"

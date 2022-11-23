@@ -1,5 +1,5 @@
 {
-  "name": "@chainsafe/sygma-transfer-widget-example",
+  "name": "@buildwithsygma/sygma-transfer-widget-example",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
