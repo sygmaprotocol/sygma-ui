@@ -94,7 +94,7 @@ const NftTransferPage = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <Grid container spacing={2}>
-            <Grid item xs={5}>
+            <Grid item xs={12} sm={5}>
               <NetworkSelect
                 label="Home Network"
                 disabled={!!homeConfig?.domainId}
@@ -109,7 +109,7 @@ const NftTransferPage = () => {
                 value={homeConfig?.domainId}
               />
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={12} sm={2}>
               <Box
                 sx={{
                   pt: 2,
@@ -126,7 +126,7 @@ const NftTransferPage = () => {
                 />
               </Box>
             </Grid>
-            <Grid item xs={5}>
+            <Grid item xs={12} sm={5}>
               <NetworkSelect
                 label="Destination Network"
                 disabled={!homeConfig || formState.isSubmitting}
