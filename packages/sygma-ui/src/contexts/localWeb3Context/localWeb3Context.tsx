@@ -201,6 +201,7 @@ const LocalProvider = ({
     gasPrice,
     walletConnectReady,
     savedWallet,
+    showConnectionDialog,
   }: LocalWeb3State = localWeb3;
 
   useEffect(() => {
@@ -348,6 +349,7 @@ const LocalProvider = ({
         gasPrice: gasPrice ?? 0,
         isMobile: false,
         signMessage,
+        showConnectionDialog,
         dispatcher,
         walletConnectReady: walletConnectReady ?? false,
         savedWallet: savedWallet ?? "",

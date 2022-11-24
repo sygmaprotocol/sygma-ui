@@ -62,8 +62,8 @@ export const SygmaTheme = createTheme(theme, {
   },
   palette: {
     primary: {
-      light: "#FE5614",
-      main: "#FE5614",
+      light: "#FF7A45",
+      main: "#FF7A45",
     },
     secondary: {
       light: "#FE5614",
@@ -105,7 +105,7 @@ export const SygmaTheme = createTheme(theme, {
     },
   },
   shape: {
-    borderRadius: 6,
+    borderRadius: 12,
   },
   components: {
     MuiTabs: {

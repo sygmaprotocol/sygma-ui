@@ -47,11 +47,11 @@ let theme = createTheme({
 export const nftPageTheme = createTheme(theme, {
   palette: {
     primary: {
-      light: "#FE5614",
-      main: "#FE5614",
+      light: "#FF7A45",
+      main: "#FF7A45",
     },
     secondary: {
-      main: "#CDC2B1",
+      main: "#5D503C",
     },
     background: {
       default: "#E9E4DD",
@@ -59,6 +59,12 @@ export const nftPageTheme = createTheme(theme, {
     text: {
       secondary: "#000",
     },
+    action: {
+      disabledBackground: "rgba(254,86,20, 0.4)",
+    },
+  },
+  shape: {
+    borderRadius: 12,
   },
   components: {
     MuiOutlinedInput: {
@@ -80,7 +86,7 @@ export const nftPageTheme = createTheme(theme, {
         },
         select: {
           em: {
-            color: "#CDC2B1",
+            color: "#5D503C",
           },
         },
       },
@@ -90,6 +96,32 @@ export const nftPageTheme = createTheme(theme, {
         label: {
           fontWeight: "700",
         },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: ({ ownerState }: any) => ({
+          textTransform: "none",
+          color: theme.palette.common.black,
+          lineHeight: 1.6,
+          boxShadow: "none",
+          ...(ownerState.variant === "contained" &&
+            ownerState.color === "primary" && {
+              "&:hover": {
+                backgroundColor: "#FE5614",
+                borderColor: "#FE5614",
+                boxShadow: "none",
+              },
+              "&:active": {
+                boxShadow: "none",
+                backgroundColor: "#FE5614",
+                borderColor: "#FE5614",
+              },
+              "&:focus": {
+                boxShadow: "0 0 0 0.2rem rgba(254,86,20,.5)",
+              },
+            }),
+        }),
       },
     },
   },

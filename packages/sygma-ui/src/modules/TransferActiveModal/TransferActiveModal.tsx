@@ -160,9 +160,6 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
           tokenSymbol={tokenSymbol}
           destinationChainConfig={destinationChainConfig}
           savedWallet={savedWallet}
-          resetOnboard={resetOnboard}
-          dispatcher={dispatcher}
-          onboard={onboard!}
         />
       ),
       default: (

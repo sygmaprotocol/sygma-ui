@@ -1,7 +1,7 @@
 import React from "react";
 import { CustomDrawer } from "../../components";
 import Typography from "@mui/material/Typography";
-import { ButtonUnstyled } from "@mui/material";
+import ButtonUnstyled from "@mui/base/ButtonUnstyled";
 import { useStyles } from "./styles";
 
 interface IAboutDrawerProps {

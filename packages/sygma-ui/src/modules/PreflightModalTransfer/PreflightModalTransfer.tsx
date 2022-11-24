@@ -1,7 +1,8 @@
 import React from "react";
 import { CustomDrawer } from "../../components";
 import Typography from "@mui/material/Typography";
-import { Button, ButtonUnstyled } from "@mui/material";
+import Button from "@mui/material/Button";
+import ButtonUnstyled from "@mui/base/ButtonUnstyled";
 import { shortenAddress } from "../../utils/Helpers";
 import { useStyles } from "./styles";
 

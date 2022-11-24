@@ -26,7 +26,6 @@ export default function HomeNetworkSelect({
   return (
     <>
       <InputLabel
-        id="select-destination-network-label"
         color="secondary"
         sx={{
           fontWeight: 500,
@@ -40,13 +39,14 @@ export default function HomeNetworkSelect({
         <Select
           IconComponent={KeyboardArrowDownRoundedIcon}
           color="secondary"
-          labelId="select-destination-network-label"
-          id="select-destination-network"
           onChange={handleChange}
           label={label}
           value={value !== undefined ? value.toString() : "-1"}
           sx={{
             fontWeight: 700,
+            "&.disabled": {
+              opacity: 0.4,
+            },
           }}
         >
           <MenuItem disabled value="-1">
