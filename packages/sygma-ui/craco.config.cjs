@@ -1,4 +1,3 @@
-const TerserPlugin = require("terser-webpack-plugin");
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 module.exports = {
   babel: {
@@ -46,8 +45,6 @@ module.exports = {
                   },
                 },
                 parallel: 2,
-                cache: true,
-                sourceMap: true,
                 extractComments: false,
               }).apply(compiler);
             },
