@@ -17,7 +17,7 @@ import { useStyles } from "./styles";
 const ROUTE_LINKS_HEADERS = [
   { route: "/transfer", label: "Token Bridge" },
   // temporarily commented
-  // { route: "/nft_transfer", label: "NFT Bridge" },
+  { route: "/nft_transfer", label: "NFT Bridge" },
 ];
 
 interface IAppHeader {}

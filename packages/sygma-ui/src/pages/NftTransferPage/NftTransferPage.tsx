@@ -16,6 +16,8 @@ import { useStyles } from "./styles";
 import NetworkSelect from "../../components/NetworkSelect";
 import NftTokenType from "../../components/NftTokenType";
 import SelectNft from "../../components/SelectNft";
+import NftList from "../../components/NftList";
+import NftAddressInput from "../../components/NftAddressInput";
 
 export type PreflightDetails = {
   tokenAmount: string;
@@ -67,7 +69,7 @@ const NftTransferPage = () => {
     chains,
   } = useSygma();
   console.log(
-    "🚀 ~ file: NftTransferPage.tsx ~ line 68 ~ NftTransferPage ~ destinationChainConfig",
+    "🚀 ~ file: NftTransferPage.tsx ~ line 71 ~ NftTransferPage ~ destinationChainConfig",
     destinationChainConfig
   );
 
@@ -146,7 +148,7 @@ const NftTransferPage = () => {
             </Grid>
             <Grid item xs={12}>
               {isReady ? (
-                "Connected"
+                <NftList />
               ) : (
                 <SelectNft
                   connect={() =>
@@ -158,8 +160,32 @@ const NftTransferPage = () => {
                 />
               )}
             </Grid>
+
+            {isReady && (
+              <Grid item xs={12}>
+                <NftAddressInput
+                  disabled={!destinationChainConfig || formState.isSubmitting}
+                  name="receiver"
+                  label="Destination Address"
+                  placeholder="0x · · · · · · · · · · · · ·"
+                  senderAddress={`${address}`}
+                  setValue={setValue}
+                  control={control}
+                />
+              </Grid>
+            )}
+
             <Grid item xs={12}>
-              {!isReady && (
+              {isReady ? (
+                <Button
+                  disabled={!destinationChainConfig || formState.isSubmitting}
+                  type="submit"
+                  variant="contained"
+                  sx={{ px: 3, fontSize: 18 }}
+                >
+                  Transfer NFT
+                </Button>
+              ) : (
                 <Box
                   sx={{
                     py: 3,
