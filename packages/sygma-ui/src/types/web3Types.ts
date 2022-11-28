@@ -82,6 +82,7 @@ export type LocalWeb3Context = {
     message: string,
     provider: providers.Web3Provider
   ): Promise<string>;
+  showConnectionDialog?: boolean;
   dispatcher: (action: Actions) => void;
   walletConnectReady: boolean;
   savedWallet: string;
@@ -144,6 +145,7 @@ export type LocalWeb3State = {
   walletConnectReady?: boolean;
   checkWallet?: boolean;
   savedWallet?: string;
+  showConnectionDialog?: boolean;
 };
 
 export type Actions =
@@ -197,4 +199,8 @@ export type Actions =
         accounts: any;
         address: string;
       };
+    }
+  | {
+      type: "setShowConnectionDialog";
+      payload: boolean;
     };

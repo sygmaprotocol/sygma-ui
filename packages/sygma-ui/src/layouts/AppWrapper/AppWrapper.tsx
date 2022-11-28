@@ -22,6 +22,16 @@ import { ReactComponent as GlobalSvg } from "../../media/Icons/global.svg";
 import { ReactComponent as GiftSvg } from "../../media/Icons/gift.svg";
 import { ReactComponent as TransferSvg } from "../../media/Icons/transfer.svg";
 
+import { ConnectionDialog } from "../../modules";
+
+import {
+  useBridge,
+  useSygma,
+  useHomeBridge,
+  useNetworkManager,
+  useWeb3,
+} from "../../contexts";
+
 import { ROUTE_LINKS } from "../../routes";
 import { useStyles } from "./styles";
 
@@ -36,6 +46,8 @@ const AppWrapper: React.FC<IAppWrapper> = ({
 }: IAppWrapper) => {
   const { classes } = useStyles();
   const [enableNavTabs, setEnableNavTabs] = useState(true);
+
+  const { isReady, showConnectionDialog, dispatcher } = useWeb3();
 
   const location = useLocation();
   const history = useHistory();
@@ -72,6 +84,15 @@ const AppWrapper: React.FC<IAppWrapper> = ({
           {/* Put CTA here */}
           {/* <a className={classes.cta} rel="noopener noreferrer" target="_blank" href="#">
         </a> */}
+          {!isReady && (
+            <ConnectionDialog
+              dispatcher={dispatcher}
+              open={Boolean(showConnectionDialog)}
+              handleClose={() =>
+                dispatcher({ type: "setShowConnectionDialog", payload: false })
+              }
+            />
+          )}
         </div>
       ) : (
         <div className={classes.explorerMainContent}>

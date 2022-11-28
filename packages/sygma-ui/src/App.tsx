@@ -26,7 +26,6 @@ import {
 import { sygmaConfig } from "./sygmaConfig";
 import { AppWrapper } from "./layouts";
 import { getSygmaConfig } from "./getSygmaConfig";
-import "./font-faces.css";
 
 if (
   process.env.NODE_ENV === "production" &&
@@ -134,59 +133,65 @@ const App: React.FC<{}> = () => {
   return (
     <ErrorBoundary
       fallback={({ error, componentStack, eventId, resetError }) => (
-        <div>
-          <p>
-            An error occurred and has been logged. If you would like to provide
-            additional info to help us debug and resolve the issue, click the
-            "Provide Additional Details" button
-          </p>
-          <p>{error?.message.toString()}</p>
-          <p>{componentStack}</p>
-          <p>{eventId}</p>
-          <button onClick={() => showReportDialog({ eventId: eventId || "" })}>
-            Provide Additional Details
-          </button>
-          <button onClick={resetError}>Reset error</button>
-        </div>
+        <>
+          <div>
+            <p>
+              An error occurred and has been logged. If you would like to
+              provide additional info to help us debug and resolve the issue,
+              click the "Provide Additional Details" button
+            </p>
+            <p>{error?.message.toString()}</p>
+            <p>{componentStack}</p>
+            <p>{eventId}</p>
+            <button
+              onClick={() => showReportDialog({ eventId: eventId || "" })}
+            >
+              Provide Additional Details
+            </button>
+            <button onClick={resetError}>Reset error</button>
+          </div>
+        </>
       )}
       onReset={() => window.location.reload()}
     >
-      <ThemeProvider theme={SygmaTheme}>
-        <CssBaseline />
-        <LocalProvider
-          networkIds={[5]}
-          checkNetwork={false}
-          tokensToWatch={tokens}
-          onboardConfig={{
-            walletSelect: {
-              wallets: [
-                { walletName: "metamask" },
-                {
-                  walletName: "walletConnect",
-                  rpc: { ...rpcUrls },
-                  bridge: "https://bridge.walletconnect.org",
-                },
-              ],
-            },
-            subscriptions: {
-              network: (network: any) =>
-                network && console.log("domainId: ", network),
-              balance: (amount: any) =>
-                amount && console.log("balance: ", utils.formatEther(amount)),
-            },
-          }}
-        >
-          <BridgeProvider>
-            <SygmaProvider chains={chains}>
-              <Router>
-                <AppWrapper nftTokenPage={nftTokenPage}>
-                  <SygmaRoutes wrapTokenPage={nftTokenPage} />
-                </AppWrapper>
-              </Router>
-            </SygmaProvider>
-          </BridgeProvider>
-        </LocalProvider>
-      </ThemeProvider>
+      <>
+        <ThemeProvider theme={SygmaTheme}>
+          <CssBaseline />
+          <LocalProvider
+            networkIds={[5]}
+            checkNetwork={false}
+            tokensToWatch={tokens}
+            onboardConfig={{
+              walletSelect: {
+                wallets: [
+                  { walletName: "metamask" },
+                  {
+                    walletName: "walletConnect",
+                    rpc: { ...rpcUrls },
+                    bridge: "https://bridge.walletconnect.org",
+                  },
+                ],
+              },
+              subscriptions: {
+                network: (network: any) =>
+                  network && console.log("domainId: ", network),
+                balance: (amount: any) =>
+                  amount && console.log("balance: ", utils.formatEther(amount)),
+              },
+            }}
+          >
+            <BridgeProvider>
+              <SygmaProvider chains={chains}>
+                <Router>
+                  <AppWrapper nftTokenPage={nftTokenPage}>
+                    <SygmaRoutes wrapTokenPage={nftTokenPage} />
+                  </AppWrapper>
+                </Router>
+              </SygmaProvider>
+            </BridgeProvider>
+          </LocalProvider>
+        </ThemeProvider>
+      </>
     </ErrorBoundary>
   );
 };

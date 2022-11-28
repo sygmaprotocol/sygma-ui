@@ -26,21 +26,12 @@ export default function HomeNetworkConnectView({
 }: HomeNetworkConnectViewProps) {
   const { classes } = useStyles();
 
-  const [open, setOpen] = React.useState(false);
-
   const handleClickOpen = () => {
-    setOpen(true);
+    dispatcher({ type: "setShowConnectionDialog", payload: true });
   };
-  const handleClose = () => {
-    setOpen(false);
-  };
+
   return (
     <>
-      <ConnectionDialog
-        dispatcher={dispatcher}
-        open={open}
-        handleClose={handleClose}
-      />
       <div className={classes.walletArea}>
         {!isReady && (
           <Button

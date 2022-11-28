@@ -1,5 +1,5 @@
 {
-  "name": "@chainsafe/explorer-ui",
+  "name": "@buildwithsygma/explorer-ui",
   "version": "1.0.0",
   "publishConfig": {
     "access": "restricted"

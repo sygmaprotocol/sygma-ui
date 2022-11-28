@@ -30,19 +30,11 @@ export default function TopBarNetworkConnect({
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
+    dispatcher({ type: "setShowConnectionDialog", payload: true });
   };
 
   return (
     <>
-      <ConnectionDialog
-        dispatcher={dispatcher}
-        open={open}
-        handleClose={handleClose}
-      />
       <section className={classes.state}>
         {!isReady ? (
           <Button

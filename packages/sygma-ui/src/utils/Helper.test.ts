@@ -1,4 +1,3 @@
-import { transfersReducer } from "../contexts/Reducers/TransfersReducer";
 import { computeTransferDetails } from "./Helpers";
 import {
   testResponse,
