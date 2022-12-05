@@ -1,6 +1,5 @@
 import { Dispatch } from "react";
 import { BigNumber, Event } from "ethers";
-import { Bridge, BridgeFactory } from "@chainsafe/chainbridge-contracts";
 import { BridgeConfig } from "../../../sygmaConfig";
 import { TransactionStatus } from "../../NetworkManagerContext";
 import {
@@ -23,8 +22,7 @@ const handleProposalEvent = (
   depositVotes: any,
   transferTxHash: string,
   depositNonce: number
-): Bridge => {
-  // const { from, to } = computedDirections;
+) => {
   const listersCount =
     sygmaInstance.proposalExecutionEventListenerCount("chain2");
   if (listersCount === 0) {

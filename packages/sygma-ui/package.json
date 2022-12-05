@@ -10,6 +10,7 @@
     "@celo-tools/celo-ethers-wrapper": "^0.0.5",
     "@chainsafe/common-theme": "1.0.10",
     "@buildwithsygma/sygma-sdk-core": "1.0.4",
+    "@buildwithsygma/sygma-contracts": "1.0.0",
     "@chainsafe/web3-context": "1.2.0",
     "@fusion-icons/react": "0.0.0",
     "@hookform/resolvers": "^2.8.4",
@@ -71,7 +72,9 @@
     "pretty-quick": "3.0.2",
     "typescript": "^4.5.2",
     "@types/react-combine-reducers": "^1.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.44.0"
+    "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "source-map-explorer": "^2.5.3",
+    "webpack-bundle-analyzer": "^4.7.0"
   },
   "scripts": {
     "start": "BROWSER=none craco --max_old_space_size=4096 start",

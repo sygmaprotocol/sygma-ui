@@ -1,4 +1,5 @@
 export type TokenConfig = {
+  type: string;
   address: string;
   name?: string;
   symbol?: string;
@@ -36,10 +37,6 @@ export type EvmBridgeConfig = BridgeConfig & {
   blockExplorer?: string;
   defaultGasPrice?: number;
   deployedBlockNumber?: number;
-  feeSettings: {
-    type: "basic" | "feeOracle" | "none";
-    address: string;
-  };
 };
 
 export type FeeOracleData = {

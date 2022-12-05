@@ -26,6 +26,8 @@ const makeDeposit =
     recipient: string;
     feeData: FeeDataResult;
   }) => {
+    // console.log("🚀 ~ file: makeDeposit.ts:24 ~ paramsForDeposit", paramsForDeposit)
+
     const tokenAddress = sygmaInstance!.setSelectedToken(
       paramsForDeposit.tokenAddress
     );
@@ -49,36 +51,51 @@ const makeDeposit =
         gasPrice
       );
       // Allowance for bridge
-      const currentAllowance = await sygmaInstance?.checkCurrentAllowance(
-        address!
-      );
+      if (token.type === "erc20") {
+        const currentAllowance = await sygmaInstance?.checkCurrentAllowance(
+          address!
+        );
 
-      // TODO extract token allowance logic to separate function
-      if (currentAllowance! < Number(paramsForDeposit.amount)) {
-        if (currentAllowance! > 0 && token.isDoubleApproval) {
+        // TODO extract token allowance logic to separate function
+        if (currentAllowance! < Number(paramsForDeposit.amount)) {
+          if (currentAllowance! > 0 && token.isDoubleApproval) {
+            await sygmaInstance!.approve({
+              amountOrIdForApproval: "0",
+            });
+          }
           await sygmaInstance!.approve({
-            amountOrIdForApproval: "0",
+            amountOrIdForApproval: paramsForDeposit.amount,
           });
         }
-        await sygmaInstance!.approve({
-          amountOrIdForApproval: paramsForDeposit.amount,
-        });
-      }
-      // Allowance for fee handler
-      const currentAllowanceForFeeHandler =
-        await sygmaInstance?.checkCurrentAllowanceForFeeHandler(address!);
 
-      if (
-        currentAllowanceForFeeHandler! <
-        Number(utils.formatUnits(paramsForDeposit.feeData.fee, 18))
-      ) {
-        console.log(
-          "request approval for fee approval",
+        // Allowance for fee handler
+        const currentAllowanceForFeeHandler =
+          await sygmaInstance?.checkCurrentAllowanceForFeeHandler(address!);
+
+        if (
+          currentAllowanceForFeeHandler! <
           Number(utils.formatUnits(paramsForDeposit.feeData.fee, 18))
+        ) {
+          console.log(
+            "request approval for fee approval",
+            Number(utils.formatUnits(paramsForDeposit.feeData.fee, 18))
+          );
+          await sygmaInstance!.approveFeeHandler({
+            amounForApproval: utils.formatUnits(
+              paramsForDeposit.feeData.fee,
+              18
+            ),
+          });
+        }
+      } else if (token.type === "erc721") {
+        const isApproved = await sygmaInstance?.getAppoved(
+          paramsForDeposit.amount
         );
-        await sygmaInstance!.approveFeeHandler({
-          amounForApproval: utils.formatUnits(paramsForDeposit.feeData.fee, 18),
-        });
+        if (!isApproved) {
+          await sygmaInstance?.approve({
+            amountOrIdForApproval: paramsForDeposit.amount,
+          });
+        }
       }
 
       const depositTx = await sygmaInstance?.deposit({

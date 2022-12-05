@@ -17,11 +17,14 @@ import {
   SygmaConfig,
   ChainType,
   TokenConfig,
+  EvmBridgeConfig,
 } from "../sygmaConfig";
 
 export type WalletType = ChainType | "select" | "unset";
 
 export type TokenInfo = {
+  type: string;
+  address: string;
   name?: string;
   symbol?: string;
   decimals: number;
@@ -92,8 +95,8 @@ export type LocalWeb3Context = {
 
   domainId?: number;
 
-  homeChainConfig: BridgeConfig | undefined;
-  destinationChainConfig: BridgeConfig | undefined;
+  homeChainConfig: EvmBridgeConfig | undefined;
+  destinationChainConfig: EvmBridgeConfig | undefined;
 
   destinationChains: Array<{ domainId: number; name: string }>;
   homeChains: HomeChains[];

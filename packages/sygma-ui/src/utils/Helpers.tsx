@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { ERC721__factory } from "@buildwithsygma/sygma-contracts";
 import ETHIcon from "../media/tokens/eth.png";
 import WETHIcon from "../media/tokens/weth.svg";
 import DAIIcon from "../media/tokens/dai.svg";
@@ -13,8 +14,9 @@ import PolkadotIcon from "../media/networks/polkadot.svg";
 import { BigNumber, BigNumberish, ethers } from "ethers";
 import { BridgeData } from "@buildwithsygma/sygma-sdk-core";
 import { DepositRecord, TransferDetails } from "../reducers/TransfersReducer";
-import { BridgeConfig, EvmBridgeConfig } from "../sygmaConfig";
-// import { DepositRecord, TransferDetails, EvmBridgeConfig } from "@chainsafe/sygma-ui-core";
+import { BridgeConfig, EvmBridgeConfig, TokenConfig } from "../sygmaConfig";
+import { Tokens, TokenInfo } from "../types";
+import { Metadata } from "../reducers";
 
 export const isCelo = (networkId?: number) =>
   [42220, 44787, 62320].includes(networkId ?? 0);
@@ -85,9 +87,7 @@ export const getTokenIcon = () => {
   return PredefinedIcons["ETHIcon"];
 };
 
-export const getNetworkIcon = (
-  config: EvmBridgeConfig | undefined
-) => {
+export const getNetworkIcon = (config: EvmBridgeConfig | undefined) => {
   if (config === undefined) {
     return undefined;
   }
@@ -96,7 +96,6 @@ export const getNetworkIcon = (
   } else {
     return EthIcon;
   }
-
 };
 
 export const formatTransferDate = (transferDate: number | undefined) =>
@@ -380,3 +379,89 @@ export const computeDirections = (
   }
   return undefined;
 };
+
+function addressEqual(a: string, b: string) {
+  return a.toLowerCase() === b.toLowerCase();
+}
+
+export async function listTokensOfOwner({
+  tokenAddress,
+  account,
+  provider,
+}: {
+  tokenAddress: string;
+  account: string;
+  provider: ethers.providers.Provider;
+}) {
+  const token = ERC721__factory.connect(tokenAddress, provider);
+
+  console.warn(await token.name(), "tokens owned by", account);
+
+  const sentLogs = await token.queryFilter(
+    token.filters.Transfer(account, null)
+  );
+  const receivedLogs = await token.queryFilter(
+    token.filters.Transfer(null, account)
+  );
+
+  const logs = sentLogs
+    .concat(receivedLogs)
+    .sort(
+      (a, b) =>
+        a.blockNumber - b.blockNumber || a.transactionIndex - b.transactionIndex
+    );
+
+  const owned = new Set();
+
+  for (const log of logs) {
+    const { from, to, tokenId } = log.args;
+
+    if (addressEqual(to, account)) {
+      owned.add(tokenId.toString());
+    } else if (addressEqual(from, account)) {
+      owned.delete(tokenId.toString());
+    }
+  }
+
+  return [...owned] as [string];
+}
+
+export async function getErc721Metadata(
+  tokenAddress: string,
+  tokenId: string,
+  provider: ethers.providers.Provider
+) {
+  const token = ERC721__factory.connect(tokenAddress, provider);
+  const metadataUrl = await token.tokenURI(tokenId);
+  let metadata;
+  if (metadataUrl.match(/metadata\.test/)) {
+    metadata = await (await fetch("/erc721_metadata.json")).json();
+  } else {
+    metadata = await (await fetch(metadataUrl)).json();
+  }
+
+  return { ...metadata, tokenId, tokenAddress } as Metadata;
+}
+
+export async function getErc721Urls(
+  erc721tokens: TokenConfig[],
+  address: string,
+  provider: ethers.providers.Provider
+) {
+  const result = await Promise.all(
+    erc721tokens.map(async (token) => {
+      const tokenIds = await listTokensOfOwner({
+        tokenAddress: token.address,
+        account: address,
+        provider,
+      });
+      const tokenIdsWithMetadata = await Promise.all(
+        tokenIds.map((tokenId) =>
+          getErc721Metadata(token.address, tokenId, provider)
+        )
+      );
+      return { tokenAddress: token.address, tokenIds, tokenIdsWithMetadata };
+    })
+  );
+  return result;
+}

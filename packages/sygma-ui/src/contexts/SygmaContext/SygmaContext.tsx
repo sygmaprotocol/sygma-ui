@@ -5,9 +5,8 @@ import {
   EvmBridgeConfig,
   TokenConfig,
 } from "../../sygmaConfig";
-import { Tokens } from "@chainsafe/web3-context/dist/context/tokensReducer";
 import { TransitState } from "../../reducers/TransitMessageReducer";
-import { TransactionStatus } from "../../types";
+import { Tokens, TransactionStatus } from "../../types";
 import { useWeb3 } from "../../contexts";
 import { useHomeBridge } from "../HomeBridgeContext";
 import { useDestinationBridge } from "../DestinationBridgeContext";
@@ -19,7 +18,7 @@ interface ISygmaContextProps {
 }
 
 type SygmaContext = {
-  homeConfig: BridgeConfig | undefined;
+  homeConfig: EvmBridgeConfig | undefined;
   connect: () => Promise<void>;
   handleSetHomeChain: (domainId: number) => void;
   setDestinationChain: (domainId: number | undefined) => void;

@@ -13,6 +13,7 @@
         "rpcUrl": "https://eth-goerli.g.alchemy.com/v2/wkF4rGEBspanIYTCzspMVFbOPjHP_IhL",
         "type": "Ethereum",
         "nativeTokenSymbol": "ETH",
+        "blockExplorer": "https://goerli.etherscan.io",
         "tokens": [
           {
             "type": "erc20",
@@ -39,6 +40,19 @@
               "type": "basic",
               "address": "0xeE207d75a6Bd6C7D3638B373DaEf9bCA2fa62f2f"
             }
+          },
+          {
+            "type": "erc721",
+            "address": "0xe9d3b1433bACDfC26ee097629D238A41BF6dA3aE",
+            "name": "ERC721TST",
+            "symbol": "ERC721TST",
+            "imageUri": "ETHIcon",
+            "decimals": 18,
+            "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000200",
+            "feeSettings": {
+              "type": "basic",
+              "address": "0xeE207d75a6Bd6C7D3638B373DaEf9bCA2fa62f2f"
+            }
           }
         ]
       },
@@ -53,6 +67,7 @@
         "rpcUrl": "https://polygon-mumbai.g.alchemy.com/v2/LquJll0ZH2yYtHx74WScXNSXAj8C1DsP",
         "type": "Ethereum",
         "nativeTokenSymbol": "MATIC",
+        "blockExplorer": "https://mumbai.polygonscan.com",
         "tokens": [
           {
             "type": "erc20",
@@ -79,6 +94,19 @@
               "type": "basic",
               "address": "0x9EdCBe8EBcf41af5beCC591BDfD38Bed2e377A9b"
             }
+          },
+          {
+            "type": "erc721",
+            "address": "0x4beD477d1f5D338855A521ABa2A88c9a15e2eA5d",
+            "name": "ERC721TST",
+            "symbol": "ERC721TST",
+            "imageUri": "ETHIcon",
+            "decimals": 18,
+            "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000200",
+            "feeSettings": {
+              "type": "basic",
+              "address": "0x9EdCBe8EBcf41af5beCC591BDfD38Bed2e377A9b"
+            }
           }
         ]
       },
@@ -92,6 +120,7 @@
         "rpcUrl": "https://moonbase-alpha.blastapi.io/be6f59cb-0c85-444f-b8bc-4179bd203cac",
         "type": "Ethereum",
         "nativeTokenSymbol": "DEV",
+        "blockExplorer": "https://moonbase.moonscan.io/",
         "tokens": [
           {
             "type": "erc20",
@@ -114,6 +143,19 @@
             "imageUri": "ETHIcon",
             "decimals": 18,
             "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000300",
+            "feeSettings": {
+              "type": "basic",
+              "address": "0xEABcd72E0662D3fEbd2e9148a841cD18FFCe49Ea"
+            }
+          },
+          {
+            "type": "erc721",
+            "address": "0x3D151A97A446C9ea6893038e7C0db73466f3f3af",
+            "name": "ERC721TST",
+            "symbol": "ERC721TST",
+            "imageUri": "ETHIcon",
+            "decimals": 18,
+            "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000200",
             "feeSettings": {
               "type": "basic",
               "address": "0xEABcd72E0662D3fEbd2e9148a841cD18FFCe49Ea"

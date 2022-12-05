@@ -33,11 +33,9 @@ const AddressInput: React.FC<IAddressInput> = ({
   disabled,
   ...rest
 }: IAddressInput) => {
-  // console.log("🚀 ~ file: index.tsx ~ line 36 ~ disabled", disabled)
   const { field, fieldState } = useController({ name, control });
 
   const [stored, setStored] = useState<string | undefined>();
-  // console.log("🚀 ~ file: index.tsx ~ line 40 ~ stored", stored)
 
   const toggleReceiver = useCallback(() => {
     if (stored === undefined) {
@@ -48,10 +46,10 @@ const AddressInput: React.FC<IAddressInput> = ({
       setStored(undefined);
     }
   }, [name, senderAddress, field, setStored, setValue]);
-  console.log("disabled && !stored", disabled, !stored);
+
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={7}>
+    <Grid container spacing={0}>
+      <Grid item xs={12} sm={7}>
         <InputLabel
           color="secondary"
           sx={{
@@ -66,7 +64,7 @@ const AddressInput: React.FC<IAddressInput> = ({
           <TextField
             color="secondary"
             error={!!fieldState.error}
-            helperText={fieldState.error ? fieldState.error.message : undefined}
+            helperText={fieldState.error ? fieldState.error.message : " "}
             fullWidth
             {...field}
             placeholder={placeholder}
@@ -79,10 +77,11 @@ const AddressInput: React.FC<IAddressInput> = ({
       </Grid>
       <Grid
         item
-        xs={5}
+        xs={12}
+        sm={5}
         sx={{
           display: "flex",
-          alignItems: "flex-end",
+          alignItems: "center",
           justifyContent: "flex-end",
         }}
       >
@@ -92,7 +91,7 @@ const AddressInput: React.FC<IAddressInput> = ({
           color="secondary"
           onClick={() => toggleReceiver()}
           sx={{
-            marginLeft: "8px",
+            mt: 2,
             fontWeight: 500,
             mb: 3,
           }}

@@ -1,4 +1,4 @@
-import { BridgeConfig, ChainType } from "../sygmaConfig";
+import { BridgeConfig, ChainType, EvmBridgeConfig } from "../sygmaConfig";
 
 export type WalletType = ChainType | "select" | "unset";
 
@@ -27,10 +27,10 @@ export type TransactionStatus =
 
 export type NetworkManagerState = {
   walletType: WalletType;
-  homeChainConfig?: BridgeConfig;
-  homeChains: Array<BridgeConfig>;
-  destinationChainConfig?: BridgeConfig;
-  destinationChains: Array<BridgeConfig>;
+  homeChainConfig?: EvmBridgeConfig;
+  homeChains: Array<EvmBridgeConfig>;
+  destinationChainConfig?: EvmBridgeConfig;
+  destinationChains: Array<EvmBridgeConfig>;
   transactionStatus?: TransactionStatus;
   depositNonce?: string;
   depositVotes: number; // WE ARE NO REALLY USING THIS ON THE CONTEXT PROVIDER
@@ -40,10 +40,10 @@ export type NetworkManagerState = {
 
 export type Actions =
   | { type: "setWalletType"; payload: WalletType }
-  | { type: "setHomeChainConfig"; payload: BridgeConfig | undefined }
-  | { type: "setHomeChains"; payload: Array<BridgeConfig> | [] }
-  | { type: "setDestinationChain"; payload: BridgeConfig | undefined } // TODO: CHANGE THIS FOR SETDESTINATIONCHAINCONFIG
-  | { type: "setDestinationChains"; payload: Array<BridgeConfig> | [] }
+  | { type: "setHomeChainConfig"; payload: EvmBridgeConfig | undefined }
+  | { type: "setHomeChains"; payload: Array<EvmBridgeConfig> | [] }
+  | { type: "setDestinationChain"; payload: EvmBridgeConfig | undefined } // TODO: CHANGE THIS FOR SETDESTINATIONCHAINCONFIG
+  | { type: "setDestinationChains"; payload: Array<EvmBridgeConfig> | [] }
   | { type: "setTransactionStatus"; payload: TransactionStatus | undefined }
   | { type: "addMessage"; payload: TransitMessage }
   | { type: "resetMessages" }

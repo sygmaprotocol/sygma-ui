@@ -1,23 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { ethers } from "ethers";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import { ThemeProvider } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
+import LinearProgress from "@mui/material/LinearProgress";
+
+import { FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
 
 import { nftPageTheme } from "../../themes/nftPageTheme";
 
-import { useSygma, useWeb3 } from "../../contexts";
+import { useSygma, useWeb3, useBridge, useHomeBridge } from "../../contexts";
+import { getErc721Urls } from "../../utils/Helpers";
+import { Tokens } from "../../types";
 
 import { useStyles } from "./styles";
 
 import NetworkSelect from "../../components/NetworkSelect";
 import NftTokenType from "../../components/NftTokenType";
-import SelectNft from "../../components/SelectNft";
+import NftEmpty from "../../components/NftEmpty";
 import NftList from "../../components/NftList";
+import SelectedNft from "../../components/SelectedNft";
 import NftAddressInput from "../../components/NftAddressInput";
+
+import {
+  TransferActiveModal,
+  NetworkUnsupportedModal,
+  PreflightModalTransfer,
+} from "../../modules";
+import { Fees } from "../../components";
+import makeValidationSchema from "./makeValidationSchema";
 
 export type PreflightDetails = {
   tokenAmount: string;
@@ -29,37 +45,28 @@ export type PreflightDetails = {
 const NftTransferPage = () => {
   const { classes } = useStyles();
 
-  const [homeNetworkState, setHomeNetworkState] = useState<number | undefined>(
-    undefined
-  );
-  const [destinationNetworkState, setDestinationNetworkState] = useState<
-    number | undefined
-  >(undefined);
+  const [customFee, setCustomFee] = useState<FeeDataResult>();
 
-  const { handleSubmit, control, setValue, watch, formState, reset } =
-    useForm<PreflightDetails>({
-      // resolver: yupResolver(transferSchema),
-      defaultValues: {
-        token: "",
-        tokenAmount: "0",
-        receiver: "",
-      },
-    });
-  const onSubmit: SubmitHandler<PreflightDetails> = (values) => {
-    console.log(
-      "🚀 ~ file: NftTransferPage.tsx ~ line 40 ~ NftTransferPage ~ values",
-      values
-    );
-  };
-  const { homeChains, homeChainConfig, dispatcher } = useWeb3();
+  const [selectedNft, setSelectedNft] = useState<string | undefined>(undefined);
 
+  const { erc721TokenWithIds, homeDispatch } = useHomeBridge();
+
+  const [preflightModalOpen, setPreflightModalOpen] = useState<boolean>(false);
+
+  const [preflightDetails, setPreflightDetails] = useState<PreflightDetails>({
+    receiver: "",
+    token: "",
+    tokenAmount: "0",
+    tokenSymbol: "",
+  });
+
+  const { provider, tokens, dispatcher } = useWeb3();
   const {
     deposit,
     setDestinationChain,
     transactionStatus,
     resetDeposit,
     bridgeFee,
-    tokens,
     isReady,
     homeConfig,
     destinationChainConfig,
@@ -68,15 +75,83 @@ const NftTransferPage = () => {
     checkSupplies,
     chains,
   } = useSygma();
-  console.log(
-    "🚀 ~ file: NftTransferPage.tsx ~ line 71 ~ NftTransferPage ~ destinationChainConfig",
-    destinationChainConfig
-  );
+
+  const transferSchema = makeValidationSchema({
+    preflightDetails,
+    tokens,
+    homeConfig,
+  });
+  const { handleSubmit, control, setValue, watch, formState, reset } =
+    useForm<PreflightDetails>({
+      resolver: yupResolver(transferSchema),
+      defaultValues: {
+        token: "",
+        tokenAmount: "0",
+        receiver: "",
+      },
+    });
+  const onSubmit: SubmitHandler<PreflightDetails> = (values) => {
+    setPreflightDetails({
+      ...values,
+      tokenSymbol: "",
+    });
+    setPreflightModalOpen(true);
+  };
+
+  const watchAmount = watch("tokenAmount", "0");
+  const watchToken = watch("token", "");
+  const destAddress = watch("receiver", address);
+
+  const { sygmaInstance } = useBridge();
+
+  useEffect(() => {
+    if (homeConfig && provider && address && !erc721TokenWithIds) {
+      const erc721tokens = homeConfig.tokens.filter(
+        (entry) => entry.type === "erc721"
+      );
+      getErc721Urls(erc721tokens, address, provider).then((erc721Urls) => {
+        homeDispatch({
+          type: "setErc721TokenIds",
+          erc721TokenWithIds: erc721Urls,
+        });
+      });
+    }
+  }, [erc721TokenWithIds, homeConfig]);
+
+  async function setFee(amount: string) {
+    if (sygmaInstance && amount && address) {
+      const fee = await sygmaInstance.fetchFeeData({
+        amount: amount,
+        recipientAddress: destAddress,
+      });
+      if (!(fee instanceof Error)) {
+        setCustomFee(fee);
+      }
+    }
+  }
+
+  useEffect(() => {
+    setFee(watchAmount.toString().replace(/\D/g, ""));
+  }, [watchAmount, preflightDetails]);
+
+  const resetForFields = () => {
+    setSelectedNft(undefined);
+    reset({
+      tokenAmount: "",
+      receiver: "",
+    });
+    resetDeposit();
+    homeDispatch({
+      type: "setErc721TokenIds",
+      erc721TokenWithIds: undefined,
+    });
+  };
 
   return (
     <ThemeProvider theme={nftPageTheme}>
       <Paper
         sx={{
+          position: "relative",
           margin: "30px auto",
           maxWidth: 800,
           display: "flex",
@@ -99,15 +174,11 @@ const NftTransferPage = () => {
             <Grid item xs={12} sm={5}>
               <NetworkSelect
                 label="Home Network"
-                disabled={!!homeConfig?.domainId}
+                disabled={!!homeConfig?.domainId || !isReady}
                 options={chains!.map((dc: any) => ({
                   label: dc.name,
                   value: dc.domainId,
                 }))}
-                onChange={(value: number | undefined) => {
-                  console.log(value);
-                  setHomeNetworkState(value);
-                }}
                 value={homeConfig?.domainId}
               />
             </Grid>
@@ -137,7 +208,6 @@ const NftTransferPage = () => {
                   value: dc.domainId,
                 }))}
                 onChange={(value: number | undefined) => {
-                  console.log(value);
                   setDestinationChain(value);
                 }}
                 value={destinationChainConfig?.domainId}
@@ -147,10 +217,31 @@ const NftTransferPage = () => {
               <NftTokenType />
             </Grid>
             <Grid item xs={12}>
-              {isReady ? (
-                <NftList />
-              ) : (
-                <SelectNft
+              {isReady && (
+                <>
+                  {selectedNft ? (
+                    <SelectedNft
+                      tokenId={watchAmount}
+                      setSelectedNft={setSelectedNft}
+                      setValue={setValue}
+                      tokenAddress={watchToken}
+                      tokenName={tokens[watchToken].name}
+                    />
+                  ) : erc721TokenWithIds ? (
+                    <NftList
+                      tokenWithIds={erc721TokenWithIds}
+                      setSelectedNft={setSelectedNft}
+                      setValue={setValue}
+                    />
+                  ) : (
+                    <Box sx={{ width: "100%" }}>
+                      <LinearProgress />
+                    </Box>
+                  )}
+                </>
+              )}
+              {!isReady && (
+                <NftEmpty
                   connect={() =>
                     dispatcher({
                       type: "setShowConnectionDialog",
@@ -162,23 +253,55 @@ const NftTransferPage = () => {
             </Grid>
 
             {isReady && (
-              <Grid item xs={12}>
-                <NftAddressInput
-                  disabled={!destinationChainConfig || formState.isSubmitting}
-                  name="receiver"
-                  label="Destination Address"
-                  placeholder="0x · · · · · · · · · · · · ·"
-                  senderAddress={`${address}`}
-                  setValue={setValue}
-                  control={control}
-                />
-              </Grid>
+              <>
+                <Grid item xs={12}>
+                  <NftAddressInput
+                    disabled={!destinationChainConfig || formState.isSubmitting}
+                    name="receiver"
+                    label="Destination Address"
+                    placeholder="0x · · · · · · · · · · · · ·"
+                    senderAddress={`${address}`}
+                    setValue={setValue}
+                    control={control}
+                  />
+                </Grid>
+                <Grid item xs={12} sx={{ pt: 0, pl: 2 }}>
+                  {selectedNft && (
+                    <Fees
+                      className={classes.fees}
+                      fee={
+                        customFee ? customFee.calculatedRate.toString() : "0"
+                      }
+                      feeSymbol={
+                        customFee &&
+                        customFee.erc20TokenAddress &&
+                        customFee.erc20TokenAddress !==
+                          ethers.constants.AddressZero
+                          ? tokens[customFee.erc20TokenAddress].symbol
+                          : homeConfig?.nativeTokenSymbol
+                      }
+                      symbol={
+                        preflightDetails &&
+                        !!tokens &&
+                        tokens[preflightDetails.token]
+                          ? tokens[preflightDetails.token].symbol
+                          : undefined
+                      }
+                      amount={watchAmount}
+                    />
+                  )}
+                </Grid>
+              </>
             )}
 
             <Grid item xs={12}>
               {isReady ? (
                 <Button
-                  disabled={!destinationChainConfig || formState.isSubmitting}
+                  disabled={
+                    !selectedNft ||
+                    !destinationChainConfig ||
+                    formState.isSubmitting
+                  }
                   type="submit"
                   variant="contained"
                   sx={{ px: 3, fontSize: 18 }}
@@ -213,7 +336,34 @@ const NftTransferPage = () => {
             </Grid>
           </Grid>
         </Box>
+        <TransferActiveModal
+          open={!!transactionStatus}
+          close={resetForFields}
+        />
       </Paper>
+      <PreflightModalTransfer
+        open={preflightModalOpen}
+        close={() => setPreflightModalOpen(false)}
+        receiver={preflightDetails?.receiver || ""}
+        sender={address || ""}
+        start={() => {
+          const paramsForDeposit = {
+            tokenAddress: preflightDetails.token,
+            amount: preflightDetails.tokenAmount,
+            recipient: preflightDetails.receiver,
+            feeData: customFee!,
+          };
+
+          console.log(sygmaInstance);
+
+          setPreflightModalOpen(false);
+          preflightDetails && deposit(paramsForDeposit);
+        }}
+        sourceNetwork={homeConfig?.name || ""}
+        targetNetwork={destinationChainConfig?.name || ""}
+        tokenSymbol={preflightDetails?.tokenSymbol || ""}
+        value={preflightDetails?.tokenAmount || "0"}
+      />
     </ThemeProvider>
   );
 };

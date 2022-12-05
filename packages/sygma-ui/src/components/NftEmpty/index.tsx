@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ButtonBase from "@mui/material/ButtonBase";
 
-export default function SelectNft({ connect }: { connect: any }) {
+export default function NftEmpty({ connect }: { connect: any }) {
   return (
     <Box>
       <InputLabel

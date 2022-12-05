@@ -12,10 +12,7 @@
       "version": "detect"
     }
   },
-  "extends": [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
-  ],
+  "extends": ["plugin:@typescript-eslint/recommended"],
   "plugins": ["only-warn"],
   "rules": {
     "no-unused-vars": "off"
