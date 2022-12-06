@@ -52,7 +52,7 @@ export default function InTransitBody({
         </Typography>
       </Box>
       <section className={classes.buttons}>
-        {homeConfig &&
+        {/* {homeConfig &&
           (homeConfig as EvmBridgeConfig).blockExplorer &&
           homeTransferTxHash && (
             <Button
@@ -63,7 +63,7 @@ export default function InTransitBody({
             >
               View transaction
             </Button>
-          )}
+          )} */}
       </section>
     </>
   );

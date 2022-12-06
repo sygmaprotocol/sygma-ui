@@ -8,7 +8,7 @@ import Select from "@mui/material/Select";
 import FormHelperText from "@mui/material/FormHelperText";
 import TextField from "@mui/material/TextField";
 
-import { Tokens } from "@chainsafe/web3-context/dist/context/tokensReducer";
+import { Tokens } from "../../types";
 
 interface ITokenSelectInput {
   className: any;
@@ -58,20 +58,14 @@ const TokenSelectInput: React.FC<ITokenSelectInput> = (
 
   useEffect(() => {
     // If there is only one token, auto select
-    if (Object.keys(tokens).length === 1 && field.value === "") {
-      setValue("token", Object.keys(tokens)[0]);
+    if (options.length === 1 && field.value === "") {
+      setValue("token", options[0].address);
     }
   }, [tokens, setValue, field.value]);
 
   return (
-    <Box sx={{}}>
-      <Box
-        sx={
-          {
-            // mr: 4,
-          }
-        }
-      >
+    <Box>
+      <Box>
         <FormControl disabled={disabled} fullWidth>
           <InputLabel
             id="token-select-label"
@@ -85,30 +79,7 @@ const TokenSelectInput: React.FC<ITokenSelectInput> = (
           >
             Token
           </InputLabel>
-          <Select
-            {...field}
-            label="token"
-            sx={{
-              borderRadius: "8px",
-              fontWeight: 700,
-              color: "#FE5614",
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#FE5614 !important",
-                borderWidth: "2px",
-              },
-              "& .MuiSelect-iconOutlined": {
-                color: "#FE5614 !important",
-              },
-              "&.Mui-disabled": {
-                color: "#FE5614",
-                opacity: 0.4,
-              },
-              "& .Mui-disabled": {
-                color: "#FE5614",
-                opacity: 0.4,
-              },
-            }}
-          >
+          <Select {...field} label="token">
             {options.map((option: any) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
@@ -128,26 +99,9 @@ const TokenSelectInput: React.FC<ITokenSelectInput> = (
             value={balance}
             color="primary"
             sx={{
-              borderRadius: "8px",
-              fontWeight: 700,
-              color: "#FE5614",
-              "& .MuiInputLabel-root": {
-                color: "#FE5614",
-              },
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#FE5614 !important",
-              },
-              "& .MuiSelect-iconOutlined": {
-                color: "#FE5614 !important",
-              },
               "& .MuiInputBase-input": {
-                color: "#FE5614",
                 "-webkit-text-fill-color": "unset",
                 textAlign: "center",
-              },
-              "& .Mui-disabled": {
-                color: "#FE5614",
-                opacity: 0.5,
               },
             }}
           />

@@ -1,5 +1,4 @@
-import React from "react";
-// import { Switch, Route, Redirect } from "react-router-dom";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,

@@ -40,7 +40,7 @@ export default function TransferCompleteBody({
       </Typography>
       <section className={classes.buttons}>
         <Stack direction="row" spacing={2}>
-          {homeConfig &&
+          {/* {homeConfig &&
             (homeConfig as EvmBridgeConfig).blockExplorer &&
             homeTransferTxHash && (
               <Button
@@ -51,7 +51,7 @@ export default function TransferCompleteBody({
               >
                 View transfer
               </Button>
-            )}
+            )} */}
           {savedWallet !== "WalletConnect" ? (
             <Button size="small" className={classes.button} onClick={close}>
               Start new transfer

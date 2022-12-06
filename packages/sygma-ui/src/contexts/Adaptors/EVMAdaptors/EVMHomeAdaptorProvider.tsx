@@ -3,7 +3,10 @@ import { IHomeBridgeProviderProps } from "../interfaces";
 import { HomeBridgeContext } from "../../HomeBridgeContext";
 import { getNetworkName } from "../../../utils/Helpers";
 import { useWeb3 as useLocalWeb3 } from "../../index";
-import { evmHomeReducer } from "../../../reducers/EvmHomeReducer";
+import {
+  evmHomeReducer,
+  Erc721TokenIds,
+} from "../../../reducers/EvmHomeReducer";
 
 import makeDeposit from "./makeDeposit";
 import makeWrappedToken from "./makeWrappedToken";
@@ -50,8 +53,13 @@ export const EVMHomeAdaptorProvider = ({
     networkId: 0,
     homeTransferTxHash: "",
   });
-  const { depositAmount, networkId, selectedToken, homeTransferTxHash } =
-    evmHomeState;
+  const {
+    depositAmount,
+    networkId,
+    selectedToken,
+    homeTransferTxHash,
+    erc721TokenWithIds,
+  } = evmHomeState;
 
   const setDepositAmount = (depositAmount?: number) =>
     dispatch({ type: "setDepositAmount", depositAmount });
@@ -61,6 +69,8 @@ export const EVMHomeAdaptorProvider = ({
     dispatch({ type: "setNetworkId", networkId });
   const setHomeTransferTxHash = (homeTransferTxHash: string) =>
     dispatch({ type: "setHomeTransferTxHash", homeTransferTxHash });
+  const setErc721TokenIds = (erc721TokenWithIds: Erc721TokenIds) =>
+    dispatch({ type: "setErc721TokenIds", erc721TokenWithIds });
 
   useEffect(() => {
     if (network) {
@@ -139,6 +149,8 @@ export const EVMHomeAdaptorProvider = ({
         address,
         nativeTokenBalance: ethBalance,
         handleCheckSupplies,
+        homeDispatch: dispatch,
+        erc721TokenWithIds,
       }}
     >
       {children}

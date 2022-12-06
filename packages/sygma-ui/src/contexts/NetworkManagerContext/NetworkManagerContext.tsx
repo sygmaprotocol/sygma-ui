@@ -130,6 +130,7 @@ function selectProvider(
             wrapper: undefined,
             wrapToken: async (value: number) => "",
             unwrapToken: async (value: number) => "",
+            homeDispatch: (action: any) => "",
           }}
         >
           {props.children}

@@ -1,5 +1,5 @@
 import React, { Dispatch } from "react";
-import { Tokens } from "@chainsafe/web3-context/dist/context/tokensReducer";
+import { Tokens } from "../../types";
 import { BridgeConfig, TokenConfig } from "../../sygmaConfig";
 import { Weth } from "../../Contracts/Weth";
 import {
@@ -8,6 +8,10 @@ import {
   TxIsDone,
   TransitState,
 } from "../../reducers/TransitMessageReducer";
+import {
+  EvmHomeReducerAction,
+  Erc721TokenIds,
+} from "../../reducers/EvmHomeReducer";
 import { Directions, FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
 
 export interface IHomeBridgeProviderProps {
@@ -76,8 +80,9 @@ export interface HomeChainAdaptorContext {
 
   tokens: Tokens;
 
-  // setHomeTransferTxHash: (input: string) => void;
   homeTransferTxHash?: string;
+  homeDispatch: (action: EvmHomeReducerAction) => void;
+  erc721TokenWithIds?: Erc721TokenIds;
 }
 
 export interface DestinationChainContext {

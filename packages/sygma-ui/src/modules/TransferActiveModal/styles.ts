@@ -208,7 +208,7 @@ export const useStyles = makeStyles()(
         lineHeight: "24px",
         color: "#979797",
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
         justifyContent: "center",
       },
       receipt: {
@@ -227,7 +227,6 @@ export const useStyles = makeStyles()(
           borderRadius: "0 !important",
           "&  >  *": {
             borderRadius: "0 !important",
-            background: `${palette.additional["transactionModal"][1]} !important`,
           },
         },
       },

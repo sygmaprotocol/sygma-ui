@@ -1,11 +1,7 @@
 import { Erc20DetailedFactory } from "../Contracts/Erc20DetailedFactory";
 import { BigNumber as BN } from "bignumber.js";
 import { BigNumber, ethers, utils, providers } from "ethers";
-import {
-  Actions,
-  LocalWeb3State,
-  TokenInfo,
-} from "../types";
+import { Actions, LocalWeb3State, TokenInfo } from "../types";
 
 import { API as OnboardAPI } from "bnc-onboard/dist/src/interfaces";
 import { Erc20Detailed } from "../Contracts/Erc20Detailed";
@@ -46,11 +42,11 @@ export const checkIsReady = async (
   onboard: OnboardAPI,
   dispatcher: (action: Actions) => void
 ) => {
-  console.log("check is ready")
-  let isReady: boolean | undefined
-  const { wallet } = onboard.getState()
+  console.log("check is ready");
+  let isReady: boolean | undefined;
+  const { wallet } = onboard.getState();
   try {
-    if(wallet.provider !== undefined){
+    if (wallet.provider !== undefined) {
       isReady = await onboard?.walletCheck();
       // debugger
       dispatcher({
@@ -58,9 +54,8 @@ export const checkIsReady = async (
         payload: !!isReady,
       });
     }
-
   } catch (e) {
-    console.error("ERROR CHECK IS READY", e)
+    console.error("ERROR CHECK IS READY", e);
   }
   if (!isReady) {
     dispatcher({
@@ -73,10 +68,12 @@ export const checkIsReady = async (
 
 export const resetOnboard = (
   dispatcher: (action: Actions) => void,
-  onboard: OnboardAPI,
+  onboard: OnboardAPI
 ) => {
   localStorage.removeItem("onboard.selectedWallet");
-  const { wallet: { name }} = onboard.getState()
+  const {
+    wallet: { name },
+  } = onboard.getState();
 
   dispatcher({
     type: "setIsReady",
@@ -85,14 +82,13 @@ export const resetOnboard = (
 
   // THIS IS BECAUSE THERE IS NO WAY TO CHANGE THE NETWORKS
   // USING WALLET CONNECT AND AVOIDING TO OPEN THE MODAL AGAIN
-  if(name === 'WalletConnect'){
+  if (name === "WalletConnect") {
     onboard?.walletReset();
-    localStorage.removeItem('walletconnect')
-    return window.location.reload()
+    localStorage.removeItem("walletconnect");
+    return window.location.reload();
   } else {
     return onboard?.walletReset();
   }
-
 };
 
 export const checkBalanceAndAllowance = async (
@@ -134,121 +130,44 @@ export const getTokenData = async (
   state: any,
   spenderAddress: string | undefined
 ) => {
-  let tokenContracts: Array<Erc20Detailed> = [];
+  let signer: any;
+  try {
+    signer = await state.provider.getSigner();
+  } catch (e) {
+    console.log("Error getting signer", e);
+  }
+
   networkTokens.forEach(async (token: any) => {
-    let signer
-
-    try {
-      signer = await state.provider.getSigner();
-    } catch(e){
-      console.log("Error getting signer", e)
-    }
-
-    let tokenContract: any
-    if(signer !== undefined){
-      tokenContract = Erc20DetailedFactory.connect(token.address, signer);
-    }
-
     const newTokenInfo: TokenInfo = {
-      decimals: 0,
+      type: token.type,
+      address: token.address,
+      decimals: token.decimals,
       balance: 0,
       balanceBN: new BN(0),
       imageUri: token.imageUri,
       name: token.name,
       symbol: token.symbol,
       spenderAllowance: 0,
-      allowance: tokenContract.allowance,
-      approve: tokenContract.approve,
-      transfer: tokenContract.transfer,
     };
-
-    if (!token.name) {
-      try {
-        const tokenName = await tokenContract.name();
-        newTokenInfo.name = tokenName;
-      } catch (error) {
-        console.log(
-          "There was an error getting the token name. Does this contract implement ERC20Detailed?"
-        );
-      }
-    }
-    if (!token.symbol) {
-      try {
-        const tokenSymbol = await tokenContract.symbol();
-        newTokenInfo.symbol = tokenSymbol;
-      } catch (error) {
-        console.error(
-          "There was an error getting the token symbol. Does this contract implement ERC20Detailed?"
-        );
-      }
-    }
-
-    try {
-      const tokenDecimals = await tokenContract.decimals();
-      newTokenInfo.decimals = tokenDecimals;
-    } catch (error) {
-      console.error(
-        "There was an error getting the token decimals. Does this contract implement ERC20Detailed?"
-      );
-    }
 
     dispatcher({
       type: "addToken",
       payload: { id: token.address, token: newTokenInfo },
     });
+    if (token.type === "erc20") {
+      let tokenContract: any;
+      if (signer !== undefined) {
+        tokenContract = Erc20DetailedFactory.connect(token.address, signer);
+      }
 
-    checkBalanceAndAllowance(
-      tokenContract,
-      newTokenInfo.decimals,
-      dispatcher,
-      state.address,
-      spenderAddress
-    );
-
-    const filterTokenApproval = tokenContract.filters.Approval(
-      state.address,
-      null,
-      null
-    );
-    const filterTokenTransferFrom = tokenContract.filters.Transfer(
-      state.address,
-      null,
-      null
-    );
-    const filterTokenTransferTo = tokenContract.filters.Transfer(
-      null,
-      state.address,
-      null
-    );
-
-    tokenContract.on(filterTokenApproval, () =>
       checkBalanceAndAllowance(
         tokenContract,
         newTokenInfo.decimals,
         dispatcher,
         state.address,
         spenderAddress
-      )
-    );
-    tokenContract.on(filterTokenTransferFrom, () =>
-      checkBalanceAndAllowance(
-        tokenContract,
-        newTokenInfo.decimals,
-        dispatcher,
-        state.address,
-        spenderAddress
-      )
-    );
-    tokenContract.on(filterTokenTransferTo, () =>
-      checkBalanceAndAllowance(
-        tokenContract,
-        newTokenInfo.decimals,
-        dispatcher,
-        state.address,
-        spenderAddress
-      )
-    );
-    tokenContracts.push(tokenContract);
+      );
+    }
   });
 };
 
@@ -261,20 +180,22 @@ export const getTokenDataDirect = async (
 ) => {
   let tokenContracts: Array<Erc20Detailed> = [];
   networkTokens.forEach(async (token: any) => {
-    let signer
+    let signer;
 
     try {
       signer = provider.getSigner();
-    } catch(e){
-      console.log("Error getting signer", e)
+    } catch (e) {
+      console.log("Error getting signer", e);
     }
 
-    let tokenContract: any
-    if(signer !== undefined){
+    let tokenContract: any;
+    if (signer !== undefined) {
       tokenContract = Erc20DetailedFactory.connect(token.address, signer);
     }
 
     const newTokenInfo: TokenInfo = {
+      type: token.type,
+      address: token.address,
       decimals: 0,
       balance: 0,
       balanceBN: new BN(0),
@@ -393,9 +314,7 @@ export const signMessage = async (
   return sig;
 };
 
-export async function getNetworkInfo(
-  externalProvider: providers.Web3Provider,
-) {
+export async function getNetworkInfo(externalProvider: providers.Web3Provider) {
   const signer = externalProvider.getSigner();
   const accountAddress = await signer.getAddress();
   console.log("Account:", accountAddress);
@@ -403,6 +322,6 @@ export async function getNetworkInfo(
 
   return {
     accountAddress,
-    externalNetworkInfo
-  }
+    externalNetworkInfo,
+  };
 }

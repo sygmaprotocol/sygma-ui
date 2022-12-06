@@ -211,20 +211,22 @@ const TransferPage = () => {
                 setValue={setValue}
                 options={
                   tokens
-                    ? Object.keys(tokens).map((t) => ({
-                        value: t,
-                        label: (
-                          <div className={classes.tokenItem}>
-                            {tokens[t]?.imageUri && (
-                              <img
-                                src={showImageUrl(tokens[t]?.imageUri)}
-                                alt={tokens[t]?.symbol}
-                              />
-                            )}
-                            <span>{tokens[t]?.symbol || t}</span>
-                          </div>
-                        ),
-                      }))
+                    ? Object.values(tokens)
+                        .filter((tk) => tk.type === "erc20")
+                        .map((t) => ({
+                          value: t.address,
+                          label: (
+                            <div className={classes.tokenItem}>
+                              {t?.imageUri && (
+                                <img
+                                  src={showImageUrl(t?.imageUri)}
+                                  alt={t?.symbol}
+                                />
+                              )}
+                              <span>{t?.symbol}</span>
+                            </div>
+                          ),
+                        }))
                     : []
                 }
               />
@@ -267,7 +269,7 @@ const TransferPage = () => {
             />
           </section>
           <Fees
-            amountFormikName="tokenAmount"
+            showTransferAmount
             className={classes.fees}
             fee={customFee ? customFee.calculatedRate.toString() : "0"}
             feeSymbol={

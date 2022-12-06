@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useCallback } from "react";
 import { Directions, FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
-import { BridgeConfig, sygmaConfig, ChainType } from "../../sygmaConfig";
+import { EvmBridgeConfig, sygmaConfig, ChainType } from "../../sygmaConfig";
 import {
   EVMDestinationAdaptorProvider,
   EVMHomeAdaptorProvider,
@@ -102,6 +102,7 @@ function selectProvider(
             wrapper: undefined,
             wrapToken: async (value: number) => "",
             unwrapToken: async (value: number) => "",
+            homeDispatch: (action: any) => "",
           }}
         >
           {props.children}
@@ -241,8 +242,8 @@ const LocalProvider = ({
         dispatcher({
           type: "setDestinationChains",
           payload: sygmaConfig().chains.filter(
-            (bridgeConfig: BridgeConfig) =>
-              bridgeConfig.domainId !== chain.domainId
+            (EvmBridgeConfig: EvmBridgeConfig) =>
+              EvmBridgeConfig.domainId !== chain.domainId
           ),
         });
 
@@ -250,8 +251,8 @@ const LocalProvider = ({
           dispatcher({
             type: "setDestinationChain",
             payload: sygmaConfig().chains.find(
-              (bridgeConfig: BridgeConfig) =>
-                bridgeConfig.domainId !== chain.domainId
+              (EvmBridgeConfig: EvmBridgeConfig) =>
+                EvmBridgeConfig.domainId !== chain.domainId
             ),
           });
         }
@@ -271,8 +272,8 @@ const LocalProvider = ({
         dispatcher({
           type: "setHomeChains",
           payload: sygmaConfig().chains.filter(
-            (bridgeConfig: BridgeConfig) =>
-              bridgeConfig.type === networkManager.walletType
+            (EvmBridgeConfig: EvmBridgeConfig) =>
+              EvmBridgeConfig.type === networkManager.walletType
           ),
         });
       }
@@ -325,13 +326,9 @@ const LocalProvider = ({
 
   const DestinationProvider = useCallback(
     (props: INetworkManagerProviderProps) => {
-      return selectProvider(
-        networkManager.destinationChainConfig?.type,
-        "destination",
-        props
-      );
+      return selectProvider("Ethereum", "destination", props);
     },
-    [networkManager.destinationChainConfig?.type]
+    []
   );
 
   return (

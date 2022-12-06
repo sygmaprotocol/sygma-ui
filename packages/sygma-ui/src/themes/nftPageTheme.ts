@@ -51,7 +51,8 @@ export const nftPageTheme = createTheme(theme, {
       main: "#FF7A45",
     },
     secondary: {
-      main: "#5D503C",
+      main: "#DBD3C7",
+      dark: "#CDC2B1",
     },
     background: {
       default: "#E9E4DD",
@@ -82,7 +83,7 @@ export const nftPageTheme = createTheme(theme, {
     MuiSelect: {
       styleOverrides: {
         iconOutlined: {
-          color: "#CDC2B1",
+          color: "#000",
         },
         select: {
           em: {
