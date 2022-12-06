@@ -61,7 +61,6 @@ export const nftPageTheme = createTheme(theme, {
       secondary: "#000",
     },
     action: {
-      // disabled: "rgba(93, 80, 60, 0.7)",
       disabledBackground: "rgba(254,86,20, 0.4)",
     },
   },

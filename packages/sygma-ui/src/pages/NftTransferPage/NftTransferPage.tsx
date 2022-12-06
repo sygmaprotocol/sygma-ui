@@ -294,7 +294,7 @@ const NftTransferPage = () => {
               </>
             )}
 
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={4}>
               {isReady ? (
                 <Button
                   disabled={
@@ -304,6 +304,7 @@ const NftTransferPage = () => {
                   }
                   type="submit"
                   variant="contained"
+                  fullWidth
                   sx={{ px: 3, fontSize: 18 }}
                 >
                   Transfer NFT

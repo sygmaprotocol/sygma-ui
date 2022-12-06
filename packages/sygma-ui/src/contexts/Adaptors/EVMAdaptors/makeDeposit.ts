@@ -26,8 +26,6 @@ const makeDeposit =
     recipient: string;
     feeData: FeeDataResult;
   }) => {
-    // console.log("🚀 ~ file: makeDeposit.ts:24 ~ paramsForDeposit", paramsForDeposit)
-
     const tokenAddress = sygmaInstance!.setSelectedToken(
       paramsForDeposit.tokenAddress
     );
