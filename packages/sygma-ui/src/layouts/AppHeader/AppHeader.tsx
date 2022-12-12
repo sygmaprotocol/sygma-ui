@@ -29,6 +29,7 @@ const AppHeader: React.FC<IAppHeader> = () => {
   const { __RUNTIME_CONFIG__ } = window;
 
   const indexerEnabled = "INDEXER_URL" in __RUNTIME_CONFIG__;
+  const nftTokenPage = __RUNTIME_CONFIG__.UI.nftTokenPage;
 
   return (
     <>
@@ -52,11 +53,25 @@ const AppHeader: React.FC<IAppHeader> = () => {
                   height: 40,
                 }}
               >
-                {ROUTE_LINKS_HEADERS.map(({ route, label }) => (
+                <Button
+                  component={NavLink}
+                  to="/transfer"
+                  sx={{
+                    px: 2,
+                    display: "block",
+                    fontSize: 18,
+                    "&.active": {
+                      background: "#CDC2B1",
+                    },
+                  }}
+                >
+                  Token Bridge
+                </Button>
+
+                {nftTokenPage && (
                   <Button
                     component={NavLink}
-                    to={route}
-                    key={route}
+                    to="/nft_transfer"
                     sx={{
                       px: 2,
                       display: "block",
@@ -66,9 +81,9 @@ const AppHeader: React.FC<IAppHeader> = () => {
                       },
                     }}
                   >
-                    {label}
+                    NFT Bridge
                   </Button>
-                ))}
+                )}
               </Box>
             </div>
             <TopBarNetworkConnect

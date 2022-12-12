@@ -9,7 +9,7 @@ import {
   HashRouter,
 } from "react-router-dom";
 
-import { NftTransferPage, TransferPage } from "../pages";
+import { NftTransferPage, TransferPage, TransferStatusPage } from "../pages";
 
 export const ROUTE_LINKS = {
   Transfer: "/transfer",
@@ -31,6 +31,7 @@ const SygmaRoutes: React.FC<ISygmaRoutes> = ({ wrapTokenPage }) => {
           component={NftTransferPage}
         />
       )}
+      <Route path="/transfer_status" component={TransferStatusPage} />
       <Route exact path="/">
         <Redirect to={ROUTE_LINKS.Transfer} />
       </Route>

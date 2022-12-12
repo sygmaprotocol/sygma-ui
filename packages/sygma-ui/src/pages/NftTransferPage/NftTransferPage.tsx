@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { ethers } from "ethers";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -43,6 +44,8 @@ export type PreflightDetails = {
 };
 
 const NftTransferPage = () => {
+  const history = useHistory();
+
   const { classes } = useStyles();
 
   const [customFee, setCustomFee] = useState<FeeDataResult>();
@@ -337,10 +340,6 @@ const NftTransferPage = () => {
             </Grid>
           </Grid>
         </Box>
-        <TransferActiveModal
-          open={!!transactionStatus}
-          close={resetForFields}
-        />
       </Paper>
       <PreflightModalTransfer
         open={preflightModalOpen}
@@ -358,6 +357,7 @@ const NftTransferPage = () => {
           console.log(sygmaInstance);
 
           setPreflightModalOpen(false);
+          history.push("/transfer_status");
           preflightDetails && deposit(paramsForDeposit);
         }}
         sourceNetwork={homeConfig?.name || ""}

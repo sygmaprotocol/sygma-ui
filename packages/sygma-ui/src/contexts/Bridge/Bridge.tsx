@@ -37,13 +37,17 @@ const BridgeProvider = ({ children }: IBridgeContext) => {
         .initializeConnectionFromWeb3Provider(web3provider?.provider)
 
         .then((res) => {
-          if (isMounted) {
+          if (
+            isMounted &&
+            rest.destinationChainConfig &&
+            rest.destinationChainConfig.domainId
+          ) {
             bridgeDispatcher({
               type: "setInstanceAndData",
               payload: {
                 feeOracleSetup,
                 sygmaInstance: res.setDestination(
-                  rest.destinationChainConfig?.domainId.toString() ?? "0"
+                  rest.destinationChainConfig.domainId.toString()
                 ),
               },
             });
