@@ -62,12 +62,6 @@ const ConnectToMetamask = ({
     }
   }, [isActive]);
 
-  useEffect(() => {
-    void metaMask.connectEagerly().catch(() => {
-      console.debug("Failed to connect eagerly to metamask");
-    });
-  }, []);
-
   return (
     <Button
       size="large"
