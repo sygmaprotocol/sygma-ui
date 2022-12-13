@@ -18,7 +18,6 @@ import TransferCompleteBody from "./TransferCompleteBody";
 import ErrorTransferBody from "./ErrorTransferBody";
 
 import { useStyles } from "./styles";
-import clsx from "clsx";
 
 interface ITransferActiveModalProps {
   open: boolean;
@@ -124,8 +123,8 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
   open,
   close,
 }: ITransferActiveModalProps) => {
-  const { classes } = useStyles();
-  const { savedWallet, resetOnboard, dispatcher, onboard } = useLocalWeb3();
+  const { classes, cx } = useStyles();
+  const { savedWallet, dispatcher } = useLocalWeb3();
   const {
     transactionStatus,
     relayerThreshold,
@@ -192,9 +191,9 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
             className={
               transactionStatus !== "Transfer Aborted"
                 ? transactionStatus === "Transfer Completed"
-                  ? clsx(classes.elipsis, classes.elipsisTransferComplete)
-                  : clsx(classes.elipsis, classes.elipsisTransferring)
-                : clsx(classes.elipsis, classes.elipsisError)
+                  ? cx(classes.elipsis, classes.elipsisTransferComplete)
+                  : cx(classes.elipsis, classes.elipsisTransferring)
+                : cx(classes.elipsis, classes.elipsisError)
             }
           ></div>
           <div className={classes.svgIcon}>
@@ -206,8 +205,8 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
             <div
               className={
                 transactionStatus !== "Transfer Aborted"
-                  ? clsx(classes.stepIndicator, classes.stepIndicatorNormal)
-                  : clsx(classes.stepIndicator, classes.stepIndicatorError)
+                  ? cx(classes.stepIndicator, classes.stepIndicatorNormal)
+                  : cx(classes.stepIndicator, classes.stepIndicatorError)
               }
             >
               {getTransactionStateIndicator(transactionStatus)}

@@ -63,6 +63,9 @@ export const nftPageTheme = createTheme(theme, {
     action: {
       disabledBackground: "rgba(254,86,20, 0.4)",
     },
+    success: {
+      main: "#588E23",
+    },
   },
   shape: {
     borderRadius: 12,
