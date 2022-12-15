@@ -27,6 +27,8 @@ import { sygmaConfig } from "./sygmaConfig";
 import { AppWrapper } from "./layouts";
 import { getSygmaConfig } from "./getSygmaConfig";
 
+import "./font-faces.css";
+
 if (
   process.env.NODE_ENV === "production" &&
   process.env.REACT_APP_SENTRY_DSN_URL &&

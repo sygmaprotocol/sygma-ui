@@ -32,6 +32,7 @@ import {
   TransferActiveModal,
   NetworkUnsupportedModal,
   PreflightModalTransfer,
+  NftPreflightModalTransfer,
 } from "../../modules";
 import { Fees } from "../../components";
 import makeValidationSchema from "./makeValidationSchema";
@@ -165,7 +166,6 @@ const NftTransferPage = () => {
             "0px 3px 6px rgba(0, 0, 0, 0.1), 0px 4px 8px rgba(0, 0, 0, 0.08), 0px 1px 12px rgba(0, 0, 0, 0.04)",
           borderRadius: "12px",
         }}
-        elevation={3}
       >
         <Box
           className={classes.root}
@@ -297,8 +297,8 @@ const NftTransferPage = () => {
               </>
             )}
 
-            <Grid item xs={12} sm={4}>
-              {isReady ? (
+            {isReady ? (
+              <Grid item xs={12} sm={4}>
                 <Button
                   disabled={
                     !selectedNft ||
@@ -312,59 +312,59 @@ const NftTransferPage = () => {
                 >
                   Transfer NFT
                 </Button>
-              ) : (
-                <Box
-                  sx={{
-                    py: 3,
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Button
-                    variant="contained"
-                    sx={{ px: 3, fontSize: 18 }}
-                    onClick={() =>
-                      dispatcher({
-                        type: "setShowConnectionDialog",
-                        payload: true,
-                      })
-                    }
+              </Grid>
+            ) : (
+              <>
+                <Grid item sm={4}></Grid>
+                <Grid item xs={12} sm={4}>
+                  <Box
+                    sx={{
+                      py: 3,
+                      width: "100%",
+                      height: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
                   >
-                    Connect Wallet
-                  </Button>
-                </Box>
-              )}
-            </Grid>
+                    <Button
+                      fullWidth
+                      variant="contained"
+                      sx={{ px: 3, fontSize: 18 }}
+                      onClick={() =>
+                        dispatcher({
+                          type: "setShowConnectionDialog",
+                          payload: true,
+                        })
+                      }
+                    >
+                      Connect Wallet
+                    </Button>
+                  </Box>
+                </Grid>
+              </>
+            )}
           </Grid>
         </Box>
+        <NftPreflightModalTransfer
+          open={preflightModalOpen}
+          close={() => setPreflightModalOpen(false)}
+          start={() => {
+            const paramsForDeposit = {
+              tokenAddress: preflightDetails.token,
+              amount: preflightDetails.tokenAmount,
+              recipient: preflightDetails.receiver,
+              feeData: customFee!,
+            };
+
+            console.log(sygmaInstance);
+
+            setPreflightModalOpen(false);
+            history.push("/transfer_status");
+            preflightDetails && deposit(paramsForDeposit);
+          }}
+        />
       </Paper>
-      <PreflightModalTransfer
-        open={preflightModalOpen}
-        close={() => setPreflightModalOpen(false)}
-        receiver={preflightDetails?.receiver || ""}
-        sender={address || ""}
-        start={() => {
-          const paramsForDeposit = {
-            tokenAddress: preflightDetails.token,
-            amount: preflightDetails.tokenAmount,
-            recipient: preflightDetails.receiver,
-            feeData: customFee!,
-          };
-
-          console.log(sygmaInstance);
-
-          setPreflightModalOpen(false);
-          history.push("/transfer_status");
-          preflightDetails && deposit(paramsForDeposit);
-        }}
-        sourceNetwork={homeConfig?.name || ""}
-        targetNetwork={destinationChainConfig?.name || ""}
-        tokenSymbol={preflightDetails?.tokenSymbol || ""}
-        value={preflightDetails?.tokenAmount || "0"}
-      />
     </ThemeProvider>
   );
 };

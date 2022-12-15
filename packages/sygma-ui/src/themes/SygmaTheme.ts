@@ -42,6 +42,9 @@ let theme = createTheme({
       xl: 1536,
     },
   },
+  typography: {
+    fontFamily: '"NeueMontreal", "Roboto", "Helvetica", "Arial", sans-serif',
+  },
 });
 
 export const SygmaTheme = createTheme(theme, {
@@ -60,6 +63,7 @@ export const SygmaTheme = createTheme(theme, {
       backgroundFade: 0.4,
     },
   },
+
   palette: {
     primary: {
       light: "#FF7A45",
