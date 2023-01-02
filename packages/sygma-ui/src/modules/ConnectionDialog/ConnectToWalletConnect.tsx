@@ -95,8 +95,6 @@ const ConnectToWallet = ({
         color: "#FF7A45",
         border: "2px solid #FF7A45",
         borderRadius: "8px",
-        boxShadow:
-          "0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.1)",
         ":hover": {
           backgroundColor: "#fff",
           border: "2px solid #FF7A45",

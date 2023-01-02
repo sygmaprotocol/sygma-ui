@@ -42,6 +42,9 @@ let theme = createTheme({
       xl: 1536,
     },
   },
+  typography: {
+    fontFamily: '"NeueMontreal", "Roboto", "Helvetica", "Arial", sans-serif',
+  },
 });
 
 export const nftPageTheme = createTheme(theme, {
@@ -89,6 +92,8 @@ export const nftPageTheme = createTheme(theme, {
           color: "#000",
         },
         select: {
+          fontWeight: "500",
+          letterSpacing: "0.01em",
           em: {
             color: "#5D503C",
           },
