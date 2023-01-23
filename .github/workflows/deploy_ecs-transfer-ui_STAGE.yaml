@@ -5,56 +5,85 @@ on:
     branches:
       - main
 
-# on:
-#   workflow_run:
-#     workflows:
-#       - Docker build and push
-#     branches:
-#       - main
-#     types:
-#       - completed
-
 env:
-  AWS_REGION: "us-east-2"
-  ECR_REPOSITORY: transfer-ui-stage
+  AWS_REGION: '${{ secrets.AWS_REGION }}'
   ENVIRONMENT: STAGE
+  AWS_STAGE: '${{ secrets.AWS_ARN }}'
+  REGISTRY: 'ghcr.io'
+  TAG: 'stable'
+  CONFIG_SERVER_HOST: 'config-server-stage.chainsafe.io'
+  CONFIG_SERVER_PORT: 443
+  REACT_APP_SUPPORT_SERVICE: 'Discord'
+  REACT_APP_SUPPORT_URL: 'https://discord.com/invite/Qdf6GyNB5J'
+
 
 jobs:
-  deploy:
-    name: Deploy Transfer UI
-    runs-on: ubuntu-22.04
+  push:
+    name: push
+    runs-on: ubuntu-latest
 
     permissions:
       contents: read
       id-token: write
 
     steps:
-      - uses: actions/checkout@v2
-      - run: sleep 5
+      - name: checkout the source code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: login to ghcr
+        id: ghcr
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: build / tag / push docker image into ghcr
+        id: build-and-push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ github.repository }}:${{ env.TAG }} 
+          build-args: |
+            CONFIG_SERVER_HOST=${{ env.CONFIG_SERVER_HOST }}
+            CONFIG_SERVER_PORT=${{ env.CONFIG_SERVER_PORT }}
+            REACT_APP_SUPPORT_URL=${{ env.REACT_APP_SUPPORT_URL }}
+            REACT_APP_SUPPORT_SERVICE=${{ env.REACT_APP_SUPPORT_SERVICE }}
+
+  deploy:
+    needs: push
+    name: Deploy Transfer UI
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: checkout the source code
+        uses: actions/checkout@v3
+
+      - name: checkout ecs repo
+        uses: actions/checkout@v3
+        with:
+          repository: sygmaprotocol/devops
+          token: ${{ secrets.GHCR_TOKEN }}
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::852551629426:role/github-actions-${{ env.ENVIRONMENT }}-chainbridge
+          role-to-assume: arn:aws:iam::${{ env.AWS_STAGE }}:role/github-actions-${{ env.ENVIRONMENT }}-chainbridge
           aws-region: ${{ env.AWS_REGION }}
           role-session-name: GithubActions
-
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
-
-      - name: Build, tag, and push image to Amazon ECR
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          CONFIG_SERVER_HOST: config-server-stage.chainsafe.io
-          CONFIG_SERVER_PORT: 443
-        run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:${{ env.ENVIRONMENT }} --build-arg CONFIG_SERVER_HOST=$CONFIG_SERVER_HOST --build-arg CONFIG_SERVER_PORT=$CONFIG_SERVER_PORT --build-arg REACT_APP_SUPPORT_URL=$REACT_APP_SUPPORT_URL --build-arg REACT_APP_SUPPORT_SERVICE=REACT_APP_SUPPORT_SERVICE .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ env.ENVIRONMENT }}
 
       - name: Deploy to Amazon ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: ecs/task_definition-transfer-ui-${{ env.ENVIRONMENT }}.json
-          service: transfer-ui-service-${{ env.ENVIRONMENT }}
-          cluster: transfer-ui-${{ env.ENVIRONMENT }}
+          task-definition: 'sygma-ui/ecs/task_definition-transfer-ui-${{ env.ENVIRONMENT }}.json'
+          service: 'transfer-ui-service-${{ env.ENVIRONMENT }}'
+          cluster: 'transfer-ui-${{ env.ENVIRONMENT }}'
           wait-for-service-stability: true
