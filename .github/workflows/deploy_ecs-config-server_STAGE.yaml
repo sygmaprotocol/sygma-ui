@@ -2,7 +2,7 @@ name: Deploy ECS Config Server
 on:
   push:
     branches:
-      - main
+      - test-updates
 
 env:
   AWS_REGION: '${{ secrets.AWS_REGION }}'

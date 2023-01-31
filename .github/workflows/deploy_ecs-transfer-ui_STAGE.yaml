@@ -3,7 +3,7 @@ name: Deploy ECS Transfer UI
 on:
   push:
     branches:
-      - main
+      - test-updates
 
 env:
   AWS_REGION: '${{ secrets.AWS_REGION }}'
