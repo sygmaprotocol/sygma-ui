@@ -10,7 +10,7 @@ env:
   ENVIRONMENT: STAGE
   AWS_STAGE: '${{ secrets.AWS_ARN }}'
   REGISTRY: 'ghcr.io'
-  TAG: 'stable'
+  TAG: 'latest'
   CONFIG_SERVER_HOST: 'config-server-stage.chainsafe.io'
   CONFIG_SERVER_PORT: 443
   REACT_APP_SUPPORT_SERVICE: 'Discord'
@@ -47,7 +47,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.repository }}:${{ env.TAG }} 
+          tags: ${{ env.REGISTRY }}/${{ github.repository }}/transfer-ui:${{ env.TAG }} 
           build-args: |
             CONFIG_SERVER_HOST=${{ env.CONFIG_SERVER_HOST }}
             CONFIG_SERVER_PORT=${{ env.CONFIG_SERVER_PORT }}
