@@ -2,7 +2,7 @@ name: Deploy ECS Config Server
 on:
   push:
     branches:
-      - test-updates
+      - main
 
 env:
   AWS_REGION: '${{ secrets.AWS_REGION }}'
@@ -42,7 +42,7 @@ jobs:
           context: .
           file: server.dockerfile
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.repository }}/config-server-stage:${{ env.TAG }}   
+          tags: ${{ env.REGISTRY }}/${{ github.repository }}/config-server:${{ env.TAG }}   
 
   deploy:
     needs: push

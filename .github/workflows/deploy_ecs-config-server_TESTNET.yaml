@@ -1,9 +1,8 @@
-name: Deploy ECS Transfer UI
-
+name: Deploy ECS Config Server
 on:
   push:
     branches:
-      - main
+      - test-updates
 
 env:
   AWS_REGION: '${{ secrets.AWS_REGION }}'
@@ -11,11 +10,6 @@ env:
   AWS_STAGE: '${{ secrets.AWS_ARN }}'
   REGISTRY: 'ghcr.io'
   TAG: 'latest'
-  CONFIG_SERVER_HOST: 'config-server-stage.chainsafe.io'
-  CONFIG_SERVER_PORT: 443
-  REACT_APP_SUPPORT_SERVICE: 'Discord'
-  REACT_APP_SUPPORT_URL: 'https://discord.com/invite/Qdf6GyNB5J'
-
 
 jobs:
   push:
@@ -46,17 +40,13 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
+          file: server.dockerfile
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.repository }}/transfer-ui:${{ env.TAG }} 
-          build-args: |
-            CONFIG_SERVER_HOST=${{ env.CONFIG_SERVER_HOST }}
-            CONFIG_SERVER_PORT=${{ env.CONFIG_SERVER_PORT }}
-            REACT_APP_SUPPORT_URL=${{ env.REACT_APP_SUPPORT_URL }}
-            REACT_APP_SUPPORT_SERVICE=${{ env.REACT_APP_SUPPORT_SERVICE }}
+          tags: ${{ env.REGISTRY }}/${{ github.repository }}/config-server:${{ env.TAG }}   
 
   deploy:
     needs: push
-    name: Deploy Transfer UI
+    name: deploy
     runs-on: ubuntu-latest
 
     permissions:
@@ -66,7 +56,7 @@ jobs:
     steps:
       - name: checkout the source code
         uses: actions/checkout@v3
-
+        
       - name: checkout ecs repo
         uses: actions/checkout@v3
         with:
@@ -83,7 +73,7 @@ jobs:
       - name: Deploy to Amazon ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: 'sygma-ui/ecs/task_definition-transfer-ui-${{ env.ENVIRONMENT }}.json'
-          service: 'transfer-ui-service-${{ env.ENVIRONMENT }}'
-          cluster: 'transfer-ui-${{ env.ENVIRONMENT }}'
+          task-definition: 'sygma-ui/ecs/task_definition-config-server-${{ env.ENVIRONMENT }}.json'
+          service: 'config-server-service-${{ env.ENVIRONMENT }}'
+          cluster: 'config-server-${{ env.ENVIRONMENT }}'
           wait-for-service-stability: true
