@@ -1,12 +1,12 @@
 name: Deploy ECS Config Server
 on:
-  push:
-    branches:
-      - test-updates
+  release:
+    type:
+      - published
 
 env:
   AWS_REGION: '${{ secrets.AWS_REGION }}'
-  ENVIRONMENT: STAGE
+  ENVIRONMENT: TESTNET
   AWS_STAGE: '${{ secrets.AWS_ARN }}'
   REGISTRY: 'ghcr.io'
   TAG: 'latest'
@@ -74,6 +74,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: 'sygma-ui/ecs/task_definition-config-server-${{ env.ENVIRONMENT }}.json'
-          service: 'config-server-service-${{ env.ENVIRONMENT }}'
-          cluster: 'config-server-${{ env.ENVIRONMENT }}'
+          service: 'config-server-testnet-service-STAGE'
+          cluster: 'config-server-testnet-STAGE'
           wait-for-service-stability: true
