@@ -42,7 +42,7 @@ jobs:
           context: .
           file: server.dockerfile
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.repository }}:${{ env.TAG }}   
+          tags: ${{ env.REGISTRY }}/${{ github.repository }}/config-server:${{ env.TAG }}   
 
   deploy:
     needs: push
