@@ -9,7 +9,7 @@ env:
   ENVIRONMENT: TESTNET
   AWS_STAGE: '${{ secrets.AWS_ARN }}'
   REGISTRY: 'ghcr.io'
-  TAG: 'latest'
+  TAG: 'stable'
 
 jobs:
   push:

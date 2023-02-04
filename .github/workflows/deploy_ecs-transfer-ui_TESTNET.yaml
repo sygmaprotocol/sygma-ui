@@ -7,10 +7,10 @@ on:
 
 env:
   AWS_REGION: '${{ secrets.AWS_REGION }}'
-  ENVIRONMENT: 'TEST'
+  ENVIRONMENT: 'TESTNET'
   REGISTRY: 'ghcr.io'
   TAG: 'stable'
-  AWS_TESTNET: '${{ secrets.AWS_ARN }}'
+  AWS_STAGE: '${{ secrets.AWS_ARN }}'
   CONFIG_SERVER_HOST: 'config-server-stage.chainsafe.io'
   CONFIG_SERVER_PORT: 443
   REACT_APP_SUPPORT_SERVICE: 'Discord'
@@ -84,6 +84,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: 'sygma-ui/ecs/task_definition-transfer-ui-test-${{ env.ENVIRONMENT }}.json'
-          service: 'transfer-ui-test-service-${{ env.ENVIRONMENT }}'
-          cluster: 'transfer-ui-test-${{ env.ENVIRONMENT }}'
+          service: 'transfer-ui-test-service-TEST'
+          cluster: 'transfer-ui-test-TEST'
           wait-for-service-stability: true
