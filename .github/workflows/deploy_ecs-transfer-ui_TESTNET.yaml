@@ -11,7 +11,7 @@ env:
   REGISTRY: 'ghcr.io'
   TAG: 'stable'
   AWS_STAGE: '${{ secrets.AWS_ARN }}'
-  CONFIG_SERVER_HOST: 'config-server-stage.chainsafe.io'
+  CONFIG_SERVER_HOST: 'config-server.test.buildwithsygma.com'
   CONFIG_SERVER_PORT: 443
   REACT_APP_SUPPORT_SERVICE: 'Discord'
   REACT_APP_SUPPORT_URL: 'https://discord.com/invite/Qdf6GyNB5J'
