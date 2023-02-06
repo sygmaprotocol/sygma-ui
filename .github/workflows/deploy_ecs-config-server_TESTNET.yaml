@@ -9,7 +9,7 @@ env:
   ENVIRONMENT: TESTNET
   AWS_STAGE: '${{ secrets.AWS_ARN }}'
   REGISTRY: 'ghcr.io'
-  TAG: 'stable'
+  TAG: 'latest'
 
 jobs:
   push:
@@ -74,6 +74,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: 'sygma-ui/ecs/task_definition-config-server-${{ env.ENVIRONMENT }}.json'
-          service: 'config-server-testnet-service-STAGE'
-          cluster: 'config-server-testnet-STAGE'
+          service: 'config-server-service-${{ env.ENVIRONMENT }}'
+          cluster: 'config-server-${{ env.ENVIRONMENT }}'
           wait-for-service-stability: true
