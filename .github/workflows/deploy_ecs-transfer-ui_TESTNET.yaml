@@ -1,6 +1,9 @@
 name: Deploy ECS Transfer UI TESTNET
 
 on:
+  push:
+    branches:
+      - "testserverpot"
   release:
     types:
       - published
