@@ -3,7 +3,7 @@ name: Deploy ECS Transfer UI TESTNET
 on:
   push:
     branches:
-      - "ttestnet"
+      - ttestnet
   release:
     types:
       - published
