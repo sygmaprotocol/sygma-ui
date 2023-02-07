@@ -84,6 +84,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: 'sygma-ui/ecs/task_definition-transfer-ui-${{ env.ENVIRONMENT }}.json'
-          service: 'transfer-ui-service-${{ env.ENVIRONMENT }}'
-          cluster: 'transfer-ui-${{ env.ENVIRONMENT }}'
+          service: 'transfer-service-${{ env.ENVIRONMENT }}'
+          cluster: 'transfer-${{ env.ENVIRONMENT }}'
           wait-for-service-stability: true
