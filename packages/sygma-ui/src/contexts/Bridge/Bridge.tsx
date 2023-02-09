@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useReducer } from "react";
+import { providers } from "ethers";
 import { BridgeConfig, sygmaConfig, ChainType } from "../../sygmaConfig";
 import { useWeb3 } from "../localWeb3Context";
 import {
@@ -33,26 +34,28 @@ const BridgeProvider = ({ children }: IBridgeContext) => {
         feeOracleSetup,
         bridgeSetupList: homeChains as any,
       });
-      sygmaInstance
-        .initializeConnectionFromWeb3Provider(web3provider?.provider)
 
-        .then((res) => {
-          if (
-            isMounted &&
-            rest.destinationChainConfig &&
-            rest.destinationChainConfig.domainId
-          ) {
-            bridgeDispatcher({
-              type: "setInstanceAndData",
-              payload: {
-                feeOracleSetup,
-                sygmaInstance: res.setDestination(
-                  rest.destinationChainConfig.domainId.toString()
-                ),
-              },
-            });
-          }
-        });
+      if (
+        sygmaInstance.initializeConnectionFromWeb3Provider(
+          web3provider?.provider as providers.ExternalProvider
+        )
+      ) {
+        if (
+          isMounted &&
+          rest.destinationChainConfig &&
+          rest.destinationChainConfig.domainId
+        ) {
+          bridgeDispatcher({
+            type: "setInstanceAndData",
+            payload: {
+              feeOracleSetup,
+              sygmaInstance: sygmaInstance.setDestination(
+                rest.destinationChainConfig.domainId.toString()
+              ),
+            },
+          });
+        }
+      }
 
       return () => {
         isMounted = false;
