@@ -35,26 +35,24 @@ const BridgeProvider = ({ children }: IBridgeContext) => {
         bridgeSetupList: homeChains as any,
       });
 
+      sygmaInstance.initializeConnectionFromWeb3Provider(
+        web3provider?.provider as providers.ExternalProvider
+      );
+
       if (
-        sygmaInstance.initializeConnectionFromWeb3Provider(
-          web3provider?.provider as providers.ExternalProvider
-        )
+        isMounted &&
+        rest.destinationChainConfig &&
+        rest.destinationChainConfig.domainId
       ) {
-        if (
-          isMounted &&
-          rest.destinationChainConfig &&
-          rest.destinationChainConfig.domainId
-        ) {
-          bridgeDispatcher({
-            type: "setInstanceAndData",
-            payload: {
-              feeOracleSetup,
-              sygmaInstance: sygmaInstance.setDestination(
-                rest.destinationChainConfig.domainId.toString()
-              ),
-            },
-          });
-        }
+        bridgeDispatcher({
+          type: "setInstanceAndData",
+          payload: {
+            feeOracleSetup,
+            sygmaInstance: sygmaInstance.setDestination(
+              rest.destinationChainConfig.domainId.toString()
+            ),
+          },
+        });
       }
 
       return () => {
