@@ -2026,6 +2026,17 @@
     node-fetch "2.6.1"
     react-hook-form "^7.30.0"
 
+"@buildwithsygma/sygma-sdk-core@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@buildwithsygma/sygma-sdk-core/-/sygma-sdk-core-1.1.2.tgz#0b93552befa382185a56fd6b69a0c4f2fa7b7728"
+  integrity sha512-ZchyxdaPdbuNMlkVP1uVsRvi83EteM6Q+lqQJ4dPkU04mfFEfVjif2iFA9hQoO7STyTDfyvEFLRfonZBt4AfGA==
+  dependencies:
+    "@buildwithsygma/sygma-contracts" "1.0.0"
+    eth-crypto "2.3.0"
+    ethers "5.6.2"
+    node-fetch "2.6.1"
+    react-hook-form "^7.30.0"
+
 "@celo-tools/celo-ethers-wrapper@^0.0.5":
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/@celo-tools/celo-ethers-wrapper/-/celo-ethers-wrapper-0.0.5.tgz#a0bd4553e59c0fc4e97dcec97f719fd27dc4498b"

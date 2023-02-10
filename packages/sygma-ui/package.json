@@ -9,7 +9,7 @@
     "@babel/runtime": "^7.12.1",
     "@celo-tools/celo-ethers-wrapper": "^0.0.5",
     "@chainsafe/common-theme": "1.0.10",
-    "@buildwithsygma/sygma-sdk-core": "1.1.1",
+    "@buildwithsygma/sygma-sdk-core": "1.1.2",
     "@buildwithsygma/sygma-contracts": "1.0.0",
     "@chainsafe/web3-context": "1.2.0",
     "@fusion-icons/react": "0.0.0",
