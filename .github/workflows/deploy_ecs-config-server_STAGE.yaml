@@ -1,4 +1,4 @@
-name: Deploy ECS Config Server
+name: Deploy ECS Config-Server DEVNET
 on:
   push:
     branches:
