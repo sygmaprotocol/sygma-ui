@@ -129,7 +129,7 @@ const TransferPage = () => {
   useEffect(() => {
     console.log("watchAmount", watchAmount);
     setFee(watchAmount.toString().replace(/\D/g, ""));
-  }, [watchAmount, preflightDetails]);
+  }, [watchAmount, preflightDetails, destinationChainConfig]);
 
   const onSubmit: SubmitHandler<PreflightDetails> = (values) => {
     setPreflightDetails({
