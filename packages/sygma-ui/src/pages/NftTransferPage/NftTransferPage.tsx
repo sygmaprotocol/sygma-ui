@@ -136,7 +136,7 @@ const NftTransferPage = () => {
 
   useEffect(() => {
     setFee(watchAmount.toString().replace(/\D/g, ""));
-  }, [watchAmount, preflightDetails]);
+  }, [watchAmount, preflightDetails, destinationChainConfig]);
 
   const resetForFields = () => {
     setSelectedNft(undefined);
