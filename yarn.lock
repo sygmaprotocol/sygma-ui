@@ -2015,10 +2015,10 @@
   resolved "https://registry.yarnpkg.com/@buildwithsygma/sygma-contracts/-/sygma-contracts-1.0.0.tgz#8cf3430726bdb324e7259c65f4568ed361165a21"
   integrity sha512-RlEMW6g36a1jyk0En1zCaPr+imB2S2o6b+hlNF6tp63BnJnoAMfrtQgvCG/vNuGyWWBNOjL1P+oebURECzTWHw==
 
-"@buildwithsygma/sygma-sdk-core@1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@buildwithsygma/sygma-sdk-core/-/sygma-sdk-core-1.1.2.tgz#0b93552befa382185a56fd6b69a0c4f2fa7b7728"
-  integrity sha512-ZchyxdaPdbuNMlkVP1uVsRvi83EteM6Q+lqQJ4dPkU04mfFEfVjif2iFA9hQoO7STyTDfyvEFLRfonZBt4AfGA==
+"@buildwithsygma/sygma-sdk-core@1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@buildwithsygma/sygma-sdk-core/-/sygma-sdk-core-1.1.3.tgz#ceaa81788b8d1379981c21334d6d29921bb848ed"
+  integrity sha512-NB7WC7VrRhENPSbkBjCJt5J08RD6FepwAl+195R31QiRTR1vsKziezylxzvgRzMjO+E47pXM3avwz1gnJGlzqw==
   dependencies:
     "@buildwithsygma/sygma-contracts" "1.0.0"
     eth-crypto "2.3.0"
