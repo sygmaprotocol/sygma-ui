@@ -22,11 +22,9 @@ yarn install
 ```
 
 Create a `.env` file based on the `.env.example` file in the root of the project.
-Get a Blocknative DAPP ID (here)[https://explorer.blocknative.com/account] and populate the respective field in the `.env` file
-
 You can copy one of our configs for local development or create your own:
 
-```
+```bash
 cp ./config/sygma-runtime-config.evm.json ./public/sygma-runtime-config.json
 ```
 
@@ -46,8 +44,8 @@ yarn start
 
 Update the configs for the bridge in `src/sygmaContext.ts`. There should be at least 2 chains configured for correct functioning of the bridge. Each chain accepts the following configuration parameters:
 
-```
-export type BridgeConfig = {
+```typescript
+ type BridgeConfig = {
   networkId?: number; // The networkId of this chain.
   domainId: number; // The bridge's domainId.
   name: string; // The human readable name of this chain.
@@ -59,7 +57,7 @@ export type BridgeConfig = {
 };
 ```
 
-```
+```typescript
 type TokenConfig = {
   address: string; // The address of the ERC20 token
   name?: string; // The name of the ERC20 token. This can be left out if the token implements the ERC20Detailed standard
@@ -74,8 +72,8 @@ type TokenConfig = {
 
 EVM Chains should additionally be configured with the following params
 
-```
-export type EvmBridgeConfig = BridgeConfig & {
+```typescript
+type EvmBridgeConfig = BridgeConfig & {
   bridgeAddress: string;
   erc20HandlerAddress: string;
   type: "Ethereum";
@@ -86,8 +84,9 @@ export type EvmBridgeConfig = BridgeConfig & {
   deployedBlockNumber?: number;
 };
 ```
-
-Run `yarn build`.
+```bash
+yarn build
+```
 
 Deploy the contents of the `/build` folder to any static website host (eg. S3, Azure storage) or IPFS.
 
@@ -97,7 +96,7 @@ To run production enviroment you can use our `config-server` package to run tiny
 
 You can test it localy if you have your AWS credentials setuped in your terminal
 
-```
+```bash
 cd ../packages/config-server
 yarn start:server
 ```
@@ -108,7 +107,7 @@ There is `Dockerfile` for frontend in root direcotry and `server.dockerfile` for
 
 It can be run together with `docker-compose` from root direcotry :
 
-```
+```bash
 docker-compose -f ./docker-compose.yml up
 ```
 
