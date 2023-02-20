@@ -7,7 +7,7 @@ h6 {
   color: rgba(255, 255, 255, 1);
 } */
 .bn-onboard-custom {
-  z-index: 1;
+    z-index: 1;
 }
 
 /* .bn-onboard-custom.bn-onboard-modal {
@@ -39,5 +39,5 @@ input::-webkit-inner-spin-button {
   -moz-appearance: textfield;
 } */
 html body {
-  background-color: #f0f0f0;
+    background-color: #f0f0f0;
 }

@@ -1,17 +1,9 @@
-import React, { memo, useState, useEffect } from "react";
+import React, { memo } from "react";
 
 import Grid from "@mui/material/Grid";
 import InputLabel from "@mui/material/InputLabel";
 import Box from "@mui/material/Box";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
-import CircularProgress from "@mui/material/CircularProgress";
-
-import { getErc721Metadata } from "../../utils/Helpers";
-import { useBridge, useWeb3 } from "../../contexts";
-import { Erc721TokenIds, Metadata } from "../../reducers/EvmHomeReducer";
-
-import { useStyles } from "./styles";
+import { Erc721TokenIds } from "../../reducers/EvmHomeReducer";
 
 import StandardImageList from "./StandardImageList";
 

@@ -1,15 +1,15 @@
 import {
-  Wallet,
   API as OnboardAPI,
   Initialization,
+  Wallet,
 } from "bnc-onboard/dist/src/interfaces";
 import {
-  providers,
-  BigNumberish,
   BigNumber,
+  BigNumberish,
   CallOverrides,
   ContractTransaction,
   Overrides,
+  providers,
 } from "ethers";
 import { BigNumber as BN } from "bignumber.js";
 import { TokenConfig } from "../../sygmaConfig";

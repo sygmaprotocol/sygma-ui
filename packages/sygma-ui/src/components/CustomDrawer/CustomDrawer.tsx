@@ -3,6 +3,7 @@ import { Drawer } from "../Drawer";
 import { useStyles } from "./styles";
 
 export declare type Position = "top" | "bottom" | "right" | "left";
+
 export interface IDrawerProps {
   children: React.ReactNode | React.ReactNode[];
   className?: string;
@@ -10,7 +11,9 @@ export interface IDrawerProps {
   position?: Position;
   size?: number;
   backdrop?: boolean;
+
   onClose?(): void;
+
   classNames?: {
     backdrop?: string;
   };

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { initializeConnector } from "@web3-react/core";
 import { MetaMask } from "@web3-react/metamask";
-import { Typography, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { MetamaskIcon } from "@fusion-icons/react/web3";
 import { useBridge } from "../../contexts";
 

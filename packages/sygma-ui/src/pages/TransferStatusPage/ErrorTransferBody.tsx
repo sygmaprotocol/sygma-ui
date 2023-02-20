@@ -1,7 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import { BridgeConfig, EvmBridgeConfig } from "../../sygmaConfig";
-import { Typography, Button } from "@mui/material";
+import { BridgeConfig } from "../../sygmaConfig";
+import { Button, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import CancelIcon from "@mui/icons-material/Cancel";
 

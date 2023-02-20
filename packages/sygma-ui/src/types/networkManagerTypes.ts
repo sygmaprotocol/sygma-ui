@@ -1,4 +1,4 @@
-import { BridgeConfig, ChainType, EvmBridgeConfig } from "../sygmaConfig";
+import { ChainType, EvmBridgeConfig } from "../sygmaConfig";
 
 export type WalletType = ChainType | "select" | "unset";
 

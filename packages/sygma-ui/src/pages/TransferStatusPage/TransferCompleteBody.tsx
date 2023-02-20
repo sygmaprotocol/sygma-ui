@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 
-import { Typography, Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
-import { BridgeConfig, EvmBridgeConfig } from "../../sygmaConfig";
+import { BridgeConfig } from "../../sygmaConfig";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 export default function TransferCompleteBody({

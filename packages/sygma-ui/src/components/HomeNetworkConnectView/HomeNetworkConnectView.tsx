@@ -1,13 +1,11 @@
 import React from "react";
-import { Typography, Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 import { BridgeConfig } from "../../sygmaConfig";
-
-import { ConnectionDialog } from "../../modules";
 
 import { useStyles } from "./styles";
 

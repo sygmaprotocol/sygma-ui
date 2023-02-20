@@ -35,8 +35,6 @@ module.exports = {
               },
             },
             parallel: 2,
-            cache: true,
-            sourceMap: true,
             extractComments: false,
           }),
         ],

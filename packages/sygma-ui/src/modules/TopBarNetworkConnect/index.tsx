@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { Typography, Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 import { useWeb3 } from "../../contexts";
-
-import { ConnectionDialog } from "..";
 
 import { BridgeConfig } from "../../sygmaConfig";
 import { shortenAddress } from "../../utils/Helpers";

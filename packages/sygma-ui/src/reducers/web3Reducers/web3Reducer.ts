@@ -1,4 +1,4 @@
-import { LocalWeb3State, Actions } from "../../types";
+import { Actions, LocalWeb3State } from "../../types";
 
 const localWeb3ContextReducer = (
   state: LocalWeb3State,

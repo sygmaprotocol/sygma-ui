@@ -3,7 +3,7 @@ import { CustomModal } from "../../components";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useLocation } from "react-router-dom";
-import { useNetworkManager, useHomeBridge, useWeb3 } from "../../contexts";
+import { useHomeBridge, useWeb3 } from "../../contexts";
 import { sygmaConfig } from "../../sygmaConfig";
 import { ROUTE_LINKS } from "../../routes";
 import { useStyles } from "./styles";

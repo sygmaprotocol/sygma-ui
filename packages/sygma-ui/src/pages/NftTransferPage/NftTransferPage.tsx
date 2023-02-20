@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ethers } from "ethers";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { ThemeProvider } from "@mui/material/styles";
@@ -15,9 +15,8 @@ import { FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
 
 import { nftPageTheme } from "../../themes/nftPageTheme";
 
-import { useSygma, useWeb3, useBridge, useHomeBridge } from "../../contexts";
+import { useBridge, useHomeBridge, useSygma, useWeb3 } from "../../contexts";
 import { getErc721Urls } from "../../utils/Helpers";
-import { Tokens } from "../../types";
 
 import { useStyles } from "./styles";
 
@@ -28,12 +27,7 @@ import NftList from "../../components/NftList";
 import SelectedNft from "../../components/SelectedNft";
 import NftAddressInput from "../../components/NftAddressInput";
 
-import {
-  TransferActiveModal,
-  NetworkUnsupportedModal,
-  PreflightModalTransfer,
-  NftPreflightModalTransfer,
-} from "../../modules";
+import { NftPreflightModalTransfer } from "../../modules";
 import { Fees } from "../../components";
 import makeValidationSchema from "./makeValidationSchema";
 

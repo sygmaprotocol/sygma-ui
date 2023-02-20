@@ -1,4 +1,4 @@
-import { sygmaConfig, BridgeConfig } from "../../../sygmaConfig";
+import { BridgeConfig, sygmaConfig } from "../../../sygmaConfig";
 import { hasTokenSupplies } from "./helpers";
 
 const handleCheckSupplies =

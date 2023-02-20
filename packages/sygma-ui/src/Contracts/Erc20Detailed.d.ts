@@ -2,22 +2,22 @@
 /* tslint:disable */
 
 import {
-  ethers,
-  EventFilter,
-  Signer,
   BigNumber,
   BigNumberish,
+  ethers,
+  EventFilter,
   PopulatedTransaction,
+  Signer,
 } from "ethers";
 import {
+  CallOverrides,
   Contract,
   ContractTransaction,
   Overrides,
-  CallOverrides,
 } from "@ethersproject/contracts";
 import { BytesLike } from "@ethersproject/bytes";
 import { Listener, Provider } from "@ethersproject/providers";
-import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
+import { EventFragment, FunctionFragment, Result } from "@ethersproject/abi";
 
 interface Erc20DetailedInterface extends ethers.utils.Interface {
   functions: {
@@ -36,41 +36,57 @@ interface Erc20DetailedInterface extends ethers.utils.Interface {
     functionFragment: "approve",
     values: [string, BigNumberish]
   ): string;
+
   encodeFunctionData(
     functionFragment: "totalSupply",
     values?: undefined
   ): string;
+
   encodeFunctionData(
     functionFragment: "transferFrom",
     values: [string, string, BigNumberish]
   ): string;
+
   encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
+
   encodeFunctionData(
     functionFragment: "transfer",
     values: [string, BigNumberish]
   ): string;
+
   encodeFunctionData(
     functionFragment: "allowance",
     values: [string, string]
   ): string;
+
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
+
   encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
+
   encodeFunctionData(functionFragment: "decimals", values?: undefined): string;
 
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
+
   decodeFunctionResult(
     functionFragment: "totalSupply",
     data: BytesLike
   ): Result;
+
   decodeFunctionResult(
     functionFragment: "transferFrom",
     data: BytesLike
   ): Result;
+
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
+
   decodeFunctionResult(functionFragment: "transfer", data: BytesLike): Result;
+
   decodeFunctionResult(functionFragment: "allowance", data: BytesLike): Result;
+
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
+
   decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
+
   decodeFunctionResult(functionFragment: "decimals", data: BytesLike): Result;
 
   events: {
@@ -79,18 +95,25 @@ interface Erc20DetailedInterface extends ethers.utils.Interface {
   };
 
   getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
+
   getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
 }
 
 export class Erc20Detailed extends Contract {
   connect(signerOrProvider: Signer | Provider | string): this;
+
   attach(addressOrName: string): this;
+
   deployed(): Promise<this>;
 
   on(event: EventFilter | string, listener: Listener): this;
+
   once(event: EventFilter | string, listener: Listener): this;
+
   addListener(eventName: EventFilter | string, listener: Listener): this;
+
   removeAllListeners(eventName?: EventFilter | string): this;
+
   removeListener(eventName: any, listener: Listener): this;
 
   interface: Erc20DetailedInterface;
@@ -108,15 +131,11 @@ export class Erc20Detailed extends Contract {
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    totalSupply(
-      overrides?: CallOverrides
-    ): Promise<{
+    totalSupply(overrides?: CallOverrides): Promise<{
       0: BigNumber;
     }>;
 
-    "totalSupply()"(
-      overrides?: CallOverrides
-    ): Promise<{
+    "totalSupply()"(overrides?: CallOverrides): Promise<{
       0: BigNumber;
     }>;
 
@@ -176,39 +195,27 @@ export class Erc20Detailed extends Contract {
       0: BigNumber;
     }>;
 
-    name(
-      overrides?: CallOverrides
-    ): Promise<{
+    name(overrides?: CallOverrides): Promise<{
       0: string;
     }>;
 
-    "name()"(
-      overrides?: CallOverrides
-    ): Promise<{
+    "name()"(overrides?: CallOverrides): Promise<{
       0: string;
     }>;
 
-    symbol(
-      overrides?: CallOverrides
-    ): Promise<{
+    symbol(overrides?: CallOverrides): Promise<{
       0: string;
     }>;
 
-    "symbol()"(
-      overrides?: CallOverrides
-    ): Promise<{
+    "symbol()"(overrides?: CallOverrides): Promise<{
       0: string;
     }>;
 
-    decimals(
-      overrides?: CallOverrides
-    ): Promise<{
+    decimals(overrides?: CallOverrides): Promise<{
       0: number;
     }>;
 
-    "decimals()"(
-      overrides?: CallOverrides
-    ): Promise<{
+    "decimals()"(overrides?: CallOverrides): Promise<{
       0: number;
     }>;
   };

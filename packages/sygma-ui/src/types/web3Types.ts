@@ -1,23 +1,22 @@
 import {
-  Wallet,
   API as OnboardAPI,
   Initialization,
+  Wallet,
 } from "bnc-onboard/dist/src/interfaces";
 import {
-  providers,
-  BigNumberish,
   BigNumber,
+  BigNumberish,
   CallOverrides,
   ContractTransaction,
   Overrides,
+  providers,
 } from "ethers";
 import { BigNumber as BN } from "bignumber.js";
 import {
   BridgeConfig,
-  SygmaConfig,
   ChainType,
-  TokenConfig,
   EvmBridgeConfig,
+  TokenConfig,
 } from "../sygmaConfig";
 
 export type WalletType = ChainType | "select" | "unset";

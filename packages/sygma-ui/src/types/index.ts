@@ -5,6 +5,6 @@ export type {
   TokensToWatch,
   LocalWeb3ContextProps,
   LocalWeb3State,
-  Actions
-} from './web3Types'
-export * from './networkManagerTypes'
+  Actions,
+} from "./web3Types";
+export * from "./networkManagerTypes";

@@ -1,12 +1,8 @@
 import React, { createContext, useContext, useEffect, useReducer } from "react";
 import { providers } from "ethers";
-import { BridgeConfig, sygmaConfig, ChainType } from "../../sygmaConfig";
+import { sygmaConfig } from "../../sygmaConfig";
 import { useWeb3 } from "../localWeb3Context";
-import {
-  BridgeData,
-  Sygma,
-  SygmaBridgeSetupList,
-} from "@buildwithsygma/sygma-sdk-core";
+import { Sygma } from "@buildwithsygma/sygma-sdk-core";
 import { sygmaReducer, SygmaState } from "../../reducers";
 
 interface IBridgeContext {

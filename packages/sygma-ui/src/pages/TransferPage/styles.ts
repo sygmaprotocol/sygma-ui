@@ -1,4 +1,4 @@
-import { makeStyles, createStyles, ITheme } from "@chainsafe/common-theme";
+import { createStyles, ITheme, makeStyles } from "@chainsafe/common-theme";
 
 export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
   createStyles({

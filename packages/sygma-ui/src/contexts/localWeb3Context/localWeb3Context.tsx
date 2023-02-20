@@ -1,17 +1,16 @@
-import React, { useEffect, useReducer, useCallback } from "react";
+import React, { useCallback, useEffect, useReducer } from "react";
 import { Directions, FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
-import { EvmBridgeConfig, sygmaConfig, ChainType } from "../../sygmaConfig";
+import { EvmBridgeConfig, sygmaConfig } from "../../sygmaConfig";
 import {
   EVMDestinationAdaptorProvider,
   EVMHomeAdaptorProvider,
 } from "../Adaptors/EVMAdaptors";
-import { HomeBridgeContext, DestinationBridgeContext } from "..";
+import { DestinationBridgeContext, HomeBridgeContext } from "..";
 import {
+  getNetworkInfo,
   getTokenData,
-  getTokenDataDirect,
   resetOnboard,
   signMessage,
-  getNetworkInfo,
 } from "../../utils/localNetworksHelpers";
 import { Erc20Detailed } from "../../Contracts/Erc20Detailed";
 import {
@@ -22,9 +21,8 @@ import {
   LocalWeb3Context,
   LocalWeb3ContextProps,
   LocalWeb3State,
-  Tokens,
+  NetworkManagerState,
 } from "../../types";
-import { NetworkManagerState, WalletType } from "../../types";
 import combineReducers from "react-combine-reducers";
 import { HomeChains } from "../../types/web3Types";
 import { BridgeProvider } from "../Bridge";

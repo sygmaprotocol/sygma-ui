@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import Grid from "@mui/material/Grid";
 import InputLabel from "@mui/material/InputLabel";
@@ -9,7 +9,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useStyles } from "./styles";
 import { Typography } from "@mui/material";
 
-import { useSygma, useHomeBridge } from "../../contexts";
+import { useHomeBridge, useSygma } from "../../contexts";
 
 export default function SelectedNft({
   tokenId,
