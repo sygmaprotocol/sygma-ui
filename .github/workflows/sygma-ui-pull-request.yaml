@@ -1,0 +1,53 @@
+name: Lint, Build, Test Sygma UI
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+      - package/sygma-ui/**
+
+jobs:
+  lint:
+    name: Lint Sygma UI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "yarn"
+      - name: Install dependencies
+        run: yarn --prefer-offline --frozen-lockfile
+      - name: Lint Sygma UI
+        run: yarn lint:ui
+  build:
+    needs: lint
+    name: Build Sygma UI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "yarn"
+      - name: Install dependencies
+        run: yarn --prefer-offline --frozen-lockfile
+      - name: Build
+        run: yarn build:ui
+  test:
+    needs: build
+    name: Test Sygma UI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "yarn"
+      - name: Install dependencies
+        run: yarn --prefer-offline --frozen-lockfile
+      - name: Test Sygma UI
+        run: yarn test:ui
