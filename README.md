@@ -9,9 +9,11 @@
 ## Introduction
 
 **Sygma UI** is an OpenSource (under GNU Lesser General Public License v3.0) whitelabel application for developers
-to work with [Sygma](https://github.com/ChainSafe/sygma).
+to work with [Sygma](https://github.com/sygmaprotocol).
 [ExplorerUI](./packages/explorer-ui) is used to track and navigate every bridging that happens over a specific Bridge
 smart contract.
+
+&nbsp;
 
 ## Live demo
 
@@ -21,6 +23,8 @@ It requires you to have MetaMask wallet and to have some ETH on those network in
 request some ERC20 tokens in our [discord](https://discord.gg/ykXsJKfhgq) channel
 
 For getting the tokens use [sygma-faucet](https://faucet-ui-stage.buildwithsygma.com/)
+
+&nbsp;
 
 ## Running locally
 
@@ -36,13 +40,15 @@ instructions here for installing those dependencies:
 - docker -> [install](https://docs.docker.com/engine/install/)
 - docker-compose -> [install](https://docs.docker.com/compose/install/)
 
+&nbsp;
+
 ### Sygma setup
 
 To bridge tokens from one network to another, you need to clone
-[Sygma](https://github.com/ChainSafe/sygma). This project contains everything you need to run a bridge with two `EVM`
-networks, and all the contracts deployed. Check the [README](https://github.com/ChainSafe/sygma/blob/main/README.md)
+[Sygma](https://github.com/sygmaprotocol/sygma-relayer). This project contains everything you need to run a bridge with two `EVM`
+networks, and all the contracts deployed. Check the [README](https://github.com/sygmaprotocol/sygma-relayer/blob/main/README.md)
 and follow the instructions to install and have everything ready.
-After you cloned `sygma` you can run the following command:
+After you cloned `sygma-relayer` you can run the following command:
 
 ```bash
 make example
@@ -100,6 +106,8 @@ services. To see all the logs of your services run
 ```bash
 docker-compose -f docker-compose.yml logs -f
 ```
+
+&nbsp;
 
 ### Sygma UI setup
 
@@ -176,7 +184,9 @@ You also can use our dev configuration accessible by the link:
 
 > The parameters `domainId` and `networkId` are the ones that are being used by the local networks
 
-### Start Sygma UI
+&nbsp;
+
+## Start Sygma UI
 
 First, install dependencies using yarn
 
@@ -190,7 +200,9 @@ Run the Sygma UI
 yarn start:ui
 ```
 
-### Connect to Metamask
+&nbsp;
+
+## Connect to Metamask
 
 Now you can connect to metamask. For this, you need to add the local nodes to the `networks` section of your metamask.
 The relevant data to set up local networks on metamask are the endpoints of the networks, already defined in the runtime
@@ -211,10 +223,10 @@ This is are the most relevant private keys
 
 `Eve` is the bridge admin. She holds 10 `erc20` tokens on her side. `Alice` has native tokens that you can transfer
 using metamask to your personal account. It is recommended that you don't use relayers accounts to test transfers in
-your local setup. For this you can use [sygma-core-example](https://github.com/ChainSafe/sygma-core-example) to build
+your local setup. For this you can use [sygma-core-example](https://github.com/sygmaprotocol/sygma-relayer/tree/main/example) to build
 the binary and have access to the cli to perform some task.
 
-### Minting some tokens.
+### Minting some tokens
 
 Now we are ready to mint some tokens. Eve has 10 TST tokens already minted, but we can mint more.
 
@@ -249,6 +261,8 @@ mint \
 After minting some tokens, you can send a few to your imported account to test a transfer or mint to your testing
 account in metamask.
 
+&nbsp;
+
 ## Deployment configuration for AWS
 
 The configuration consists of nodejs server which pulls the config from SSM and provides it as JSON for TransferUI
@@ -279,15 +293,15 @@ environment variables:
   For ease of understanding config, I created [docker-compose.yml](./docker-compose.yml) with all these services and env
   examples and dockerfiles for transfer UI and for config-server
 
-## FAQ
-
-Please check our [Q&A section](https://github.com/ChainSafe/sygma-ui/discussions/categories/q-a)
+  &nbsp;
 
 ## Support
 
 <a href="https://discord.gg/ykXsJKfhgq">
   <img alt="discord" src="https://img.shields.io/discord/593655374469660673?label=Discord&logo=discord&style=flat" />
 </a>
+
+&nbsp;
 
 ## License
 
