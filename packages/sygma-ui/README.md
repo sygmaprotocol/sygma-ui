@@ -5,7 +5,6 @@
 - [Features](#features)
 - [Install](#install)
 - [Usage](#usage)
-- [Contributing](#contributing)
 <!-- - [License](#license) -->
 
 ## Features
@@ -15,22 +14,24 @@
 - JS Framework: [React](https://github.com/facebook/react) + [Typescript](https://github.com/microsoft/TypeScript)
 - Blockchain components: [Ethers.js](https://github.com/ethers-io/ethers.js/) + [web3-context](https://github.com/chainsafe/web3-context)
 
+&nbsp;
+
 ## Install
 
-```
+```bash
 yarn install
 ```
 
 Create a `.env` file based on the `.env.example` file in the root of the project.
-Get a Blocknative DAPP ID (here)[https://explorer.blocknative.com/account] and populate the respective field in the `.env` file
-
 You can copy one of our configs for local development or create your own:
 
-```
+```bash
 cp ./config/sygma-runtime-config.evm.json ./public/sygma-runtime-config.json
 ```
 
-Make sure that the config file in public folder is named `sygma-runtime-config.json``
+Make sure that the config file in public folder is named `sygma-runtime-config.json`
+
+&nbsp;
 
 ## Usage
 
@@ -38,16 +39,18 @@ Make sure that the config file in public folder is named `sygma-runtime-config.j
 
 For running a local instance use the command:
 
-```
+```bash
 yarn start
 ```
+
+&nbsp;
 
 ### Build
 
 Update the configs for the bridge in `src/sygmaContext.ts`. There should be at least 2 chains configured for correct functioning of the bridge. Each chain accepts the following configuration parameters:
 
-```
-export type BridgeConfig = {
+```typescript
+ type BridgeConfig = {
   networkId?: number; // The networkId of this chain.
   domainId: number; // The bridge's domainId.
   name: string; // The human readable name of this chain.
@@ -59,7 +62,7 @@ export type BridgeConfig = {
 };
 ```
 
-```
+```typescript
 type TokenConfig = {
   address: string; // The address of the ERC20 token
   name?: string; // The name of the ERC20 token. This can be left out if the token implements the ERC20Detailed standard
@@ -74,8 +77,8 @@ type TokenConfig = {
 
 EVM Chains should additionally be configured with the following params
 
-```
-export type EvmBridgeConfig = BridgeConfig & {
+```typescript
+type EvmBridgeConfig = BridgeConfig & {
   bridgeAddress: string;
   erc20HandlerAddress: string;
   type: "Ethereum";
@@ -87,28 +90,32 @@ export type EvmBridgeConfig = BridgeConfig & {
 };
 ```
 
-Run `yarn build`.
+```bash
+yarn build
+```
 
 Deploy the contents of the `/build` folder to any static website host (eg. S3, Azure storage) or IPFS.
 
-# Configuration server for running in the AWS enviroment
+## Configuration server for running in the AWS enviroment
 
 To run production enviroment you can use our `config-server` package to run tiny nodejs app which get config from AWS SSM and provide it to the App in `json` format
 
 You can test it localy if you have your AWS credentials setuped in your terminal
 
-```
+```bash
 cd ../packages/config-server
 yarn start:server
 ```
 
-# Deployment
+&nbsp;
+
+## Deployment
 
 There is `Dockerfile` for frontend in root direcotry and `server.dockerfile` for configuration server.
 
 It can be run together with `docker-compose` from root direcotry :
 
-```
+```bash
 docker-compose -f ./docker-compose.yml up
 ```
 
@@ -117,7 +124,11 @@ Environment variables to access [config-server](../config-server):
 - CONFIG_SERVER_HOST=localhost (the host of config server)
 - CONFIG_SERVER_PORT=8000 ( the port of config server)
 
-# ChainSafe Security Policy
+&nbsp;
+
+## ChainSafe Security Policy
+
+&nbsp;
 
 ## Reporting a Security Bug
 

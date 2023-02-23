@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Chainsafe Sygma UI monorepo",
   "main": "index.js",
-  "repository": "https://github.com/ChainSafe/sygma-ui",
+  "repository": "https://github.com/sygmaprotocol/sygma-ui",
   "author": "Chainsafe Products Team",
   "license": "LGPL",
   "private": true,
