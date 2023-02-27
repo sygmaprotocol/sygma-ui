@@ -90,7 +90,7 @@
     "clean:dist": "rm -rf ./*/**/dist && rm -rf ./*/**/build && rm -rf ./*/**/storybook-static",
     "clean": "yarn clean:dependencies && yarn clean:dist",
     "prettier": "prettier ../../.prettierrc './src/**/*.{ts,tsx,js,jsx,md}' --write",
-    "lint": "eslint --color --ext .tsx .ts src/ && prettier --check './src/**/*.{ts,tsx,js,jsx,md}'",
+    "lint": "eslint --color --ext .tsx, .ts src/ && prettier --check './src/**/*.{ts,tsx,js,jsx,md}'",
     "start:tunnel": "./ngrok http https://localhost:3000",
     "setup:copy-dev-config": "./scripts/copy-dev-config.sh",
     "test:aws": "ts-node ./src/configFromAWS",
