@@ -5,14 +5,14 @@ import { Weth } from "../../Contracts/Weth";
 import {
   AddMessageAction,
   ResetAction,
-  TxIsDone,
   TransitState,
+  TxIsDone,
 } from "../../reducers/TransitMessageReducer";
 import {
-  EvmHomeReducerAction,
   Erc721TokenIds,
+  EvmHomeReducerAction,
 } from "../../reducers/EvmHomeReducer";
-import { Directions, FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
+import { FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
 
 export interface IHomeBridgeProviderProps {
   children: React.ReactNode | React.ReactNode[];

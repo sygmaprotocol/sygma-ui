@@ -1,1 +1,1 @@
-export { BridgeProvider, useBridge } from './Bridge'
+export { BridgeProvider, useBridge } from "./Bridge";

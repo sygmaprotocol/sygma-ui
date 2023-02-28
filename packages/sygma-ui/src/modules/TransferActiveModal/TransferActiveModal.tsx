@@ -1,13 +1,13 @@
 import React from "react";
-import { Typography, LinearProgress, Button } from "@mui/material";
+import { Typography } from "@mui/material";
 
 import ErrorIcon from "@mui/icons-material/Error";
 import { CustomModal } from "../../components";
 import {
+  TransactionStatus,
   useDestinationBridge,
   useHomeBridge,
   useSygma,
-  TransactionStatus,
   useWeb3 as useLocalWeb3,
 } from "../../contexts";
 import { ReactComponent as SygmaLogoSVG } from "../../media/Icons/sygma.svg";

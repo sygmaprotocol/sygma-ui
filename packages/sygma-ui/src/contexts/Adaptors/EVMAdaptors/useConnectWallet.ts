@@ -1,8 +1,7 @@
-import React from "react";
+import { useEffect, useState } from "react";
 
 import { Bridge, BridgeFactory } from "@chainsafe/chainbridge-contracts";
 import { providers } from "ethers";
-import { useEffect, useState } from "react";
 import {
   BridgeConfig,
   EvmBridgeConfig,

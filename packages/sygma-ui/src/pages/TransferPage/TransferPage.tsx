@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -9,38 +9,28 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Button from "@mui/material/Button";
 import clsx from "clsx";
 
-import {
-  useBridge,
-  useSygma,
-  useHomeBridge,
-  useNetworkManager,
-  useWeb3,
-} from "../../contexts";
+import { useBridge, useHomeBridge, useSygma, useWeb3 } from "../../contexts";
 import { showImageUrl } from "../../utils/Helpers";
 import { useStyles } from "./styles";
 
 import {
-  TransferActiveModal,
-  NetworkUnsupportedModal,
-  PreflightModalTransfer,
   AboutDrawer,
   NetworkSelectModal,
+  NetworkUnsupportedModal,
+  PreflightModalTransfer,
+  TransferActiveModal,
 } from "../../modules";
 import {
   AddressInput,
-  TokenSelectInput,
-  TokenInput,
   Fees,
-  SelectDestinationNetwork,
   HomeNetworkConnectView,
+  SelectDestinationNetwork,
+  TokenInput,
+  TokenSelectInput,
 } from "../../components";
 
 import makeValidationSchema from "./makeValidationSchema";
-import {
-  BridgeData,
-  FeeDataResult,
-  Directions,
-} from "@buildwithsygma/sygma-sdk-core";
+import { FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
 
 export type PreflightDetails = {
   tokenAmount: string;

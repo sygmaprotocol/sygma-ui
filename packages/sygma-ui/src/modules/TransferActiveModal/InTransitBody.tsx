@@ -1,9 +1,8 @@
 import React from "react";
 
 import { TransitState } from "../../reducers";
-import { BridgeConfig, EvmBridgeConfig } from "../../sygmaConfig";
+import { BridgeConfig } from "../../sygmaConfig";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
 export default function InTransitBody({

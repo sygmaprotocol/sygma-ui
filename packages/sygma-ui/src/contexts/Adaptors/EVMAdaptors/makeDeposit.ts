@@ -1,10 +1,10 @@
-import ethers, { providers, BigNumber, utils, Event } from "ethers";
+import { providers, utils } from "ethers";
 import { TransactionStatus } from "../../NetworkManagerContext";
 
 import { BridgeConfig } from "../../../sygmaConfig";
 
 import { getPriceCompatibility } from "./helpers";
-import { Sygma, FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
+import { FeeDataResult, Sygma } from "@buildwithsygma/sygma-sdk-core";
 
 const makeDeposit =
   (
@@ -14,7 +14,6 @@ const makeDeposit =
     setDepositAmount: (input: number | undefined) => void,
     setSelectedToken: (tokenAddress: string) => void,
     gasPrice: number,
-
     homeChainConfig?: BridgeConfig,
     provider?: providers.Web3Provider,
     address?: string,

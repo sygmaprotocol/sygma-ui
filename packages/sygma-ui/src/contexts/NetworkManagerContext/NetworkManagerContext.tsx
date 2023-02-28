@@ -1,26 +1,18 @@
 import React, {
-  Dispatch,
   useCallback,
   useContext,
   useEffect,
   useReducer,
   useState,
 } from "react";
-import { Directions, FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
-import { BridgeConfig, sygmaConfig, ChainType } from "../../sygmaConfig";
+import { FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
+import { BridgeConfig, ChainType, sygmaConfig } from "../../sygmaConfig";
 import {
   EVMDestinationAdaptorProvider,
   EVMHomeAdaptorProvider,
 } from "../Adaptors/EVMAdaptors";
-import { IDestinationBridgeProviderProps } from "../Adaptors/interfaces";
-import { HomeBridgeContext, DestinationBridgeContext } from "..";
-import {
-  AddMessageAction,
-  ResetAction,
-  TxIsDone,
-  transitMessageReducer,
-  TransitState,
-} from "../../reducers/TransitMessageReducer";
+import { DestinationBridgeContext, HomeBridgeContext } from "..";
+import { transitMessageReducer } from "../../reducers/TransitMessageReducer";
 import { useWeb3 } from "../localWeb3Context";
 import { BridgeProvider } from "../Bridge";
 

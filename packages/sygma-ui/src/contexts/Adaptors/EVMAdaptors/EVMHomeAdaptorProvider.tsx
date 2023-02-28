@@ -3,10 +3,7 @@ import { IHomeBridgeProviderProps } from "../interfaces";
 import { HomeBridgeContext } from "../../HomeBridgeContext";
 import { getNetworkName } from "../../../utils/Helpers";
 import { useWeb3 as useLocalWeb3 } from "../../index";
-import {
-  evmHomeReducer,
-  Erc721TokenIds,
-} from "../../../reducers/EvmHomeReducer";
+import { Erc721TokenIds, evmHomeReducer } from "../../../reducers";
 
 import makeDeposit from "./makeDeposit";
 import makeWrappedToken from "./makeWrappedToken";

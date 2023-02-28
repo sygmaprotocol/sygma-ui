@@ -1,13 +1,7 @@
 import React from "react";
-import { useNetworkManager, useSygma, useWeb3 } from "../../contexts";
+import { useSygma, useWeb3 } from "../../contexts";
 import { useStyles } from "./styles";
-import {
-  Button,
-  Dialog,
-  DialogTitle,
-  Typography,
-  LinearProgress,
-} from "@mui/material";
+import { Button, Dialog, DialogTitle } from "@mui/material";
 
 const NetworkSelectModal = () => {
   const { classes } = useStyles();

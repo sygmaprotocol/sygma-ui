@@ -5,12 +5,9 @@ import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import { Switch, NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import TopBarNetworkConnect from "../../modules/TopBarNetworkConnect";
-
-import { shortenAddress } from "../../utils/Helpers";
 import { useSygma } from "../../contexts";
 import { useStyles } from "./styles";
 

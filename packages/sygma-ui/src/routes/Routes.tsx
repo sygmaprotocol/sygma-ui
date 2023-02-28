@@ -1,13 +1,5 @@
-import React, { useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  NavLink,
-  Link,
-  Redirect,
-  HashRouter,
-} from "react-router-dom";
+import React from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 import { NftTransferPage, TransferPage, TransferStatusPage } from "../pages";
 

@@ -1,9 +1,4 @@
-import {
-  BridgeData,
-  BridgeEvents,
-  Sygma,
-  FeeOracleData,
-} from "@buildwithsygma/sygma-sdk-core";
+import { FeeOracleData, Sygma } from "@buildwithsygma/sygma-sdk-core";
 import { providers } from "ethers";
 
 export type SygmaState = {

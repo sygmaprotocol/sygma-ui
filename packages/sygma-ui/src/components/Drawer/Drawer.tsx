@@ -1,10 +1,5 @@
 import React from "react";
-import clsx from "clsx";
-import {
-  ITheme,
-  createStyles,
-  useOnClickOutside,
-} from "@chainsafe/common-theme";
+import { useOnClickOutside } from "@chainsafe/common-theme";
 import { makeStyles } from "tss-react/mui";
 
 interface IStyleProps {
@@ -102,7 +97,9 @@ export interface IDrawerProps {
   position?: Position;
   size?: number;
   backdrop?: boolean;
+
   onClose?(): void;
+
   classNames?: {
     backdrop?: string;
   };

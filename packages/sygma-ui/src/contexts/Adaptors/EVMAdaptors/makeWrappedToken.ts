@@ -7,7 +7,6 @@ import { Weth } from "../../../Contracts/Weth";
 const makeWrappedToken =
   (
     gasPrice: number,
-
     homeChainConfig?: BridgeConfig,
     wrapTokenConfig?: TokenConfig,
     wrapper?: Weth,

@@ -1,11 +1,10 @@
 import React, { useCallback, useContext } from "react";
 import {
   BridgeConfig,
-  sygmaConfig,
   EvmBridgeConfig,
+  sygmaConfig,
   TokenConfig,
 } from "../../sygmaConfig";
-import { TransitState } from "../../reducers/TransitMessageReducer";
 import { Tokens, TransactionStatus } from "../../types";
 import { useWeb3 } from "../../contexts";
 import { useHomeBridge } from "../HomeBridgeContext";

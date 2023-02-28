@@ -7,7 +7,6 @@ import { evmDestinationReducer } from "../../../reducers/EvmDestinationReducer";
 
 import handleProposalEvent from "./handleProposalEvent";
 import { useBridge } from "../../Bridge";
-import { computeDirections } from "../../../utils/Helpers";
 
 export const EVMDestinationAdaptorProvider = ({
   children,

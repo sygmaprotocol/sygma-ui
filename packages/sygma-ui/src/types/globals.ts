@@ -1,7 +1,9 @@
 import { SygmaConfig, UIConfig } from "../sygmaConfig";
+
 interface EthereumProvider {
   isMetaMask?: boolean;
 }
+
 declare global {
   interface Window {
     ethereum?: EthereumProvider;

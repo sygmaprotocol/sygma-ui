@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import {i18n} from "@lingui/core"
 // import {messages as catalogEn} from "../locales/en/messages.js"
 // import {I18nProvider} from "@lingui/react"
@@ -110,6 +110,7 @@ const LanguageProvider = ({
     </LanguageContext.Provider>
   );
 };
+
 function useLanguageContext() {
   const context = React.useContext(LanguageContext);
   if (context === undefined) {
@@ -119,4 +120,5 @@ function useLanguageContext() {
   }
   return context;
 }
+
 export { LanguageProvider, useLanguageContext };

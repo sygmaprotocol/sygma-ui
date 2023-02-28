@@ -4,6 +4,7 @@ interface IConstants {
   generalUnit: number;
   modal: Record<string, any>;
   icon: Record<string, any>;
+
   [key: string]: number | string | Record<string, any> | undefined;
 }
 
@@ -11,6 +12,7 @@ declare module "@mui/material/styles" {
   interface Theme {
     constants: IConstants;
   }
+
   // allow configuration using `createTheme`
   interface ThemeOptions {
     constants?: IConstants;
@@ -23,6 +25,7 @@ declare module "@mui/material/styles" {
       };
     };
   }
+
   interface PaletteOptions {
     additional?: {
       [key: string]: {

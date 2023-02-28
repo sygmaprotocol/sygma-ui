@@ -7,14 +7,13 @@
   "dependencies": {
     "@babel/core": "^7.12.3",
     "@babel/runtime": "^7.12.1",
+    "@buildwithsygma/sygma-contracts": "1.0.0",
+    "@buildwithsygma/sygma-sdk-core": "1.1.3",
     "@celo-tools/celo-ethers-wrapper": "^0.0.5",
     "@chainsafe/common-theme": "1.0.10",
-    "@buildwithsygma/sygma-sdk-core": "1.1.3",
-    "@buildwithsygma/sygma-contracts": "1.0.0",
     "@chainsafe/web3-context": "1.2.0",
     "@fusion-icons/react": "0.0.0",
     "@hookform/resolvers": "^2.8.4",
-    "tss-react": "4.4.4",
     "@mui/icons-material": "^5.2.1",
     "@mui/lab": "^5.0.0-alpha.57",
     "@mui/material": "^5.2.1",
@@ -32,22 +31,24 @@
     "bnc-onboard": "1.38.3",
     "clsx": "^1.1.1",
     "dayjs": "^1.9.1",
-    "ethers": "^5.4.5",
+    "ethers": "^5.5.0",
     "formik": "^2.2.0",
     "history": "^5.0.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "node-polyfill-webpack-plugin": "^2.0.1",
+    "react": "^16.14.0",
+    "react-combine-reducers": "^1.1.1",
+    "react-dom": "^16.14.0",
     "react-hook-form": "^7.20.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.1",
     "react-toast-notifications": "2.4.0",
     "styled-components": "^5.3.3",
-    "yup": "^0.29.3",
-    "react-combine-reducers": "^1.1.1",
-    "node-polyfill-webpack-plugin": "^2.0.1",
-    "terser-webpack-plugin": "^5.3.6"
+    "terser-webpack-plugin": "^5.3.6",
+    "tss-react": "4.4.4",
+    "yup": "^0.29.3"
   },
   "devDependencies": {
+    "@craco/craco": "^7.0.0",
     "@sentry/cli": "1.58.0",
     "@sheerun/mutationobserver-shim": "^0.3.3",
     "@testing-library/jest-dom": "^5.11.4",
@@ -57,12 +58,13 @@
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.8",
     "@types/react": "^18.0.9",
+    "@types/react-combine-reducers": "^1.0.0",
     "@types/react-dom": "^16.9.0",
     "@types/react-router-dom": "^5.2.0",
     "@types/styled-components": "^5.1.15",
     "@types/yup": "^0.29.9",
+    "@typescript-eslint/eslint-plugin": "^5.44.0",
     "chalk": "^4.1.0",
-    "@craco/craco": "^7.0.0",
     "dotenv": "^16.0.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-only-warn": "^1.0.3",
@@ -70,10 +72,8 @@
     "husky": "4.3.0",
     "prettier": "^2.8.0",
     "pretty-quick": "3.0.2",
-    "typescript": "^4.5.2",
-    "@types/react-combine-reducers": "^1.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.44.0",
     "source-map-explorer": "^2.5.3",
+    "typescript": "^4.6.4",
     "webpack-bundle-analyzer": "^4.7.0"
   },
   "scripts": {
@@ -86,7 +86,7 @@
     "clean:dependencies": "rm -rf ./node_modules && rm -rf ./*/**/node_modules",
     "clean:dist": "rm -rf ./*/**/dist && rm -rf ./*/**/build && rm -rf ./*/**/storybook-static",
     "clean": "yarn clean:dependencies && yarn clean:dist",
-    "prettier": "prettier --config .prettierrc 'packages/**/src/**/*.{ts,tsx,js,jsx,md}' --write",
+    "prettier": "prettier './src/**/*.{ts,tsx,js,jsx,md}' --write",
     "start:tunnel": "./ngrok http https://localhost:3000",
     "setup:copy-dev-config": "./scripts/copy-dev-config.sh",
     "test:aws": "ts-node ./src/configFromAWS",
@@ -99,6 +99,7 @@
       "react-app"
     ]
   },
+
   "browserslist": {
     "production": [
       ">0.2%",
@@ -113,7 +114,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick 'packages/**/src/**/*.{ts,tsx,js,jsx,md}' --staged"
+      "pre-commit": "pretty-quick './src/**/*.{ts,tsx,js,jsx,md}' --staged"
     }
   }
 }

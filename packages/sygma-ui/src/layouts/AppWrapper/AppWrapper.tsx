@@ -1,36 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { ReactNode } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 
-import Paper from "@mui/material/Paper";
-
-import {
-  Switch,
-  NavLink,
-  Link,
-  useLocation,
-  useHistory,
-  useRouteMatch,
-} from "react-router-dom";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
 import Container from "@mui/material/Container";
 
 import AppHeader from "../AppHeader/AppHeader";
-import { ReactComponent as GlobalSvg } from "../../media/Icons/global.svg";
-import { ReactComponent as GiftSvg } from "../../media/Icons/gift.svg";
-import { ReactComponent as TransferSvg } from "../../media/Icons/transfer.svg";
 
 import { ConnectionDialog } from "../../modules";
 
-import {
-  useBridge,
-  useSygma,
-  useHomeBridge,
-  useNetworkManager,
-  useWeb3,
-} from "../../contexts";
+import { useWeb3 } from "../../contexts";
 
 import { ROUTE_LINKS } from "../../routes";
 import { useStyles } from "./styles";

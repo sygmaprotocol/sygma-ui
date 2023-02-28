@@ -10,12 +10,10 @@ import CeloIcon from "../media/networks/celo.svg";
 import EtcIcon from "../media/networks/etc.svg";
 import CosmosIcon from "../media/networks/cosmos.svg";
 import EthermintIcon from "../media/networks/ethermint.svg";
-import PolkadotIcon from "../media/networks/polkadot.svg";
 import { BigNumber, BigNumberish, ethers } from "ethers";
 import { BridgeData } from "@buildwithsygma/sygma-sdk-core";
 import { DepositRecord, TransferDetails } from "../reducers/TransfersReducer";
 import { BridgeConfig, EvmBridgeConfig, TokenConfig } from "../sygmaConfig";
-import { Tokens, TokenInfo } from "../types";
 import { Metadata } from "../reducers";
 
 export const isCelo = (networkId?: number) =>

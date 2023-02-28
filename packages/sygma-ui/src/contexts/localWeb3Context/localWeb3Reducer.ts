@@ -1,4 +1,4 @@
-import { LocalWeb3State, Actions } from "./types";
+import { Actions, LocalWeb3State } from "./types";
 
 export const localWeb3ContextReducer = (
   state: LocalWeb3State,
@@ -42,15 +42,17 @@ export const localWeb3ContextReducer = (
       return {
         ...state,
         isReady: action.payload,
-        savedWallet: action.payload ? state.savedWallet : ""
+        savedWallet: action.payload ? state.savedWallet : "",
       };
     case "setWallet": {
-      const { payload: { wallet, provider } } = action
+      const {
+        payload: { wallet, provider },
+      } = action;
       return {
         ...state,
         wallet: wallet!,
         provider: provider!,
-        savedWallet: wallet ? wallet?.name! : ""
+        savedWallet: wallet ? wallet?.name! : "",
       };
     }
     case "setProvider":
@@ -59,7 +61,9 @@ export const localWeb3ContextReducer = (
         provider: action.payload,
       };
     case "setNetworkAndProvider": {
-      const { payload: { network, provider } } = action
+      const {
+        payload: { network, provider },
+      } = action;
       return {
         ...state,
         network,
@@ -67,40 +71,44 @@ export const localWeb3ContextReducer = (
       };
     }
     case "setNetwork": {
-      const { payload } = action
+      const { payload } = action;
       return {
         ...state,
-        network: payload
-      }
+        network: payload,
+      };
     }
     case "setOnBoard":
       return {
         ...state,
         onboard: action.payload,
       };
-    case 'setWalletConnect': {
-      const { payload: { wallet, provider } } = action
+    case "setWalletConnect": {
+      const {
+        payload: { wallet, provider },
+      } = action;
       return {
         ...state,
         wallet: wallet!,
         provider: provider!,
-        savedWallet: wallet?.name!
-      }
+        savedWallet: wallet?.name!,
+      };
     }
-    case 'setSavedWallet':
+    case "setSavedWallet":
       return {
         ...state,
-        savedWallet: action.payload
-      }
-    case 'setAll':
-      const { payload: { provider, isActive, chainId, address } } = action
+        savedWallet: action.payload,
+      };
+    case "setAll":
+      const {
+        payload: { provider, isActive, chainId, address },
+      } = action;
       return {
         ...state,
         provider,
         address,
         isReady: isActive,
-        network: chainId
-      }
+        network: chainId,
+      };
     default:
       return state;
   }

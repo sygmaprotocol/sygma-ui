@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { utils, ethers } from "ethers";
+import React, { useEffect, useState } from "react";
+import { utils } from "ethers";
 
-import { init, ErrorBoundary, showReportDialog } from "@sentry/react";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ErrorBoundary, init, showReportDialog } from "@sentry/react";
+import { ThemeProvider } from "@mui/material/styles";
 
 import CssBaseline from "@mui/material/CssBaseline";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -14,15 +14,9 @@ import AlertTitle from "@mui/material/AlertTitle";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import { SygmaRoutes } from "./routes";
-import { lightTheme } from "./themes/LightTheme";
 import { SygmaTheme } from "./themes/SygmaTheme";
 
-import {
-  SygmaProvider,
-  NetworkManagerProvider,
-  LocalProvider,
-  BridgeProvider,
-} from "./contexts";
+import { BridgeProvider, LocalProvider, SygmaProvider } from "./contexts";
 import { sygmaConfig } from "./sygmaConfig";
 import { AppWrapper } from "./layouts";
 import { getSygmaConfig } from "./getSygmaConfig";
@@ -44,7 +38,7 @@ const AppWrap: React.FC<{
   config?: any;
   useExternalProvider?: any;
   externalProviderSource?: any;
-}> = (props) => {
+}> = () => {
   const [isReady, setIsReady] = useState(false);
   const [errMessage, setErrMessage] = useState<undefined | string>();
 
@@ -106,7 +100,7 @@ const AppWrap: React.FC<{
   );
 };
 
-const App: React.FC<{}> = () => {
+const App: React.FC = () => {
   const {
     __RUNTIME_CONFIG__: {
       UI: { nftTokenPage = false } = {},

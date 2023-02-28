@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from "react";
+import React, { memo } from "react";
 
 import ImageList from "@mui/material/ImageList";
 

@@ -1,7 +1,7 @@
 import { Erc20DetailedFactory } from "../Contracts/Erc20DetailedFactory";
 import { BigNumber as BN } from "bignumber.js";
-import { BigNumber, ethers, utils, providers } from "ethers";
-import { Actions, LocalWeb3State, TokenInfo } from "../types";
+import { BigNumber, ethers, providers, utils } from "ethers";
+import { Actions, TokenInfo } from "../types";
 
 import { API as OnboardAPI } from "bnc-onboard/dist/src/interfaces";
 import { Erc20Detailed } from "../Contracts/Erc20Detailed";

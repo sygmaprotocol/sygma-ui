@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState, useReducer } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import {
+  Action,
+  ExplorerPageState,
   ExplorerState,
   PaginationParams,
   transfersReducer,
-  ExplorerPageState,
-  Action,
 } from "../../reducers/TransfersReducer";
 import { useHomeBridge } from "../HomeBridgeContext";
 

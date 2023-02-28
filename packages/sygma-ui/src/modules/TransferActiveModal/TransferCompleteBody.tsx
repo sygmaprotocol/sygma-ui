@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-import { Typography, Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
-import { BridgeConfig, EvmBridgeConfig } from "../../sygmaConfig";
-import { Actions } from "../../types";
-import { API as OnboardAPI } from "bnc-onboard/dist/src/interfaces";
+import { BridgeConfig } from "../../sygmaConfig";
 
 export default function TransferCompleteBody({
   classes,

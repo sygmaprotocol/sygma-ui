@@ -1,8 +1,8 @@
 import { computeTransferDetails } from "./Helpers";
 import {
-  testResponse,
-  runtimeTestingConfig,
   canceledTransfer,
+  runtimeTestingConfig,
+  testResponse,
 } from "./TestUtils";
 
 describe("ComputeTransfersDetails", () => {

@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { initializeConnector } from "@web3-react/core";
 import { WalletConnect } from "@web3-react/walletconnect";
-import { Typography, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { WalletconnectIcon } from "@fusion-icons/react/web3";
-import { getSygmaConfig } from "../../getSygmaConfig";
 
 function convertToWc() {
   if (!window.__RUNTIME_CONFIG__) {

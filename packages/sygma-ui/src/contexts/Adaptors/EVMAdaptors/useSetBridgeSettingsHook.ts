@@ -1,6 +1,5 @@
-import { Bridge, BridgeFactory } from "@chainsafe/chainbridge-contracts";
-import { BigNumber, utils } from "ethers";
-import { useCallback, useEffect, useState } from "react";
+import { Bridge } from "@chainsafe/chainbridge-contracts";
+import { useState } from "react";
 
 export function useSetBridgeSettingsHook(homeBridge?: Bridge) {
   const [bridgeFee, setBridgeFee] = useState<number | undefined>();

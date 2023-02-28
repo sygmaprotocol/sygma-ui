@@ -8,77 +8,75 @@ const networkManagerReducer = (
     case "setWalletType":
       return {
         ...state,
-        walletType: action.payload
-      }
+        walletType: action.payload,
+      };
     case "setHomeChainConfig": {
-      const { payload } = action
+      const { payload } = action;
 
-      if(payload !== undefined){
+      if (payload !== undefined) {
         return {
           ...state,
-          homeChainConfig: payload
-        }
+          homeChainConfig: payload,
+        };
       }
-      return state
+      return state;
     }
     case "setHomeChains":
       return {
         ...state,
-        homeChains: action.payload
-      }
+        homeChains: action.payload,
+      };
     case "setDestinationChain": {
-      const { payload } = action
+      const { payload } = action;
 
-      if(payload !== undefined){
+      if (payload !== undefined) {
         return {
           ...state,
-          destinationChainConfig: payload
-        }
+          destinationChainConfig: payload,
+        };
       }
-      return state
+      return state;
     }
     case "setDestinationChains":
       return {
         ...state,
-        destinationChains: action.payload
-      }
+        destinationChains: action.payload,
+      };
     case "setTransactionStatus": {
-      const { payload } = action
+      const { payload } = action;
 
       return {
         ...state,
-        transactionStatus: payload
-      }
-
+        transactionStatus: payload,
+      };
     }
     case "addMessage":
       return {
         ...state,
-        transitMessage: [ ...state.transitMessage, action.payload]
-      }
+        transitMessage: [...state.transitMessage, action.payload],
+      };
     case "resetMessages": {
       // TODO: CHECK WHAT IS BEING DONE ON RESETING THE MESSAGES
-      return state
+      return state;
     }
     case "setTransactionIsDone":
       //TODO SAME CHECK HERE RELATED OF WHAT TO DO WITH THE STATE
-      return state
+      return state;
     case "setAll":
-      const { walletType } = action.payload
+      const { walletType } = action.payload;
       return {
         ...state,
-        walletType
-      }
-    case 'setDepositNonce': {
+        walletType,
+      };
+    case "setDepositNonce": {
       return {
         depositNonce: action.payload,
-        ...state
-      }
+        ...state,
+      };
     }
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default networkManagerReducer
-
+export default networkManagerReducer;

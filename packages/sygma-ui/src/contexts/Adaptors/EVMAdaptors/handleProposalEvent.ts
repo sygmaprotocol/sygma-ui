@@ -1,18 +1,8 @@
 import { Dispatch } from "react";
-import { BigNumber, Event } from "ethers";
-import { BridgeConfig } from "../../../sygmaConfig";
 import { TransactionStatus } from "../../NetworkManagerContext";
-import {
-  AddMessageAction,
-  ResetAction,
-  TxIsDone,
-} from "../../../reducers/TransitMessageReducer";
-import {
-  BridgeData,
-  BridgeEvents,
-  Directions,
-  Sygma,
-} from "@buildwithsygma/sygma-sdk-core";
+import { AddMessageAction, ResetAction, TxIsDone } from "../../../reducers";
+import { Sygma } from "@buildwithsygma/sygma-sdk-core";
+
 const handleProposalEvent = (
   setTransactionStatus: (message: TransactionStatus | undefined) => void,
   setTransferTxHash: (input: string) => void,
