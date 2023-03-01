@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Bridge, BridgeFactory } from "@chainsafe/chainbridge-contracts";
+import { Bridge, Bridge__factory } from "@chainsafe/chainbridge-contracts";
 import { providers } from "ethers";
 import {
   BridgeConfig,
@@ -44,7 +44,7 @@ export function useConnectWallet(
           return;
         }
 
-        const bridge = BridgeFactory.connect(
+        const bridge = Bridge__factory.connect(
           (homeChainConfig as EvmBridgeConfig).bridgeAddress,
           signer
         );
@@ -76,7 +76,7 @@ export function useConnectWallet(
           return;
         }
 
-        const bridge = BridgeFactory.connect(
+        const bridge = Bridge__factory.connect(
           (homeChainConfig as EvmBridgeConfig).bridgeAddress,
           signer
         );

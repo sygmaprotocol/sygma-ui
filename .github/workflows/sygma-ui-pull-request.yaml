@@ -18,7 +18,7 @@ jobs:
           node-version: 16
           cache: "yarn"
       - name: Install dependencies
-        run: yarn --prefer-offline --frozen-lockfile
+        run: yarn --immutable
       - name: Lint Sygma UI
         run: yarn lint:ui
   build:
@@ -33,7 +33,7 @@ jobs:
           node-version: 16
           cache: "yarn"
       - name: Install dependencies
-        run: yarn --prefer-offline --frozen-lockfile
+        run: yarn --immutable
       - name: Build
         run: yarn build:ui
   test:
@@ -48,6 +48,6 @@ jobs:
           node-version: 16
           cache: "yarn"
       - name: Install dependencies
-        run: yarn --prefer-offline --frozen-lockfile
+        run: yarn --immutable
       - name: Test Sygma UI
         run: yarn test:ui
