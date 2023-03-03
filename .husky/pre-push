@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+yarn run lint:ui
+pretty-quick './src/**/*.{ts,tsx,js,jsx,md}' --branch main
+yarn run test:ui
