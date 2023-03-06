@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { initializeConnector } from "@web3-react/core";
 import { WalletConnect } from "@web3-react/walletconnect";
 import { Button } from "@mui/material";
 import { WalletconnectIcon } from "@fusion-icons/react/web3";
+import useConnectionDialog from "./useConnectionDialog";
 
 function convertToWc() {
   if (!window.__RUNTIME_CONFIG__) {
@@ -15,24 +16,6 @@ function convertToWc() {
   return Object.fromEntries(result);
 }
 
-export const [walletConnect, hooks] = initializeConnector<WalletConnect>(
-  (actions) =>
-    new WalletConnect(actions, {
-      rpc: convertToWc(),
-    })
-);
-
-const {
-  useChainId,
-  useAccounts,
-  useError,
-  useIsActivating,
-  useIsActive,
-  useProvider,
-  useENSNames,
-  useAccount,
-} = hooks;
-
 const ConnectToWallet = ({
   dispatcher,
   handleClose,
@@ -44,35 +27,18 @@ const ConnectToWallet = ({
   isLoading: boolean;
   setIsLoading: any;
 }) => {
-  const chainId = useChainId();
-  const accounts = useAccounts();
-  const account = useAccount();
-  const error = useError();
-  const isActivating = useIsActivating();
-  const provider = useProvider();
-
-  const isActive = useIsActive();
-
-  useEffect(() => {
-    setIsLoading(isActivating);
-  }, [isActivating]);
-
-  useEffect(() => {
-    if (isActive) {
-      dispatcher({
-        type: "setAll",
-        payload: {
-          provider,
-          accounts,
-          isActive,
-          chainId,
-          address: account,
-          walletType: "Ethereum",
-        },
-      });
-      handleClose();
-    }
-  }, [isActive]);
+  const connectorData = initializeConnector<WalletConnect>(
+    (actions) =>
+      new WalletConnect(actions, {
+        rpc: convertToWc(),
+      })
+  );
+  const { connector } = useConnectionDialog(
+    connectorData,
+    dispatcher,
+    setIsLoading,
+    handleClose
+  );
 
   return (
     <Button
@@ -106,7 +72,7 @@ const ConnectToWallet = ({
         },
       }}
       onClick={() => {
-        walletConnect.activate();
+        connector.activate().catch((err) => console.error(err));
       }}
       disabled={isLoading}
     >

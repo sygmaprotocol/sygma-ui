@@ -30,7 +30,7 @@ export const fetchTransfers = async (
       isLoading: true,
     });
     const clearedParams = Object.entries({ ...options, ...filters }).filter(
-      ([k, v]) => v !== undefined && v !== ""
+      ([, v]) => v !== undefined && v !== ""
     );
     // @ts-ignore
     const params = new URLSearchParams(clearedParams).toString();

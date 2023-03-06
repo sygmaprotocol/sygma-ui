@@ -13,7 +13,6 @@ interface IFeesProps {
 }
 
 const Fees: React.FC<IFeesProps> = ({
-  className,
   symbol,
   fee,
   feeSymbol,

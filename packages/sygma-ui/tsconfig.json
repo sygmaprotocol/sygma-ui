@@ -32,11 +32,7 @@
     "inlineSources": true,
     "sourceRoot": "/",
     "downlevelIteration": true,
-    "noFallthroughCasesInSwitch": true,
+    "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
-  "rules": {
-    "react/jsx-uses-vars": "error",
-    "react/jsx-uses-react": "error"
-  }
+  "include": ["src"]
 }

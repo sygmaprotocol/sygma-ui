@@ -11,21 +11,10 @@ import TopBarNetworkConnect from "../../modules/TopBarNetworkConnect";
 import { useSygma } from "../../contexts";
 import { useStyles } from "./styles";
 
-const ROUTE_LINKS_HEADERS = [
-  { route: "/transfer", label: "Token Bridge" },
-  // temporarily commented
-  { route: "/nft_transfer", label: "NFT Bridge" },
-];
-
-interface IAppHeader {}
-
-const AppHeader: React.FC<IAppHeader> = () => {
+const AppHeader: React.FC = () => {
   const { classes } = useStyles();
   const { homeConfig, isReady, address } = useSygma();
-
   const { __RUNTIME_CONFIG__ } = window;
-
-  const indexerEnabled = "INDEXER_URL" in __RUNTIME_CONFIG__;
   const nftTokenPage = __RUNTIME_CONFIG__.UI.nftTokenPage;
 
   return (

@@ -28,7 +28,7 @@ export default function SelectedNft({
   const metadata = erc721TokenWithIds!
     .find((tkn) => tkn.tokenAddress === tokenAddress)
     ?.tokenIdsWithMetadata.find((metadata) => metadata.tokenId === tokenId);
-  const { classes, cx } = useStyles();
+  const { classes } = useStyles();
 
   const { homeConfig } = useSygma();
 

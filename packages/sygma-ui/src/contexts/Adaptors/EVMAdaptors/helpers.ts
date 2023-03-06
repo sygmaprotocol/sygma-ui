@@ -13,7 +13,7 @@ const getRpcProviderFromHttpUrl = (url: string) => {
   const urlInstance = new URL(url);
 
   if (urlInstance.username && urlInstance.password) {
-    var urlInfo = {
+    const urlInfo = {
       url: urlInstance.origin,
       user: urlInstance.username,
       password: urlInstance.password,
@@ -63,7 +63,7 @@ export async function hasTokenSupplies(
     destinationChain !== undefined &&
     destinationChain.type === "Ethereum"
   ) {
-    let provider = getProvider(destinationChain);
+    const provider = getProvider(destinationChain);
     await provider.ready;
     const erc20destinationToken = Erc20DetailedFactory.connect(
       destinationToken.address,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Typography } from "@mui/material";
 
 import { useWeb3 } from "../../contexts";
@@ -17,15 +17,11 @@ type TopBarNetworkConnectProps = {
 
 export default function TopBarNetworkConnect({
   isReady,
-  walletConnecting,
   homeConfig,
   address,
 }: TopBarNetworkConnectProps) {
   const { classes } = useStyles();
-
   const { dispatcher } = useWeb3();
-
-  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     dispatcher({ type: "setShowConnectionDialog", payload: true });
@@ -47,10 +43,10 @@ export default function TopBarNetworkConnect({
           <>
             <div className={classes.mainInfo}>
               <Typography variant="h6" className={classes.address}>
-                {/* <span className={classes.indicator} /> */}
                 {homeConfig && (
                   <img
                     src={`/assets/images/networks/${homeConfig.nativeTokenSymbol.toLocaleLowerCase()}.svg`}
+                    alt={"native token icon"}
                     className={classes.indicator}
                   />
                 )}

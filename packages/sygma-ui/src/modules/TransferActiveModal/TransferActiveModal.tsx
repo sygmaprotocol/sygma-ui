@@ -124,7 +124,7 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
   close,
 }: ITransferActiveModalProps) => {
   const { classes, cx } = useStyles();
-  const { savedWallet, dispatcher } = useLocalWeb3();
+  const { savedWallet } = useLocalWeb3();
   const {
     transactionStatus,
     relayerThreshold,
@@ -135,7 +135,7 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
     tokens,
   } = useSygma();
   const { homeTransferTxHash } = useHomeBridge();
-  const { transferTxHash, inTransitMessages } = useDestinationBridge();
+  const { inTransitMessages } = useDestinationBridge();
   const tokenSymbol = selectedToken && tokens[selectedToken]?.symbol;
 
   const getTransactionStateBody = (status?: TransactionStatus) => {
@@ -145,8 +145,6 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
         <InTransitBody
           classes={classes}
           inTransitMessages={inTransitMessages}
-          homeConfig={homeConfig}
-          homeTransferTxHash={homeTransferTxHash}
         />
       ),
       "Transfer Completed": (
@@ -161,15 +159,7 @@ const TransferActiveModal: React.FC<ITransferActiveModalProps> = ({
           savedWallet={savedWallet}
         />
       ),
-      default: (
-        <ErrorTransferBody
-          classes={classes}
-          close={close}
-          homeConfig={homeConfig}
-          homeTransferTxHash={homeTransferTxHash}
-          transferTxHash={transferTxHash}
-        />
-      ),
+      default: <ErrorTransferBody classes={classes} close={close} />,
     };
     if (!status) return transactionStatuses["default"];
 

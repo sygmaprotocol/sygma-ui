@@ -41,7 +41,7 @@ describe("ComputeTransfersDetails", () => {
     );
 
     const {
-      timelineMessages: [head, , , tail],
+      timelineMessages: [, , , tail],
     } = transferDetails;
 
     expect(tail.message).toBe("Transfer canceled");
@@ -59,7 +59,7 @@ describe("ComputeTransfersDetails", () => {
     );
 
     const {
-      timelineMessages: [head, , , tail],
+      timelineMessages: [, , , tail],
     } = transferDetails;
 
     expect(tail.message).toBe("Waiting for execution");

@@ -17,7 +17,7 @@ export function useConnectWallet(
   network?: number
 ) {
   const [initialising, setInitialising] = useState(false);
-  const [walletSelected, setWalletSelected] = useState(false);
+  const [walletSelected] = useState(false);
   const [homeBridge, setHomeBridge] = useState<Bridge | undefined>(undefined);
 
   // Contracts
@@ -31,7 +31,7 @@ export function useConnectWallet(
     console.log("starting init");
     if (!walletSelected) {
       if (window.ethereum) {
-        (window.ethereum as any).on("chainChanged", (ch: any) => {
+        (window.ethereum as any).on("chainChanged", () => {
           window.location.reload();
         });
       }

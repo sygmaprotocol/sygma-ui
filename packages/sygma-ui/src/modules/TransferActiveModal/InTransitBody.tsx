@@ -1,24 +1,16 @@
 import React from "react";
 
 import { TransitState } from "../../reducers";
-import { BridgeConfig } from "../../sygmaConfig";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 export default function InTransitBody({
   classes,
   inTransitMessages,
-  homeConfig,
-  homeTransferTxHash,
 }: {
   classes: any;
   inTransitMessages?: TransitState;
-  homeConfig?: BridgeConfig;
-  homeTransferTxHash?: string;
 }) {
-  const {
-    __RUNTIME_CONFIG__: { UI_EXPLORER_URL },
-  } = window;
   return (
     <>
       <Box sx={{ my: 2 }}>
@@ -50,20 +42,6 @@ export default function InTransitBody({
           Please do not refresh or leave the page.
         </Typography>
       </Box>
-      <section className={classes.buttons}>
-        {/* {homeConfig &&
-          (homeConfig as EvmBridgeConfig).blockExplorer &&
-          homeTransferTxHash && (
-            <Button
-              href={`${UI_EXPLORER_URL}/explorer/transaction/${homeTransferTxHash}`}
-              size="small"
-              className={classes.button}
-              variant="outlined"
-            >
-              View transaction
-            </Button>
-          )} */}
-      </section>
     </>
   );
 }

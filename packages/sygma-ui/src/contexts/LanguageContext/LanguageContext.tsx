@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from "react";
-// import {i18n} from "@lingui/core"
-// import {messages as catalogEn} from "../locales/en/messages.js"
-// import {I18nProvider} from "@lingui/react"
-export type LanguageContext = {
+
+export interface LanguageContextInterface {
   availableLanguages: Language[];
   selectedLanguage: string;
   selectedLocale: string;
   setActiveLanguage(newLanguage: string): void | Promise<void>;
   formatLocaleDate(date: Date): string;
-};
+}
 type Language = {
   id: string;
   label: string;
 };
+
 type LanguageProviderProps = {
   children: React.ReactNode | React.ReactNode[];
   availableLanguages: Language[];
 };
-const LanguageContext = React.createContext<LanguageContext | undefined>(
-  undefined
-);
+const LanguageContext = React.createContext<
+  LanguageContextInterface | undefined
+>(undefined);
 const getLanguages = (): string[] => {
   // @ts-ignore
   const { languages, language, userLanguage } = window.navigator;

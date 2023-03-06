@@ -29,7 +29,6 @@ const AddressInput: React.FC<IAddressInput> = ({
   control,
   setValue,
   disabled,
-  ...rest
 }: IAddressInput) => {
   const { field, fieldState } = useController({ name, control });
 

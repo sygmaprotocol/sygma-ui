@@ -16,17 +16,17 @@ interface IExplorerContextProps {
   children: React.ReactNode | React.ReactNode[];
 }
 
-type ExplorerContext = {
+interface ExplorerContextInterface {
   explorerState: ExplorerState;
   loadMore: (options: PaginationParams) => void;
   setExplorerStateContext: any;
   explorerPageState: ExplorerPageState;
   explorerPageDispatcher: React.Dispatch<Action>;
-};
+}
 
-const ExplorerContext = React.createContext<ExplorerContext | undefined>(
-  undefined
-);
+const ExplorerContext = React.createContext<
+  ExplorerContextInterface | undefined
+>(undefined);
 
 const ExplorerProvider = ({ children }: IExplorerContextProps) => {
   const {

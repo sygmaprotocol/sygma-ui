@@ -62,15 +62,11 @@ const NftTransferPage = () => {
   const {
     deposit,
     setDestinationChain,
-    transactionStatus,
-    resetDeposit,
-    bridgeFee,
     isReady,
     homeConfig,
     destinationChainConfig,
     destinationChains,
     address,
-    checkSupplies,
     chains,
   } = useSygma();
 
@@ -79,7 +75,7 @@ const NftTransferPage = () => {
     tokens,
     homeConfig,
   });
-  const { handleSubmit, control, setValue, watch, formState, reset } =
+  const { handleSubmit, control, setValue, watch, formState } =
     useForm<PreflightDetails>({
       resolver: yupResolver(transferSchema),
       defaultValues: {
@@ -114,36 +110,32 @@ const NftTransferPage = () => {
         });
       });
     }
-  }, [erc721TokenWithIds, homeConfig]);
-
-  async function setFee(amount: string) {
-    if (sygmaInstance && amount && address) {
-      const fee = await sygmaInstance.fetchFeeData({
-        amount: amount,
-        recipientAddress: destAddress,
-      });
-      if (!(fee instanceof Error)) {
-        setCustomFee(fee);
-      }
-    }
-  }
+  }, [address, erc721TokenWithIds, homeConfig, homeDispatch, provider]);
 
   useEffect(() => {
-    setFee(watchAmount.toString().replace(/\D/g, ""));
-  }, [watchAmount, preflightDetails, destinationChainConfig]);
+    async function setFee(amount: string) {
+      if (sygmaInstance && amount && address) {
+        const fee = await sygmaInstance.fetchFeeData({
+          amount: amount,
+          recipientAddress: destAddress,
+        });
+        if (!(fee instanceof Error)) {
+          setCustomFee(fee);
+        }
+      }
+    }
 
-  const resetForFields = () => {
-    setSelectedNft(undefined);
-    reset({
-      tokenAmount: "",
-      receiver: "",
+    setFee(watchAmount.toString().replace(/\D/g, "")).catch((e) => {
+      console.error(e);
     });
-    resetDeposit();
-    homeDispatch({
-      type: "setErc721TokenIds",
-      erc721TokenWithIds: undefined,
-    });
-  };
+  }, [
+    watchAmount,
+    preflightDetails,
+    destinationChainConfig,
+    sygmaInstance,
+    address,
+    destAddress,
+  ]);
 
   return (
     <ThemeProvider theme={nftPageTheme}>

@@ -1,9 +1,6 @@
 import { providers, utils } from "ethers";
 import { TransactionStatus } from "../../NetworkManagerContext";
-
 import { BridgeConfig } from "../../../sygmaConfig";
-
-import { getPriceCompatibility } from "./helpers";
 import { FeeDataResult, Sygma } from "@buildwithsygma/sygma-sdk-core";
 
 const makeDeposit =
@@ -25,9 +22,6 @@ const makeDeposit =
     recipient: string;
     feeData: FeeDataResult;
   }) => {
-    const tokenAddress = sygmaInstance!.setSelectedToken(
-      paramsForDeposit.tokenAddress
-    );
     const token = homeChainConfig!.tokens.find(
       (token) => token.address === paramsForDeposit.tokenAddress
     );
@@ -42,12 +36,6 @@ const makeDeposit =
     setSelectedToken(paramsForDeposit.tokenAddress);
 
     try {
-      const gasPriceCompatibility = await getPriceCompatibility(
-        provider,
-        homeChainConfig,
-        gasPrice
-      );
-      // Allowance for bridge
       if (token.type === "erc20") {
         const currentAllowance = await sygmaInstance?.checkCurrentAllowance(
           address!
@@ -110,7 +98,7 @@ const makeDeposit =
         setTransactionStatus("In Transit");
         setHomeTransferTxHash(depositTx.transactionHash);
       } else {
-        throw "deposit transaction unsuccessful";
+        throw new Error("deposit transaction unsuccessful");
       }
       setHomeTransferTxHash(depositTx!.transactionHash);
 

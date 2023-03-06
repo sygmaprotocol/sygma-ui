@@ -19,13 +19,11 @@ export interface IDrawerProps {
   };
 }
 
-interface ICustomDrawerProps extends IDrawerProps {}
-
-const CustomDrawer: React.FC<ICustomDrawerProps> = ({
+const CustomDrawer: React.FC<IDrawerProps> = ({
   children,
   className,
   ...rest
-}: ICustomDrawerProps) => {
+}: IDrawerProps) => {
   const { classes, cx } = useStyles();
 
   return (

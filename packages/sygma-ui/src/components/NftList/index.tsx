@@ -3,13 +3,12 @@ import React, { memo } from "react";
 import Grid from "@mui/material/Grid";
 import InputLabel from "@mui/material/InputLabel";
 import Box from "@mui/material/Box";
-import { Erc721TokenIds } from "../../reducers/EvmHomeReducer";
+import { Erc721TokenIds } from "../../reducers";
 
 import StandardImageList from "./StandardImageList";
 
 const NftList = memo(function NftList({
   tokenWithIds,
-  selectedNft,
   setSelectedNft,
   setValue,
 }: {

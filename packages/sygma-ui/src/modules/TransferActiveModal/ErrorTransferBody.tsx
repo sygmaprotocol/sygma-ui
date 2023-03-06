@@ -1,20 +1,13 @@
 import React from "react";
-import { BridgeConfig } from "../../sygmaConfig";
 import { Button, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
 
 export default function ErrorTransferBody({
   classes,
   close,
-  homeConfig,
-  homeTransferTxHash,
-  transferTxHash,
 }: {
   classes: any;
   close: () => void;
-  homeConfig?: BridgeConfig;
-  homeTransferTxHash?: string;
-  transferTxHash?: string;
 }) {
   return (
     <div className={classes.transferAbortedContainer}>
@@ -32,25 +25,6 @@ export default function ErrorTransferBody({
       >
         Something went wrong and we could not complete your transfer.
       </Typography>
-      {/* {homeConfig &&
-        (homeConfig as EvmBridgeConfig).blockExplorer &&
-        homeTransferTxHash && (
-          <Button
-            onClick={() =>
-              window.open(
-                `${
-                  (homeConfig as EvmBridgeConfig).blockExplorer
-                }/${transferTxHash}`,
-                "_blank"
-              )
-            }
-            size="small"
-            className={classes.button}
-            disabled
-          >
-            View transaction
-          </Button>
-        )} */}
     </div>
   );
 }
