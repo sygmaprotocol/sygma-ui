@@ -17,6 +17,7 @@ jobs:
         with:
           node-version: 16
           cache: "yarn"
+      - run: corepack enable
       - name: Install dependencies
         run: yarn --immutable
       - name: Lint Sygma UI
@@ -32,6 +33,7 @@ jobs:
         with:
           node-version: 16
           cache: "yarn"
+      - run: corepack enable
       - name: Install dependencies
         run: yarn --immutable
       - name: Build
@@ -47,6 +49,7 @@ jobs:
         with:
           node-version: 16
           cache: "yarn"
+      - run: corepack enable
       - name: Install dependencies
         run: yarn --immutable
       - name: Test Sygma UI
