@@ -8,7 +8,11 @@ const AddressOrLink = ({
   blockExplorer?: string;
 }) =>
   blockExplorer ? (
-    <a target="_blank" href={`${blockExplorer}/address/${msg.by}`}>
+    <a
+      target="_blank"
+      href={`${blockExplorer}/address/${msg.by}`}
+      rel="noreferrer"
+    >
       {msg.by}
     </a>
   ) : (
