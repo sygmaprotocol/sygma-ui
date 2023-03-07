@@ -8,7 +8,7 @@
 
 <!--- If suggesting a new feature or change, please discuss it in an issue first -->
 <!--- If fixing a bug, there should be an issue describing it with steps to reproduce -->
-<!--- Otherwise, describe context and motivation for change herre -->
+<!--- Otherwise, describe context and motivation for change here -->
 
 Closes: #<issue>
 
