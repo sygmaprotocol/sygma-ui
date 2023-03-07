@@ -8,9 +8,9 @@
   "license": "LGPL",
   "private": true,
   "engines": {
-    "node": ">=16.10",
-    "yarn": ">=3"
+    "node": ">16.10"
   },
+  "packageManager": "yarn@3.4.1",
   "workspaces": {
     "packages": [
       "packages/*"
