@@ -1,10 +1,13 @@
 import React from "react";
+import { initializeConnector } from "@web3-react/core";
+import { MetaMask } from "@web3-react/metamask";
 import { Button } from "@mui/material";
 import { MetamaskIcon } from "@fusion-icons/react/web3";
 import useConnectionDialog from "./useConnectionDialog";
-import { MetaMask } from "@web3-react/metamask";
-import { initializeConnector } from "@web3-react/core";
 
+const metamaskConnectorData = initializeConnector<MetaMask>(
+  (actions) => new MetaMask(actions)
+);
 const ConnectToMetamask = ({
   dispatcher,
   handleClose,
@@ -15,11 +18,8 @@ const ConnectToMetamask = ({
   isLoading: boolean;
   setIsLoading: any;
 }) => {
-  const connectorData = initializeConnector<MetaMask>(
-    (actions) => new MetaMask(actions)
-  );
   const { connector } = useConnectionDialog(
-    connectorData,
+    metamaskConnectorData,
     dispatcher,
     setIsLoading,
     handleClose

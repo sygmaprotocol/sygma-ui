@@ -16,6 +16,13 @@ function convertToWc() {
   return Object.fromEntries(result);
 }
 
+const walletConnectorData = initializeConnector<WalletConnect>(
+  (actions) =>
+    new WalletConnect(actions, {
+      rpc: convertToWc(),
+    })
+);
+
 const ConnectToWallet = ({
   dispatcher,
   handleClose,
@@ -27,14 +34,8 @@ const ConnectToWallet = ({
   isLoading: boolean;
   setIsLoading: any;
 }) => {
-  const connectorData = initializeConnector<WalletConnect>(
-    (actions) =>
-      new WalletConnect(actions, {
-        rpc: convertToWc(),
-      })
-  );
   const { connector } = useConnectionDialog(
-    connectorData,
+    walletConnectorData,
     dispatcher,
     setIsLoading,
     handleClose
