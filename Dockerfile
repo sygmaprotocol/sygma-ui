@@ -3,7 +3,8 @@ FROM node:18-alpine AS builder
 RUN apk --no-cache add git
 WORKDIR /app
 COPY . .
-RUN yarn install --frozen-lockfile --network-timeout 100000
+RUN yarn set version stable
+RUN yarn install --immutable
 RUN ls -al
 
 ARG CONFIG_SERVER_HOST
