@@ -1,6 +1,6 @@
 import * as yup from "yup";
 import { utils } from "ethers";
-
+import { isValidAddressPolkadotAddress } from "../../utils/Helpers";
 import { BridgeConfig } from "../../sygmaConfig";
 import { PreflightDetails } from "./TransferPage";
 
@@ -96,7 +96,11 @@ export default function makeValidationSchema({
     receiver: yup
       .string()
       .test("Valid address", "Please add a valid address", (value) => {
-        return utils.isAddress(value as string);
+        if (destinationChainConfig.type === "Substrate") {
+          return isValidAddressPolkadotAddress(value as string);
+        } else {
+          return utils.isAddress(value as string);
+        }
       })
       .required("Please add a receiving address"),
   });
