@@ -1,7 +1,9 @@
 import { Dispatch } from "react";
 import { TransactionStatus } from "../../NetworkManagerContext";
 import { AddMessageAction, ResetAction, TxIsDone } from "../../../reducers";
-import { Sygma } from "@buildwithsygma/sygma-sdk-core";
+import { Sygma, Substrate } from "@buildwithsygma/sygma-sdk-core";
+
+const {substrateSocketConnect, listenForEvent} = Substrate
 
 const handleProposalEvent = (
   setTransactionStatus: (message: TransactionStatus | undefined) => void,
@@ -13,32 +15,56 @@ const handleProposalEvent = (
   transferTxHash: string,
   depositNonce: number
 ) => {
-  const listersCount =
-    sygmaInstance.proposalExecutionEventListenerCount("chain2");
-  if (listersCount === 0) {
-    sygmaInstance.destinationProposalExecutionEventListener(
-      depositNonce,
-      async (
-        originDomainId: any,
-        despositNonce: any,
-        dataHash: any,
-        tx: any
-      ) => {
-        if (transferTxHash !== tx.transactionHash) {
-          const txReceipt = await tx.getTransactionReceipt();
-          console.log(
-            "🚀 ~ file: handleProposalEvent.ts ~ line 34 ~ txReceipt",
-            txReceipt
-          );
-          setDepositVotes(depositVotes + 1);
-          tokensDispatch({
-            type: "setTransactionIsDone",
-          });
-          setTransactionStatus("Transfer Completed");
-          setTransferTxHash(tx.transactionHash);
-        }
+  if (sygmaInstance.bridgeSetup?.chain2.type.toString() === "Substrate") {
+    // Established connection to substrate
+    substrateSocketConnect({
+      apiState: null,
+      socket: 'ws://127.0.0.1:9944',
+      jsonrpc: {}
+    }, {
+      onConnectSucccess: (api) => {
+          // listen for ProposalExecution event which means that transfer has been successful
+          listenForEvent(api, 'ProposalExecution', (data) => {
+            const dataEvent = data as {depositNonce: string, dataHash: string}
+            if (dataEvent.depositNonce === depositNonce.toString()) {
+              setDepositVotes(depositVotes + 1);
+              tokensDispatch({
+                type: "setTransactionIsDone",
+              });
+              setTransactionStatus("Transfer Completed");
+              setTransferTxHash(dataEvent.dataHash);
+            }
+          })
       }
-    );
+    } )
+  } else {
+    const listersCount =
+      sygmaInstance.proposalExecutionEventListenerCount("chain2");
+    if (listersCount === 0) {
+      sygmaInstance.destinationProposalExecutionEventListener(
+        depositNonce,
+        async (
+          originDomainId: any,
+          despositNonce: any,
+          dataHash: any,
+          tx: any
+        ) => {
+          if (transferTxHash !== tx.transactionHash) {
+            const txReceipt = await tx.getTransactionReceipt();
+            console.log(
+              "🚀 ~ file: handleProposalEvent.ts ~ line 34 ~ txReceipt",
+              txReceipt
+            );
+            setDepositVotes(depositVotes + 1);
+            tokensDispatch({
+              type: "setTransactionIsDone",
+            });
+            setTransactionStatus("Transfer Completed");
+            setTransferTxHash(tx.transactionHash);
+          }
+        }
+      );
+    }
   }
 };
 export default handleProposalEvent;
