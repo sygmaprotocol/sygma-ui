@@ -3,7 +3,7 @@ FROM node:18-alpine AS builder
 RUN apk --no-cache add git
 WORKDIR /app
 COPY . .
-RUN yarn set version stable
+RUN corepack enable
 RUN yarn install --immutable
 RUN ls -al
 
