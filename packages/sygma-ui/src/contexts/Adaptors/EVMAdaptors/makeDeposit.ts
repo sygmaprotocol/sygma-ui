@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { providers, utils } from "ethers";
 import { TransactionStatus } from "../../NetworkManagerContext";
 

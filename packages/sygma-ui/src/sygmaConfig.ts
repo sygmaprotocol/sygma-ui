@@ -44,8 +44,34 @@ export type FeeOracleData = {
   feeOracleHandlerAddress: string;
 };
 
+export type XcmMultiAssetIdType = {
+  concrete: {
+    parents: number;
+    interior: {
+      x3: Array<{ parachain: number } | { generalKey: string }>;
+    };
+  };
+};
+
+export type SubstrateConfigAssetType = {
+  assetName: string;
+  assetId: number;
+  xsmMultiAssetId: XcmMultiAssetIdType;
+};
+
+export type SubstrateConfig = {
+  networkId?: number;
+  type: "Substrate";
+  nativeTokenSymbol: string;
+  rpcUrl: string;
+  domainId: number;
+  name: string;
+  provider_socket: string;
+  assets: SubstrateConfigAssetType[];
+};
+
 export type SygmaConfig = {
-  chains: Array<EvmBridgeConfig>;
+  chains: Array<EvmBridgeConfig | SubstrateConfig>;
   feeOracleSetup: FeeOracleData;
 };
 

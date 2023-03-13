@@ -105,10 +105,10 @@ const TransferPage = () => {
   const destAddress = watch("receiver", address);
 
   async function setFee(amount: string) {
-    if (sygmaInstance && amount && address) {
+    if (sygmaInstance && amount) {
       const fee = await sygmaInstance.fetchFeeData({
         amount: amount,
-        recipientAddress: destAddress,
+        recipientAddress: (destAddress ? destAddress : ethers.constants.AddressZero),
       });
       if (!(fee instanceof Error)) {
         setCustomFee(fee);
@@ -336,6 +336,7 @@ const TransferPage = () => {
               recipient: preflightDetails.receiver,
               feeData: customFee!,
             };
+            console.log("🚀 ~ file: TransferPage.tsx:342 ~ TransferPage ~ sygmaInstance:", sygmaInstance)
 
             console.log(sygmaInstance);
 

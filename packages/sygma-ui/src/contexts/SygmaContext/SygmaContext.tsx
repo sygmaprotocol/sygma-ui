@@ -2,6 +2,7 @@ import React, { useCallback, useContext } from "react";
 import {
   BridgeConfig,
   EvmBridgeConfig,
+  SubstrateConfig,
   sygmaConfig,
   TokenConfig,
 } from "../../sygmaConfig";
@@ -13,7 +14,7 @@ import { FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
 
 interface ISygmaContextProps {
   children: React.ReactNode | React.ReactNode[];
-  chains?: Array<EvmBridgeConfig>;
+  chains?: Array<EvmBridgeConfig | SubstrateConfig>;
 }
 
 type SygmaContext = {
@@ -53,7 +54,7 @@ type SygmaContext = {
     tokenAddress: string,
     destinationChainId: number
   ) => Promise<boolean | undefined>;
-  chains?: Array<EvmBridgeConfig>;
+  chains?: Array<EvmBridgeConfig | SubstrateConfig>;
 };
 
 const SygmaContext = React.createContext<SygmaContext | undefined>(undefined);

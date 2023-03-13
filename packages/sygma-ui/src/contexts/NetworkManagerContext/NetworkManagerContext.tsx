@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import { FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
-import { BridgeConfig, ChainType, sygmaConfig } from "../../sygmaConfig";
+import { BridgeConfig, ChainType, sygmaConfig, EvmBridgeConfig, SubstrateConfig } from "../../sygmaConfig";
 import {
   EVMDestinationAdaptorProvider,
   EVMHomeAdaptorProvider,
@@ -52,11 +52,11 @@ interface NetworkManagerContext {
 
   domainId?: number;
 
-  homeChainConfig: BridgeConfig | undefined;
-  destinationChainConfig: BridgeConfig | undefined;
+  homeChainConfig: BridgeConfig | EvmBridgeConfig | SubstrateConfig | undefined;
+  destinationChainConfig: BridgeConfig | EvmBridgeConfig | SubstrateConfig | undefined;
 
   destinationChains: Array<{ domainId: number; name: string }>;
-  homeChains: BridgeConfig[];
+  homeChains: Array<BridgeConfig | EvmBridgeConfig | SubstrateConfig>;
   handleSetHomeChain: (domainId: number | undefined) => void;
   setDestinationChain: (domainId: number | undefined) => void;
 
@@ -155,13 +155,13 @@ export const NetworkManagerProvider = ({
   );
 
   const [homeChainConfig, setHomeChainConfig] = useState<
-    BridgeConfig | undefined
+  BridgeConfig | EvmBridgeConfig | SubstrateConfig | undefined
   >();
-  const [homeChains, setHomeChains] = useState<BridgeConfig[]>([]);
+  const [homeChains, setHomeChains] = useState<Array<BridgeConfig | EvmBridgeConfig | SubstrateConfig>>([]);
   const [destinationChainConfig, setDestinationChain] = useState<
-    BridgeConfig | undefined
+  BridgeConfig | EvmBridgeConfig | SubstrateConfig | undefined
   >();
-  const [destinationChains, setDestinationChains] = useState<BridgeConfig[]>(
+  const [destinationChains, setDestinationChains] = useState<Array<BridgeConfig | EvmBridgeConfig | SubstrateConfig>>(
     []
   );
 
@@ -201,14 +201,14 @@ export const NetworkManagerProvider = ({
         setHomeChainConfig(chain);
         setDestinationChains(
           sygmaConfig().chains.filter(
-            (bridgeConfig: BridgeConfig) =>
+            (bridgeConfig: BridgeConfig | EvmBridgeConfig | SubstrateConfig) =>
               bridgeConfig.domainId !== chain.domainId
           )
         );
         if (sygmaConfig().chains.length === 2) {
           setDestinationChain(
             sygmaConfig().chains.find(
-              (bridgeConfig: BridgeConfig) =>
+              (bridgeConfig: BridgeConfig | EvmBridgeConfig | SubstrateConfig) =>
                 bridgeConfig.domainId !== chain.domainId
             )
           );
@@ -225,7 +225,7 @@ export const NetworkManagerProvider = ({
       } else {
         setHomeChains(
           sygmaConfig().chains.filter(
-            (bridgeConfig: BridgeConfig) => bridgeConfig.type === walletType
+            (bridgeConfig: BridgeConfig | EvmBridgeConfig | SubstrateConfig) => bridgeConfig.type === walletType
           )
         );
       }
