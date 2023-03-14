@@ -6,11 +6,9 @@ import Stack from "@mui/material/Stack";
 import CancelIcon from "@mui/icons-material/Cancel";
 
 export default function ErrorTransferBody({
-  classes,
   close,
   homeConfig,
   homeTransferTxHash,
-  transferTxHash,
 }: {
   classes: any;
   close: () => void;

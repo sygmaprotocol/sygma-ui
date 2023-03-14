@@ -1,15 +1,9 @@
 import React, { ReactNode, useEffect, useState } from "react";
-
-import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import Container from "@mui/material/Container";
-
 import AppHeader from "../AppHeader/AppHeader";
-
 import { ConnectionDialog } from "../../modules";
-
 import { useWeb3 } from "../../contexts";
-
-import { ROUTE_LINKS } from "../../routes";
 import { useStyles } from "./styles";
 
 interface IAppWrapper {
@@ -17,10 +11,7 @@ interface IAppWrapper {
   nftTokenPage?: boolean;
 }
 
-const AppWrapper: React.FC<IAppWrapper> = ({
-  children,
-  nftTokenPage,
-}: IAppWrapper) => {
+const AppWrapper: React.FC<IAppWrapper> = ({ children }: IAppWrapper) => {
   const { classes } = useStyles();
   const [enableNavTabs, setEnableNavTabs] = useState(true);
 
@@ -46,21 +37,12 @@ const AppWrapper: React.FC<IAppWrapper> = ({
     return setEnableNavTabs(true);
   }, [location]);
 
-  const routeMatch = useRouteMatch([
-    ROUTE_LINKS.Transfer,
-    ROUTE_LINKS.NftTransfer,
-  ]);
-  const currentTab = routeMatch?.path;
-
   return (
     <>
       {enableNavTabs ? (
         <div>
           <AppHeader />
           <Container maxWidth="md">{children}</Container>
-          {/* Put CTA here */}
-          {/* <a className={classes.cta} rel="noopener noreferrer" target="_blank" href="#">
-        </a> */}
           {!isReady && (
             <ConnectionDialog
               dispatcher={dispatcher}

@@ -9,9 +9,7 @@ interface IBridgeContext {
   children: React.ReactNode | React.ReactNode[];
 }
 
-type BridgeContext = SygmaState;
-
-const BridgeContext = createContext<BridgeContext | undefined>(undefined);
+const BridgeContext = createContext<SygmaState | undefined>(undefined);
 
 const BridgeProvider = ({ children }: IBridgeContext) => {
   const { homeChains, ...rest } = useWeb3();

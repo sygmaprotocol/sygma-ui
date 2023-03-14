@@ -7,14 +7,12 @@ import { BridgeConfig } from "../../sygmaConfig";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 export default function TransferCompleteBody({
-  classes,
   close,
   homeConfig,
   homeTransferTxHash,
   depositAmount: depositAmountOrID,
   tokenSymbol,
   destinationChainConfig,
-  savedWallet,
 }: {
   classes: any;
   close: () => void;

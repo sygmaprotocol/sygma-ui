@@ -11,7 +11,6 @@ type MakeValidationSchemaOptions = {
 };
 export default function makeValidationSchema({
   preflightDetails,
-  tokens,
   homeConfig,
 }: MakeValidationSchemaOptions) {
   const selectedToken = homeConfig?.tokens.find(

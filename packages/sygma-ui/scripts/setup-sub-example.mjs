@@ -1,4 +1,4 @@
-import { ApiPromise, WsProvider, Keyring } from "@polkadot/api";
+import { ApiPromise, Keyring, WsProvider } from "@polkadot/api";
 import types from "./bridgeTypes.json";
 
 const keyring = new Keyring({ type: "sr25519" });

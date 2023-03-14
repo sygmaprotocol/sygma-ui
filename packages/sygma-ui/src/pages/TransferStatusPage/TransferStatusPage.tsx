@@ -22,12 +22,11 @@ import { nftPageTheme } from "../../themes/nftPageTheme";
 const TransferStatusPage = () => {
   const history = useHistory();
 
-  const { classes, cx } = useStyles();
-  const { savedWallet, dispatcher } = useLocalWeb3();
-  const { erc721TokenWithIds, homeDispatch } = useHomeBridge();
+  const { classes } = useStyles();
+  const { savedWallet } = useLocalWeb3();
+  const { homeDispatch } = useHomeBridge();
   const {
     transactionStatus,
-    relayerThreshold,
     homeConfig,
     destinationChainConfig,
     depositAmount,

@@ -1,7 +1,7 @@
 import { makeStyles } from "tss-react/mui";
 
 export const useStyles = makeStyles()(
-  ({ constants, breakpoints, palette, transitions }) => {
+  ({ constants, breakpoints, transitions }) => {
     return {
       root: {
         minHeight: "100vh",

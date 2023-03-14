@@ -17,7 +17,7 @@ interface ISygmaContextProps {
   chains?: Array<EvmBridgeConfig | SubstrateConfig>;
 }
 
-type SygmaContext = {
+interface SygmaContextInterface {
   homeConfig: EvmBridgeConfig | undefined;
   connect: () => Promise<void>;
   handleSetHomeChain: (domainId: number) => void;
@@ -57,7 +57,9 @@ type SygmaContext = {
   chains?: Array<EvmBridgeConfig | SubstrateConfig>;
 };
 
-const SygmaContext = React.createContext<SygmaContext | undefined>(undefined);
+const SygmaContext = React.createContext<SygmaContextInterface | undefined>(
+  undefined
+);
 
 const SygmaProvider = ({ children, chains }: ISygmaContextProps) => {
   const {

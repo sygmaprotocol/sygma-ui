@@ -3,7 +3,7 @@ import { IHomeBridgeProviderProps } from "../interfaces";
 import { HomeBridgeContext } from "../../HomeBridgeContext";
 import { getNetworkName } from "../../../utils/Helpers";
 import { useWeb3 as useLocalWeb3 } from "../../index";
-import { Erc721TokenIds, evmHomeReducer } from "../../../reducers";
+import { evmHomeReducer } from "../../../reducers";
 
 import makeDeposit from "./makeDeposit";
 import makeWrappedToken from "./makeWrappedToken";
@@ -37,7 +37,7 @@ export const EVMHomeAdaptorProvider = ({
   } = useLocalWeb3();
   const { sygmaInstance } = useBridge();
 
-  const { homeBridge, wrapper, wrapTokenConfig } = useConnectWallet(
+  const { wrapper, wrapTokenConfig } = useConnectWallet(
     isReady,
     homeChainConfig,
     provider,
@@ -66,8 +66,6 @@ export const EVMHomeAdaptorProvider = ({
     dispatch({ type: "setNetworkId", networkId });
   const setHomeTransferTxHash = (homeTransferTxHash: string) =>
     dispatch({ type: "setHomeTransferTxHash", homeTransferTxHash });
-  const setErc721TokenIds = (erc721TokenWithIds: Erc721TokenIds) =>
-    dispatch({ type: "setErc721TokenIds", erc721TokenWithIds });
 
   useEffect(() => {
     if (network) {
@@ -79,7 +77,7 @@ export const EVMHomeAdaptorProvider = ({
     }
   }, [handleSetHomeChain, homeChains, network]);
 
-  const [bridgeFee, relayerThreshold] = useSetBridgeSettingsHook(homeBridge);
+  const [bridgeFee, relayerThreshold] = useSetBridgeSettingsHook();
 
   const handleConnect = useCallback(async () => {
     if (wallet && wallet.connect && network) {

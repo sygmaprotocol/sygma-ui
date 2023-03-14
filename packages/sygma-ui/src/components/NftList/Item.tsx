@@ -31,6 +31,7 @@ const Item = memo(function Item({
       <img
         src={tokenMetadata.image ?? "/assets/images/logo1.svg"}
         loading="lazy"
+        alt={"logo"}
       />
     </ImageListItem>
   );

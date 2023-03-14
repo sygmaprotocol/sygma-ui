@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useReducer } from "react";
-import { Directions, FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
 import { EvmBridgeConfig, SubstrateConfig, sygmaConfig } from "../../sygmaConfig";
 import {
   EVMDestinationAdaptorProvider,
@@ -76,20 +75,14 @@ function selectProvider(
         <HomeBridgeContext.Provider
           value={{
             connect: async () => undefined,
-            disconnect: async () => {},
-            getNetworkName: (id: any) => "",
+            disconnect: async () => undefined,
+            getNetworkName: () => "",
             isReady: false,
             selectedToken: "",
-            deposit: async (params: {
-              amount: string;
-              recipient: string;
-              from: Directions;
-              to: Directions;
-              feeData: FeeDataResult;
-            }) => undefined,
+            deposit: async () => undefined,
             setDepositAmount: () => undefined,
             tokens: {},
-            setSelectedToken: (input: string) => undefined,
+            setSelectedToken: () => undefined,
             address: undefined,
             bridgeFee: undefined,
             chainConfig: undefined,
@@ -98,9 +91,9 @@ function selectProvider(
             relayerThreshold: undefined,
             wrapTokenConfig: undefined,
             wrapper: undefined,
-            wrapToken: async (value: number) => "",
-            unwrapToken: async (value: number) => "",
-            homeDispatch: (action: any) => "",
+            wrapToken: async () => "",
+            unwrapToken: async () => "",
+            homeDispatch: () => "",
           }}
         >
           {props.children}
@@ -111,8 +104,8 @@ function selectProvider(
           value={{
             tokensDispatch: () => "",
             depositVotes: 0,
-            setDepositVotes: (input: number) => "",
-            disconnect: async () => {},
+            setDepositVotes: () => "",
+            disconnect: async () => undefined,
           }}
         >
           {props.children}
@@ -129,10 +122,6 @@ const LocalProvider = ({
   externalProvider,
   useExternalProvider,
   tokensToWatch,
-  onboardConfig,
-  cacheWalletSelection = true,
-  networkIds,
-  checkNetwork = (networkIds && networkIds.length > 0) || false,
   spenderAddress,
 }: LocalWeb3ContextProps) => {
   const initialNetworkManager: NetworkManagerState = {

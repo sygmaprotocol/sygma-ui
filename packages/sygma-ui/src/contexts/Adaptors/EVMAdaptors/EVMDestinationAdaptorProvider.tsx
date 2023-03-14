@@ -2,8 +2,10 @@ import React, { useEffect, useReducer, useState } from "react";
 import { useWeb3 } from "../../index";
 import { IDestinationBridgeProviderProps } from "../interfaces";
 import { DestinationBridgeContext } from "../../DestinationBridgeContext";
-import { transitMessageReducer } from "../../../reducers/TransitMessageReducer";
-import { evmDestinationReducer } from "../../../reducers/EvmDestinationReducer";
+import {
+  evmDestinationReducer,
+  transitMessageReducer,
+} from "../../../reducers";
 
 import handleProposalEvent from "./handleProposalEvent";
 import { useBridge } from "../../Bridge";
@@ -11,14 +13,7 @@ import { useBridge } from "../../Bridge";
 export const EVMDestinationAdaptorProvider = ({
   children,
 }: IDestinationBridgeProviderProps) => {
-  const {
-    depositNonce,
-    destinationChainConfig,
-    homeChainConfig,
-    setTransactionStatus,
-    transactionStatus,
-  } = useWeb3();
-
+  const { depositNonce, setTransactionStatus } = useWeb3();
   const { sygmaInstance } = useBridge();
 
   const [state, dispatch] = useReducer(evmDestinationReducer, {
@@ -60,7 +55,7 @@ export const EVMDestinationAdaptorProvider = ({
         setDepositVotes,
         inTransitMessages,
         tokensDispatch,
-        disconnect: async () => {},
+        disconnect: async () => undefined,
       }}
     >
       {children}

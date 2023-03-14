@@ -1,6 +1,6 @@
 import { makeStyles } from "tss-react/mui";
 
-export const useStyles = makeStyles()(({ constants, palette }) => {
+export const useStyles = makeStyles()(() => {
   return {
     root: {
       position: "relative",

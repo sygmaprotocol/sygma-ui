@@ -27,22 +27,9 @@ interface ITokenSelectInput {
 const TokenSelectInput: React.FC<ITokenSelectInput> = (
   props: ITokenSelectInput
 ) => {
-  const {
-    className,
-    label,
-    name,
-    tokens,
-    sync,
-    control,
-    rules,
-    disabled,
-    options,
-    setValue,
-  } = props;
-  const { field, fieldState } = useController({ name, control, rules });
-
-  const labelParsed =
-    field && tokens[field.value] ? " " : "Please select token";
+  const { name, tokens, sync, control, rules, disabled, options, setValue } =
+    props;
+  const { field } = useController({ name, control, rules });
   const balance = tokens[field.value] ? tokens[field.value]?.balance : " ";
 
   const [synced, setSynced] = useState();

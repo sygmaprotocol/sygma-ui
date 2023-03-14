@@ -1,18 +1,16 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
-import { FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
-import { BridgeConfig, ChainType, sygmaConfig, EvmBridgeConfig, SubstrateConfig } from "../../sygmaConfig";
+import React, { useCallback, useContext, useEffect, useState } from "react";
+import {
+  BridgeConfig,
+  ChainType,
+  sygmaConfig,
+  SubstrateConfig,
+  EvmBridgeConfig,
+} from "../../sygmaConfig";
 import {
   EVMDestinationAdaptorProvider,
   EVMHomeAdaptorProvider,
 } from "../Adaptors/EVMAdaptors";
 import { DestinationBridgeContext, HomeBridgeContext } from "..";
-import { transitMessageReducer } from "../../reducers/TransitMessageReducer";
 import { useWeb3 } from "../localWeb3Context";
 import { BridgeProvider } from "../Bridge";
 
@@ -46,7 +44,7 @@ export type TransactionStatus =
   | "Transfer Completed"
   | "Transfer Aborted";
 
-interface NetworkManagerContext {
+interface NetworkManagerContextInterface {
   walletType: WalletType;
   setWalletType: (walletType: WalletType) => void;
 
@@ -68,7 +66,7 @@ interface NetworkManagerContext {
 }
 
 const NetworkManagerContext = React.createContext<
-  NetworkManagerContext | undefined
+  NetworkManagerContextInterface | undefined
 >(undefined);
 
 function selectProvider(
@@ -100,18 +98,14 @@ function selectProvider(
         <HomeBridgeContext.Provider
           value={{
             connect: async () => undefined,
-            disconnect: async () => {},
-            getNetworkName: (id: any) => "",
+            disconnect: async () => undefined,
+            getNetworkName: () => "",
             isReady: false,
             selectedToken: "",
-            deposit: async (params: {
-              amount: string;
-              recipient: string;
-              feeData: FeeDataResult;
-            }) => undefined,
+            deposit: async () => undefined,
             setDepositAmount: () => undefined,
             tokens: {},
-            setSelectedToken: (input: string) => undefined,
+            setSelectedToken: () => undefined,
             address: undefined,
             bridgeFee: undefined,
             chainConfig: undefined,
@@ -120,9 +114,9 @@ function selectProvider(
             relayerThreshold: undefined,
             wrapTokenConfig: undefined,
             wrapper: undefined,
-            wrapToken: async (value: number) => "",
-            unwrapToken: async (value: number) => "",
-            homeDispatch: (action: any) => "",
+            wrapToken: async () => "",
+            unwrapToken: async () => "",
+            homeDispatch: () => "",
           }}
         >
           {props.children}
@@ -133,8 +127,8 @@ function selectProvider(
           value={{
             tokensDispatch: () => "",
             depositVotes: 0,
-            setDepositVotes: (input: number) => "",
-            disconnect: async () => {},
+            setDepositVotes: () => "",
+            disconnect: async () => undefined,
           }}
         >
           {props.children}
@@ -146,6 +140,7 @@ function selectProvider(
   return providers[typeKey][direction];
 }
 
+// Used in transfer-widget project
 export const NetworkManagerProvider = ({
   children,
   predefinedWalletType,
@@ -171,12 +166,6 @@ export const NetworkManagerProvider = ({
 
   const [depositNonce, setDepositNonce] = useState<string | undefined>(
     undefined
-  );
-
-  const [depositVotes, setDepositVotes] = useState<number>(0);
-  const [inTransitMessages, tokensDispatch] = useReducer(
-    transitMessageReducer,
-    { txIsDone: false, transitMessage: [] }
   );
 
   const { onboard, savedWallet, tokens } = useWeb3();
@@ -299,5 +288,3 @@ export const useNetworkManager = () => {
   }
   return context;
 };
-
-// export { NetworkManagerProvider, useNetworkManager };

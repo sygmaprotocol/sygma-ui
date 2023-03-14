@@ -1,15 +1,12 @@
 import React from "react";
 import { IModalProps, Modal } from "../../modules";
-
 import { useStyles } from "./styles";
 
-interface ICustomModalProps extends IModalProps {}
-
-const CustomModal: React.FC<ICustomModalProps> = ({
+const CustomModal: React.FC<IModalProps> = ({
   children,
   className,
   ...rest
-}: ICustomModalProps) => {
+}: IModalProps) => {
   const { classes, cx } = useStyles();
 
   return (

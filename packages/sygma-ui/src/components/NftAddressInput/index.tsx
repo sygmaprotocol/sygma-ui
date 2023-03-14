@@ -25,11 +25,9 @@ const AddressInput: React.FC<IAddressInput> = ({
   placeholder,
   name,
   label,
-  sendToSameAccountHelper = false,
   control,
   setValue,
   disabled,
-  ...rest
 }: IAddressInput) => {
   const { field, fieldState } = useController({ name, control });
 

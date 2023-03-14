@@ -17,8 +17,6 @@ export default function makeValidationSchema({
   tokens,
   bridgeFee,
   homeConfig,
-  destinationChainConfig,
-  sygmaInstance,
 }: MakeValidationSchemaOptions) {
   const selectedToken = homeConfig?.tokens.find(
     (token) => token.address === preflightDetails.token
