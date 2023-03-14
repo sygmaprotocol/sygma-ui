@@ -179,8 +179,13 @@ You will end up with something like this:
 }
 ```
 
-You also can use our dev configuration accessible by the link:
-[Config from sygma dev instance](https://config-server-stage.chainsafe.io/config)
+You also can use our dev or test configuration accessible by the links:
+&nbsp;
+
+[Config from sygma dev instance](https://config.develop.buildwithsygma.com/config)
+&nbsp;
+
+[Config from sygma test instance](https://config-server.test.buildwithsygma.com/config)
 
 > The parameters `domainId` and `networkId` are the ones that are being used by the local networks
 
