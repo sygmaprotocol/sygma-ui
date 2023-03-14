@@ -13,6 +13,7 @@ type MakeValidationSchemaOptions = {
   sygmaInstance: any;
 };
 export default function makeValidationSchema({
+  destinationChainConfig,
   preflightDetails,
   tokens,
   bridgeFee,
