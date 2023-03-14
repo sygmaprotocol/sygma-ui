@@ -55,7 +55,7 @@ interface SygmaContextInterface {
     destinationChainId: number
   ) => Promise<boolean | undefined>;
   chains?: Array<EvmBridgeConfig | SubstrateConfig>;
-};
+}
 
 const SygmaContext = React.createContext<SygmaContextInterface | undefined>(
   undefined

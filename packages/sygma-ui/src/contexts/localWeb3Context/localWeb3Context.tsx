@@ -1,5 +1,9 @@
 import React, { useCallback, useEffect, useReducer } from "react";
-import { EvmBridgeConfig, SubstrateConfig, sygmaConfig } from "../../sygmaConfig";
+import {
+  EvmBridgeConfig,
+  SubstrateConfig,
+  sygmaConfig,
+} from "../../sygmaConfig";
 import {
   EVMDestinationAdaptorProvider,
   EVMHomeAdaptorProvider,
@@ -258,7 +262,7 @@ const LocalProvider = ({
       } else {
         dispatcher({
           type: "setHomeChains",
-          payload: sygmaConfig().chains
+          payload: sygmaConfig().chains,
           // .filter(
           //   (EvmBridgeConfig: EvmBridgeConfig | SubstrateConfig) =>
           //     EvmBridgeConfig.type === networkManager.walletType

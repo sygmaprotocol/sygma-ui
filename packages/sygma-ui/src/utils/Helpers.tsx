@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
-import { decodeAddress, encodeAddress } from '@polkadot/keyring';
-import { hexToU8a, isHex } from '@polkadot/util';
+import { decodeAddress, encodeAddress } from "@polkadot/keyring";
+import { hexToU8a, isHex } from "@polkadot/util";
 import { ERC721__factory } from "@buildwithsygma/sygma-contracts";
 import ETHIcon from "../media/tokens/eth.png";
 import WETHIcon from "../media/tokens/weth.svg";
@@ -15,7 +15,12 @@ import EthermintIcon from "../media/networks/ethermint.svg";
 import { BigNumber, BigNumberish, ethers } from "ethers";
 import { BridgeData } from "@buildwithsygma/sygma-sdk-core";
 import { DepositRecord, TransferDetails } from "../reducers/TransfersReducer";
-import { BridgeConfig, EvmBridgeConfig, TokenConfig, SubstrateConfig } from "../sygmaConfig";
+import {
+  BridgeConfig,
+  EvmBridgeConfig,
+  TokenConfig,
+  SubstrateConfig,
+} from "../sygmaConfig";
 import { Metadata } from "../reducers";
 
 export const isCelo = (networkId?: number) =>
@@ -468,11 +473,7 @@ export async function getErc721Urls(
 
 export const isValidAddressPolkadotAddress = (address: string) => {
   try {
-    encodeAddress(
-      isHex(address)
-        ? hexToU8a(address)
-        : decodeAddress(address)
-    );
+    encodeAddress(isHex(address) ? hexToU8a(address) : decodeAddress(address));
 
     return true;
   } catch (error) {
