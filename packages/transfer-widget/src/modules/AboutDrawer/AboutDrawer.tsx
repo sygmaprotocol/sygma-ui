@@ -3,15 +3,15 @@ import { CustomDrawer } from "../../components";
 import { Button, Typography } from "@chainsafe/common-components";
 import { useStyles } from "./styles";
 
-interface IAboutDrawerProps {
+interface AboutDrawerProps {
   open: boolean;
   close: () => void;
 }
 
-const AboutDrawer: React.FC<IAboutDrawerProps> = ({
+const AboutDrawer: React.FC<AboutDrawerProps> = ({
   open,
   close,
-}: IAboutDrawerProps) => {
+}: AboutDrawerProps) => {
   const classes = useStyles();
 
   return (
@@ -31,7 +31,7 @@ const AboutDrawer: React.FC<IAboutDrawerProps> = ({
         the source chain.
       </Typography>
       <section className={classes.buttons}>
-        <Button onClick={() => close()} variant="outline">
+        <Button onClick={(): void => close()} variant="outline">
           OK
         </Button>
         <a

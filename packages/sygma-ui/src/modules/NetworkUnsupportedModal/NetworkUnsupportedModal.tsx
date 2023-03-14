@@ -11,8 +11,7 @@ import { useStyles } from "./styles";
 const NetworkUnsupportedModal = () => {
   const { classes } = useStyles();
   const { homeChainConfig } = useWeb3();
-  const { getNetworkName, wrapTokenConfig, isReady, networkId } =
-    useHomeBridge();
+  const { wrapTokenConfig, isReady } = useHomeBridge();
   const { pathname } = useLocation();
 
   const [open, setOpen] = useState(false);
@@ -20,7 +19,7 @@ const NetworkUnsupportedModal = () => {
 
   useEffect(() => {
     if (pathname === ROUTE_LINKS.Transfer) {
-      setOpen(!homeChainConfig && !!isReady);
+      setOpen(!homeChainConfig && isReady);
       setSupportedNetworks(
         sygmaConfig()
           .chains.filter((bc) => bc.networkId !== undefined)

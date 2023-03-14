@@ -41,7 +41,7 @@ export type PreflightDetails = {
 
 const TransferPage = () => {
   const classes = useStyles();
-  const { walletType, setWalletType } = useWeb3();
+  const { walletType } = useWeb3();
 
   const { dispatcher } = useWeb3();
 
@@ -57,11 +57,10 @@ const TransferPage = () => {
     destinationChainConfig,
     destinationChains,
     address,
-    checkSupplies,
   } = useSygma();
   const [customFee, setCustomFee] = useState<FeeDataResult>();
   const { sygmaInstance } = useBridge();
-  const { accounts, selectAccount, setSelectedToken } = useHomeBridge();
+  const { setSelectedToken } = useHomeBridge();
   const [aboutOpen, setAboutOpen] = useState<boolean>(false);
   const [walletConnecting, setWalletConnecting] = useState(false);
   const [preflightModalOpen, setPreflightModalOpen] = useState<boolean>(false);
@@ -74,7 +73,7 @@ const TransferPage = () => {
   });
 
   useEffect(() => {
-    if (walletType !== "select" && walletConnecting === true) {
+    if (walletType !== "select" && walletConnecting) {
       setWalletConnecting(false);
     } else if (walletType === "select") {
       setWalletConnecting(true);
@@ -104,21 +103,22 @@ const TransferPage = () => {
   const watchAmount = watch("tokenAmount", "0");
   const destAddress = watch("receiver", address);
 
-  async function setFee(amount: string) {
-    if (sygmaInstance && amount && address) {
-      const fee = await sygmaInstance.fetchFeeData({
-        amount: amount,
-        recipientAddress: destAddress,
-      });
-      if (!(fee instanceof Error)) {
-        setCustomFee(fee);
+  useEffect(() => {
+    async function setFee(amount: string) {
+      if (sygmaInstance && amount && address) {
+        const fee = await sygmaInstance.fetchFeeData({
+          amount: amount,
+          recipientAddress: destAddress,
+        });
+        if (!(fee instanceof Error)) {
+          setCustomFee(fee);
+        }
       }
     }
-  }
 
-  useEffect(() => {
-    console.log("watchAmount", watchAmount);
-    setFee(watchAmount.toString().replace(/\D/g, ""));
+    setFee(watchAmount.toString().replace(/\D/g, "")).catch((err) =>
+      console.error(err)
+    );
   }, [watchAmount, preflightDetails, destinationChainConfig]);
 
   const onSubmit: SubmitHandler<PreflightDetails> = (values) => {

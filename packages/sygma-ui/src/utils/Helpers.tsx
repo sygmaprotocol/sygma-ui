@@ -236,7 +236,7 @@ export const computeTransferDetails = (
           by: proposalEvents[0].by,
         };
 
-        let waitingForMoreVotesMsg = {
+        const waitingForMoreVotesMsg = {
           message: "Waiting for more votes",
           time: formatDateTimeline(proposalEvents[0].timestamp),
         };
@@ -373,9 +373,9 @@ export const computeDirections = (
         acc = { ...acc, to: chain };
         return acc;
       }
+      return undefined;
     }, {} as any);
   }
-  return undefined;
 };
 
 function addressEqual(a: string, b: string) {

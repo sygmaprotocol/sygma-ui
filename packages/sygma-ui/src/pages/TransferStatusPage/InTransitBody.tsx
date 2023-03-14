@@ -72,9 +72,6 @@ function FbCircularProgress(props: CircularProgressProps) {
 export default function InTransitBody({
   tokenType,
   transactionStatus,
-  inTransitMessages,
-  homeConfig,
-  homeTransferTxHash,
 }: {
   tokenType?: string;
   transactionStatus?: TransactionStatus;

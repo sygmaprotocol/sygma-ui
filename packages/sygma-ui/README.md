@@ -50,7 +50,7 @@ yarn start
 Update the configs for the bridge in `src/sygmaContext.ts`. There should be at least 2 chains configured for correct functioning of the bridge. Each chain accepts the following configuration parameters:
 
 ```typescript
- type BridgeConfig = {
+type BridgeConfig = {
   networkId?: number; // The networkId of this chain.
   domainId: number; // The bridge's domainId.
   name: string; // The human readable name of this chain.
@@ -69,7 +69,7 @@ type TokenConfig = {
   symbol?: string; // The symbol of the ERC20 token. This can be left out if the token implements the ERC20Detailed standard
   imageUri?: string; // A URL pointing to the token logo. Can be either locally or externally hosted.
   resourceId: string; // The resourceId to be used when transferring tokens of this type.
-  isNativeWrappedToken?: boolean // Flag to indicate that this is a wrapped native token (eg wETH on Ethereum). If this flag is not set for any of the tokens provided for this chain, wrapping functionality will be unavailable on that network.
+  isNativeWrappedToken?: boolean; // Flag to indicate that this is a wrapped native token (eg wETH on Ethereum). If this flag is not set for any of the tokens provided for this chain, wrapping functionality will be unavailable on that network.
   decimals?: number;
   isDoubleApproval?: boolean; // The token (eg USDT) will request approval twice to defend from the attack on approve/trasferFrom  methods
 };

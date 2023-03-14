@@ -8,7 +8,6 @@ export default function TransferCompleteBody({
   classes,
   close,
   homeConfig,
-  homeTransferTxHash,
   depositAmount,
   tokenSymbol,
   destinationChainConfig,
@@ -23,10 +22,6 @@ export default function TransferCompleteBody({
   destinationChainConfig?: BridgeConfig;
   savedWallet: string;
 }) {
-  const {
-    __RUNTIME_CONFIG__: { UI_EXPLORER_URL },
-  } = window;
-
   return (
     <div className={classes.transferCompletedContainer}>
       <Typography sx={{ mt: 3, mb: 4 }} component="p">
@@ -38,18 +33,6 @@ export default function TransferCompleteBody({
       </Typography>
       <section className={classes.buttons}>
         <Stack direction="row" spacing={2}>
-          {/* {homeConfig &&
-            (homeConfig as EvmBridgeConfig).blockExplorer &&
-            homeTransferTxHash && (
-              <Button
-                href={`${UI_EXPLORER_URL}/explorer/transaction/${homeTransferTxHash}`}
-                size="small"
-                className={classes.button}
-                variant="outlined"
-              >
-                View transfer
-              </Button>
-            )} */}
           {savedWallet !== "WalletConnect" ? (
             <Button size="small" className={classes.button} onClick={close}>
               Start new transfer

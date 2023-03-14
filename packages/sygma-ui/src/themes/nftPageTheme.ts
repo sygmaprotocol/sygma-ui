@@ -35,7 +35,7 @@ declare module "@mui/material/styles" {
   }
 }
 
-let theme = createTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,

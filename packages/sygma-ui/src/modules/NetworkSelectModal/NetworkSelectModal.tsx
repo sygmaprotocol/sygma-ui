@@ -5,7 +5,7 @@ import { Button, Dialog, DialogTitle } from "@mui/material";
 
 const NetworkSelectModal = () => {
   const { classes } = useStyles();
-  const { isReady, chains } = useSygma();
+  const { isReady } = useSygma();
   const { walletType, setWalletType } = useWeb3();
   const { savedWallet } = useWeb3();
 

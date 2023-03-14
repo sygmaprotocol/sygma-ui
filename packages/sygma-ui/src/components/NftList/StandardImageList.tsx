@@ -17,7 +17,7 @@ export const StandardImageList = memo(function StandardImageList({
   setSelectedNft: React.Dispatch<React.SetStateAction<string | undefined>>;
   setValue?: any;
 }) {
-  const { classes, cx } = useStyles();
+  const { classes } = useStyles();
 
   return (
     <ImageList className={classes.imageList} variant="masonry" cols={6} gap={8}>

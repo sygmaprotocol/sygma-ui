@@ -1,6 +1,6 @@
-import { createStyles, ITheme, makeStyles } from "@chainsafe/common-theme";
+import { createStyles, makeStyles } from "@chainsafe/common-theme";
 
-export const useStyles = makeStyles(({ constants, palette }: ITheme) =>
+export const useStyles = makeStyles(() =>
   createStyles({
     root: {
       position: "relative",

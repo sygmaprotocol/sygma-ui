@@ -178,7 +178,7 @@ export const getTokenDataDirect = async (
   provider: ethers.providers.Web3Provider,
   spenderAddress: string | undefined
 ) => {
-  let tokenContracts: Array<Erc20Detailed> = [];
+  const tokenContracts: Array<Erc20Detailed> = [];
   networkTokens.forEach(async (token: any) => {
     let signer;
 

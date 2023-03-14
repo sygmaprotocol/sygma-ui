@@ -1,6 +1,6 @@
 import { makeStyles } from "tss-react/mui";
 
-export const useStyles = makeStyles()(({ palette, constants }) => {
+export const useStyles = makeStyles()(({ constants }) => {
   return {
     root: {
       border: "none",
