@@ -70,8 +70,8 @@ const networkManagerReducer = (
       };
     case "setDepositNonce": {
       return {
-        depositNonce: action.payload,
         ...state,
+        depositNonce: action.payload,
       };
     }
     default:

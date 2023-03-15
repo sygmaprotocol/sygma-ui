@@ -251,7 +251,7 @@ const TransferPage = () => {
               disabled={!destinationChainConfig || formState.isSubmitting}
               name="receiver"
               label="Destination Address"
-              placeholder="0x · · · · · · · · · · · · ·"
+              placeholder="· · · · · · · · · · · · · ·"
               senderAddress={`${address}`}
               sendToSameAccountHelper={
                 destinationChainConfig?.type === homeConfig?.type
