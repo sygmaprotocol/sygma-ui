@@ -13,8 +13,6 @@ const BridgeContext = createContext<SygmaState | undefined>(undefined);
 
 const BridgeProvider = ({ children }: IBridgeContext) => {
   const { homeChains, ...rest } = useWeb3();
-  // console.log("🚀 ~ file: Bridge.tsx:18 ~ BridgeProvider ~ rest:", rest)
-  // console.log("🚀 ~ file: Bridge.tsx:18 ~ BridgeProvider ~ homeChains:", homeChains)
   const initState: SygmaState = {
     sygmaInstance: undefined,
   };

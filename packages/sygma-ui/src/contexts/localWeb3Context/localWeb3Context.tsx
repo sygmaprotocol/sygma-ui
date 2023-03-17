@@ -254,21 +254,10 @@ const LocalProvider = ({
 
   useEffect(() => {
     if (networkManager.walletType !== "unset") {
-      if (networkManager.walletType === "select") {
-        dispatcher({
-          type: "setHomeChains",
-          payload: sygmaConfig().chains,
-        });
-      } else {
-        dispatcher({
-          type: "setHomeChains",
-          payload: sygmaConfig().chains,
-          // .filter(
-          //   (EvmBridgeConfig: EvmBridgeConfig | SubstrateConfig) =>
-          //     EvmBridgeConfig.type === networkManager.walletType
-          // ),
-        });
-      }
+      dispatcher({
+        type: "setHomeChains",
+        payload: sygmaConfig().chains,
+      });
     } else {
       dispatcher({
         type: "setHomeChains",

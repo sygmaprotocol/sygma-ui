@@ -338,13 +338,7 @@ const TransferPage = () => {
               recipient: preflightDetails.receiver,
               feeData: customFee!,
             };
-            console.log(
-              "🚀 ~ file: TransferPage.tsx:342 ~ TransferPage ~ sygmaInstance:",
-              sygmaInstance
-            );
-
             console.log(sygmaInstance);
-
             setPreflightModalOpen(false);
             preflightDetails && deposit(paramsForDeposit);
           }}

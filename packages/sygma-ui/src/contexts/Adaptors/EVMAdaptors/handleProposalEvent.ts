@@ -59,11 +59,6 @@ const handleProposalEvent = (
           tx: any
         ) => {
           if (transferTxHash !== tx.transactionHash) {
-            const txReceipt = await tx.getTransactionReceipt();
-            console.log(
-              "🚀 ~ file: handleProposalEvent.ts ~ line 34 ~ txReceipt",
-              txReceipt
-            );
             setDepositVotes(depositVotes + 1);
             tokensDispatch({
               type: "setTransactionIsDone",
