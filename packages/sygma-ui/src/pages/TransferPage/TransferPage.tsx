@@ -108,7 +108,9 @@ const TransferPage = () => {
       if (sygmaInstance && amount && address) {
         const fee = await sygmaInstance.fetchFeeData({
           amount: amount,
-          recipientAddress: destAddress,
+          recipientAddress: destAddress
+            ? destAddress
+            : ethers.constants.AddressZero,
         });
         if (!(fee instanceof Error)) {
           setCustomFee(fee);
@@ -249,7 +251,7 @@ const TransferPage = () => {
               disabled={!destinationChainConfig || formState.isSubmitting}
               name="receiver"
               label="Destination Address"
-              placeholder="0x · · · · · · · · · · · · ·"
+              placeholder="· · · · · · · · · · · · · ·"
               senderAddress={`${address}`}
               sendToSameAccountHelper={
                 destinationChainConfig?.type === homeConfig?.type
@@ -336,9 +338,7 @@ const TransferPage = () => {
               recipient: preflightDetails.receiver,
               feeData: customFee!,
             };
-
             console.log(sygmaInstance);
-
             setPreflightModalOpen(false);
             preflightDetails && deposit(paramsForDeposit);
           }}
