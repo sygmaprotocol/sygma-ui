@@ -8,17 +8,16 @@
   "license": "LGPL",
   "private": true,
   "engines": {
-    "node": ">16.10"
+    "node": ">=16.10"
   },
   "packageManager": "yarn@3.5.0",
   "workspaces": {
     "packages": [
       "packages/*"
-    ],
-    "nohoist": [
-      "**/webpack-dev-server",
-      "**/react-scripts"
     ]
+  },
+  "installConfig": {
+    "hoistingLimits": "workspaces"
   },
   "dependencies": {
     "@buildwithsygma/sygma-sdk-core": "1.2.0",

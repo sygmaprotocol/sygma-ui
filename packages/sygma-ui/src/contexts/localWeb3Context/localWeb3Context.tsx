@@ -1,5 +1,9 @@
 import React, { useCallback, useEffect, useReducer } from "react";
-import { EvmBridgeConfig, sygmaConfig } from "../../sygmaConfig";
+import {
+  EvmBridgeConfig,
+  SubstrateConfig,
+  sygmaConfig,
+} from "../../sygmaConfig";
 import {
   EVMDestinationAdaptorProvider,
   EVMHomeAdaptorProvider,
@@ -229,7 +233,7 @@ const LocalProvider = ({
         dispatcher({
           type: "setDestinationChains",
           payload: sygmaConfig().chains.filter(
-            (EvmBridgeConfig: EvmBridgeConfig) =>
+            (EvmBridgeConfig: EvmBridgeConfig | SubstrateConfig) =>
               EvmBridgeConfig.domainId !== chain.domainId
           ),
         });
@@ -238,7 +242,7 @@ const LocalProvider = ({
           dispatcher({
             type: "setDestinationChain",
             payload: sygmaConfig().chains.find(
-              (EvmBridgeConfig: EvmBridgeConfig) =>
+              (EvmBridgeConfig: EvmBridgeConfig | SubstrateConfig) =>
                 EvmBridgeConfig.domainId !== chain.domainId
             ),
           });
@@ -250,20 +254,10 @@ const LocalProvider = ({
 
   useEffect(() => {
     if (networkManager.walletType !== "unset") {
-      if (networkManager.walletType === "select") {
-        dispatcher({
-          type: "setHomeChains",
-          payload: sygmaConfig().chains,
-        });
-      } else {
-        dispatcher({
-          type: "setHomeChains",
-          payload: sygmaConfig().chains.filter(
-            (EvmBridgeConfig: EvmBridgeConfig) =>
-              EvmBridgeConfig.type === networkManager.walletType
-          ),
-        });
-      }
+      dispatcher({
+        type: "setHomeChains",
+        payload: sygmaConfig().chains,
+      });
     } else {
       dispatcher({
         type: "setHomeChains",
