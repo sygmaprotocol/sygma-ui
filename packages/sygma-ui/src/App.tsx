@@ -45,8 +45,6 @@ const AppWrap: React.FC<{
 
   const setConfig = async () => {
     if (!window.__RUNTIME_CONFIG__) {
-      // const config = await getSygmaConfig();
-      // const sharedConfig = await getSharedConfig()
       const config = await configMerger();
       if ((config as ConfigError).error) {
         setErrMessage(
