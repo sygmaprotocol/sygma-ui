@@ -20,7 +20,7 @@
     "hoistingLimits": "workspaces"
   },
   "dependencies": {
-    "@buildwithsygma/sygma-sdk-core": "1.2.0",
+    "@buildwithsygma/sygma-sdk-core": "link:../sygma-sdk/packages/sdk",
     "@changesets/cli": "^2.14.1",
     "eslint": "^8.35.0",
     "ethers": "5.4.5"

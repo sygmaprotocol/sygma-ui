@@ -46,6 +46,7 @@ const AppWrap: React.FC<{
   const setConfig = async () => {
     if (!window.__RUNTIME_CONFIG__) {
       const config = await configMerger();
+      console.log("🚀 ~ file: App.tsx:51 ~ setConfig ~ config:", config);
       if ((config as ConfigError).error) {
         setErrMessage(
           (config as ConfigError).error.message ??
