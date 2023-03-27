@@ -3,7 +3,9 @@ import { getSharedConfig } from "./getSharedConfig";
 import { SharedConfigDomains, ConfigError } from "../types/sharedConfig";
 import { Chain, Config } from "../types/sygmaConfig";
 
-export const configMerger = async (): Promise<Config | ConfigError> => {
+export const configMerger = async (
+  ignoreNetwork: "substrate" | "evm" | "default" = "default"
+): Promise<Config | ConfigError> => {
   let sharedConfig: SharedConfigDomains;
   let config: Config;
 
@@ -35,18 +37,33 @@ export const configMerger = async (): Promise<Config | ConfigError> => {
       domain.handlers.filter((handler) => handler.type === "erc721")[0].address,
     tokens: [
       ...domain.resources.map((resource) => ({
-        addresss: resource.address,
+        address: resource.address,
         decimals: resource.decimals,
         resourceId: resource.resourceId,
         type: resource.type,
         symbol: resource.symbol,
         feeSetings: { type: "", address: "" },
       })),
-    ].filter((resource) => resource.type !== "permissionlessGeneric"),
+    ].filter(
+      (resource) =>
+        resource.type !== "permissionlessGeneric" && resource.address !== ""
+    ),
     confirmations: domain.blockConfirmations,
   }));
 
-  const keysToMerge = Object.keys(domainsMapped[0]);
+  let domainsFiltered;
+
+  if (ignoreNetwork === "substrate") {
+    domainsFiltered = domainsMapped.filter((domain) => domain.type === "evm");
+  } else if (ignoreNetwork === "evm") {
+    domainsFiltered = domainsMapped.filter(
+      (domain) => domain.type === "substrate"
+    );
+  } else {
+    domainsFiltered = domainsMapped;
+  }
+
+  const keysToMerge = Object.keys(domainsFiltered[0]);
   const configKeys = Object.keys(config.SYGMA.chains[0]);
 
   const keysNeededFromConfig = configKeys.filter((key) => {
@@ -81,7 +98,7 @@ export const configMerger = async (): Promise<Config | ConfigError> => {
     }
   }
 
-  const sygmaConfigMerged: Chain[] = domainsMapped.map((domain) => {
+  const sygmaConfigMerged: Chain[] = domainsFiltered.map((domain) => {
     const { domainId } = domain;
     const propertiesToMerge = chainObject[domainId];
     return { ...domain, ...propertiesToMerge } as unknown as Chain;

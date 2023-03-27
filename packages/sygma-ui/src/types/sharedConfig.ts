@@ -14,7 +14,7 @@ export type SharedConfigHandlers = {
 export type SharedConfigDomain = {
   id: number;
   name: string;
-  type: "evm";
+  type: "evm" | "substrate";
   bridge: string;
   handlers: SharedConfigHandlers[];
   nativeTokenSymbol: string;

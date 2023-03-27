@@ -1,5 +1,6 @@
 import { Config } from "../types/sygmaConfig";
 import { configMerger } from "./configMerger";
+import { getSharedConfig } from "./getSharedConfig";
 
 jest.mock("./getSharedConfig", () => {
   return {
@@ -54,5 +55,15 @@ describe("ConfigMerger", () => {
 
     expect(Object.keys(config)).toEqual(expectedKeysFromMergedConfig);
     expect(Object.keys(config.SYGMA)).toEqual(expectedKeysForSygmaProperty);
+  });
+
+  it('ignores one network type when "ignoreNetwork" is passed', async () => {
+    const config = (await configMerger("substrate")) as Config;
+    const sharedConfig = await getSharedConfig();
+    const expectedLengthFilteringByEVM = sharedConfig.domains.filter(
+      (domain) => domain.type === "evm"
+    ).length;
+
+    expect(config.SYGMA.chains.length).toEqual(expectedLengthFilteringByEVM);
   });
 });
