@@ -16,6 +16,7 @@ export type SharedConfigDomain = {
   name: string;
   type: "evm" | "substrate";
   bridge: string;
+  feeRouterAddress: string;
   handlers: SharedConfigHandlers[];
   nativeTokenSymbol: string;
   nativeTokenFullName: string;
@@ -23,6 +24,7 @@ export type SharedConfigDomain = {
   blockConfirmations: number;
   startBlock: number;
   resources: SharedConfigResources[];
+  feeHandlers: Array<{ address: string; type: "basic" | "oracle" }>;
 };
 
 export type SharedConfigDomains = {
