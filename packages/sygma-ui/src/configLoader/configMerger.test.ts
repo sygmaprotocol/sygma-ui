@@ -58,7 +58,7 @@ describe("ConfigMerger", () => {
   });
 
   it('ignores one network type when "ignoreNetwork" is passed', async () => {
-    const config = (await configMerger("substrate")) as Config;
+    const config = (await configMerger("Substrate")) as Config;
     const sharedConfig = await getSharedConfig();
     const expectedLengthFilteringByEVM = sharedConfig.domains.filter(
       (domain) => domain.type === "evm"
