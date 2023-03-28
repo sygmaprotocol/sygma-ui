@@ -8,6 +8,8 @@ import Stack from "@mui/material/Stack";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Button from "@mui/material/Button";
 import clsx from "clsx";
+import { FeeHandlerRouter__factory } from "@buildwithsygma/sygma-contracts";
+import { FeeDataResult, Sygma, EvmBridgeSetup } from "@buildwithsygma/sygma-sdk-core";
 
 import { useBridge, useHomeBridge, useSygma, useWeb3 } from "../../contexts";
 import { showImageUrl } from "../../utils/Helpers";
@@ -30,7 +32,6 @@ import {
 } from "../../components";
 
 import makeValidationSchema from "./makeValidationSchema";
-import { FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
 
 export type PreflightDetails = {
   tokenAmount: string;
@@ -104,6 +105,36 @@ const TransferPage = () => {
   const destAddress = watch("receiver", address);
 
   useEffect(() => {
+    async function getFeeStrategy(): Promise<void> {
+      const feeRouterAddress = (sygmaInstance as Sygma)!.getFeeRouterAddress('chain1')
+      const { resourceId, address: tokenAddress } = (sygmaInstance as Sygma).getSelectedToken()
+      const signer = (sygmaInstance as Sygma)!.getSigner('chain1')
+
+      const feeHandlerContract = FeeHandlerRouter__factory.connect(feeRouterAddress, signer!)
+      console.log("🚀 ~ file: TransferPage.tsx:122 ~ getFeeStrategy ~ feeHandlerContract:", feeHandlerContract)
+
+      const { domainId } = destinationChainConfig!
+
+      const feeHandlerAddress = await feeHandlerContract._domainResourceIDToFeeHandlerAddress(domainId, resourceId)
+      console.log("🚀 ~ file: TransferPage.tsx:127 ~ getFeeStrategy ~ FeeHandlerAddress:", feeHandlerAddress)
+
+      const bridgeSetup = (sygmaInstance as Sygma)!.getBridgeSetup('chain1')
+
+      const feeHandlerFound = (bridgeSetup as EvmBridgeSetup).feeHandlers.find(feeHandler => feeHandler.address === feeHandlerAddress);
+
+      console.log("🚀 ~ file: TransferPage.tsx:134 ~ getFeeStrategy ~ feeHandlerFound:", feeHandlerFound);
+
+      (sygmaInstance as Sygma)!.setFeeSettings(
+        feeHandlerFound!.type,
+        feeHandlerFound!.address,
+        tokenAddress,
+        'chain1'
+      );
+
+      console.log("SygmaInstance", sygmaInstance)
+
+    }
+    
     async function setFee(amount: string) {
       if (sygmaInstance && amount && address) {
         const fee = await sygmaInstance.fetchFeeData({

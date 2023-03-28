@@ -5,6 +5,7 @@
       "name": "ethereum",
       "type": "evm",
       "bridge": "0xb36C801f644908bAAe89b7C28ad57Af18638A6a9",
+      "feeRouterAddress": "0x6CAf9103c8cE3c9C347D57Aee39E8e66e43091b8",
       "handlers": [
         {
           "type": "erc20",
@@ -74,6 +75,7 @@
       "name": "polygon",
       "type": "evm",
       "bridge": "0x37313Ab1701fCfC5050E84B4E7f841abB588a1db",
+      "feeRouterAddress": "0x2F14a0Ffc2FE72E55e18b0f04De2582237065a51",
       "handlers": [
         {
           "type": "erc20",
@@ -143,6 +145,7 @@
       "name": "moonbeam",
       "type": "evm",
       "bridge": "0x6CAf9103c8cE3c9C347D57Aee39E8e66e43091b8",
+      "feeRouterAddress": "0x787dce8aA901E0bAF1CD191b8B4695B6dd4dcf89",
       "handlers": [
         {
           "type": "erc20",
@@ -212,6 +215,7 @@
       "name": "ethereum",
       "type": "evm",
       "bridge": "0x59d52E04d4521C0e6C78310f4c4FF9167BA71d01",
+      "feeRouterAddress": "0xF9ab418D23603Ca37794eAe300F130c5d887732C",
       "handlers": [
         {
           "type": "erc20",

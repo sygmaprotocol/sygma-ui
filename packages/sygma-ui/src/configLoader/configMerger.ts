@@ -4,7 +4,7 @@ import { SharedConfigDomains, ConfigError } from "../types/sharedConfig";
 import { Chain, Config } from "../types/sygmaConfig";
 
 export const configMerger = async (
-  ignoreNetwork: "substrate" | "evm" | "default" = "default"
+  ignoreNetwork: "Substrate" | "Ethereum" | "default" = "default"
 ): Promise<Config | ConfigError> => {
   let sharedConfig: SharedConfigDomains;
   let config: Config;
@@ -24,11 +24,12 @@ export const configMerger = async (
   }
 
   const domainsMapped = sharedConfig.domains.map((domain) => ({
-    domainId: domain.id,
+    domainId: `${domain.id}`,
     decimals: domain.nativeTokenDecimals,
     nativeTokenSymbol: domain.nativeTokenSymbol.toUpperCase(),
-    type: domain.type,
+    type: domain.type === "evm" ? "Ethereum" : "Substrate",
     bridgeAddress: domain.bridge,
+    feeRouterAddress: domain.feeRouterAddress || "",
     erc20HandlerAddress:
       domain.handlers.length &&
       domain.handlers.filter((handler) => handler.type === "erc20")[0].address,
@@ -43,21 +44,25 @@ export const configMerger = async (
         type: resource.type,
         symbol: resource.symbol,
         feeSetings: { type: "", address: "" },
+        name: resource.symbol,
       })),
     ].filter(
       (resource) =>
         resource.type !== "permissionlessGeneric" && resource.address !== ""
     ),
     confirmations: domain.blockConfirmations,
+    feeHandlers: domain.feeHandlers
   }));
 
   let domainsFiltered;
 
-  if (ignoreNetwork === "substrate") {
-    domainsFiltered = domainsMapped.filter((domain) => domain.type === "evm");
-  } else if (ignoreNetwork === "evm") {
+  if (ignoreNetwork === "Substrate") {
     domainsFiltered = domainsMapped.filter(
-      (domain) => domain.type === "substrate"
+      (domain) => domain.type === "Ethereum"
+    );
+  } else if (ignoreNetwork === "Ethereum") {
+    domainsFiltered = domainsMapped.filter(
+      (domain) => domain.type === "Substrate"
     );
   } else {
     domainsFiltered = domainsMapped;
