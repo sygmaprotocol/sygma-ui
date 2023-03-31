@@ -21,7 +21,6 @@ import { sygmaConfig } from "./sygmaConfig";
 import { AppWrapper } from "./layouts";
 import { configMerger } from "./configLoader";
 import { ConfigError } from "./types/sharedConfig";
-
 import "./font-faces.css";
 
 if (

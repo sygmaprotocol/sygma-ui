@@ -56,9 +56,14 @@ module.exports = {
           rules: [
             ...webpackConfig.module.rules,
             {
-              test: /\.mjs$/,
-              include: /node_modules/,
+              test: /\.m?js/,
               type: "javascript/auto",
+            },
+            {
+              test: /\.m?js/,
+              resolve: {
+                fullySpecified: false,
+              },
             },
           ],
         },

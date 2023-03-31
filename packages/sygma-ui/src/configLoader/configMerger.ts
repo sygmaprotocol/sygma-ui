@@ -43,7 +43,7 @@ export const configMerger = async (
         resourceId: resource.resourceId,
         type: resource.type,
         symbol: resource.symbol,
-        feeSetings: { type: "", address: "" },
+        feeSettings: { type: "", address: "" },
         name: resource.symbol,
       })),
     ].filter(
@@ -51,7 +51,7 @@ export const configMerger = async (
         resource.type !== "permissionlessGeneric" && resource.address !== ""
     ),
     confirmations: domain.blockConfirmations,
-    feeHandlers: domain.feeHandlers
+    feeHandlers: domain.feeHandlers,
   }));
 
   let domainsFiltered;

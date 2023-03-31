@@ -8,8 +8,11 @@ import Stack from "@mui/material/Stack";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Button from "@mui/material/Button";
 import clsx from "clsx";
-import { FeeHandlerRouter__factory } from "@buildwithsygma/sygma-contracts";
-import { FeeDataResult, Sygma, EvmBridgeSetup } from "@buildwithsygma/sygma-sdk-core";
+import {
+  FeeDataResult,
+  Sygma,
+  EvmBridgeSetup,
+} from "@buildwithsygma/sygma-sdk-core";
 
 import { useBridge, useHomeBridge, useSygma, useWeb3 } from "../../contexts";
 import { showImageUrl } from "../../utils/Helpers";
@@ -65,6 +68,7 @@ const TransferPage = () => {
   const [aboutOpen, setAboutOpen] = useState<boolean>(false);
   const [walletConnecting, setWalletConnecting] = useState(false);
   const [preflightModalOpen, setPreflightModalOpen] = useState<boolean>(false);
+  const [areFeeSettingsSet, setAreFeeSettingsSet] = useState<boolean>(false);
 
   const [preflightDetails, setPreflightDetails] = useState<PreflightDetails>({
     receiver: "",
@@ -106,35 +110,55 @@ const TransferPage = () => {
 
   useEffect(() => {
     async function getFeeStrategy(): Promise<void> {
-      const feeRouterAddress = (sygmaInstance as Sygma)!.getFeeRouterAddress('chain1')
-      const { resourceId, address: tokenAddress } = (sygmaInstance as Sygma).getSelectedToken()
-      const signer = (sygmaInstance as Sygma)!.getSigner('chain1')
+      if (sygmaInstance && watchToken && address) {
+        const feeRouterAddress = (sygmaInstance as Sygma)!.getFeeRouterAddress(
+          "chain1"
+        );
+        const { resourceId, address: tokenAddress } = (
+          sygmaInstance as Sygma
+        ).getSelectedToken();
 
-      const feeHandlerContract = FeeHandlerRouter__factory.connect(feeRouterAddress, signer!)
-      console.log("🚀 ~ file: TransferPage.tsx:122 ~ getFeeStrategy ~ feeHandlerContract:", feeHandlerContract)
+        const signer = (sygmaInstance as Sygma)!.getSigner("chain1");
 
-      const { domainId } = destinationChainConfig!
+        const { domainId } = destinationChainConfig!;
 
-      const feeHandlerAddress = await feeHandlerContract._domainResourceIDToFeeHandlerAddress(domainId, resourceId)
-      console.log("🚀 ~ file: TransferPage.tsx:127 ~ getFeeStrategy ~ FeeHandlerAddress:", feeHandlerAddress)
+        const feeHandlerAddress = await (
+          sygmaInstance as Sygma
+        ).getFeeHandlerAddress(
+          signer as ethers.Signer,
+          feeRouterAddress,
+          `${domainId}`,
+          resourceId
+        );
 
-      const bridgeSetup = (sygmaInstance as Sygma)!.getBridgeSetup('chain1')
+        const bridgeSetup = (sygmaInstance as Sygma)!.getBridgeSetup("chain1");
 
-      const feeHandlerFound = (bridgeSetup as EvmBridgeSetup).feeHandlers.find(feeHandler => feeHandler.address === feeHandlerAddress);
+        const feeHandlerFound = (
+          bridgeSetup as EvmBridgeSetup
+        ).feeHandlers.find(
+          (feeHandler: { type: string; address: string }) =>
+            feeHandler.address === feeHandlerAddress
+        );
 
-      console.log("🚀 ~ file: TransferPage.tsx:134 ~ getFeeStrategy ~ feeHandlerFound:", feeHandlerFound);
+        (sygmaInstance as Sygma)!.setFeeSettings(
+          feeHandlerFound!.type,
+          feeHandlerFound!.address,
+          tokenAddress,
+          "chain1"
+        );
 
-      (sygmaInstance as Sygma)!.setFeeSettings(
-        feeHandlerFound!.type,
-        feeHandlerFound!.address,
-        tokenAddress,
-        'chain1'
-      );
+        setAreFeeSettingsSet(true);
 
-      console.log("SygmaInstance", sygmaInstance)
-
+        console.log("SygmaInstance", sygmaInstance?.bridgeSetup);
+      }
     }
-    
+
+    if (watchToken !== "") {
+      getFeeStrategy();
+    }
+  }, [watchToken]);
+
+  useEffect(() => {
     async function setFee(amount: string) {
       if (sygmaInstance && amount && address) {
         const fee = await sygmaInstance.fetchFeeData({
@@ -149,10 +173,17 @@ const TransferPage = () => {
       }
     }
 
-    setFee(watchAmount.toString().replace(/\D/g, "")).catch((err) =>
-      console.error(err)
-    );
-  }, [watchAmount, preflightDetails, destinationChainConfig]);
+    if (areFeeSettingsSet) {
+      setFee(watchAmount.toString().replace(/\D/g, "")).catch((err) =>
+        console.error("the error", err)
+      );
+    }
+  }, [
+    watchAmount,
+    preflightDetails,
+    destinationChainConfig,
+    areFeeSettingsSet,
+  ]);
 
   const onSubmit: SubmitHandler<PreflightDetails> = (values) => {
     setPreflightDetails({
