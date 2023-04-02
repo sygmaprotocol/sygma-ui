@@ -22,7 +22,9 @@ const makeDeposit =
     amount: string;
     recipient: string;
     feeData: FeeDataResult;
+    sygmaInstance: Sygma;
   }) => {
+    const { sygmaInstance } = paramsForDeposit
     const token = homeChainConfig!.tokens.find(
       (token) => token.address === paramsForDeposit.tokenAddress
     );

@@ -97,8 +97,7 @@ export const EVMHomeAdaptorProvider = ({
     gasPrice,
     homeChainConfig,
     provider,
-    address,
-    sygmaInstance
+    address
   );
 
   const wrapToken = makeWrappedToken(

@@ -399,8 +399,9 @@ const TransferPage = () => {
               amount: preflightDetails.tokenAmount,
               recipient: preflightDetails.receiver,
               feeData: customFee!,
+              sygmaInstance: sygmaInstance!,
             };
-            console.log(sygmaInstance);
+            sygmaInstance!.setSelectedToken(preflightDetails.token);
             setPreflightModalOpen(false);
             preflightDetails && deposit(paramsForDeposit);
           }}

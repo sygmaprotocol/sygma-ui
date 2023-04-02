@@ -10,7 +10,7 @@ import { Tokens, TransactionStatus } from "../../types";
 import { useWeb3 } from "../../contexts";
 import { useHomeBridge } from "../HomeBridgeContext";
 import { useDestinationBridge } from "../DestinationBridgeContext";
-import { FeeDataResult } from "@buildwithsygma/sygma-sdk-core";
+import { FeeDataResult, Sygma } from "@buildwithsygma/sygma-sdk-core";
 
 interface ISygmaContextProps {
   children: React.ReactNode | React.ReactNode[];
@@ -117,6 +117,7 @@ const SygmaProvider = ({ children, chains }: ISygmaContextProps) => {
       amount: string;
       recipient: string;
       feeData: FeeDataResult;
+      sygmaInstance: Sygma;
     }) => {
       if (chainConfig && destinationChainConfig) {
         return await deposit(paramsForDeposit);
