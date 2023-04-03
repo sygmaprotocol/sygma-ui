@@ -5,6 +5,16 @@ import {
   testResponse,
 } from "./TestUtils";
 
+jest.mock("@polkadot/keyring", () => ({
+  encodeAddress: () => {},
+  decodeAddress: () => {},
+}));
+
+jest.mock("@polkadot/util", () => ({
+  isHex: () => true,
+  hexToU8a: () => new Uint8Array(),
+}));
+
 describe("ComputeTransfersDetails", () => {
   it("should return one transfer with the details needed", () => {
     const expectedKeys = [
