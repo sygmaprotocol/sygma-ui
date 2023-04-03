@@ -14,8 +14,7 @@ const makeDeposit =
     gasPrice: number,
     homeChainConfig?: BridgeConfig,
     provider?: providers.Web3Provider,
-    address?: string,
-    sygmaInstance?: Sygma
+    address?: string
   ) =>
   async (paramsForDeposit: {
     tokenAddress: string;
