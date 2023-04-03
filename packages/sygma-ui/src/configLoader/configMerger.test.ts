@@ -61,7 +61,7 @@ describe("ConfigMerger", () => {
     const config = (await configMerger("Substrate")) as Config;
     const sharedConfig = await getSharedConfig();
     const expectedLengthFilteringByEVM = sharedConfig.domains.filter(
-      (domain) => domain.type === "evm"
+      (domain: { type: string }) => domain.type === "evm"
     ).length;
 
     expect(config.SYGMA.chains.length).toEqual(expectedLengthFilteringByEVM);
