@@ -69,7 +69,7 @@ export const nftPageTheme = createTheme(theme, {
   palette: {
     primary: {
       light: "#CDC2B1",
-      main: "#000000",
+      main: "#FF7A45",
     },
     secondary: {
       main: "#DBD3C7",
