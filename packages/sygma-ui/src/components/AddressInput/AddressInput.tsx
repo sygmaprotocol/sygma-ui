@@ -2,10 +2,9 @@ import React, { useCallback, useState } from "react";
 import { useController } from "react-hook-form";
 import FormControl from "@mui/material/FormControl";
 
-import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
+import Button from "@mui/material/Button";
 
 interface IAddressInput {
   senderAddress: string;
@@ -61,24 +60,24 @@ const AddressInput: React.FC<IAddressInput> = ({
       </>
       {sendToSameAccountHelper && (
         <FormGroup sx={{ my: 1 }}>
-          <FormControlLabel
+          <Button
             sx={{
-              marginRight: 0,
-              justifyContent: "space-between",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-start",
               color: "#FF7A45",
+              fontSize: "18px",
+              fontWeight: 500,
+              fontStyle: "normal",
+              padding: "0px",
+              "&:hover": {
+                backgroundColor: "transparent",
+              },
             }}
-            control={
-              <Checkbox
-                size="small"
-                checked={stored !== undefined}
-                onChange={() => toggleReceiver()}
-                sx={{
-                  marginLeft: "8px",
-                }}
-              />
-            }
-            label="Transfer to the same address"
-          />
+            onClick={() => toggleReceiver()}
+          >
+            Transfer to same address
+          </Button>
         </FormGroup>
       )}
     </FormControl>
