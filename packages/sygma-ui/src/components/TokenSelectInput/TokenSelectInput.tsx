@@ -53,22 +53,40 @@ const TokenSelectInput: React.FC<ITokenSelectInput> = (
   return (
     <Box>
       <Box>
+        <InputLabel
+          id="token-select-label"
+          sx={{
+            color: "#5D503C !important",
+            display: "flex",
+            flexDirection: "row",
+            alignSelf: "flex-start",
+            fontWeight: 500,
+          }}
+        >
+          Token
+        </InputLabel>
         <FormControl disabled={disabled} fullWidth>
-          <InputLabel
-            id="token-select-label"
+          <Select
+            {...field}
             sx={{
-              color: "#FE5614 !important",
-              "&.Mui-disabled": {
-                color: "#FE5614",
-                opacity: 0.4,
+              borderRadius: "8px",
+              fontWeight: 500,
+              color: "#5D503C",
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#CDC2B1 !important",
+                borderWidth: "2px",
+              },
+              "& .MuiSelect-iconOutlined": {
+                color: "#5D503C",
               },
             }}
           >
-            Token
-          </InputLabel>
-          <Select {...field} label="token">
             {options.map((option: any) => (
-              <MenuItem key={option.value} value={option.value}>
+              <MenuItem
+                key={option.value}
+                value={option.value}
+                sx={{ color: "#5D503C", fontWeight: 500 }}
+              >
                 {option.label}
               </MenuItem>
             ))}
@@ -76,18 +94,23 @@ const TokenSelectInput: React.FC<ITokenSelectInput> = (
           <FormHelperText> </FormHelperText>
         </FormControl>
       </Box>
-      <Box sx={{ flexGrow: 1 }}>
-        <FormControl fullWidth disabled={true}>
+      <Box sx={{ flexGrow: 1, borderColor: "black !important" }}>
+        <FormControl
+          fullWidth
+          disabled={true}
+          sx={{ borderColor: "black !important" }}
+        >
           <TextField
             size="small"
             disabled={true}
             fullWidth
-            label="Balance"
             value={balance}
-            color="primary"
             sx={{
+              fontWeight: 500,
+              color: "#5D503C",
+              borderColor: "black !important",
+              borderWidth: "2px",
               "& .MuiInputBase-input": {
-                "-webkit-text-fill-color": "unset",
                 textAlign: "center",
               },
             }}

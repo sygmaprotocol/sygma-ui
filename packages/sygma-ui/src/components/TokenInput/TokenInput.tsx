@@ -7,7 +7,6 @@ import Box from "@mui/material/Box";
 
 interface ITokenInput {
   disabled?: boolean;
-  label: string;
   name: string;
   tokens: Tokens;
   tokenSelectorKey: string;
@@ -22,7 +21,6 @@ interface ITokenInput {
 const TokenInput: React.FC<ITokenInput> = ({
   classNames,
   disabled,
-  label,
   tokens,
   tokenSelectorKey,
   name,
@@ -33,12 +31,17 @@ const TokenInput: React.FC<ITokenInput> = ({
   return (
     <Box sx={{ mt: 2 }}>
       <TextField
+        sx={{
+          borderRadius: "8px",
+          fontWeight: 500,
+          color: "#5D503C",
+          borderColor: "#CDC2B1 !important",
+        }}
         disabled={disabled}
         error={!!fieldState.error}
         fullWidth
         helperText={fieldState.error ? fieldState.error.message : undefined}
         className={classNames?.input}
-        label={label}
         {...field}
         InputProps={{
           endAdornment: (
@@ -48,8 +51,14 @@ const TokenInput: React.FC<ITokenInput> = ({
               onClick={() => {
                 setValue(name, tokens[tokenSelectorKey].balance);
               }}
-              variant="outlined"
+              variant="contained"
+              color="primary"
               type="button"
+              sx={{
+                color: "black !important",
+                border: "unset !important",
+                backgroundColor: "#CDC2B1",
+              }}
             >
               MAX
             </Button>

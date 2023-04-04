@@ -14,7 +14,7 @@ import AlertTitle from "@mui/material/AlertTitle";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import { SygmaRoutes } from "./routes";
-import { SygmaTheme } from "./themes/SygmaTheme";
+import { nftPageTheme } from "./themes/nftPageTheme";
 
 import { BridgeProvider, LocalProvider, SygmaProvider } from "./contexts";
 import { sygmaConfig } from "./sygmaConfig";
@@ -151,7 +151,7 @@ const App: React.FC = () => {
       onReset={() => window.location.reload()}
     >
       <>
-        <ThemeProvider theme={SygmaTheme}>
+        <ThemeProvider theme={nftPageTheme}>
           <CssBaseline />
           <LocalProvider
             networkIds={[5]}

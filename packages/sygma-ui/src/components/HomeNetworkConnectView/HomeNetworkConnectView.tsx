@@ -37,8 +37,8 @@ export default function HomeNetworkConnectView({
             variant="contained"
             sx={{
               py: 1.5,
-              backgroundColor: "#F0F0F0",
-              color: "#FF7A45",
+              backgroundColor: "#FF7A45",
+              color: "#000000",
               border: "2px solid #FF7A45",
               borderRadius: "8px",
               boxShadow:
@@ -47,10 +47,14 @@ export default function HomeNetworkConnectView({
                 backgroundColor: "#FF7A45",
                 color: "#fff",
               },
+              fontWeight: 500,
+              fontStyle: "normal",
+              fontSize: "20px",
+              marginBottom: "15px",
             }}
             onClick={handleClickOpen}
           >
-            Connect
+            Connect Wallelt to Start
           </Button>
         )}
         {isReady &&
@@ -63,30 +67,42 @@ export default function HomeNetworkConnectView({
             </section>
           ) : (
             <>
+              <InputLabel
+                id="homenetwork-select-label"
+                sx={{
+                  color: "#5D503C !important",
+                  display: "flex",
+                  flexDirection: "row",
+                  alignSelf: "flex-start",
+                  fontWeight: 500,
+                }}
+              >
+                Home Network
+              </InputLabel>
               <FormControl sx={{ my: 2, color: "#1D9A52" }} fullWidth>
-                <InputLabel
-                  id="homenetwork-select-label"
-                  sx={{ color: "#1D9A52 !important" }}
-                >
-                  Home network
-                </InputLabel>
                 <Select
-                  label="homenetwork"
                   value={homeConfig?.domainId ?? ""}
                   sx={{
                     borderRadius: "8px",
-                    fontWeight: 700,
-                    color: "#1D9A52",
+                    fontWeight: 500,
+                    color: "#5D503C",
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#1D9A52 !important",
+                      borderColor: "#CDC2B1 !important",
                       borderWidth: "2px",
                     },
                     "& .MuiSelect-iconOutlined": {
-                      color: "#1D9A52",
+                      color: "#5D503C",
                     },
                   }}
                 >
-                  <MenuItem value={homeConfig?.domainId ?? ""}>
+                  <MenuItem
+                    value={homeConfig?.domainId ?? ""}
+                    sx={{
+                      backgroundColor: "white !important",
+                      color: "#5D503C",
+                      fontWeight: 500,
+                    }}
+                  >
                     {homeConfig?.name}
                   </MenuItem>
                 </Select>
