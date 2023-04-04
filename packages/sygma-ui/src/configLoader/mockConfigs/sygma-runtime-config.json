@@ -1,0 +1,233 @@
+{
+  "UI": {
+    "transactionAutoUpdateInterval": 5000,
+    "nftTokenPage": true
+  },
+  "SYGMA": {
+    "chains": [
+      {
+        "domainId": "0",
+        "networkId": 5,
+        "name": "Goerli",
+        "decimals": 18,
+        "bridgeAddress": "0xb36C801f644908bAAe89b7C28ad57Af18638A6a9",
+        "erc20HandlerAddress": "0x18e705CBD37d31F52fDa29Fa63DC23d348a20E99",
+        "erc721HandlerAddress": "0x201cBF8199DbF982c05185869FE063A744d797e2",
+        "rpcUrl": "https://eth-goerli.g.alchemy.com/v2/wkF4rGEBspanIYTCzspMVFbOPjHP_IhL",
+        "type": "Ethereum",
+        "nativeTokenSymbol": "ETH",
+        "blockExplorer": "https://goerli.etherscan.io",
+        "confirmations": 1,
+        "tokens": [
+          {
+            "type": "erc20",
+            "address": "0x3D151A97A446C9ea6893038e7C0db73466f3f3af",
+            "name": "ERC20Test",
+            "symbol": "ERC20TST",
+            "imageUri": "ETHIcon",
+            "decimals": 18,
+            "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "feeSettings": {
+              "type": "oracle",
+              "address": "0xF5703Fcf2bfFC33625857D8ae8994b3260AA3c1f"
+            }
+          },
+          {
+            "type": "erc20",
+            "address": "0x3F9A68fF29B3d86a6928C44dF171A984F6180009",
+            "name": "ERC20LRTest",
+            "symbol": "ERC20LRTest",
+            "imageUri": "ETHIcon",
+            "decimals": 18,
+            "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000300",
+            "feeSettings": {
+              "type": "basic",
+              "address": "0x81bbFC4aC5E731d9EAdb749a7e7A6E973CF7E399"
+            }
+          },
+          {
+            "type": "erc721",
+            "address": "0xe9d3b1433bACDfC26ee097629D238A41BF6dA3aE",
+            "name": "ERC721TST",
+            "symbol": "ERC721TST",
+            "imageUri": "ETHIcon",
+            "decimals": 18,
+            "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000200",
+            "feeSettings": {
+              "type": "basic",
+              "address": "0x81bbFC4aC5E731d9EAdb749a7e7A6E973CF7E399"
+            }
+          }
+        ]
+      },
+      {
+        "domainId": "1",
+        "networkId": 80001,
+        "name": "Mumbai",
+        "decimals": 18,
+        "bridgeAddress": "0x37313Ab1701fCfC5050E84B4E7f841abB588a1db",
+        "erc20HandlerAddress": "0x1B3c399E65E9d414EA77ee88253c7dD180C77805",
+        "erc721HandlerAddress": "0x8b10Ee8aecc9A586b7bcc89C06e1f9B9BD65328b",
+        "rpcUrl": "https://polygon-mumbai.g.alchemy.com/v2/LquJll0ZH2yYtHx74WScXNSXAj8C1DsP",
+        "type": "Ethereum",
+        "nativeTokenSymbol": "MATIC",
+        "blockExplorer": "https://mumbai.polygonscan.com",
+        "confirmations": 1,
+        "tokens": [
+          {
+            "type": "erc20",
+            "address": "0x2465c8F84bDB7130ACDf31d694bc9c820F70ac06",
+            "name": "ERC20Test",
+            "symbol": "ERC20TST",
+            "imageUri": "ETHIcon",
+            "decimals": 18,
+            "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "feeSettings": {
+              "type": "oracle",
+              "address": "0x22B21aaf747C94314c8040eB28557828f81aCE49"
+            }
+          },
+          {
+            "type": "erc20",
+            "address": "0xFC072Aa8ABB5646aFD0c22994bdE30dB57B1BF1C",
+            "name": "ERC20LRTest",
+            "symbol": "ERC20LRTest",
+            "imageUri": "ETHIcon",
+            "decimals": 18,
+            "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000300",
+            "feeSettings": {
+              "type": "basic",
+              "address": "0x2fD80b28DbA645A23d8Fb83EC428468a95F0Aa7a"
+            }
+          },
+          {
+            "type": "erc721",
+            "address": "0x4beD477d1f5D338855A521ABa2A88c9a15e2eA5d",
+            "name": "ERC721TST",
+            "symbol": "ERC721TST",
+            "imageUri": "ETHIcon",
+            "decimals": 18,
+            "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000200",
+            "feeSettings": {
+              "type": "basic",
+              "address": "0x2fD80b28DbA645A23d8Fb83EC428468a95F0Aa7a"
+            }
+          }
+        ]
+      },
+      {
+        "domainId": "2",
+        "networkId": 1287,
+        "name": "Moonbase Alpha",
+        "decimals": 18,
+        "bridgeAddress": "0x6CAf9103c8cE3c9C347D57Aee39E8e66e43091b8",
+        "erc20HandlerAddress": "0x40e273C40349dCA9062F9a3B80BAdFF000512c1F",
+        "erc721HandlerAddress": "0xF5703Fcf2bfFC33625857D8ae8994b3260AA3c1f",
+        "rpcUrl": "https://moonbase-alpha.blastapi.io/be6f59cb-0c85-444f-b8bc-4179bd203cac",
+        "type": "Ethereum",
+        "nativeTokenSymbol": "DEV",
+        "blockExplorer": "https://moonbase.moonscan.io/",
+        "confirmations": 1,
+        "tokens": [
+          {
+            "type": "erc20",
+            "address": "0xAc693E44E1EDe5f66A4e1406F65b904450932fB3",
+            "name": "ERC20Test",
+            "symbol": "ERC20TST",
+            "imageUri": "ETHIcon",
+            "decimals": 18,
+            "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "feeSettings": {
+              "type": "oracle",
+              "address": "0x1C28f6A4B4F89dd87e093d86c4878c865C691F89"
+            }
+          },
+          {
+            "type": "erc20",
+            "address": "0x3690601896C289be2d894c3d1213405310D0a25C",
+            "name": "ERC20LRTest",
+            "symbol": "ERC20LRTest",
+            "imageUri": "ETHIcon",
+            "decimals": 18,
+            "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000300",
+            "feeSettings": {
+              "type": "basic",
+              "address": "0x2AF8df30309A0c68Af6D5FD5bd5E5D2005A40fE6"
+            }
+          },
+          {
+            "type": "erc721",
+            "address": "0x3D151A97A446C9ea6893038e7C0db73466f3f3af",
+            "name": "ERC721TST",
+            "symbol": "ERC721TST",
+            "imageUri": "ETHIcon",
+            "decimals": 18,
+            "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000200",
+            "feeSettings": {
+              "type": "basic",
+              "address": "0x2AF8df30309A0c68Af6D5FD5bd5E5D2005A40fE6"
+            }
+          }
+        ]
+      },
+      {
+        "domainId": "3",
+        "networkId": 11155111,
+        "name": "Sepolia",
+        "decimals": 18,
+        "bridgeAddress": "0x59d52E04d4521C0e6C78310f4c4FF9167BA71d01",
+        "erc20HandlerAddress": "0x03896BaeA3A8CD98E46C576AF6Ceaffb69a51AFB",
+        "erc721HandlerAddress": "0x9DA05ec79e82D2441D09ddE3B616710668eA0c33",
+        "rpcUrl": "https://eth-sepolia.g.alchemy.com/v2/XEdjTRcsZFKjg7Cqx7C6l5KODNZGDxuY",
+        "type": "Ethereum",
+        "nativeTokenSymbol": "ETH",
+        "blockExplorer": "https://sepolia.etherscan.io/",
+        "confirmations": 1,
+        "tokens": [
+          {
+            "type": "erc20",
+            "address": "0x4cADdede58D2486e496f47c7BFfb18A7b36c4EE8",
+            "name": "ERC20Test",
+            "symbol": "ERC20TST",
+            "imageUri": "ETHIcon",
+            "decimals": 18,
+            "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "feeSettings": {
+              "type": "oracle",
+              "address": "0xe495c86962DcA7208ECcF2020A273395AcE8da3e"
+            }
+          },
+          {
+            "type": "erc20",
+            "address": "0xA9C41B54e635259EB1C72Fde4a6844D82eD00cde",
+            "name": "ERC20LRTest",
+            "symbol": "ERC20LRTest",
+            "imageUri": "ETHIcon",
+            "decimals": 18,
+            "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000300",
+            "feeSettings": {
+              "type": "basic",
+              "address": "0xC2a1E379E2d255F42f3F8cA7Be32E3C3E1767622"
+            }
+          },
+          {
+            "type": "erc721",
+            "address": "0x5d51B20d31aEdeee4Db6328890b8fD04d83432e6",
+            "name": "ERC721TST",
+            "symbol": "ERC721TST",
+            "imageUri": "ETHIcon",
+            "decimals": 18,
+            "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000200",
+            "feeSettings": {
+              "type": "basic",
+              "address": "0xC2a1E379E2d255F42f3F8cA7Be32E3C3E1767622"
+            }
+          }
+        ]
+      }
+    ],
+    "feeOracleSetup": {
+      "feeOracleBaseUrl": "https://fee-oracle.develop.buildwithsygma.com"
+    }
+  }
+}

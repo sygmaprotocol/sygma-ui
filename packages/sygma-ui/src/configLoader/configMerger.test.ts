@@ -6,7 +6,7 @@ jest.mock("./getSharedConfig", () => {
   return {
     getSharedConfig: async () => {
       const sharedConfigDef = await import(
-        "../../public/sygma-shared-config.json"
+        "./mockConfigs/sygma-shared-config.json"
       );
       return Promise.resolve(sharedConfigDef.default);
     },
@@ -17,7 +17,7 @@ jest.mock("./getSygmaConfig", () => {
   return {
     getSygmaConfig: async () => {
       const sygmaConfigDef = await import(
-        "../../public/sygma-runtime-config.json"
+        "./mockConfigs/sygma-runtime-config.json"
       );
       return Promise.resolve(sygmaConfigDef.default);
     },
