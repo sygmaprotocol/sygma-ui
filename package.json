@@ -31,7 +31,6 @@
     "build:server": "yarn workspace @buildwithsygma/sygma-ui-config-server build:server",
     "start:config-server": "yarn workspace @buildwithsygma/sygma-ui-config-server start:prod",
     "build:ui": "yarn workspace @buildwithsygma/sygma-ui build",
-    "build:explorer": "yarn workspace @buildwithsygma/explorer-ui build",
     "start:basic": "yarn workspace @buildwithsygma/sygma-basic start",
     "sentry:ui": "yarn workspace @buildwithsygma/sygma-ui sentry",
     "release:ui": "yarn workspace @buildwithsygma/sygma-ui release",
@@ -43,7 +42,6 @@
     "prettier:ui": "yarn workspace @buildwithsygma/sygma-ui prettier",
     "lint:ui": "yarn workspace @buildwithsygma/sygma-ui lint",
     "start-tunnel:ui": "yarn workspace @buildwithsygma/sygma-ui start:tunnel",
-    "start:explorer-ui": "yarn workspace @buildwithsygma/explorer-ui start",
     "postinstall": "husky install"
   },
   "devDependencies": {
