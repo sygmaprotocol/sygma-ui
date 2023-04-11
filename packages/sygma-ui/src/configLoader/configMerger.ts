@@ -29,7 +29,7 @@ export const configMerger = async (
     nativeTokenSymbol: domain.nativeTokenSymbol.toUpperCase(),
     type: domain.type === "evm" ? "Ethereum" : "Substrate",
     bridgeAddress: domain.bridge,
-    feeRouterAddress: domain.feeRouterAddress || "",
+    feeRouterAddress: domain.feeRouter || "",
     erc20HandlerAddress:
       domain.handlers.length &&
       domain.handlers.filter((handler) => handler.type === "erc20")[0].address,

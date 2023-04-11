@@ -16,7 +16,7 @@ export type SharedConfigDomain = {
   name: string;
   type: "evm" | "substrate";
   bridge: string;
-  feeRouterAddress: string;
+  feeRouter: string;
   handlers: SharedConfigHandlers[];
   nativeTokenSymbol: string;
   nativeTokenFullName: string;
