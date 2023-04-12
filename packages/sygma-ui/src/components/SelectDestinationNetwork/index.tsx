@@ -26,25 +26,58 @@ const SelectDestinationNetwork: React.FC<ISelectDestinationNetwork> = ({
     onChange(event.target.value);
   };
   return (
-    <FormControl sx={{ my: 2 }} fullWidth disabled={disabled}>
-      <InputLabel id="select-destination-network-label">{label}</InputLabel>
-      <Select
-        labelId="select-destination-network-label"
-        id="select-destination-network"
-        onChange={handleChange}
-        label={label}
-        value={value !== undefined ? value.toString() : ""}
+    <>
+      <InputLabel
+        id="select-destination-network-label"
         sx={{
-          fontWeight: 700,
+          color: "#5D503C !important",
+          display: "flex",
+          flexDirection: "row",
+          alignSelf: "flex-start",
+          fontWeight: 500,
         }}
       >
-        {options.map((option: { label: any; value: any }) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+        {label}
+      </InputLabel>
+      <FormControl sx={{ my: 2 }} fullWidth disabled={disabled}>
+        <Select
+          id="select-destination-network"
+          onChange={handleChange}
+          value={
+            value !== undefined
+              ? value.toString()
+              : "Select destination network"
+          }
+          sx={{
+            fontWeight: 500,
+            color: "#5D503C",
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: "#CDC2B1 !important",
+              borderWidth: "2px",
+            },
+            "& .MuiSelect-iconOutlined": {
+              color: "#5D503C",
+            },
+          }}
+          renderValue={(value) => {
+            const optionFound = options.find(
+              (option: { value: any }) => option.value === value
+            );
+            return optionFound?.label || value;
+          }}
+        >
+          {options.map((option: { label: any; value: any }) => (
+            <MenuItem
+              key={option.value}
+              value={option.value}
+              sx={{ color: "#5D503C", fontWeight: 500 }}
+            >
+              {option.label}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </>
   );
 };
 

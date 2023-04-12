@@ -12,7 +12,6 @@ interface IAddressInput {
   className?: any;
   placeholder: string;
   name: string;
-  label: string;
   disabled: boolean;
   sendToSameAccountHelper?: boolean;
   control?: any;
@@ -24,7 +23,6 @@ const AddressInput: React.FC<IAddressInput> = ({
   senderAddress,
   placeholder,
   name,
-  label,
   sendToSameAccountHelper = false,
   control,
   setValue,
@@ -52,7 +50,6 @@ const AddressInput: React.FC<IAddressInput> = ({
           helperText={fieldState.error ? fieldState.error.message : undefined}
           fullWidth
           {...field}
-          label={label}
           placeholder={placeholder}
           disabled={Boolean(disabled && !stored)}
           multiline
@@ -68,6 +65,7 @@ const AddressInput: React.FC<IAddressInput> = ({
             sx={{
               marginRight: 0,
               justifyContent: "space-between",
+              color: "#FF7A45",
             }}
             control={
               <Checkbox
@@ -79,7 +77,7 @@ const AddressInput: React.FC<IAddressInput> = ({
                 }}
               />
             }
-            label="Send funds to my address"
+            label="Transfer to the same address"
           />
         </FormGroup>
       )}

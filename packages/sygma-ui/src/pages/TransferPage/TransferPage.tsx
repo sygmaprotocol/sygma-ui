@@ -143,7 +143,7 @@ const TransferPage = () => {
     <Paper
       sx={{
         margin: "30px auto",
-        maxWidth: 360,
+        maxWidth: 460,
         display: "flex",
         flexDirection: "column",
         // overflow: "hidden",
@@ -156,7 +156,7 @@ const TransferPage = () => {
     >
       <Box
         className={classes.root}
-        sx={{ p: 6, backgroundColor: "#F0F0F0", borderRadius: "inherit" }}
+        sx={{ p: 6, backgroundColor: "#E9E4DD", borderRadius: "inherit" }}
       >
         <HomeNetworkConnectView
           isReady={isReady}
@@ -239,7 +239,6 @@ const TransferPage = () => {
                     preflightDetails.token === ""
                   }
                   name="tokenAmount"
-                  label="Amount to send"
                   setValue={setValue}
                   control={control}
                 />
@@ -250,7 +249,6 @@ const TransferPage = () => {
             <AddressInput
               disabled={!destinationChainConfig || formState.isSubmitting}
               name="receiver"
-              label="Destination Address"
               placeholder="· · · · · · · · · · · · · ·"
               senderAddress={`${address}`}
               sendToSameAccountHelper={
@@ -286,10 +284,13 @@ const TransferPage = () => {
               variant="contained"
               sx={{
                 py: 1.5,
-                backgroundColor: "#f0f0f0",
-                color: "#FF7A45",
+                backgroundColor: "#FF7A45",
+                color: "black",
                 border: "2px solid #FF7A45",
                 borderRadius: "8px",
+                fontWeight: 500,
+                fontStyle: "normal",
+                fontSize: "20px",
                 boxShadow:
                   "0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.1)",
                 ":hover": {
@@ -298,7 +299,7 @@ const TransferPage = () => {
                 },
                 "&.Mui-disabled": {
                   border: "none",
-                  backgroundColor: "transparent",
+                  backgroundColor: "#FFB192",
                   boxShadow:
                     "0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.1)",
                 },

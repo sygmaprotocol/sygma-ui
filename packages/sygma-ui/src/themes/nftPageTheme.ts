@@ -51,9 +51,24 @@ const theme = createTheme({
 });
 
 export const nftPageTheme = createTheme(theme, {
+  constants: {
+    generalUnit: 8,
+    icon: {
+      width: 25,
+      height: 25,
+    },
+    modal: {
+      inner: {
+        minWidth: 30,
+        maxWidth: theme.breakpoints.values["md"],
+        // maxWidth: 900
+      },
+      backgroundFade: 0.4,
+    },
+  },
   palette: {
     primary: {
-      light: "#FF7A45",
+      light: "#CDC2B1",
       main: "#FF7A45",
     },
     secondary: {
@@ -67,7 +82,7 @@ export const nftPageTheme = createTheme(theme, {
       secondary: "#000",
     },
     action: {
-      disabledBackground: "rgba(254,86,20, 0.4)",
+      disabledBackground: "#CDC2B1",
     },
     success: {
       main: "#588E23",
@@ -114,23 +129,23 @@ export const nftPageTheme = createTheme(theme, {
       styleOverrides: {
         root: ({ ownerState }: any) => ({
           textTransform: "none",
-          color: theme.palette.common.black,
+          color: "black",
           lineHeight: 1.6,
           boxShadow: "none",
           ...(ownerState.variant === "contained" &&
             ownerState.color === "primary" && {
               "&:hover": {
-                backgroundColor: "#FE5614",
-                borderColor: "#FE5614",
+                backgroundColor: "#CDC2B1",
+                borderColor: "unset",
                 boxShadow: "none",
               },
               "&:active": {
                 boxShadow: "none",
-                backgroundColor: "#FE5614",
-                borderColor: "#FE5614",
+                backgroundColor: "#CDC2B1",
+                borderColor: "unset",
               },
               "&:focus": {
-                boxShadow: "0 0 0 0.2rem rgba(254,86,20,.5)",
+                // boxShadow: "0 0 0 0.2rem rgba(254,86,20,.5)",
               },
             }),
         }),
