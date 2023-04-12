@@ -51,7 +51,22 @@ const AppHeader: React.FC = () => {
                     },
                   }}
                 >
-                  Token Bridge
+                  Home
+                </Button>
+
+                <Button
+                  component={NavLink}
+                  to="/explorer"
+                  sx={{
+                    px: 2,
+                    display: "block",
+                    fontSize: 18,
+                    "&.active": {
+                      background: "#CDC2B1",
+                    },
+                  }}
+                >
+                  Explorer
                 </Button>
 
                 {nftTokenPage && (
@@ -70,6 +85,21 @@ const AppHeader: React.FC = () => {
                     NFT Bridge
                   </Button>
                 )}
+
+                <Button
+                  component={NavLink}
+                  to="/explorer"
+                  sx={{
+                    px: 2,
+                    display: "block",
+                    fontSize: 18,
+                    "&.active": {
+                      background: "#CDC2B1",
+                    },
+                  }}
+                >
+                  Token Bridge
+                </Button>
               </Box>
             </div>
             <TopBarNetworkConnect
