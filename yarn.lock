@@ -1112,12 +1112,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-module-imports@npm:^7.0.0, @babel/helper-module-imports@npm:^7.10.4, @babel/helper-module-imports@npm:^7.16.0, @babel/helper-module-imports@npm:^7.16.7, @babel/helper-module-imports@npm:^7.18.6, @babel/helper-module-imports@npm:^7.8.3":
+"@babel/helper-module-imports@npm:^7.0.0, @babel/helper-module-imports@npm:^7.10.4, @babel/helper-module-imports@npm:^7.16.0, @babel/helper-module-imports@npm:^7.18.6, @babel/helper-module-imports@npm:^7.8.3":
   version: 7.18.6
   resolution: "@babel/helper-module-imports@npm:7.18.6"
   dependencies:
     "@babel/types": ^7.18.6
   checksum: f393f8a3b3304b1b7a288a38c10989de754f01d29caf62ce7c4e5835daf0a27b81f3ac687d9d2780d39685aae7b55267324b512150e7b2be967b0c493b6a1def
+  languageName: node
+  linkType: hard
+
+"@babel/helper-module-imports@npm:^7.16.7":
+  version: 7.21.4
+  resolution: "@babel/helper-module-imports@npm:7.21.4"
+  dependencies:
+    "@babel/types": ^7.21.4
+  checksum: bd330a2edaafeb281fbcd9357652f8d2666502567c0aad71db926e8499c773c9ea9c10dfaae30122452940326d90c8caff5c649ed8e1bf15b23f858758d3abc6
   languageName: node
   linkType: hard
 
@@ -2602,7 +2611,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.10.1, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.10.5, @babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.1, @babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.13.7, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.20.1, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.20.6, @babel/runtime@npm:^7.20.7, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.3.4, @babel/runtime@npm:^7.4.4, @babel/runtime@npm:^7.4.5, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.7.6, @babel/runtime@npm:^7.8.3, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.10.1, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.10.5, @babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.1, @babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.7, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.20.1, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.20.6, @babel/runtime@npm:^7.20.7, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.3.4, @babel/runtime@npm:^7.4.4, @babel/runtime@npm:^7.4.5, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.7.6, @babel/runtime@npm:^7.8.3, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
   version: 7.21.0
   resolution: "@babel/runtime@npm:7.21.0"
   dependencies:
@@ -2651,6 +2660,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/types@npm:^7.21.4":
+  version: 7.21.4
+  resolution: "@babel/types@npm:7.21.4"
+  dependencies:
+    "@babel/helper-string-parser": ^7.19.4
+    "@babel/helper-validator-identifier": ^7.19.1
+    to-fast-properties: ^2.0.0
+  checksum: 587bc55a91ce003b0f8aa10d70070f8006560d7dc0360dc0406d306a2cb2a10154e2f9080b9c37abec76907a90b330a536406cb75e6bdc905484f37b75c73219
+  languageName: node
+  linkType: hard
+
 "@babel/types@npm:^7.8.3":
   version: 7.21.2
   resolution: "@babel/types@npm:7.21.2"
@@ -2668,45 +2688,6 @@ __metadata:
   checksum: 850f9305536d0f2bd13e9e0881cb5f02e4f93fad1189f7b2d4bebf694e3206924eadee1068130d43c11b750efcc9405f88a8e42ef098b6d75239c0f047de1a27
   languageName: node
   linkType: hard
-
-"@buildwithsygma/explorer-ui@workspace:packages/explorer-ui":
-  version: 0.0.0-use.local
-  resolution: "@buildwithsygma/explorer-ui@workspace:packages/explorer-ui"
-  dependencies:
-    "@babel/core": ^7.12.3
-    "@babel/runtime": ^7.12.1
-    "@chainsafe/common-theme": 1.0.10
-    "@emotion/react": 11.9.0
-    "@emotion/styled": 11.8.1
-    "@material-ui/styles": 4.10.0
-    "@mui/icons-material": ^5.2.1
-    "@mui/lab": ^5.0.0-alpha.57
-    "@mui/material": ^5.2.1
-    "@mui/styled-engine-sc": ^5.1.0
-    "@testing-library/jest-dom": ^5.11.4
-    "@testing-library/react": ^11.0.4
-    "@testing-library/user-event": ^12.1.7
-    "@types/history": ^4.7.8
-    "@types/jest": ^26.0.14
-    "@types/node": ^14.11.8
-    "@types/react": ^16.9.52
-    "@types/react-dom": ^16.9.0
-    "@types/react-router-dom": ^5.2.0
-    "@types/styled-components": ^5.1.15
-    craco: ^0.0.3
-    eslint-config-prettier: ^8.3.0
-    eslint-plugin-only-warn: ^1.0.3
-    eslint-plugin-prettier: ^4.0.0
-    prettier: ^2.5.0
-    pretty-quick: 3.0.2
-    react: ^16.13.1
-    react-dom: ^16.13.1
-    react-scripts: ^5.0.1
-    styled-components: ^5.3.3
-    typescript: ^4.6.4
-    web-vitals: ^2.1.4
-  languageName: unknown
-  linkType: soft
 
 "@buildwithsygma/sygma-contracts@npm:1.0.0":
   version: 1.0.0
@@ -2832,6 +2813,7 @@ __metadata:
     "@chainsafe/common-theme": 1.0.10
     "@chainsafe/web3-context": 1.2.0
     "@craco/craco": ^7.0.0
+    "@emotion/react": 11.10.6
     "@fusion-icons/react": 0.0.0
     "@hookform/resolvers": ^2.8.4
     "@mui/icons-material": ^5.2.1
@@ -3763,7 +3745,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/babel-plugin@npm:^11.7.1":
+"@emotion/babel-plugin@npm:^11.10.6":
   version: 11.10.6
   resolution: "@emotion/babel-plugin@npm:11.10.6"
   dependencies:
@@ -3782,7 +3764,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/cache@npm:*, @emotion/cache@npm:^11.10.5, @emotion/cache@npm:^11.7.1":
+"@emotion/cache@npm:*, @emotion/cache@npm:^11.10.5":
   version: 11.10.5
   resolution: "@emotion/cache@npm:11.10.5"
   dependencies:
@@ -3848,7 +3830,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/is-prop-valid@npm:^1.1.0, @emotion/is-prop-valid@npm:^1.1.2, @emotion/is-prop-valid@npm:^1.2.0":
+"@emotion/is-prop-valid@npm:^1.1.0, @emotion/is-prop-valid@npm:^1.2.0":
   version: 1.2.0
   resolution: "@emotion/is-prop-valid@npm:1.2.0"
   dependencies:
@@ -3871,30 +3853,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/react@npm:11.9.0":
-  version: 11.9.0
-  resolution: "@emotion/react@npm:11.9.0"
+"@emotion/react@npm:11.10.6":
+  version: 11.10.6
+  resolution: "@emotion/react@npm:11.10.6"
   dependencies:
-    "@babel/runtime": ^7.13.10
-    "@emotion/babel-plugin": ^11.7.1
-    "@emotion/cache": ^11.7.1
-    "@emotion/serialize": ^1.0.3
-    "@emotion/utils": ^1.1.0
-    "@emotion/weak-memoize": ^0.2.5
+    "@babel/runtime": ^7.18.3
+    "@emotion/babel-plugin": ^11.10.6
+    "@emotion/cache": ^11.10.5
+    "@emotion/serialize": ^1.1.1
+    "@emotion/use-insertion-effect-with-fallbacks": ^1.0.0
+    "@emotion/utils": ^1.2.0
+    "@emotion/weak-memoize": ^0.3.0
     hoist-non-react-statics: ^3.3.1
   peerDependencies:
-    "@babel/core": ^7.0.0
     react: ">=16.8.0"
   peerDependenciesMeta:
-    "@babel/core":
-      optional: true
     "@types/react":
       optional: true
-  checksum: 4ceb004f942fb7557a55ea17aad2c48c4cd48ed5a780ccdc2993e4bded2f94d7c1764bd2f4fbe53f5b26059263599cec64ff66d29447e281a58c60b39c72e5cc
+  checksum: 4762042e39126ffaffe76052dc65c9bb0ba6b8893013687ba3cc13ed4dd834c31597f1230684c3c078e90aecc13ab6cd0e3cde0dec8b7761affd2571f4d80019
   languageName: node
   linkType: hard
 
-"@emotion/serialize@npm:*, @emotion/serialize@npm:^1.0.2, @emotion/serialize@npm:^1.0.3, @emotion/serialize@npm:^1.1.1":
+"@emotion/serialize@npm:*, @emotion/serialize@npm:^1.1.1":
   version: 1.1.1
   resolution: "@emotion/serialize@npm:1.1.1"
   dependencies:
@@ -3934,28 +3914,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/styled@npm:11.8.1":
-  version: 11.8.1
-  resolution: "@emotion/styled@npm:11.8.1"
-  dependencies:
-    "@babel/runtime": ^7.13.10
-    "@emotion/babel-plugin": ^11.7.1
-    "@emotion/is-prop-valid": ^1.1.2
-    "@emotion/serialize": ^1.0.2
-    "@emotion/utils": ^1.1.0
-  peerDependencies:
-    "@babel/core": ^7.0.0
-    "@emotion/react": ^11.0.0-rc.0
-    react: ">=16.8.0"
-  peerDependenciesMeta:
-    "@babel/core":
-      optional: true
-    "@types/react":
-      optional: true
-  checksum: 67150fa788785c34e285b90acecc91fe7a63babceaefbeffd053bed0fa31f72a05bfeeb9d15620766e543e007b9ccac2e836812eec2e791f962ec4e52731ae4c
-  languageName: node
-  linkType: hard
-
 "@emotion/stylis@npm:0.8.5, @emotion/stylis@npm:^0.8.4":
   version: 0.8.5
   resolution: "@emotion/stylis@npm:0.8.5"
@@ -3977,7 +3935,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/utils@npm:*, @emotion/utils@npm:^1.1.0, @emotion/utils@npm:^1.2.0":
+"@emotion/use-insertion-effect-with-fallbacks@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@emotion/use-insertion-effect-with-fallbacks@npm:1.0.0"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 4f06a3b48258c832aa8022a262572061a31ff078d377e9164cccc99951309d70f4466e774fe704461b2f8715007a82ed625a54a5c7a127c89017d3ce3187d4f1
+  languageName: node
+  linkType: hard
+
+"@emotion/utils@npm:*, @emotion/utils@npm:^1.2.0":
   version: 1.2.0
   resolution: "@emotion/utils@npm:1.2.0"
   checksum: 55457a49ddd4db6a014ea0454dc09eaa23eedfb837095c8ff90470cb26a303f7ceb5fcc1e2190ef64683e64cfd33d3ba3ca3109cd87d12bc9e379e4195c9a4dd
@@ -3991,7 +3958,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/weak-memoize@npm:0.2.5, @emotion/weak-memoize@npm:^0.2.5":
+"@emotion/weak-memoize@npm:0.2.5":
   version: 0.2.5
   resolution: "@emotion/weak-memoize@npm:0.2.5"
   checksum: 27d402b0c683b94658220b6d47840346ee582329ca2a15ec9c233492e0f1a27687ccb233b76eedc922f2e185e444cc89f7b97a81a1d3e5ae9f075bab08e965ea
@@ -34239,13 +34206,6 @@ __metadata:
   version: 3.2.1
   resolution: "web-streams-polyfill@npm:3.2.1"
   checksum: b119c78574b6d65935e35098c2afdcd752b84268e18746606af149e3c424e15621b6f1ff0b42b2676dc012fc4f0d313f964b41a4b5031e525faa03997457da02
-  languageName: node
-  linkType: hard
-
-"web-vitals@npm:^2.1.4":
-  version: 2.1.4
-  resolution: "web-vitals@npm:2.1.4"
-  checksum: 03d3f47dbf55c3dce07beb0ff5de8ddd52e2d0a53a8df5c84e7a16dda93543341d67231fa79b1d9772b091419af4ec0fd395b8bcf451a0e26846e3f76b3d0efc
   languageName: node
   linkType: hard
 
