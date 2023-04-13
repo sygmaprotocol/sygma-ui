@@ -14,15 +14,17 @@ const makeDeposit =
     gasPrice: number,
     homeChainConfig?: BridgeConfig,
     provider?: providers.Web3Provider,
-    address?: string,
-    sygmaInstance?: Sygma
+    address?: string
   ) =>
   async (paramsForDeposit: {
     tokenAddress: string;
     amount: string;
     recipient: string;
     feeData: FeeDataResult;
+    sygmaInstance: Sygma;
   }) => {
+    const { sygmaInstance } = paramsForDeposit;
+
     const token = homeChainConfig!.tokens.find(
       (token) => token.address === paramsForDeposit.tokenAddress
     );

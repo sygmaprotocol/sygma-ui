@@ -22,6 +22,7 @@ export type BridgeConfig = {
   tokens: TokenConfig[];
   nativeTokenSymbol: string;
   decimals: number;
+  confirmations?: number;
 };
 
 export type FeeSettings = {
@@ -32,6 +33,7 @@ export type FeeSettings = {
 export type EvmBridgeConfig = BridgeConfig & {
   bridgeAddress: string;
   erc20HandlerAddress: string;
+  erc721HandlerAddress: string;
   type: "Ethereum";
   //This should be the full path to display a tx hash, without the trailing slash, ie. https://etherscan.io/tx
   blockExplorer?: string;

@@ -19,8 +19,8 @@ import { SygmaTheme } from "./themes/SygmaTheme";
 import { BridgeProvider, LocalProvider, SygmaProvider } from "./contexts";
 import { sygmaConfig } from "./sygmaConfig";
 import { AppWrapper } from "./layouts";
-import { getSygmaConfig } from "./getSygmaConfig";
-
+import { configMerger } from "./configLoader";
+import { ConfigError } from "./types/sharedConfig";
 import "./font-faces.css";
 
 if (
@@ -44,9 +44,13 @@ const AppWrap: React.FC<{
 
   const setConfig = async () => {
     if (!window.__RUNTIME_CONFIG__) {
-      const config = await getSygmaConfig();
-      if (config.error) {
-        setErrMessage(config.error.message ?? config.error.name);
+      const config = await configMerger("Substrate");
+      console.log("🚀 ~ file: App.tsx:51 ~ setConfig ~ config:", config);
+      if ((config as ConfigError).error) {
+        setErrMessage(
+          (config as ConfigError).error.message ??
+            (config as ConfigError).error.name
+        );
       } else {
         // @ts-ignore
         window.__RUNTIME_CONFIG__ = config;

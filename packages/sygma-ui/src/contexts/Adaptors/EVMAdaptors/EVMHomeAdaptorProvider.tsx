@@ -11,7 +11,6 @@ import makeUnwrappedToken from "./makeUnwrappedToken";
 import makeHandleCheckSupplies from "./makeHandleCheckSupplies";
 import { useSetBridgeSettingsHook } from "./useSetBridgeSettingsHook";
 import { useConnectWallet } from "./useConnectWallet";
-import { useBridge } from "../../Bridge";
 
 export const EVMHomeAdaptorProvider = ({
   children,
@@ -35,7 +34,6 @@ export const EVMHomeAdaptorProvider = ({
     handleSetHomeChain,
     homeChains,
   } = useLocalWeb3();
-  const { sygmaInstance } = useBridge();
 
   const { wrapper, wrapTokenConfig } = useConnectWallet(
     isReady,
@@ -97,8 +95,7 @@ export const EVMHomeAdaptorProvider = ({
     gasPrice,
     homeChainConfig,
     provider,
-    address,
-    sygmaInstance
+    address
   );
 
   const wrapToken = makeWrappedToken(
