@@ -3,7 +3,7 @@ const CONFIG_SERVER_PORT = process.env.REACT_APP_CONFIG_SERVER_PORT;
 
 const getConfigFromConfigServer = async () => {
   const response = await fetch(
-    `//${CONFIG_SERVER_HOST}:${CONFIG_SERVER_PORT}/share`
+    `//${CONFIG_SERVER_HOST}:${CONFIG_SERVER_PORT}/share/`
   );
   return await response.json();
 };
