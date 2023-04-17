@@ -1,7 +1,8 @@
-const CONFIG_SERVER_HOST = process.env.REACT_APP_CONFIG_SERVER_HOST;
+const CLOUDFLARE_SHARED_CONFIG_URL =
+  process.env.REACT_APP_CLOUDFLARE_SHARED_CONFIG_URL;
 
 const getConfigFromConfigServer = async () => {
-  const response = await fetch(`//${CONFIG_SERVER_HOST}/share/`);
+  const response = await fetch(`//${CLOUDFLARE_SHARED_CONFIG_URL}`);
   return await response.json();
 };
 
