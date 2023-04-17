@@ -6,16 +6,16 @@ on:
       - main
 
 env:
-  AWS_REGION: '${{ secrets.AWS_REGION }}'
+  AWS_REGION: "${{ secrets.AWS_REGION }}"
   ENVIRONMENT: STAGE
-  AWS_STAGE: '${{ secrets.AWS_ARN }}'
-  REGISTRY: 'ghcr.io'
-  TAG: 'latest'
-  CONFIG_SERVER_HOST: 'config.develop.buildwithsygma.com'
+  AWS_STAGE: "${{ secrets.AWS_ARN }}"
+  REGISTRY: "ghcr.io"
+  TAG: "latest"
+  CONFIG_SERVER_HOST: "config.develop.buildwithsygma.com"
+  CLOUDFLARE_SHARED_CONFIG_URL: "https://cloudflare-ipfs.com/ipfs/QmciQFVzJtNEM77QCPR7MNc7pDhucmbHt3FLk8RsMW2SMr"
   CONFIG_SERVER_PORT: 443
-  REACT_APP_SUPPORT_SERVICE: 'Discord'
-  REACT_APP_SUPPORT_URL: 'https://discord.com/invite/Qdf6GyNB5J'
-
+  REACT_APP_SUPPORT_SERVICE: "Discord"
+  REACT_APP_SUPPORT_URL: "https://discord.com/invite/Qdf6GyNB5J"
 
 jobs:
   push:
@@ -47,7 +47,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.repository }}/transfer-ui:${{ env.TAG }} 
+          tags: ${{ env.REGISTRY }}/${{ github.repository }}/transfer-ui:${{ env.TAG }}
           build-args: |
             CONFIG_SERVER_HOST=${{ env.CONFIG_SERVER_HOST }}
             CONFIG_SERVER_PORT=${{ env.CONFIG_SERVER_PORT }}
@@ -83,7 +83,7 @@ jobs:
       - name: Deploy to Amazon ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: 'sygma-ui/ecs/task_definition-transfer-ui-${{ env.ENVIRONMENT }}.json'
-          service: 'transfer-ui-service-${{ env.ENVIRONMENT }}'
-          cluster: 'transfer-ui-${{ env.ENVIRONMENT }}'
+          task-definition: "sygma-ui/ecs/task_definition-transfer-ui-${{ env.ENVIRONMENT }}.json"
+          service: "transfer-ui-service-${{ env.ENVIRONMENT }}"
+          cluster: "transfer-ui-${{ env.ENVIRONMENT }}"
           wait-for-service-stability: true
