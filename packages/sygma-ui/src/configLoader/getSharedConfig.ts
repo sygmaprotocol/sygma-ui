@@ -1,10 +1,7 @@
 const CONFIG_SERVER_HOST = process.env.REACT_APP_CONFIG_SERVER_HOST;
-const CONFIG_SERVER_PORT = process.env.REACT_APP_CONFIG_SERVER_PORT;
 
 const getConfigFromConfigServer = async () => {
-  const response = await fetch(
-    `//${CONFIG_SERVER_HOST}:${CONFIG_SERVER_PORT}/share/`
-  );
+  const response = await fetch(`//${CONFIG_SERVER_HOST}/share/`);
   return await response.json();
 };
 
