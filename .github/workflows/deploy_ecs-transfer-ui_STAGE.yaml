@@ -12,7 +12,7 @@ env:
   REGISTRY: "ghcr.io"
   TAG: "latest"
   CONFIG_SERVER_HOST: "config.develop.buildwithsygma.com"
-  CLOUDFLARE_SHARED_CONFIG_URL: "cloudflare-ipfs.com/ipfs/QmciQFVzJtNEM77QCPR7MNc7pDhucmbHt3FLk8RsMW2SMr"
+  CLOUDFLARE_SHARED_CONFIG_URL: "https://cloudflare-ipfs.com/ipfs/QmciQFVzJtNEM77QCPR7MNc7pDhucmbHt3FLk8RsMW2SMr"
   CONFIG_SERVER_PORT: 443
   REACT_APP_SUPPORT_SERVICE: "Discord"
   REACT_APP_SUPPORT_URL: "https://discord.com/invite/Qdf6GyNB5J"
@@ -53,6 +53,7 @@ jobs:
             CONFIG_SERVER_PORT=${{ env.CONFIG_SERVER_PORT }}
             REACT_APP_SUPPORT_URL=${{ env.REACT_APP_SUPPORT_URL }}
             REACT_APP_SUPPORT_SERVICE=${{ env.REACT_APP_SUPPORT_SERVICE }}
+            CLOUDFLARE_SHARED_CONFIG_URL=${{ env.CLOUDFLARE_SHARED_CONFIG_URL }}
 
   deploy:
     needs: push
