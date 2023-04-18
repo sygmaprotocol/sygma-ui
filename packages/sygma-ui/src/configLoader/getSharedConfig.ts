@@ -2,11 +2,11 @@ const CLOUDFLARE_SHARED_CONFIG_URL =
   process.env.REACT_APP_CLOUDFLARE_SHARED_CONFIG_URL;
 
 const getConfigFromConfigServer = async () => {
-  const response = await fetch(`//${CLOUDFLARE_SHARED_CONFIG_URL}`);
   console.log(
     "🚀 ~ CLOUDFLARE_SHARED_CONFIG_URL:",
     CLOUDFLARE_SHARED_CONFIG_URL
   );
+  const response = await fetch(`${CLOUDFLARE_SHARED_CONFIG_URL}`);
   return await response.json();
 };
 
