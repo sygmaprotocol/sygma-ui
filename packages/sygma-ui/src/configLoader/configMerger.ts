@@ -31,11 +31,23 @@ export const configMerger = async (
     bridgeAddress: domain.bridge,
     feeRouterAddress: domain.feeRouter || "",
     erc20HandlerAddress:
-      domain.handlers.length &&
-      domain.handlers.filter((handler) => handler.type === "erc20")[0].address,
+      domain.handlers.length > 1
+        ? domain.handlers.filter(
+            (handler) =>
+              handler.type !== "erc721" &&
+              handler.type !== "permissionedGeneric" &&
+              handler.type !== "permissionlessGeneric"
+          )[0].address
+        : "",
     erc721HandlerAddress:
-      domain.handlers.length &&
-      domain.handlers.filter((handler) => handler.type === "erc721")[0].address,
+      domain.handlers.length > 1
+        ? domain.handlers.filter(
+            (handler) =>
+              handler.type !== "erc20" &&
+              handler.type !== "permissionedGeneric" &&
+              handler.type !== "permissionlessGeneric"
+          )[0].address
+        : "",
     tokens: [
       ...domain.resources.map((resource) => ({
         address: resource.address,
