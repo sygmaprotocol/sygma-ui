@@ -114,6 +114,10 @@ const App: React.FC<{}> = () => {
     },
   } = window;
 
+  const [supportedNetworks, setSupportedNetworks] = useState<string[]>([]);
+  const [supportedNetworkMessage, setSupportedNetworkMessage] =
+    useState<boolean>(false);
+
   const tokens = sygmaConfig()
     .chains.filter((c) => c.type === "Ethereum")
     .reduce((tca, bc: any) => {
@@ -129,8 +133,38 @@ const App: React.FC<{}> = () => {
 
   const rpcUrls = chains.reduce(
     (acc, { networkId, rpcUrl }) => ({ ...acc, [networkId!]: rpcUrl }),
-    {}
+    {},
   );
+
+  const getSupportedNetworks = async () => {
+    const sygma = await getSygmaConfig();
+    const {
+      SYGMA: { chains },
+    } = sygma;
+    
+    const supportedNetworks = chains.map((chain: any) => chain.name);
+    setSupportedNetworks(supportedNetworks);
+    setSupportedNetworkMessage(true);
+  };
+
+  useEffect(() => {
+    if (window.__RUNTIME_CONFIG__) {
+      getSupportedNetworks();
+    }
+  }, []);
+
+  useEffect(() => {
+    let timeoutId: any;
+    if (supportedNetworkMessage) {
+      timeoutId = setTimeout(() => {
+        setSupportedNetworkMessage(false);
+      }, 5000);
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [supportedNetworkMessage]);
 
   return (
     <ErrorBoundary
@@ -193,6 +227,29 @@ const App: React.FC<{}> = () => {
             </BridgeProvider>
           </LocalProvider>
         </ThemeProvider>
+        {supportedNetworkMessage && (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                border: "2px solid",
+                borderRadius: "10px",
+                padding: "10px",
+              }}
+            >
+              <span>
+                Current supported networks:{" "}
+                <strong>{supportedNetworks.join(", ")}</strong>
+              </span>
+            </div>
+          </div>
+        )}
       </>
     </ErrorBoundary>
   );
