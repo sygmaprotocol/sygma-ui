@@ -3,7 +3,10 @@ FROM node:18-alpine AS builder
 RUN apk --no-cache add git
 WORKDIR /app
 COPY . .
-RUN yarn install
+RUN ls -al /app
+RUN corepack enable
+RUN yarn set version stable
+RUN yarn install --frozen-lockfile
 RUN ls -al
 
 ARG CONFIG_SERVER_HOST

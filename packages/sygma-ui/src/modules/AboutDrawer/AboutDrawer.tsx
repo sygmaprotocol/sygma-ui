@@ -1,7 +1,6 @@
 import React from "react";
 import { CustomDrawer } from "../../components";
-import Typography from "@mui/material/Typography";
-import ButtonUnstyled from "@mui/base/ButtonUnstyled";
+import { Typography, Button } from '@mui/material'
 import { useStyles } from "./styles";
 
 interface IAboutDrawerProps {
@@ -31,15 +30,15 @@ const AboutDrawer: React.FC<IAboutDrawerProps> = ({
         the source chain.
       </Typography>
       <section className={classes.buttons}>
-        <ButtonUnstyled onClick={() => close()}>OK</ButtonUnstyled>
+        <Button onClick={() => close()}>OK</Button>
         <a
           rel="noopener noreferrer"
           href={process.env.REACT_APP_SUPPORT_URL}
           target="_blank"
         >
-          <ButtonUnstyled>
+          <Button>
             Ask a question on {process.env.REACT_APP_SUPPORT_SERVICE}
-          </ButtonUnstyled>
+          </Button>
         </a>
       </section>
     </CustomDrawer>

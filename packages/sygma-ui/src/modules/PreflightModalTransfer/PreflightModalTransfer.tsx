@@ -1,8 +1,6 @@
 import React from "react";
 import { CustomDrawer } from "../../components";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import ButtonUnstyled from "@mui/base/ButtonUnstyled";
+import { Typography, Button } from '@mui/material'
 import { shortenAddress } from "../../utils/Helpers";
 import { useStyles } from "./styles";
 
@@ -83,9 +81,9 @@ const PreflightModalTransfer: React.FC<IPreflightModalTransferProps> = ({
         <Button onClick={start} className={classes.startButton} size="large">
           Start Transfer
         </Button>
-        <ButtonUnstyled onClick={close} className={classes.buttonBack}>
+        <Button onClick={close} className={classes.buttonBack}>
           Back
-        </ButtonUnstyled>
+        </Button>
       </div>
     </CustomDrawer>
   );

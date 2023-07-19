@@ -17,7 +17,7 @@
     "@hookform/resolvers": "^2.8.4",
     "@mui/icons-material": "^5.2.1",
     "@mui/lab": "^5.0.0-alpha.57",
-    "@mui/material": "^5.2.1",
+    "@mui/material": "5.2.1",
     "@mui/styled-engine-sc": "^5.1.0",
     "@sentry/react": "^6.19.6",
     "@use-it/interval": "^1.0.0",
