@@ -153,19 +153,6 @@ const App: React.FC<{}> = () => {
     }
   }, []);
 
-  useEffect(() => {
-    let timeoutId: any;
-    if (supportedNetworkMessage) {
-      timeoutId = setTimeout(() => {
-        setSupportedNetworkMessage(false);
-      }, 5000);
-    }
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [supportedNetworkMessage]);
-
   return (
     <ErrorBoundary
       fallback={({ error, componentStack, eventId, resetError }) => (
